@@ -1,0 +1,6 @@
+Plugin Name -- Epoch
+Text domain -- epoch
+Function prefix -- epoch
+Class prefix -- n/a
+Root namespace -- postmatic\epoch
+Hook Prefix -- epoch

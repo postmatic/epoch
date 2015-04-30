@@ -1,0 +1,182 @@
+<?php
+/**
+ * Routes request to internal API
+ *
+ * @package   Epoch
+ * @author    Postmatic
+ * @license   GPL-2.0+
+ * @link
+ * Copyright 2015 Transitive, Inc.
+ */
+namespace postmatic\epoch\front;
+
+
+class api_route {
+
+	/**
+	 * Nonce key for requests
+	 *
+	 * @since 0.0.1
+	 *
+	 * @var string
+	 */
+	public $api_nonce_key;
+
+	/**
+	 * Constructor for class
+	 *
+	 * @since 0.0.1
+	 */
+	public function __construct() {
+
+		add_action( 'init', array( $this, 'do_api' ), 99 );
+		$this->api_nonce_key = vars::$nonce_field;
+	}
+
+	/**
+	 * Route and respond to request if valid
+	 *
+	 * @since 0.0.1
+	 */
+	public function do_api(  ) {
+		$uri = $_SERVER[ 'REQUEST_URI' ];
+		$uri = strtok( $uri, '?' );
+		if ( false === strpos( $uri, '/' . vars::$endpoint ) ) {
+			return;
+		}
+
+		if (
+			! isset( $_REQUEST[ $this->api_nonce_key ] )
+			|| ! $_REQUEST[ 'action' ]
+			|| ! $this->verify_nonce()
+
+		) {
+			return;
+		}else {
+			$action = strip_tags( trim($_REQUEST[ 'action' ] ) );
+			$response = self::route( $action );
+			if ( ! $response ) {
+				wp_send_json_error();
+			}else{
+				wp_send_json_success( $response );
+			}
+
+		}
+
+
+	}
+
+	/**
+	 * Route request to callback in api_process class
+	 *
+	 * @since 0.0.1
+	 *
+	 * @param string $action Action to take (IE name of method in api_process class.
+	 *
+	 * @return bool|array
+	 */
+	protected function route( $action ) {
+
+		if ( method_exists( '\postmatic\epoch\front\api_process', $action )  ) {
+			$data = $this->data( $action );
+
+			$response = \postmatic\epoch\front\api_process::$action( $data );
+			return $response;
+		}else{
+			return false;
+		}
+
+	}
+
+	/**
+	 * Get data from request and if is POST data, sanatize.
+	 *
+	 * @since 0.0.1
+	 *
+	 * @param string $action Current action.
+	 *
+	 * @return array
+	 */
+	protected function data( $action ) {
+		$data = array();
+
+
+		if ( 'submit_comment' !== $action ) {
+			$data_fields = $this->get_fields( $action );
+			if (
+				isset( $_GET[ 'i' ] )
+				&& is_array( $_GET[ 'i'] )
+			) {
+				foreach( $_GET[ 'i'] as $id ) {
+					$data[ 'ignore' ][] = absint( $id );
+				}
+
+			}
+
+			foreach( $data_fields as $field => $cb ) {
+
+				if ( isset( $_GET[ $field ] ) ) {
+					$data[ $field ] = call_user_func( $cb, $_GET[ $field ] );
+				}else{
+					$data[ $field ] = null;
+				}
+			}
+		}else{
+			$data = $_POST;
+		}
+
+		return $data;
+	}
+
+	/**
+	 * Fields to get from a GET request and how to sanatize them
+	 *
+	 * @since 0.0.1
+	 *
+	 * @access protected
+	 *
+	 * @param string $action Current action.
+	 *
+	 * @return array
+	 */
+	protected function get_fields( $action ) {
+		$fields = array(
+			'postID' => 'absint',
+			'commentsPage' => 'absint',
+			vars::$nonce_field => 'strip_tags'
+		);
+
+		$fields[] = vars::$nonce_field;
+
+		if ( 'comments_open' == $action ) {
+			$fields = array(
+				'postID' => 'absint'
+			);
+
+		}
+
+		return $fields;
+	}
+
+	/**
+	 * Verify nonce
+	 *
+	 * @todo implement post ID check.
+	 *
+	 * @since 0.0.1
+	 *
+	 * @access protected
+	 *
+	 * @return false|int
+	 */
+	protected function verify_nonce() {
+		$valid =  wp_verify_nonce( $_REQUEST[ $this->api_nonce_key ], $this->api_nonce_key );
+
+		return $valid;
+
+	}
+
+
+
+
+}

@@ -1,0 +1,378 @@
+.epoch-input-error,
+input.epoch-input-error,
+select.epoch-input-error,
+textarea.epoch-input-error {
+  border: 1px solid #df8080 !important;
+  box-shadow: 0 0 2px #ff6060 !important;
+}
+h4 > small.description {
+  color: #7f7f7f;
+  font-style: italic;
+  font-weight: normal;
+}
+.epoch-main-headerbrickroad,
+.epoch-main-headercaldera {
+	background: none repeat scroll 0 0 #fff;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 8px 0 0 #28b0c8 inset;
+	margin: -10px -20px 10px -22px;
+	padding: 0 0 8px 22px;
+	overflow: hidden;
+}
+.epoch-sub-headercaldera {
+  background: none repeat scroll 0 0 #f8f8f8;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04), 8px 0 0 #28b0c8 inset;
+  margin: -10px -20px 10px -22px;
+  padding: 0 0 0 8px;
+  overflow: hidden;
+}
+.epoch-sub-headerbrickroad {
+  background: none repeat scroll 0 0 #f8f8f8;
+  border-radius: 0 0 6px;
+  bottom: 32px;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1), 8px 0 0 #404040 inset;
+  margin: -11px -20px 10px -22px;
+  overflow: hidden;
+  padding: 0 0 0 8px;
+  position: absolute;
+  top: 64px;
+  width: 140px;
+}
+.epoch-subline,
+.epoch-version {
+  color: #9f9f9f;
+  font-size: 0.55em;
+  line-height: 0;
+}
+
+.epoch-main-headerbrickroad h2,
+.epoch-main-headercaldera h2 {
+	color: #4f4f4f;
+	font-size: 20px;
+	font-weight: 300;
+  float: left;
+}
+.epoch-main-headerbrickroad .logo-icon,
+.epoch-main-headercaldera .logo-icon{
+	color: #28b0c8;
+  font-size: 72px;
+  margin: -18px 20px 0 -60px;
+  opacity: 0.2;
+  padding: 0 15px 0 0;
+}
+
+.epoch-main-headerwordpress .error_notice_box,
+.epoch-main-headerwordpress .updated_notice_box,
+.epoch-main-headerbrickroad .error_notice_box,
+.epoch-main-headerbrickroad .updated_notice_box,
+.epoch-main-headercaldera .error_notice_box,
+.epoch-main-headercaldera .updated_notice_box {
+  background: #fff;
+  border-left: 8px solid rgb(175, 175, 0);
+  color: #333;
+  display: inline-block;
+  padding: 20px 23px 15px 12px;
+  position: absolute;
+  top: -75px;
+  left: 0;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+
+.epoch-main-headerwordpress .error_notice_box,
+.epoch-main-headerbrickroad .error_notice_box,
+.epoch-main-headercaldera .error_notice_box {
+  border-left: 8px solid rgb(175, 0, 0);
+}
+.epoch-general-delete-link{
+  color: #a00;
+}
+.epoch-general-delete-link:hover{
+  color: red;
+}
+.subsubsub.epoch-nav-tabs a:last-child{
+  display: none;
+}
+.wrap .epoch-main-headerbrickroad .add-new-h2,
+.wrap .epoch-main-headercaldera .add-new-h2{
+	font-size: 12px;
+	margin: 13px;
+	cursor: pointer;
+}
+.epoch-main-headerbrickroad .add-new-h2:hover,
+.epoch-main-headercaldera .add-new-h2:hover {
+	background: none repeat scroll 0 0 #28b0c8;
+}
+
+.epoch-main-headerbrickroad .epoch-header-tabs,
+.epoch-main-headercaldera .epoch-header-tabs {
+  float: left;
+  margin: 0 0 0 25px;
+  padding: 0;
+}
+.epoch-sub-headerbrickroad .epoch-sub-tabs,
+.epoch-sub-headercaldera .epoch-sub-tabs {
+  margin: 0;
+  padding: 0;
+}
+
+.epoch-main-headerbrickroad .epoch-header-tabs > li,
+.epoch-main-headercaldera .epoch-header-tabs > li{
+  float: left;
+}
+.epoch-main-headerbrickroad .epoch-header-tabs > li > a,
+.epoch-main-headercaldera .epoch-header-tabs > li > a{
+  display: inline-block;
+  margin: 0 0 -15px;
+  padding: 16px 20px 20px;
+  text-decoration: none;
+  color:#28b0c8;
+}
+.epoch-main-headercaldera .epoch-header-tabs > li > a:hover{
+  background-color: #efefef;
+}
+.epoch-main-headercaldera .epoch-header-tabs > li.active > a{
+  background-color: #28b0c8;
+  color: #fff;
+}
+.epoch-main-headerbrickroad .epoch-header-tabs > li.active > a {
+  background-color: #28b0c8;
+  color: #fff;
+}
+.epoch-sub-headercaldera .epoch-sub-tabs > li {
+  float: left;
+  margin: 0;
+}
+.epoch-sub-headerbrickroad .epoch-sub-tabs > li {
+  float: left;
+  margin: 0;
+  width: 100%;
+}
+.epoch-sub-headercaldera .epoch-sub-tabs > li > a{
+  display: inline-block;
+  margin: 0;
+  padding: 6px 14px 8px;
+  text-decoration: none;
+  color:#28b0c8;
+}
+.epoch-sub-headerbrickroad .epoch-sub-tabs > li > a {
+  color: #28b0c8;
+  display: block;
+  margin: 0;
+  padding: 6px 14px 8px;
+  text-decoration: none;
+}
+.epoch-sub-headercaldera .epoch-sub-tabs > li > a:hover{
+  background-color: #efefef;
+}
+.epoch-sub-headercaldera .epoch-sub-tabs > li.active > a{
+  background-color: #28b0c8;
+  color: #fff;
+}
+.epoch-sub-headerbrickroad .epoch-sub-tabs > li.active > a {
+  background-color: #646464;
+  color: #fff;
+}
+.epoch-split-panel {
+  margin-left: 300px;
+}
+.epoch-side-list {
+  float: left;
+  margin-left: -300px;
+  width: 280px;
+}
+.epoch-side-list > label{
+	display: block;
+}
+.epoch-side-list > select {
+	width: 100%;
+	margin-bottom: 2px;
+}
+
+.epoch-footer-bar {
+  border-top: 1px solid #e6e6e6;
+  margin: 30px -20px 0 -22px;
+  padding: 20px;
+}
+
+.epoch-main-list {
+  float: left;
+  min-height: 100px;
+  width: 550px;
+  position: relative;
+}
+
+.epoch-config-group {
+  margin-bottom: 6px;
+}
+.epoch-config-group > label {
+  display: inline-block;
+  margin: 6px 0 0;
+  vertical-align: top;
+  width: 180px;
+}
+.epoch-config-group .invalid {
+  border: 1px solid #c00 !important;
+  box-shadow: 0 0 5px -1px #c00 !important;
+}
+/* groups wrappers */
+.epoch-add-group-btn {
+  color: #777;
+  cursor: pointer;
+  float: left;
+  font-size: 1.5em;
+  width: 40px;
+}
+.epoch-group-wrapper {
+  float: left;
+  margin-right: 12px;
+  width: 280px;
+}
+.epoch-group-wrapper .sortable-placeholder {
+  display: block;
+  float: left;
+}
+.epoch-field-group {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  color: #555;
+  margin: 0 0 6px;
+  padding: 6px 12px;
+  position: relative;
+}
+.epoch-field-item {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  color: #555;
+  margin: 0 0 6px;
+  overflow: hidden;
+  padding: 6px 0 6px 6px;
+  position: relative;
+}
+.epoch-field-group-config {
+  background: none repeat scroll 0 0 rgb(248, 248, 248);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.18);
+  height: 130px;
+  margin: 6px 0;
+  overflow: hidden;
+  padding: 6px 6px 0;
+}
+.epoch-field-config-wrapper {
+  float: left;
+  width: 550px;
+}
+
+
+
+/* Tags */
+.magic-tag-init {
+  margin: 4px 2px;
+  padding: 3px;
+  position: absolute;
+  right: 0;
+}
+.ui-autocomplete-category {
+  background: none repeat scroll 0 0 #cecece;
+  font-weight: bold;
+  padding: 3px 10px;
+}
+.ui-autocomplete {
+  border: 1px solid #cbcbcb;
+  max-height: 380px;
+  overflow: auto;
+}
+.epoch-card-item {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04), 50px 0 0 #f8f8f8 inset;
+  box-sizing: border-box;
+  color: #555;
+  display: inline-block;
+  font-size: 13px;
+  min-height: 90px;
+  margin: 6px 6px 0 0;
+  overflow: hidden;
+  padding: 0 0 0 50px;
+  position: relative;
+  width: 517px;
+}
+.epoch-card-sub-item {
+  background: none repeat scroll 0 0 #fcfcfc;
+  border: 1px solid #e5e5e5;
+  box-shadow: -39px 0 0 #f8f8f8 inset,-40px 0 0 #dfdfdf inset;
+  box-sizing: border-box;
+  color: #555;
+  font-size: 13px;
+  margin: 0 0 6px;
+  padding: 6px;
+  position: relative;
+}
+
+.epoch-card-item .epoch-card-icon {
+  float: left;
+  font-size: 95px;
+  height: 100%;
+  margin-left: -51px;
+  overflow: hidden;
+  padding: 0 1px;
+  text-indent: -40px;
+  width: 49px;
+  line-height: 84px;
+}
+.epoch-card-item .epoch-card-icon:before {
+  opacity: 0.2;
+}
+.epoch-card-content {
+  box-sizing: padding-box;
+  border-left: 1px solid #dfdfdf;
+  padding: 6px 12px;
+  width: 100%;
+  min-height: 90px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ui-sortable-helper .epoch-card-content{
+  overflow: visible;
+}
+.ui-sortable-helper .dashicons{
+  display: none;
+}
+.epoch-card-item .epoch-card-content > h4{
+	margin: 0;
+}
+
+.epoch-card-content input[type="text"] {
+  width: 100%;
+}
+.epoch-card-content .description {
+  color: #8f8f8f;
+  font-size: 11px;
+}
+.epoch-card-content .epoch-card-actions {
+  padding: 0;
+}
+.epoch-card-content .epoch-card-actions .row-actions{
+	visibility: visible;
+}
+.epoch-card-content .epoch-card-actions .row-actions a{
+	text-decoration: none;
+}
+#epoch-save-indicator.loading .spinner{
+  display: block;
+}
+
+
+.baldrick-modal-title .modal-label,
+.baldrick-modal-title .baldrick-modal-closer{
+  color: #fff;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+.baldrick-modal-title .baldrick-modal-closer:hover {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+}
+.baldrick-modal-title .modal-label{
+  background-color: #28b0c8;
+}
+.epoch-main-headercaldera .loading{
+	top: -2px;
+}

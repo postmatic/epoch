@@ -1,0 +1,36 @@
+<script id="epoch-comment-template" type="text/x-handlebars-template">
+
+    <div id="comment-{{comment_ID}}" >
+        <article id="div-comment-{{comment_ID}}" class="comment-body">
+            <footer class="comment-meta">
+                <div class="comment-author vcard">
+                    <a href="{{comment_author_url}}" target="_blank" rel="nofollow">
+                        {{{author_avatar}}}
+                    </a>
+                </div><!-- .comment-author -->
+
+                <div class="comment-metadata">
+                    <a href="#comment-link">
+                        <time datetime="{{comment_date}}">
+                            {{comment_date}}
+                        </time>
+                    </a>
+                </div><!-- .comment-metadata -->
+
+                {{#if comment_approved}}
+
+                {{else}}
+                <p class="comment-awaiting-moderation">Your comment is awaiting moderation.</p>
+                {{/if}}
+            </footer><!-- .comment-meta -->
+
+            <div class="comment-content">
+                {{{comment_content}}}
+            </div><!-- .comment-content -->
+
+            <div class="reply"><a href="#reply" id="epoch-reply">Reply</a></div>
+
+        </article><!-- .comment-body -->
+    </div>
+
+</script>

@@ -1,0 +1,39 @@
+{
+  "name": "postmatic/epoch",
+  "description": "description",
+  "type": "wordpress-plugin",
+  "keywords": [
+    "wordpress"
+  ],
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Postmatic",
+      "homepage": "https://gopostmatic.com/",
+      "role": "Developer"
+    },
+    {
+      "name": "Josh Pollock",
+      "homepage": "https://calderawp.com",
+      "role": "Developer"
+    },
+    {
+      "name": "David Cramer",
+      "homepage": "https://calderawp.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.0",
+    "calderawp/magic-tags": "dev-master",
+    "calderawp/dismissible-notice": "dev-master"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "postmatic\\epoch\\": "classes"
+    },
+    "files" : [ "includes/functions.php" ]
+  }
+
+}

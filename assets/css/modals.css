@@ -1,0 +1,287 @@
+
+/* MODALS */
+.epoch-backdrop {
+  background: none repeat scroll 0 0 #000000;
+  bottom: 0;
+  display: block;
+  left: 0;
+  min-height: 360px;
+  opacity: 0.7;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100100;
+}
+
+.epoch-modal-wrap {
+  background-color: #FFFFFF;
+  bottom: 15px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  display: block;
+  left: 50%;
+  margin-left: -250px;
+  position: fixed;
+  top: 15px;
+  transition: height 0.2s ease 0s, margin-top 0.2s ease 0s;
+  width: 500px;
+  z-index: 100105;
+}
+.epoch-modal-wrap.epoch-front-modal-wrap{
+  position: fixed;
+  bottom: auto;
+  width: 600px;
+  margin-left: -300px;
+  margin-top: 0;
+}
+.epoch-modal-title {
+  border-bottom: 1px solid #EFEFEF;
+}
+
+.epoch-modal-closer {
+  color: #fff;
+  float: right;
+  font-size: 24px;
+  padding: 12px;
+  text-decoration: none;
+}
+.epoch-modal-closer.epoch-front-modal-closer{
+  position: absolute;
+  right: 0;
+  text-decoration: none;
+  color: inherit;
+}
+.epoch-modal-closer:hover,
+.epoch-modal-closer:active,
+a.epoch-modal-closer.epoch-front-modal-closer:hover,
+a.epoch-modal-closer.epoch-front-modal-closer:active{
+  text-decoration: none;
+  color: #fff;
+  background-color: rgba(0,0,0,0.2);
+}
+.epoch-modal-title > h3 {
+  font-weight: 400;
+  margin: 0;
+  padding: 12px 40px 12px 12px;
+  color: #fff;
+  background-color: #28b0c8;
+}
+
+.epoch-modal-body {
+  -moz-box-sizing:    border-box;   /* Firefox 1, probably can drop this */
+  -webkit-box-sizing: border-box;   /* Safari 3-4, also probably droppable */
+  box-sizing:        border-box;   /* Everything else */
+  bottom: 90px;
+  left: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding: 12px 12px 8.9px;
+  position: absolute;
+  right: 0;
+  top: 43px;  
+}
+#extend_cf_baldrickModalBody{
+  overflow: auto;
+}
+.epoch-modal-body.epoch-front-modal-body {
+  bottom: auto;
+  position: relative;
+  top: auto;
+}
+.epoch-modal-body .import-warning{
+  margin: 0;
+  padding: 4px 0;
+  color: #ff1111;
+}
+
+.epoch-modal-body .form-panel {
+  bottom: 0;
+  left: 12px;
+  overflow: auto;
+  position: absolute;
+  right: 12px;
+  top: 0;
+}
+.epoch-modal-footer {
+  background: none repeat scroll 0 0 #EFEFEF;
+  border-top: 1px solid #E0E0E0;
+  bottom: 0;
+  left: 0;
+  padding: 12px;
+  position: absolute;
+  right: 0;
+  text-align: left;
+}
+.tablenav.epoch-table-nav {
+  clear: none;
+  float: right;
+  margin: -42px 18px 0 0;
+}
+.epoch-table-nav .tablenav-pages{
+  float: left;
+}
+.epoch-table-nav .tablenav-pages .current-page{
+  width: 45px;
+}
+
+.epoch-modal-wrap .modal-body {
+  height: 100%;
+  overflow: auto;  
+}
+.epoch-modal-wrap .modal-body .modal-list-item-epoch {
+  border-bottom: 0;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.epoch-modal-wrap .modal-list-item-epoch:hover {
+  background: none repeat scroll 0 0 #EFEFEF;
+}
+.epoch-modal-wrap .modal-list-item-epoch .description {
+  color: #919191;
+}
+
+.baldrick-modal-wrap .spinner.loading {
+  background-position: center center;
+  display: inline-block;
+  float: none;
+  height: auto;
+  position: absolute;
+  width: auto;
+}
+
+/* MODALS */
+.baldrick-backdrop {
+  background: none repeat scroll 0 0 #000000;
+  bottom: 0;
+  display: block;
+  left: 0;
+  min-height: 360px;
+  opacity: 0.7;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100100;
+}
+
+.baldrick-modal-wrap {
+  background-color: #FFFFFF;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  display: block;
+  position: fixed;
+  transition: height 0.2s ease 0s, margin-top 0.2s ease 0s;
+  width: 500px;
+  z-index: 100105;
+}
+.baldrick-modal-wrap.baldrick-front-modal-wrap{
+  position: absolute;
+  bottom: auto;
+  width: 600px;
+  margin-left: -300px;
+  margin-top: 0;
+}
+.baldrick-modal-title {
+  border-bottom: 1px solid #EFEFEF;
+}
+
+.baldrick-modal-closer {
+  color: #808080;
+  float: right;
+  font-size: 24px;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.baldrick-modal-closer.baldrick-front-modal-closer:hover,
+.baldrick-modal-closer.baldrick-front-modal-closer:active{
+  text-decoration: none;
+  color: inherit;
+}
+.baldrick-modal-title > h3 {
+  font-weight: 400;
+  margin: 0;
+  padding: 12px 40px 12px 12px;
+}
+
+.baldrick-modal-body {
+  -moz-box-sizing:    border-box;   /* Firefox 1, probably can drop this */
+  -webkit-box-sizing: border-box;   /* Safari 3-4, also probably droppable */
+  box-sizing:        border-box;   /* Everything else */
+  bottom: 0;
+  left: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding: 12px;
+  position: absolute;
+  right: 0;
+  top: 43px;
+  overflow: auto;
+}
+.baldrick-modal-body.has-buttons{
+  bottom: 53px;
+}
+.baldrick-modal-footer {
+  background: none repeat scroll 0 0 #EFEFEF;
+  border-top: 1px solid #E0E0E0;
+  bottom: 0;
+  left: 0;
+  padding: 12px;
+  position: absolute;
+  right: 0;
+  text-align: right;
+}
+
+
+@media (max-width: 600px) {
+  /* Small Screens */
+  .baldrick-modal-wrap.baldrick-front-modal-wrap{
+    bottom: 0;
+    display: block;
+    left: 0;
+    margin: 0 !important;
+    overflow: auto;
+    padding: 0 !important;
+    top: 0;
+    width: 100% !important;
+  }
+}
+
+
+/* EXPERIMENTAL TABS */
+.baldrick-modal-wrap .navtabs {
+  background-color: #f1f1f1;
+  border-right: 1px solid #dfdfdf;
+  bottom: 0;
+  box-sizing: padding-box;
+  float: left;
+  left: 0;
+  margin: 0;
+  padding: 12px 0 0;
+  overflow: auto;
+  overflow-x: hidden;
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  width: 150px;
+}
+.baldrick-modal-wrap .navtabs > li{
+  margin: 0;
+}
+.baldrick-modal-wrap .navtabs > li:hover{
+  background-color: #dfdfdf;
+}
+.baldrick-modal-wrap .navtabs > li a {
+  color: #28b0c8;
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  text-overflow: ellipsis;  
+  overflow: hidden;
+}
+.baldrick-modal-body.has-tabs {
+  margin-left: 150px;
+}
+.baldrick-modal-wrap .navtabs > li.selected > a {
+  background: none repeat scroll 0 0 #28b0c8;
+  color: #fff !important;
+}
