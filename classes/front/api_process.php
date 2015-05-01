@@ -262,12 +262,7 @@ class api_process {
 			//get comment link
 			$comment[ 'comment_link' ] = get_comment_link( $comment[ 'comment_ID' ] );
 
-			//get comment reply link
-			$args = array(
-				'add_below' => true,
-				'depth' => 1,
-				'max_depth' => 9
-			);
+			//are comments replies allowed
 			$comment[ 'reply_allowed' ] = comments_open(  $comment[ 'comment_post_ID' ] );
 
 			$comments[ $i ] = (object) $comment;
