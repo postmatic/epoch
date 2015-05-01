@@ -26,6 +26,7 @@ class api_process {
 		$args = array(
 			'id_form' => vars::$form_id,
 			'id_submit ' => vars::$submit_id,
+			'title_reply_to' => 'Reply to comment'
 		);
 
 		ob_start();
@@ -55,14 +56,11 @@ class api_process {
 			$args[ 'comment__not_in' ] = $data[ 'ignore' ];
 		}
 
+
 		$comments = get_comments( $args );
 		if ( ! empty( $comments ) && is_array( $comments ) ) {
 
-			foreach( $comments as $i => $comment ) {
-				$comment = (array) $comment;
-				$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email' ] );
-				$comments[ $i ] = (object) $comment;
-			}
+			$comments = self::improve_comment_response( $comments );
 
 			$comments = wp_json_encode( $comments );
 		}
@@ -238,6 +236,45 @@ class api_process {
 		}
 
 		return $data;
+
+	}
+
+	/**
+	 * Change the data returned to make our lives easier client side.
+	 *
+	 * @since 0.0.2
+	 *
+	 * @param array $comments
+	 *
+	 * @return array
+	 */
+	protected static function improve_comment_response( $comments ) {
+		$date_format = get_option( 'date_format' );
+		foreach ( $comments as $i => $comment ) {
+			$comment = (array) $comment;
+
+			//add avatar markup as a string
+			$comment['author_avatar'] = get_avatar( $comment['comment_author_email']);
+
+			//format date according to WordPress settings
+			$comment[ 'comment_date' ] = date( $date_format, strtotime( $comment['comment_date'] ) );
+
+			//get comment link
+			$comment[ 'comment_link' ] = get_comment_link( $comment[ 'comment_ID' ] );
+
+			//get comment reply link
+			$args = array(
+				'add_below' => true,
+				'depth' => 1,
+				'max_depth' => 9
+			);
+			$comment[ 'reply_allowed' ] = comments_open(  $comment[ 'comment_post_ID' ] );
+
+			$comments[ $i ] = (object) $comment;
+
+		}
+
+		return $comments;
 
 	}
 

@@ -30,17 +30,6 @@ jQuery( document ).ready( function ( $ ) {
             app.shut_it_off = false;
 
             /**
-             * Check comment count on interval
-             */
-            /**
-            setInterval(function () {
-                if ( false === app.shut_it_off ) {
-                    app.comment_count( true );
-                }
-            }, epoch_vars.epoch_options.interval );
-             **/
-
-            /**
              * Run the system
              */
             app.comments_open();
@@ -190,9 +179,11 @@ jQuery( document ).ready( function ( $ ) {
                 }
                 ).done( function( response  ) {
                     $( spinner ).hide();
+
+
                 } ).success( function( response ) {
                     response = app.get_data_from_response( response );
-                    if ( 'undefined' != response && 'undefined' != response.comments ) {
+                    if ( 'object' == typeof response && 'undefined' != response && 'undefined' != response.comments ) {
                         comments = response.comments;
                         comments = JSON.parse( comments );
                         for ( i = 0; i < comments.length; i++) {
@@ -232,6 +223,15 @@ jQuery( document ).ready( function ( $ ) {
             template = Handlebars.compile( source );
             html = template( comment );
             $( html  ).appendTo( app.comments_wrap_el );
+            $( '.epoch-comment-reply-link').click( function( event ) {
+                event.preventDefault();
+                replyTo =  $( this ).attr( 'data-comment-id' );
+                $( 'input#comment_parent' ).attr( 'value', replyTo );
+                $( app.form_wrap_el ).hide();
+                $( this ).append( app.form_wrap_el );
+                $( app.form_wrap_el ).slideDown( 1000 );
+
+            });
         };
 
         app.shutdown = function() {

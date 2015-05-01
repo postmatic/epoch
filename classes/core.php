@@ -171,13 +171,21 @@ class core {
 		}
 
 		wp_enqueue_script( 'handlebars', EPOCH_URL . '/assets/js/front/handlebars.js', false, '3.0.3' );
+		wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'handlebars' ), $version );
 		wp_enqueue_script( 'epoch', EPOCH_URL . '/assets/js/front/epoch.js', array( 'jquery', 'handlebars' ), $version, true );
 		wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}.css",false, $version );
 
-		$vars = $this->prepare_data_to_be_localized();
+		if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
+			wp_enqueue_script( 'comment-reply' );
+		}
 
+		//localize variables we need in JS
+		$vars = $this->prepare_data_to_be_localized();
 		wp_localize_script( 'epoch', 'epoch_vars', $vars );
 
+		//localize translation strings we need in JS
+		$vars = $this->translation_strings();
+		wp_localize_script( 'epoch', 'epoch_translation', $vars );
 	}
 
 	/**
@@ -193,7 +201,7 @@ class core {
 	}
 
 	/**
-	 * Prepare data to be localized into script
+	 * Prepare data to be localized into script (that isn't for translation)
 	 *
 	 * @since 0.0.1
 	 *
@@ -263,6 +271,25 @@ class core {
 
 		return $options;
 
+	}
+
+	/**
+	 * Holds translation strings for use in front-end
+	 *
+	 * @return array
+	 */
+	protected function translation_strings() {
+		return array(
+			'awaiting_moderation' => __( 'Your comment is awaiting moderation.', 'epoch' ),
+			'comment_link_title' => __( 'Link to comment' ),
+			'reply' => __( 'Reply', 'epoch' ),
+			'reply_link_title' => __( 'Reply To This Comment', 'epoch' ),
+			'new_comment' =>  __( 'New Comment', 'epoch' ),
+			'comment_success' => __( 'Comment Submitted Successfully', 'epoch' ),
+			'comment_failure' => __( 'There was an error submitting your comment.', 'epoch' ),
+			'author_url_link_title' => __( 'Link to comment author\'s website', 'epoch' )
+
+		);
 	}
 
 
