@@ -159,9 +159,20 @@ class core {
 			$version = rand();
 		}
 
+		$options = options::get();
+		if ( is_array( $options ) && isset( $options['options'] ) && isset( $options['options' ][ 'theme' ] ) ) {
+			$theme = $options[ 'options' ][ 'theme' ];
+			if ( ! in_array( $theme, array( 'light', 'dark' ) ) ) {
+				$theme = 'light';
+			}
+
+		} else {
+			$theme = 'light';
+		}
+
 		wp_enqueue_script( 'handlebars', EPOCH_URL . '/assets/js/front/handlebars.js', false, '3.0.3' );
 		wp_enqueue_script( 'epoch', EPOCH_URL . '/assets/js/front/epoch.js', array( 'jquery', 'handlebars' ), $version, true );
-		wp_enqueue_style( 'epoch', EPOCH_URL . '/assets/css/front/epoch.css',false, $version );
+		wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}.css",false, $version );
 
 		$vars = $this->prepare_data_to_be_localized();
 
