@@ -99,7 +99,7 @@ jQuery( document ).ready( function ( $ ) {
                             event.preventDefault();
                             window.clearTimeout( app.poll );
 
-                            $data = $( this ).serializeArray();
+                            data = $( this ).serializeArray();
                             $.post(
                                 epoch_vars.submit_api_url,
                                 data
