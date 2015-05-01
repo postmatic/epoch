@@ -108,8 +108,9 @@ jQuery( document ).ready( function ( $ ) {
                          */
                         $( app.form_el ).submit( function( event ) {
                             event.preventDefault();
-                            data = $( this ).serialize();
                             window.clearTimeout( app.poll );
+
+                            $data = $( this ).serializeArray();
                             $.post(
                                 epoch_vars.submit_api_url,
                                 data
