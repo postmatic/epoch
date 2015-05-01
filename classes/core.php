@@ -77,8 +77,10 @@ class core {
 			add_action( 'wp_enqueue_scripts', array( $this, 'front_stylescripts' ) );
 			add_filter( 'comments_template', array( '\postmatic\epoch\front\layout', 'initial' ), 100 );
 			add_action( 'wp_footer', array( $this, 'print_template' ) );
+			add_action( 'wp_footer', array( $this, 'print_modals' ) );
 
 			new api_route();
+
 		}
 
 	}
@@ -172,7 +174,8 @@ class core {
 
 		wp_enqueue_script( 'handlebars', EPOCH_URL . '/assets/js/front/handlebars.js', false, '3.0.3' );
 		wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'handlebars' ), $version );
-		wp_enqueue_script( 'epoch', EPOCH_URL . '/assets/js/front/epoch.js', array( 'jquery', 'handlebars' ), $version, true );
+		wp_enqueue_script( 'simplemodal', EPOCH_URL . 'assets/js/front/simplemodal.min.js', array( 'jquery' ), '1.4.4' );
+		wp_enqueue_script( 'epoch', EPOCH_URL . '/assets/js/front/epoch.js', array( 'jquery', 'handlebars', 'simplemodal' ), $version, true );
 		wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}.css",false, $version );
 
 		if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -276,6 +279,8 @@ class core {
 	/**
 	 * Holds translation strings for use in front-end
 	 *
+	 * @since 0.0.2
+	 *
 	 * @return array
 	 */
 	protected function translation_strings() {
@@ -284,12 +289,21 @@ class core {
 			'comment_link_title' => __( 'Link to comment' ),
 			'reply' => __( 'Reply', 'epoch' ),
 			'reply_link_title' => __( 'Reply To This Comment', 'epoch' ),
-			'new_comment' =>  __( 'New Comment', 'epoch' ),
-			'comment_success' => __( 'Comment Submitted Successfully', 'epoch' ),
-			'comment_failure' => __( 'There was an error submitting your comment.', 'epoch' ),
 			'author_url_link_title' => __( 'Link to comment author\'s website', 'epoch' )
-
 		);
+	}
+
+	/**
+	 * Print modal content in footer hidden
+	 *
+	 * @uses "wp_footer"
+	 *
+	 * @since 0.0.2
+	 */
+	public function print_modals() {
+		printf( '<div class="epoch-modal" style="display: none;" id="epoch-success">%s</div>', __( 'Comment Submitted Successfully', 'epoch' ) );
+		printf( '<div class="epoch-modal" style="display: none;" id="epoch-failure">%s</div>', __( 'There was an error submitting your comment.', 'epoch' ) );
+		printf( '<div class="epoch-modal" style="display: none;" id="epoch-new-comment">%s</div>', __( 'A New Comment Available', 'epoch' ) );
 	}
 
 

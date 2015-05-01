@@ -109,9 +109,24 @@ jQuery( document ).ready( function ( $ ) {
                                 app.last_count = 0;
                                 app.get_comments( true );
                                 app.form_el.reset();
+                                $( '#epoch-success' ).modal({
+                                    opacity:80,
+                                    overlayCss: {backgroundColor:"#fff"},
+                                    minWidth: 350,
+                                    overlayClose: true,
+                                    esc_close: true
+
+                                });
 
                             } ).fail( function ( xhr ) {
-                                alert( xhr.status );
+                                    $( '#epoch-failure' ).modal({
+                                        opacity:80,
+                                        overlayCss: {backgroundColor:"#fff"},
+                                        minWidth: 350,
+                                        overlayClose: true,
+                                        esc_close: true
+
+                                    });
                             } );
 
 
@@ -151,6 +166,14 @@ jQuery( document ).ready( function ( $ ) {
                         } else {
                             if ( response.count > app.last_count ) {
                                 app.get_comments();
+                                $( '#epoch-new-comment' ).modal({
+                                    opacity:10,
+                                    overlayCss: {backgroundColor:"#fff"},
+                                    minWidth: 350,
+                                    overlayClose: true,
+                                    esc_close: true
+
+                                });
                                 app.last_count = response.count;
                             }
                         }
