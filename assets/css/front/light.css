@@ -14,5 +14,13 @@
 	-moz-border-radius: 2px;
 	border-radius: 2px;
 	float: left;
-	margin-right: 10px; 
+	margin-right: 12px; 
+}
+
+#epoch-comments div.comment-content {
+	margin-left: 60px;
+}
+
+#epoch-comments div.reply {
+	margin-left: 60px;
 }
