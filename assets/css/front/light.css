@@ -3,3 +3,16 @@
     text-align: center;
 }
 
+#epoch-comments {margin-top: 25px;}
+
+#epoch-comments .comment-author.vcard {
+}
+
+#epoch-comments .comment-author.vcard img {
+	width: 48px; 
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	float: left;
+	margin-right: 10px; 
+}
