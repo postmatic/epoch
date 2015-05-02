@@ -41,13 +41,3 @@
 		<?php _e( 'Text to show before comments', 'epoch' ); ?>
 	</p>
 </div>
-
-<div class="epoch-config-group">
-	<label for="epoch-options-threaded">
-		<?php _e( 'Threaded Comments', 'epoch' ); ?>
-	</label>
-	<input id="epoch-options-threaded" type="checkbox" name="options[threaded]" value="{{options/threaded}}" >
-	<p class="description" style="margin-left: 190px;">
-		<?php _e( 'Should comments be threaded?', 'epoch' ); ?>
-	</p>
-</div>
