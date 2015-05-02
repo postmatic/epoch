@@ -250,6 +250,13 @@ class api_process {
 	 */
 	protected static function improve_comment_response( $comments ) {
 		$date_format = get_option( 'date_format' );
+
+		$reply_link_args = array(
+			'add_below'     => 'comment',
+			'depth'         => 1,
+			'max_depth'     => get_option( 'thread_comments_depth', 5 )
+		);
+
 		foreach ( $comments as $i => $comment ) {
 			$comment = (array) $comment;
 
@@ -264,6 +271,9 @@ class api_process {
 
 			//are comments replies allowed
 			$comment[ 'reply_allowed' ] = comments_open(  $comment[ 'comment_post_ID' ] );
+
+			//get reply link
+			$comment[ 'reply_link' ] = get_comment_reply_link( $reply_link_args, (int) $comment[ 'comment_ID' ] );
 
 			$comments[ $i ] = (object) $comment;
 

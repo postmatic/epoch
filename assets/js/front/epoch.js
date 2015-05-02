@@ -246,14 +246,8 @@ jQuery( document ).ready( function ( $ ) {
             template = Handlebars.compile( source );
             html = template( comment );
             $( html  ).appendTo( app.comments_wrap_el );
-            $( '.epoch-comment-reply-link').click( function( event ) {
-                event.preventDefault();
-                replyTo =  $( this ).attr( 'data-comment-id' );
-                $( 'input#comment_parent' ).attr( 'value', replyTo );
-                $( app.form_wrap_el ).hide();
-                $( this ).append( app.form_wrap_el );
-                $( app.form_wrap_el ).slideDown( 1000 );
-
+            $( '.comment-reply-link' ).click( function( event ) {
+               event.preventDefault;
             });
         };
 
