@@ -3,14 +3,14 @@
     <div id="comment-{{comment_ID}}" data-comment-id="{{comment_ID}}">
         <article id="div-comment-{{comment_ID}}" class="comment-body">
             <footer class="comment-meta">
-                <div class="comment-author vcard">
-                    {{epochLink comment_author_url author_avatar 'author_url_link_title' 'epoch-author-avatar' '_blank' 'nofollow'}}
+                <div class="comment-author">
+                    <div class="comment-author-avatar">
+                        {{epochLink comment_author_url author_avatar 'author_url_link_title' 'epoch-author-avatar' '_blank' 'nofollow'}}
+                    </div>
                       {{epochLink comment_author_url comment_author 'author_url_link_title' 'epoch-author-link' '_blank' 'nofollow'}}
+                      <span class="epoch-divide">&#183;</span>
+                      {{epochLink comment_link '<time datetime="comment_date">-comment_date-</time>' 'comment_link_title' 'epoch-comment-link'}}
                 </div><!-- .comment-author -->
-
-                <div class="comment-metadata">
-                    {{epochLink comment_link '<time datetime="comment_date">-comment_date-</time>' 'comment_link_title' 'epoch-comment-link'}}
-                </div><!-- .comment-metadata -->
 
                 {{#if comment_approved}}
 
