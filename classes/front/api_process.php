@@ -58,9 +58,14 @@ class api_process {
 
 
 		$comments = get_comments( $args );
+
 		if ( ! empty( $comments ) && is_array( $comments ) ) {
 
 			$comments = self::improve_comment_response( $comments );
+
+			if (  get_option( 'thread_comments' ) ) {
+				$comments = self::sort_children( $comments );
+			}
 
 			$comments = wp_json_encode( $comments );
 		}
@@ -281,6 +286,54 @@ class api_process {
 
 		return $comments;
 
+	}
+
+	/**
+	 * Reformat comments array to have children nested in parents
+	 *
+	 * @param $comments
+	 *
+	 * @return array
+	 */
+	protected static function sort_children( $comments ) {
+		$parents = $children = array();
+		foreach ( $comments as $comment ) {
+			if ( 0 != $comment->comment_parent ) {
+				$children[ $comment->comment_parent ][ $comment->comment_ID ] = $comment;
+			} else {
+				$parents[ $comment->comment_ID ] = $comment;
+			}
+
+		}
+
+		//put children comments in parent comment object's children property
+		if ( ! empty( $children ) ) {
+			foreach ( $children as $parent_id => $child ) {
+				$parent                = (array) $parents [ $parent_id ];
+				$parent['children'][]  = $child;
+				$parents[ $parent_id ] = (object) $parent;
+			}
+
+		}
+
+		//fix the formatting of the children
+		if ( ! empty( $parents ) ) {
+			foreach( $parents as $i => $parent ) {
+				if ( isset( $parent->children ) ) {
+					$_children = $parent->children;
+					$_children = $_children[0];
+					$parent->children = array_values( $_children );
+					$parents[ $i ] = $parent;
+				}else{
+					$parents[ $i ]->children = false;
+				}
+
+			}
+		}
+
+		$comments = array_values( $parents );
+
+		return $comments;
 	}
 
 }

@@ -45,3 +45,7 @@
 #epoch-comments article.comment-body {
 	margin-bottom: 25px;
 }
+
+.epoch-child {
+    margin-left: 5%;
+}

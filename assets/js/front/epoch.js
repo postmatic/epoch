@@ -209,15 +209,31 @@ jQuery( document ).ready( function ( $ ) {
                     if ( 'object' == typeof response && 'undefined' != response && 'undefined' != response.comments ) {
                         comments = response.comments;
                         comments = JSON.parse( comments );
-                        for ( i = 0; i < comments.length; i++) {
+
+                        for ( i = 0; i < comments.length; i++ ) {
+
+                            //parse comment
                             comment = comments[ i ];
                             app.comments_store.push( comment.comment_ID );
-                            app.parse_comment( comment );
+                            app.parse_comment( comment, false );
+
+                            //parse its children if it has them
+                            if ( 'undefined' != comment.children || false != comment.children ) {
+                                parent_id = comment.comment_ID;
+                                children = comment.children;
+                                for ( c = 0; c < children.length; c++ ) {
+                                    comment = children[ c ];
+                                    app.parse_comment( comment, parent_id );
+                                }
+
+                            }
+
                         }
 
                     }
 
                 }
+
             );
 
         };
@@ -241,13 +257,21 @@ jQuery( document ).ready( function ( $ ) {
          *
          * @param comment
          */
-        app.parse_comment = function( comment ) {
+        app.parse_comment = function( comment, parent_id ) {
             source = $( app.template_el ).html();
             template = Handlebars.compile( source );
             html = template( comment );
-            $( html  ).appendTo( app.comments_wrap_el );
+
+            if ( false == parent_id ) {
+                $( html ).appendTo( app.comments_wrap_el );
+            }else {
+                html = '<div class="epoch-child child-of-' + parent_id +' ">' + html + '</div>';
+                $( html ).appendTo( app.comments_wrap_el );
+
+            }
+
             $( '.comment-reply-link' ).click( function( event ) {
-               event.preventDefault;
+                event.preventDefault;
             });
         };
 
