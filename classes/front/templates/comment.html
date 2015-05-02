@@ -24,7 +24,7 @@
             </div><!-- .comment-content -->
 
             {{#if reply_allowed}}
-                <div class="reply">
+                <div class="reply" data-comment-id="{{comment_ID}}">
                   {{{reply_link}}}
                 </div>
             {{/if}}
