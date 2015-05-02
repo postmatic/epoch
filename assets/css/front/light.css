@@ -8,7 +8,7 @@
 #epoch-comments .comment-author.vcard {
 }
 
-#epoch-comments .comment-author.vcard img {
+#epoch-comments .comment-author-avatar img {
 	width: 48px; 
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -17,10 +17,31 @@
 	margin-right: 12px; 
 }
 
+#epoch-comments a.epoch-author-link { 
+	font-weight: bold;
+}
+
+#epoch-comments a.epoch-comment-link {
+	font-size: 90%;
+	color: #aaa;
+}
+
+#epoch-comments .comment-meta {
+	line-height: normal !important;
+}
+
+#epoch-comments .comment-meta a {
+	text-decoration: none !important;
+}
+
 #epoch-comments div.comment-content {
 	margin-left: 60px;
 }
 
 #epoch-comments div.reply {
 	margin-left: 60px;
+}
+
+#epoch-comments article.comment-body {
+	margin-bottom: 25px;
 }
