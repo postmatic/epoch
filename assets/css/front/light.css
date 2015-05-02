@@ -43,9 +43,19 @@
 }
 
 #epoch-comments article.comment-body {
-	margin-bottom: 25px;
+	margin-bottom: 30px;
 }
 
 .epoch-child {
-    margin-left: 5%;
+    margin-left: 60px;
+}
+
+.comment-actions {
+	margin-left: 60px;
+}
+
+.comment-actions li {
+	list-style: none;
+	display: inline;
+	font-size: 75%;
 }
