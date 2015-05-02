@@ -1,11 +1,11 @@
 /**
  * Handlebars helper for link markup
  *
- * Usage: {{epochLink http://hats.com 'hats' 'Link to hats',  '_blank' 'nofollow'}}
+ * Usage: {{epochLink http://hats.com 'hats' 'Link to hats' 'link-class' '_blank' 'nofollow'}}
  *
  * Note: text and title args can be properties of epoch_translation object to use a translation string
  */
-Handlebars.registerHelper( 'epochLink', function( url, text, title, target, rel ) {
+Handlebars.registerHelper( 'epochLink', function( url, text, title, class_attr, target, rel ) {
 
     text = text.replace(/-comment_date-/g, this.comment_date );
 
@@ -14,7 +14,7 @@ Handlebars.registerHelper( 'epochLink', function( url, text, title, target, rel 
 
     }
 
-    if (title in epoch_translation ) {
+    if ( title in epoch_translation ) {
         title = epoch_translation[ title ];
     }
 
@@ -43,6 +43,14 @@ Handlebars.registerHelper( 'epochLink', function( url, text, title, target, rel 
     }else{
         target = Handlebars.Utils.escapeExpression( target );
         result += ' target="' + target + '"';
+    }
+
+    if ( 'string' != typeof class_attr || ! class_attr || /^\s*$/.test( class_attr )  ) {
+        //make a default?
+
+    }else{
+        class_attr = Handlebars.Utils.escapeExpression( class_attr );
+        result += ' class="' + class_attr + '"';
     }
 
     result +=   ' >' + text + '</a>';
