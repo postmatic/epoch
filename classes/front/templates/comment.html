@@ -23,11 +23,22 @@
                 {{{comment_content}}}
             </div><!-- .comment-content -->
 
-            {{#if reply_allowed}}
-                <div class="reply" data-comment-id="{{comment_ID}}">
-                  {{{reply_link}}}
-                </div>
-            {{/if}}
+            <ul class="comment-actions">
+                {{#if reply_allowed}}
+                    <li class="epoch-reply" data-comment-id="{{comment_ID}}">
+                        {{{reply_link}}}
+                    </li>
+                {{/if}}
+                    <li class="epoch-tweet">
+                    tweet
+                    </li>
+                    <li class="epoch-tweet">
+                    link
+                    </li>
+                    <li class="epoch-tweet">
+                    link
+                    </li>
+            </ul>
 
         </article><!-- .comment-body -->
     </div>
