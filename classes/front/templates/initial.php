@@ -9,7 +9,7 @@
  * Copyright 2015 Transitive, Inc.
  */
 printf(
-	'<div class="comments-area %1s">
+	'<div id="comments" class="comments-area %1s">
 		<div id="%2s">%3s</div>
 		<div id="%4s">%5s</div>
 	</div>',
