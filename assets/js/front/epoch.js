@@ -110,24 +110,26 @@ jQuery( document ).ready( function ( $ ) {
                                 app.last_count = 0;
                                 app.get_comments( true );
                                 app.form_el.reset();
-                                $( '#epoch-success' ).modal({
-                                    opacity:80,
-                                    overlayCss: {backgroundColor:"#fff"},
-                                    minWidth: 350,
-                                    overlayClose: true,
-                                    esc_close: true
+                                $.get(
+                                    epoch_vars.api_url, {
+                                        action: 'get_postmatic_widget',
+                                        epochNonce: epoch_vars.nonce
 
-                                });
+                                    } ).done( function ( response ) {
+                                        response = app.get_data_from_response( response );
+                                        $.modal( response.html, {
+                                            opacity : 80,
+                                            minWidth: 300,
+                                            autoResize: true,
+                                            autoPosition: true,
+                                            close: true,
+                                            overlayClose: true
+                                        });
+                                    } )
+
 
                             } ).fail( function ( xhr ) {
-                                    $( '#epoch-failure' ).modal({
-                                        opacity:80,
-                                        overlayCss: {backgroundColor:"#fff"},
-                                        minWidth: 350,
-                                        overlayClose: true,
-                                        esc_close: true
 
-                                    });
                             } );
 
 
@@ -168,14 +170,8 @@ jQuery( document ).ready( function ( $ ) {
                             } else {
                                 if ( response.count > app.last_count ) {
                                     app.get_comments();
-                                    $( '#epoch-new-comment' ).modal( {
-                                        opacity: 10,
-                                        overlayCss: { backgroundColor: "#fff" },
-                                        minWidth: 350,
-                                        overlayClose: true,
-                                        esc_close: true
 
-                                    } );
+
                                     app.last_count = response.count;
                                 }
                             }

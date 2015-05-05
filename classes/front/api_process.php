@@ -295,5 +295,27 @@ class api_process {
 
 	}
 
+	/**
+	 * Get Postmatic susbcribe widget.
+	 *
+	 * @since 0.0.4
+	 *
+	 * @param array $data NOT USED
+	 *
+	 * @return string|void The widget HTML if postmatic is active
+	 */
+	public static function get_postmatic_widget( $data ) {
+		if ( class_exists( '\\Prompt_Subscribe_Widget_Shortcode' ) ) {
+			$atts = array(
+				'title' => __( 'Subscribe to Comments Via Email', 'epoch' )
+			);
+
+			return array(
+				'html' => \Prompt_Subscribe_Widget_Shortcode::render( $atts )
+			);
+		}
+
+	}
+
 
 }
