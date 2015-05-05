@@ -110,22 +110,7 @@ jQuery( document ).ready( function ( $ ) {
                                 app.last_count = 0;
                                 app.get_comments( true );
                                 app.form_el.reset();
-                                $.get(
-                                    epoch_vars.api_url, {
-                                        action: 'get_postmatic_widget',
-                                        epochNonce: epoch_vars.nonce
 
-                                    } ).done( function ( response ) {
-                                        response = app.get_data_from_response( response );
-                                        $.modal( response.html, {
-                                            opacity : 80,
-                                            minWidth: 300,
-                                            autoResize: true,
-                                            autoPosition: true,
-                                            close: true,
-                                            overlayClose: true
-                                        });
-                                    } )
 
 
                             } ).fail( function ( xhr ) {
@@ -210,21 +195,19 @@ jQuery( document ).ready( function ( $ ) {
                         comments = JSON.parse( comments );
                         depth = epoch_vars;
 
-                        size = $( comments ).size();
-                        for ( i = 0; i <= size; i++ ) {
+                        
+                        if ( 'undefined' !== comments && 0 < comments.length ) {
+                            $.each( comments, function ( key, comment ) {
+                                app.comments_store.push( comment.comment_ID );
+                                app.parse_comment( comment, false, 0 );
 
-                            //parse comment
-                            comment = comments[ i ];
+                                //parse its children if it has them and threaded comments is on
+                                if ( 1 != depth ) {
+                                    parent_id = comment.comment_ID;
+                                    app.parse_children( comment, parent_id, 1 );
+                                }
 
-                            app.comments_store.push( comment.comment_ID );
-                            app.parse_comment( comment, false, 0 );
-
-                            if ( 1 != depth ) {
-                                //parse its children if it has them
-                                parent_id = comment.comment_ID;
-                                app.parse_children( comment, parent_id, 1 );
-                            }
-
+                            } );
                         }
 
                     }
@@ -245,25 +228,27 @@ jQuery( document ).ready( function ( $ ) {
          */
         app.parse_children = function( comment, parent_id, level ) {
 
-            if ( 'undefined' != comment.children || false != comment.children ) {
+            if ( 'undefined' != comment ) {
 
-                children = comment.children;
-                size = $( children ).size();
+                if (  false != comment.children  ) {
 
-                if ( 0 != size ) {
-                    for ( c = 0; c <= size; c++ ) {
-                        comment = children[ c ];
-                        pid = comment.comment_ID;
-                        app.parse_comment( comment, parent_id, level );
-                        if ( 'undefined' != comment.children || false != comment.children ) {
-                            level++;
-                            app.parse_children( comment, pid, level  );
+                    children = comment.children;
+                    size = children.length;
+                    if ( 0 != size ) {
+                        for ( c = 0; c < size; c++ ) {
+                            comment = children[ c ];
+                            pid = comment.comment_ID;
+                            app.parse_comment( comment, parent_id, level );
+                            if ( false != comment.children ) {
+                                level++;
+                                app.parse_children( comment, pid, level );
+                            }
+
                         }
+
                     }
 
                 }
-
-
 
             }
 

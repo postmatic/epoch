@@ -57,21 +57,26 @@ class get_comments {
 	protected function sort() {
 		//make an array of comment_id => comment_parent
 		$sorter = array_combine( wp_list_pluck( $this->comments, 'comment_ID' ), wp_list_pluck( $this->comments, 'comment_parent') );
+
+		//make index array for sorter array
 		$indexer = array_combine( array_keys( (array) $this->comments ), wp_list_pluck( $this->comments, 'comment_ID' ) );
+
+		//switch all comments to arrays
 		$comments = $this->to_arrays( $this->comments );
+
+		//add extra fields to responses
+		foreach( $comments as $i => $comment ) {
+			$comments[ $i ] = api_process::add_data_to_comment( $comment );
+
+		}
+
+		//add children to their parents
 		foreach( $sorter as $id => $parent ) {
 			if ( $parent ) {
 				$key     = array_search( $id, $indexer );
 				$comment = $comments[ $key ];
 				$parent_key = array_search( $parent, $indexer );
 				$parent = $comments[ $parent_key ];
-				if ( ! isset( $parent[ 'children' ] ) ) {
-					$parent[ 'children' ] = array();
-				}
-
-				//add extra fields to response
-				$comment = api_process::add_data_to_comment( $comment );
-
 				$parent[ 'children' ][] = $comment;
 				$comments[ $parent_key ] = $parent;
 
@@ -79,6 +84,7 @@ class get_comments {
 
 		}
 
+		//unset any comment that has a parent from top level array.
 		foreach( $sorter as $id => $parent ) {
 			if ( $parent ) {
 				$key     = array_search( $id, $indexer );
@@ -88,6 +94,7 @@ class get_comments {
 
 		}
 
+		//switch comments back to objects
 		$this->comments = $this->to_objects( $comments );
 
 	}

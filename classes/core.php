@@ -67,12 +67,14 @@ class core {
 		// Load admin style sheet and JavaScript.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ) );
 
-		
+		//register scripts/styles used in both front-end and back-end
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_common' ), 5 );
 
 		//load settings class in admin
 		if ( is_admin() ) {
 			new settings();
 		}else{
+			//load the front-end
 			new layout();
 			add_action( 'wp_enqueue_scripts', array( $this, 'front_stylescripts' ) );
 			add_filter( 'comments_template', array( '\postmatic\epoch\front\layout', 'initial' ), 100 );
@@ -133,8 +135,8 @@ class core {
 		if( false !== strpos( $screen->base, 'epoch' ) ){
 
 			wp_enqueue_style( 'epoch-core-style', EPOCH_URL . '/assets/css/styles.css' );
-			wp_enqueue_style( 'epoch-baldrick-modals', EPOCH_URL . '/assets/css/modals.css' );
-			wp_enqueue_script( 'epoch-wp-baldrick', EPOCH_URL . '/assets/js/wp-baldrick-full.js', array( 'jquery' ) , false, true );
+			wp_enqueue_style( 'epoch-baldrick-modals' );
+			wp_enqueue_script( 'epoch-wp-baldrick' );
 			wp_enqueue_script( 'jquery-ui-autocomplete' );
 			wp_enqueue_script( 'jquery-ui-sortable' );
 			wp_enqueue_style( 'epoch-codemirror-style', EPOCH_URL . '/assets/css/codemirror.css' );
@@ -172,13 +174,20 @@ class core {
 			$theme = 'light';
 		}
 
+		//already registered baldrickJS
+		wp_enqueue_style( 'epoch-baldrick-modals' );
+		wp_enqueue_script( 'epoch-wp-baldrick' );
+
+		//visibility API
 		wp_enqueue_script( 'visibility', '//cdnjs.cloudflare.com/ajax/libs/visibility.js/1.2.1/visibility.min.js' );
-		wp_enqueue_script( 'handlebars', EPOCH_URL . '/assets/js/front/handlebars.js', false, '3.0.3' );
-		wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'handlebars' ), $version );
-		wp_enqueue_script( 'simplemodal', EPOCH_URL . 'assets/js/front/simplemodal.min.js', array( 'jquery' ), '1.4.4' );
-		wp_enqueue_script( 'epoch', EPOCH_URL . '/assets/js/front/epoch.js', array( 'jquery', 'handlebars', 'simplemodal', 'visibility'), $version, true );
+
+		wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'epoch-wp-baldrick' ), $version );
+
+		//main scripts and styles
+		wp_enqueue_script( 'epoch', EPOCH_URL . '/assets/js/front/epoch.js', array( 'jquery', 'epoch-wp-baldrick', 'visibility' ), $version, true );
 		wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}.css",false, $version );
 
+		//make sure we have the comment reply JS from WordPress core.
 		if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
@@ -310,6 +319,18 @@ class core {
 		printf( '<div class="epoch-modal" style="display: none;" id="epoch-success">%s</div>', __( 'Comment Submitted Successfully', 'epoch' ) );
 		printf( '<div class="epoch-modal" style="display: none;" id="epoch-failure">%s</div>', __( 'There was an error submitting your comment.', 'epoch' ) );
 		printf( '<div class="epoch-modal" style="display: none;" id="epoch-new-comment">%s</div>', __( 'A New Comment Available', 'epoch' ) );
+	}
+
+	/**
+	 * Register scripts shared between front-end and back-end
+	 *
+	 * @uses "wp_enqueue_scrips" action
+	 *
+	 * @since 0.0.5
+	 */
+	public function register_common() {
+		wp_register_style( 'epoch-baldrick-modals', EPOCH_URL . '/assets/css/modals.css' );
+		wp_register_script( 'epoch-wp-baldrick', EPOCH_URL . '/assets/js/wp-baldrick-full.js', array( 'jquery' ) , false, true );
 	}
 
 

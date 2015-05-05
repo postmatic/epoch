@@ -291,6 +291,11 @@ class api_process {
 		//get reply link
 		$comment['reply_link'] = get_comment_reply_link( $reply_link_args, (int) $comment['comment_ID'] );
 
+		//if has no children add that key as false.
+		if ( ! isset( $comment[ 'children' ] ) ) {
+			$comment[ 'children' ] = false;
+		}
+
 		return $comment;
 
 	}
