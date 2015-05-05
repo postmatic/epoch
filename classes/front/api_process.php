@@ -47,25 +47,17 @@ class api_process {
 	 * @return array
 	 */
 	public static function get_comments( $data ) {
-		$args = array(
-			'post_id' => $data[ 'postID' ],
-			'order' => 'ASC'
-		);
 
-		if ( isset( $data[ 'ignore' ] ) && is_array( $data[ 'ignore' ] ) ){
-			$args[ 'comment__not_in' ] = $data[ 'ignore' ];
+		$not_in = null;
+		if ( isset( $data[ 'ignore' ] ) ) {
+			$not_in = $data[ 'ignore' ];
 		}
 
-
-		$comments = get_comments( $args );
-
+		$comments = new get_comments( $data[ 'postID' ], $not_in );
+		$comments = array_values( $comments->comments );
 		if ( ! empty( $comments ) && is_array( $comments ) ) {
 
 			$comments = self::improve_comment_response( $comments );
-
-			if (  get_option( 'thread_comments' ) ) {
-				$comments = self::sort_children( $comments );
-			}
 
 			$comments = wp_json_encode( $comments );
 		}
@@ -254,32 +246,10 @@ class api_process {
 	 * @return array
 	 */
 	protected static function improve_comment_response( $comments ) {
-		$date_format = get_option( 'date_format' );
-
-		$reply_link_args = array(
-			'add_below'     => 'comment',
-			'depth'         => 1,
-			'max_depth'     => get_option( 'thread_comments_depth', 5 )
-		);
 
 		foreach ( $comments as $i => $comment ) {
 			$comment = (array) $comment;
-
-			//add avatar markup as a string
-			$comment['author_avatar'] = get_avatar( $comment['comment_author_email']);
-
-			//format date according to WordPress settings
-			$comment[ 'comment_date' ] = date( $date_format, strtotime( $comment['comment_date'] ) );
-
-			//get comment link
-			$comment[ 'comment_link' ] = get_comment_link( $comment[ 'comment_ID' ] );
-
-			//are comments replies allowed
-			$comment[ 'reply_allowed' ] = comments_open(  $comment[ 'comment_post_ID' ] );
-
-			//get reply link
-			$comment[ 'reply_link' ] = get_comment_reply_link( $reply_link_args, (int) $comment[ 'comment_ID' ] );
-
+			$comment = self::add_data_to_comment( $comment );
 			$comments[ $i ] = (object) $comment;
 
 		}
@@ -289,51 +259,41 @@ class api_process {
 	}
 
 	/**
-	 * Reformat comments array to have children nested in parents
+	 * Add extra fields we need in the front-end.
 	 *
-	 * @param $comments
+	 * @since 0.0.4
 	 *
-	 * @return array
+	 * @param array $comment Comment as array
+	 *
+	 * @return array Comment as array with extra fields.
 	 */
-	protected static function sort_children( $comments ) {
-		$parents = $children = array();
-		foreach ( $comments as $comment ) {
-			if ( 0 != $comment->comment_parent ) {
-				$children[ $comment->comment_parent ][ $comment->comment_ID ] = $comment;
-			} else {
-				$parents[ $comment->comment_ID ] = $comment;
-			}
+	public static function add_data_to_comment( $comment ) {
+		$date_format = get_option( 'date_format' );
 
-		}
+		$reply_link_args = array(
+			'add_below'     => 'comment',
+			'depth'         => 1,
+			'max_depth'     => get_option( 'thread_comments_depth', 5 )
+		);
 
-		//put children comments in parent comment object's children property
-		if ( ! empty( $children ) ) {
-			foreach ( $children as $parent_id => $child ) {
-				$parent                = (array) $parents [ $parent_id ];
-				$parent['children'][]  = $child;
-				$parents[ $parent_id ] = (object) $parent;
-			}
+		//add avatar markup as a string
+		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'] );
 
-		}
+		//format date according to WordPress settings
+		$comment[ 'comment_date'] = date( $date_format, strtotime( $comment['comment_date'] ) );
 
-		//fix the formatting of the children
-		if ( ! empty( $parents ) ) {
-			foreach( $parents as $i => $parent ) {
-				if ( isset( $parent->children ) ) {
-					$_children = $parent->children;
-					$_children = $_children[0];
-					$parent->children = array_values( $_children );
-					$parents[ $i ] = $parent;
-				}else{
-					$parents[ $i ]->children = false;
-				}
+		//get comment link
+		$comment[ 'comment_link'] = get_comment_link( $comment['comment_ID'] );
 
-			}
-		}
+		//are comments replies allowed
+		$comment[ 'reply_allowed'] = comments_open( $comment['comment_post_ID'] );
 
-		$comments = array_values( $parents );
+		//get reply link
+		$comment['reply_link'] = get_comment_reply_link( $reply_link_args, (int) $comment['comment_ID'] );
 
-		return $comments;
+		return $comment;
+
 	}
+
 
 }

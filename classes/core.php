@@ -225,8 +225,13 @@ class core {
 			'comments_area_spinner_id' => esc_attr( vars::$comments_area_spinner_id ),
 			'api_url' => esc_url( vars::api_url( false ) ),
 			'submit_api_url' => esc_url( vars::api_url( true ) ),
+			'depth' => absint( get_option( 'thread_comments_depth', 5 ) )
 
 		);
+
+		if ( true != get_option( 'thread_comments' ) ) {
+			$vars[ 'depth' ] = 1;
+		}
 
 		$vars[ 'epoch_options' ] = $this->prepare_epoch_options();
 

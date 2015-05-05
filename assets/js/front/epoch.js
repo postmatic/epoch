@@ -209,23 +209,21 @@ jQuery( document ).ready( function ( $ ) {
                     if ( 'object' == typeof response && 'undefined' != response && 'undefined' != response.comments ) {
                         comments = response.comments;
                         comments = JSON.parse( comments );
+                        depth = epoch_vars;
 
-                        for ( i = 0; i < comments.length; i++ ) {
+                        size = $( comments ).size();
+                        for ( i = 0; i <= size; i++ ) {
 
                             //parse comment
                             comment = comments[ i ];
+
                             app.comments_store.push( comment.comment_ID );
-                            app.parse_comment( comment, false );
+                            app.parse_comment( comment, false, 0 );
 
-                            //parse its children if it has them
-                            if ( 'undefined' != comment.children || false != comment.children ) {
+                            if ( 1 != depth ) {
+                                //parse its children if it has them
                                 parent_id = comment.comment_ID;
-                                children = comment.children;
-                                for ( c = 0; c < children.length; c++ ) {
-                                    comment = children[ c ];
-                                    app.parse_comment( comment, parent_id );
-                                }
-
+                                app.parse_children( comment, parent_id, 1 );
                             }
 
                         }
@@ -235,6 +233,40 @@ jQuery( document ).ready( function ( $ ) {
                 }
 
             );
+
+        };
+
+        /**
+         * Parse children of comment
+         *
+         * @since 0.0.4
+         *
+         * @param comment
+         * @param parent_id
+         */
+        app.parse_children = function( comment, parent_id, level ) {
+
+            if ( 'undefined' != comment.children || false != comment.children ) {
+
+                children = comment.children;
+                size = $( children ).size();
+
+                if ( 0 != size ) {
+                    for ( c = 0; c <= size; c++ ) {
+                        comment = children[ c ];
+                        pid = comment.comment_ID;
+                        app.parse_comment( comment, parent_id, level );
+                        if ( 'undefined' != comment.children || false != comment.children ) {
+                            level++;
+                            app.parse_children( comment, pid, level  );
+                        }
+                    }
+
+                }
+
+
+
+            }
 
         };
 
@@ -257,7 +289,8 @@ jQuery( document ).ready( function ( $ ) {
          *
          * @param comment
          */
-        app.parse_comment = function( comment, parent_id ) {
+        app.parse_comment = function( comment, parent_id, level ) {
+
             source = $( app.template_el ).html();
             template = Handlebars.compile( source );
             html = template( comment );
@@ -265,7 +298,7 @@ jQuery( document ).ready( function ( $ ) {
             if ( false == parent_id ) {
                 $( html ).appendTo( app.comments_wrap_el );
             }else {
-                html = '<div class="epoch-child child-of-' + parent_id +' ">' + html + '</div>';
+                html = '<div class="epoch-child child-of-' + parent_id +' level-' + level + ' ">' + html + '</div>';
                 $( html ).appendTo( app.comments_wrap_el );
 
             }
