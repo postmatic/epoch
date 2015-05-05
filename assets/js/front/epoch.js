@@ -37,6 +37,7 @@ jQuery( document ).ready( function ( $ ) {
 
             app.poll = setTimeout( app.comment_count, epoch_vars.epoch_options.interval );
 
+
         };
 
         /**
@@ -149,39 +150,41 @@ jQuery( document ).ready( function ( $ ) {
          * @param bool updateCheck If true we are using this to check if comments have change, use false on initial load
          */
         app.comment_count = function( updateCheck ) {
-            window.clearTimeout( app.poll );
-            $.get(
-                epoch_vars.api_url, {
-                    action: 'comment_count',
-                    epochNonce: epoch_vars.nonce,
-                    postID: epoch_vars.post_id
-                } ).done( function( response  ) {
-                    app.poll = setTimeout( app.comment_count, epoch_vars.epoch_options.interval );
-                } ).success( function( response ) {
-                    response = app.get_data_from_response( response );
-                    if ( 'undefined' != response.count && 0 < response.count ) {
-                        if ( false == updateCheck ) {
-                            app.get_comments();
-                            app.last_count = response.count;
-                        } else {
-                            if ( response.count > app.last_count ) {
+            if ( 'visible' == Visibility.state() ) {
+                window.clearTimeout( app.poll );
+                $.get(
+                    epoch_vars.api_url, {
+                        action: 'comment_count',
+                        epochNonce: epoch_vars.nonce,
+                        postID: epoch_vars.post_id
+                    } ).done( function ( response ) {
+                        app.poll = setTimeout( app.comment_count, epoch_vars.epoch_options.interval );
+                    } ).success( function ( response ) {
+                        response = app.get_data_from_response( response );
+                        if ( 'undefined' != response.count && 0 < response.count ) {
+                            if ( false == updateCheck ) {
                                 app.get_comments();
-                                $( '#epoch-new-comment' ).modal({
-                                    opacity:10,
-                                    overlayCss: {backgroundColor:"#fff"},
-                                    minWidth: 350,
-                                    overlayClose: true,
-                                    esc_close: true
-
-                                });
                                 app.last_count = response.count;
+                            } else {
+                                if ( response.count > app.last_count ) {
+                                    app.get_comments();
+                                    $( '#epoch-new-comment' ).modal( {
+                                        opacity: 10,
+                                        overlayCss: { backgroundColor: "#fff" },
+                                        minWidth: 350,
+                                        overlayClose: true,
+                                        esc_close: true
+
+                                    } );
+                                    app.last_count = response.count;
+                                }
                             }
+                        } else {
+                            app.no_comments = true;
                         }
-                    }else{
-                        app.no_comments = true;
                     }
-                }
-            );
+                );
+            }
 
         };
 
@@ -323,4 +326,6 @@ jQuery( document ).ready( function ( $ ) {
 
 jQuery( function () {
     Epoch.init();
+
 } );
+

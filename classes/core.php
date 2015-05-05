@@ -172,10 +172,11 @@ class core {
 			$theme = 'light';
 		}
 
+		wp_enqueue_script( 'visibility', '//cdnjs.cloudflare.com/ajax/libs/visibility.js/1.2.1/visibility.min.js' );
 		wp_enqueue_script( 'handlebars', EPOCH_URL . '/assets/js/front/handlebars.js', false, '3.0.3' );
 		wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'handlebars' ), $version );
 		wp_enqueue_script( 'simplemodal', EPOCH_URL . 'assets/js/front/simplemodal.min.js', array( 'jquery' ), '1.4.4' );
-		wp_enqueue_script( 'epoch', EPOCH_URL . '/assets/js/front/epoch.js', array( 'jquery', 'handlebars', 'simplemodal' ), $version, true );
+		wp_enqueue_script( 'epoch', EPOCH_URL . '/assets/js/front/epoch.js', array( 'jquery', 'handlebars', 'simplemodal', 'visibility'), $version, true );
 		wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}.css",false, $version );
 
 		if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
