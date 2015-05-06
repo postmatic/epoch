@@ -55,6 +55,30 @@ class layout {
 
 	}
 
+	/**
+	 * Get Postmatic subscribe widget.
+	 *
+	 * @since 0.0.5
+	 *
+	 * @return string
+	 */
+	public static function postmatic_widget() {
+
+		$attributes = array(
+			'title' => __( 'Subscribe to Comments Via Email', 'epoch' ),
+			'collect_name' => true,
+			'template_path' => null,
+		);
+
+
+		ob_start();
+
+		the_widget( 'Prompt_Subscribe_Widget', $attributes );
+
+		return ob_get_clean();
+
+	}
+
 
 
 }

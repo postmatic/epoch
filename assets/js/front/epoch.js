@@ -114,14 +114,13 @@ jQuery( document ).ready( function ( $ ) {
                             } ).success( function ( response ) {
                                     app.form_el.reset();
 
-                                    $('<div>').data({
-                                        modal : 'postmatic-widget',
-                                        request : epoch_vars.api_url,
-                                        autoload : true,
-                                        action: 'get_postmatic_widget',
-                                        epochNonce: epoch_vars.nonce,
-                                        epochModal: 1
-                                    } ).baldrick();
+                                    if ( true == epoch_vars.postmatic_active && false == epoch_vars.postmatic_site_subscribed ) {
+                                        $( '<div>' ).data( {
+                                            modal: 'postmatic-widget',
+                                            target: '#epoch-postmatic-widget',
+                                            autoload: true
+                                        } ).baldrick();
+                                    }
 
                                     response = app.get_data_from_response( response );
 

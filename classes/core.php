@@ -332,9 +332,9 @@ class core {
 	 * @since 0.0.2
 	 */
 	public function print_modals() {
-		printf( '<div class="epoch-modal" style="display: none;" id="epoch-success">%s</div>', __( 'Comment Submitted Successfully', 'epoch' ) );
-		printf( '<div class="epoch-modal" style="display: none;" id="epoch-failure">%s</div>', __( 'There was an error submitting your comment.', 'epoch' ) );
-		printf( '<div class="epoch-modal" style="display: none;" id="epoch-new-comment">%s</div>', __( 'A New Comment Available', 'epoch' ) );
+		if ( class_exists( '\\Prompt_Subscribe_Widget_Shortcode' ) ) {
+			printf( '<div id="epoch-postmatic-widget" style="display: none;">%1s</div>', layout::postmatic_widget() );
+		}
 	}
 
 	/**
@@ -363,15 +363,15 @@ class core {
 	protected function add_postmatic_vars( $epoch_vars) {
 		global $post;
 
-		$epoch_vars[ 'postmatic_active' ] = false;
-		$epoch_vars[ 'postmatic_site_subscribed' ] = false;
+		$epoch_vars[ 'postmatic_active' ] = 0;
+		$epoch_vars[ 'postmatic_site_subscribed' ] = 0;
 
 		if ( class_exists( '\\Prompt_Site' ) && is_user_logged_in() && is_object( $post ) ) {
 			$user_id     = get_current_user_id();
 			$site        = new \Prompt_Site();
 			$subscribed  = $site->is_subscribed( $user_id );
-			$epoch_vars[ 'postmatic_active' ] = $subscribed;
-			$epoch_vars[ 'postmatic_site_subscribed' ] = true;
+			$epoch_vars[ 'postmatic_active' ] = 1;
+			$epoch_vars[ 'postmatic_site_subscribed' ] = (int) $subscribed;
 		}
 
 		return $epoch_vars;
