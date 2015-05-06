@@ -66,7 +66,7 @@ class get_comments {
 
 		//add extra fields to responses
 		foreach( $comments as $i => $comment ) {
-			$comments[ $i ] = api_process::add_data_to_comment( $comment );
+			$comments[ $i ] = api_helper::add_data_to_comment( $comment );
 
 		}
 
