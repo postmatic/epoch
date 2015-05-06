@@ -5,10 +5,10 @@
 
 #epoch-comments {margin-top: 25px;}
 
-#epoch-comments .comment-author.vcard {
+#epoch-comments .epoch-comment-author.vcard {
 }
 
-#epoch-comments .comment-author-avatar img {
+#epoch-comments .epoch-comment-author-avatar img {
 	width: 48px; 
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -26,23 +26,23 @@
 	color: #aaa;
 }
 
-#epoch-comments .comment-meta {
+#epoch-comments .epoch-comment-meta {
 	line-height: normal !important;
 }
 
-#epoch-comments .comment-meta a {
+#epoch-comments .epoch-comment-meta a {
 	text-decoration: none !important;
 }
 
-#epoch-comments div.comment-content {
+#epoch-comments div.epoch-comment-content {
 	margin-left: 60px;
 }
 
-#epoch-comments div.reply {
+#epoch-comments div.epoch-reply {
 	margin-left: 60px;
 }
 
-#epoch-comments article.comment-body {
+#epoch-comments article.epoch-comment-body {
 	margin-bottom: 30px;
 }
 
@@ -50,11 +50,11 @@
     margin-left: 60px;
 }
 
-.comment-actions {
+.epoch-comment-actions {
 	margin-left: 60px;
 }
 
-.comment-actions li {
+.epoch-comment-actions li {
 	list-style: none;
 	display: inline;
 	font-size: 75%;
