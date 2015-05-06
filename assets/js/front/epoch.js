@@ -114,7 +114,12 @@ jQuery( document ).ready( function ( $ ) {
                             } ).success( function ( response ) {
                                     app.form_el.reset();
 
-                                    if ( true == epoch_vars.postmatic_active && false == epoch_vars.postmatic_site_subscribed ) {
+                                    $(  app.form_wrap_el, 'textarea#comment' ).addClass ( 'epoch-success' ).delay( 2500 ).queue( function( next ){
+                                        $( this ).removeClass( 'epoch-success' );
+                                        next();
+                                    });
+
+                                    if ( 'ahts' == 'noms' && true == epoch_vars.postmatic_active && false == epoch_vars.postmatic_site_subscribed ) {
                                         $( '<div>' ).data( {
                                             modal: 'postmatic-widget',
                                             target: '#epoch-postmatic-widget',
@@ -128,7 +133,10 @@ jQuery( document ).ready( function ( $ ) {
 
 
                             } ).fail( function ( xhr ) {
-
+                                    $(  app.form_wrap_el, 'textarea#comment' ).addClass ( 'epoch-failure' ).delay( 2500 ).queue( function( next ){
+                                        $( this ).removeClass( 'epoch-failure' );
+                                        next();
+                                    });
                             } );
 
 
