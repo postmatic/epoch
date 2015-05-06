@@ -152,9 +152,13 @@ api_helper::add_data_to_comment( $comment );
 				'title' => __( 'Subscribe to Comments Via Email', 'epoch' )
 			);
 
-			return array(
-				'html' => \Prompt_Subscribe_Widget_Shortcode::render( $atts )
-			);
+			$html = \Prompt_Subscribe_Widget_Shortcode::render( $atts );
+			status_header( 200 );
+			echo $html;
+			die();
+
+
+
 		}
 
 	}

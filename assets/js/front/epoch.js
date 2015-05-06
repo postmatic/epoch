@@ -114,6 +114,15 @@ jQuery( document ).ready( function ( $ ) {
                             } ).success( function ( response ) {
                                     app.form_el.reset();
 
+                                    $('<div>').data({
+                                        modal : 'postmatic-widget',
+                                        request : epoch_vars.api_url,
+                                        autoload : true,
+                                        action: 'get_postmatic_widget',
+                                        epochNonce: epoch_vars.nonce,
+                                        epochModal: 1
+                                    } ).baldrick();
+
                                     response = app.get_data_from_response( response );
 
                                     app.parse_comment( response.comment, comment.parent_id, 0 );

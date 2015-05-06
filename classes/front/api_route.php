@@ -45,6 +45,7 @@ class api_route {
 			return;
 		}
 
+
 		if (
 			! isset( $_REQUEST[ $this->api_nonce_key ] )
 			|| ! $_REQUEST[ 'action' ]
@@ -102,6 +103,9 @@ class api_route {
 	protected function data( $action ) {
 		$data = array();
 
+		if( isset( $_GET[ 'epochModal' ] ) && $_GET[ 'epochModal' ] ) {
+			return $_GET;
+		}
 
 		if ( 'submit_comment' !== $action ) {
 			$data_fields = $this->get_fields( $action );
