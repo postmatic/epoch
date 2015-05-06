@@ -89,7 +89,9 @@ class api_route {
 	}
 
 	/**
-	 * Get data from request and if is POST data, sanatize.
+	 * Get data from request and sanitize.
+	 *
+	 * NOTE: submit_comment intentionally skips sanitization (for now)
 	 *
 	 * @since 0.0.1
 	 *
@@ -104,10 +106,10 @@ class api_route {
 		if ( 'submit_comment' !== $action ) {
 			$data_fields = $this->get_fields( $action );
 			if (
-				isset( $_GET[ 'i' ] )
-				&& is_array( $_GET[ 'i'] )
+				isset( $_POST[ 'i' ] )
+				&& is_array( $_POST[ 'i'] )
 			) {
-				foreach( $_GET[ 'i'] as $id ) {
+				foreach( $_POST[ 'i'] as $id ) {
 					$data[ 'ignore' ][] = absint( $id );
 				}
 
@@ -115,8 +117,8 @@ class api_route {
 
 			foreach( $data_fields as $field => $cb ) {
 
-				if ( isset( $_GET[ $field ] ) ) {
-					$data[ $field ] = call_user_func( $cb, $_GET[ $field ] );
+				if ( isset( $_POST[ $field ] ) ) {
+					$data[ $field ] = call_user_func( $cb, $_POST[ $field ] );
 				}else{
 					$data[ $field ] = null;
 				}
@@ -146,7 +148,6 @@ class api_route {
 			vars::$nonce_field => 'strip_tags'
 		);
 
-		$fields[] = vars::$nonce_field;
 
 		if ( 'comments_open' == $action ) {
 			$fields = array(

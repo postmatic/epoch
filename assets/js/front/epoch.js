@@ -46,13 +46,12 @@ jQuery( document ).ready( function ( $ ) {
          * @since 0.0.1
          */
         app.comments_open = function() {
-            $.get(
+            $.post(
                 epoch_vars.api_url, {
                     action: 'comments_open',
                     epochNonce: epoch_vars.nonce,
                     postID: epoch_vars.post_id
-                }
-                ).done( function( response  ) {
+                } ).done( function( response  ) {
 
                 } ).success( function( response ) {
                     response = app.get_data_from_response( response );
@@ -75,7 +74,7 @@ jQuery( document ).ready( function ( $ ) {
         app.get_form = function() {
             spinner = document.getElementById( 'comment_form_spinner_id' );
             $( spinner ).show();
-            $.get(
+            $.post(
                 epoch_vars.api_url, {
                     action: 'form',
                     epochNonce: epoch_vars.nonce,
@@ -140,7 +139,7 @@ jQuery( document ).ready( function ( $ ) {
         app.comment_count = function( updateCheck ) {
             if ( 'visible' == Visibility.state() ) {
                 window.clearTimeout( app.poll );
-                $.get(
+                $.post(
                     epoch_vars.api_url, {
                         action: 'comment_count',
                         epochNonce: epoch_vars.nonce,
@@ -178,7 +177,7 @@ jQuery( document ).ready( function ( $ ) {
         app.get_comments = function() {
             spinner = document.getElementById( 'comments_area_spinner_id' );
             $( spinner ).show();
-            $.get(
+            $.post(
                 epoch_vars.api_url, {
                     action: 'get_comments',
                     epochNonce: epoch_vars.nonce,
@@ -229,7 +228,7 @@ jQuery( document ).ready( function ( $ ) {
             spinner = document.getElementById( 'comments_area_spinner_id' );
             $( spinner ).show();
 
-            $.get(
+            $.post(
                 epoch_vars.api_url, {
                     action: 'get_comment',
                     epochNonce: epoch_vars.nonce,

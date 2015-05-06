@@ -117,7 +117,7 @@ class api_process {
 		if ( is_array( $data ) ) {
 			$comment_id = wp_insert_comment( $data );
 			$comment    = get_comment( $comment_id );
-
+			
 			if ( $comment_id ) {
 				return array(
 					'comment_id' => $comment_id,
