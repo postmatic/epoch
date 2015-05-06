@@ -3,12 +3,12 @@
     text-align: center;
 }
 
-#epoch-comments {margin-top: 25px;}
+#epoch-comments {margin-top: 25px; font-size: 90%; line-height: normal !important;}
 
-#epoch-comments .epoch-comment-author.vcard {
+.epoch-comment-author.vcard {
 }
 
-#epoch-comments .epoch-comment-author-avatar img {
+.epoch-comment-author-avatar img {
 	width: 48px; 
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -19,30 +19,32 @@
 
 #epoch-comments a.epoch-author-link { 
 	font-weight: bold;
+	line-height: normal !important;
 }
 
 #epoch-comments a.epoch-comment-link {
 	font-size: 90%;
 	color: #aaa;
+	font-weight: normal;
 }
 
-#epoch-comments .epoch-comment-meta {
+.epoch-comment-meta {
 	line-height: normal !important;
 }
 
-#epoch-comments .epoch-comment-meta a {
+.epoch-comment-meta a {
 	text-decoration: none !important;
 }
 
-#epoch-comments div.epoch-comment-content {
+div.epoch-comment-content {
 	margin-left: 60px;
 }
 
-#epoch-comments div.epoch-reply {
+div.epoch-reply {
 	margin-left: 60px;
 }
 
-#epoch-comments article.epoch-comment-body {
+article.epoch-comment-body {
 	margin-bottom: 30px;
 }
 
@@ -50,11 +52,11 @@
     margin-left: 60px;
 }
 
-.epoch-comment-actions {
-	margin-left: 60px;
+ul.epoch-comment-actions {
+	margin-left: 38px;
 }
 
-.epoch-comment-actions li {
+ul.epoch-comment-actions li {
 	list-style: none;
 	display: inline;
 	font-size: 75%;
@@ -78,5 +80,8 @@
     z-index: 10000;
 }
 
+#epoch-comments {
+	border: 1px solid red;
+}
 
 
