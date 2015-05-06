@@ -134,7 +134,7 @@ class api_process {
 		}
 
 	}
-	
+
 	/**
 	 * Get Postmatic susbcribe widget.
 	 *

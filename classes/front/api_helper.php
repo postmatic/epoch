@@ -88,25 +88,27 @@ class api_helper {
 	 * @return array|bool Comment data or false if not possible to validate.
 	 */
 	public static function pre_validate_comment( $data ) {
-		if ( ! isset( $data[ 'comment_author' ] ) ) {
+		if ( ! isset( $data['comment_author'] ) ) {
 			if ( is_user_logged_in() ) {
-				$user = get_userdata( get_current_user_id() );
-				$data[ 'user_id' ] = $user->ID;
-				$data[ 'comment_author' ] = $user->user_login;
-				$data[ 'comment_author_email' ] = $user->user_email;
-				$data[ 'comment_author_url' ] = $user->user_url;
-			}else{
-				$data[ 'user_id' ] = 0;
-				if ( isset( $data[ 'author' ] ) ) {
-					$data[ 'comment_author' ] = $data[ 'author' ];
-					unset( $data[ 'author' ] );
+				$user                         = get_userdata( get_current_user_id() );
+				$data['user_id']              = $user->ID;
+				$data['comment_author']       = $user->user_login;
+				$data['comment_author_email'] = $user->user_email;
+				$data['comment_author_url']   = $user->user_url;
+			} else {
+				$data['user_id'] = 0;
+				if ( isset( $data['author'] ) ) {
+					$data['comment_author'] = $data['author'];
+					unset( $data['author'] );
 				}
-				foreach( array(
-					'email',
-					'url'
-				) as $field ) {
+				foreach (
+					array(
+						'email',
+						'url'
+					) as $field
+				) {
 					$_field = 'comment_author_' . $field;
-					if ( ! isset( $data[ $_field ] ) || ! $data[ $_field ]  ) {
+					if ( ! isset( $data[ $_field ] ) || ! $data[ $_field ] ) {
 						if ( isset( $data[ $field ] ) ) {
 							$data[ $_field ] = $data[ $field ];
 							unset( $data[ $field ] );
@@ -121,23 +123,25 @@ class api_helper {
 
 		}
 
-		if ( ! isset( $data[ 'comment_content' ] ) || ! $data[ 'comment_content' ] ) {
-			if ( isset( $data[ 'comment' ] ) ) {
-				$data[ 'comment_content' ] = $data[ 'comment' ];
-				unset( $data[ 'comment' ] );
+		if ( ! isset( $data['comment_content'] ) || ! $data['comment_content'] ) {
+			if ( isset( $data['comment'] ) ) {
+				$data['comment_content'] = $data['comment'];
+				unset( $data['comment'] );
 			} else {
 				$data['comment_content'] = ' ';
 			}
 
 		}
 
-		if ( ! isset( $data[ 'comment_author_IP' ] ) || ! $data[ 'comment_author_IP' ] ) {
-			if ( isset( $_SERVER[ 'REMOTE_ADDR' ] ) ) {
-				$data[ 'comment_author_IP' ] = $_SERVER[ 'REMOTE_ADDR' ];
-			}else{
-				$data[ 'comment_author_IP' ] = ' ';
+		if ( ! isset( $data['comment_author_IP'] ) || ! $data['comment_author_IP'] ) {
+			if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
+				$data['comment_author_IP'] = $_SERVER['REMOTE_ADDR'];
+			} else {
+				$data['comment_author_IP'] = ' ';
 			}
 
 		}
+		
+	}
 
 }
