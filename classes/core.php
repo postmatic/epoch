@@ -76,13 +76,15 @@ class core {
 			new settings();
 		}else{
 			//load the front-end
-			new layout();
-			add_action( 'wp_enqueue_scripts', array( $this, 'front_stylescripts' ) );
-			add_filter( 'comments_template', array( '\postmatic\epoch\front\layout', 'initial' ), 100 );
-			add_action( 'wp_footer', array( $this, 'print_template' ) );
-			add_action( 'wp_footer', array( $this, 'print_modals' ) );
+			if ( is_singular() ) {
+				new layout();
+				add_action( 'wp_enqueue_scripts', array( $this, 'front_stylescripts' ) );
+				add_filter( 'comments_template', array( '\postmatic\epoch\front\layout', 'initial' ), 100 );
+				add_action( 'wp_footer', array( $this, 'print_template' ) );
+				add_action( 'wp_footer', array( $this, 'print_modals' ) );
 
-			new api_route();
+				new api_route();
+			}
 
 		}
 
