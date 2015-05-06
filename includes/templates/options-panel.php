@@ -16,7 +16,7 @@
 	<input id="epoch-options-theme-dark" type="radio" name="options[theme]" value="dark" {{#is options/theme value="dark"}}checked{{/is}}><?php _e( 'Dark', 'epoch' ); ?>
 	<input id="epoch-options-theme-light" type="radio" name="options[theme]" value="light" {{#is options/theme value="light"}}checked{{/is}}><?php _e( 'Light', 'epoch' ); ?>
 	<p class="description" style="margin-left: 190px;">
-		<?php _e( 'Choose theme for comment display.', 'epoch' ); ?>
+		<?php _e( 'Epoch comes with a light theme and a dark theme for displaying your comments. Choose whichever works best for your site. The comment template can also be styled easily via css. See the documentation.', 'epoch' ); ?>
 	</p>
 </div>
 
@@ -26,8 +26,9 @@
 	</label>
 	<input id="epoch-options-interval" type="number" name="options[interval]" value="{{options/interval}}" >
 	<p class="description" style="margin-left: 190px;">
-		<?php _e( 'How long to wait before checking for new comments (in seconds).', 'epoch' ); ?>
-		<?php _e( 'If no value set, interval will be 15 seconds.', 'epoch' ); ?>
+		<?php _e( 'How frequently should Epoch push new comments to active users (in seconds)? ', 'epoch' ); ?>
+		<?php _e( 'Comments are only pushed to users viewing the comments area of a post in an active browser tab. It is highly efficient. ', 'epoch' ); ?>
+		<?php _e( 'If no value set, interval will be 15 seconds, which should be fine on most hosts.', 'epoch' ); ?>
 	</p>
 </div>
 
@@ -38,6 +39,6 @@
 	</label>
 	<input id="epoch-options-before_text" type="text" class="regular-text" name="options[before_text]" value="{{options/before_text}}" >
 	<p class="description" style="margin-left: 190px;">
-		<?php _e( 'Text to show before comments', 'epoch' ); ?>
+		<?php _e( 'Text to show before the comment area.', 'epoch' ); ?>
 	</p>
 </div>
