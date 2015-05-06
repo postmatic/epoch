@@ -69,6 +69,7 @@ class core {
 
 		//register scripts/styles used in both front-end and back-end
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_common' ), 5 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_common' ), 5 );
 
 		//load settings class in admin
 		if ( is_admin() ) {
@@ -324,7 +325,7 @@ class core {
 	/**
 	 * Register scripts shared between front-end and back-end
 	 *
-	 * @uses "wp_enqueue_scrips" action
+	 * @uses "wp_enqueue_scripts" action
 	 *
 	 * @since 0.0.5
 	 */
