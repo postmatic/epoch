@@ -5369,7 +5369,7 @@ jQuery( document ).ready( function ( $ ) {
 
             }
 
-            $( '.epoch-comment-reply-link' ).click( function( event ) {
+            $( '.comment-reply-link' ).click( function( event ) {
                 event.preventDefault;
             });
         };
