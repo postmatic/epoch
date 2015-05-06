@@ -169,6 +169,8 @@ class core {
 	 * @since 0.0.1
 	 */
 	public function front_stylescripts() {
+
+		//set random version and unminified if SCRIPT DEBUG
 		$version = EPOCH_VER;
 		$min = true;
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
@@ -177,6 +179,7 @@ class core {
 			$min = false;
 		}
 
+		//determine theme
 		$options = options::get();
 		if ( is_array( $options ) && isset( $options['options'] ) && isset( $options['options' ][ 'theme' ] ) ) {
 			$theme = $options[ 'options' ][ 'theme' ];
@@ -188,24 +191,26 @@ class core {
 			$theme = 'light';
 		}
 
-
-
-		//already registered baldrickJS
-		if ( $min ) {
-			wp_enqueue_style( 'epoch-baldrick-modals' );
-		}
-		wp_enqueue_script( 'epoch-wp-baldrick' );
-
 		//visibility API
 		wp_enqueue_script( 'visibility', '//cdnjs.cloudflare.com/ajax/libs/visibility.js/1.2.1/visibility.min.js' );
 
-		//our handlebars helpers
-		wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'epoch-wp-baldrick' ), $version );
+
+		//load unminified if !SCRIPT_DEBUG
+		if ( ! $min ) {
+			//already registered baldrickJS
+			wp_enqueue_style( 'epoch-baldrick-modals' );
+			wp_enqueue_script( 'epoch-wp-baldrick' );
+
+			//our handlebars helpers
+			wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'epoch-wp-baldrick' ), $version );
+
+			//main script
+			wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch.js", array( 'jquery', 'epoch-wp-baldrick', 'visibility' ), $version, true );
+		}
+
 
 		//main scripts and styles
-		wp_enqueue_script( 'epoch', EPOCH_URL . '/assets/js/front/epoch.js', array( 'jquery', 'epoch-wp-baldrick', 'visibility' ), $version, true );
-
-
+		wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch{$suffix}.js", array( 'jquery' ), $version, true );
 		wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}{$suffix}.css",false, $version );
 
 		//make sure we have the comment reply JS from WordPress core.

@@ -137,6 +137,22 @@ module.exports = function (grunt) {
                     'assets/css/front/dark.min.css': [ 'assets/css/front/dark.css', 'assets/css/modals.css' ]
                 }
             }
+        },
+        concat: {
+            options: {
+
+            },
+            dist: {
+                src: [ 'assets/js/wp-baldrick-full.js', 'assets/js/front/helpers.js', 'assets/js/front/epoch.js' ],
+                dest: 'assets/js/front/epoch-front-compiled.js'
+            }
+        },
+        uglify: {
+            front: {
+                files: {
+                    'assets/js/front/epoch.min.js': [ 'assets/js/front/epoch-front-compiled.js' ]
+                }
+            }
         }
 
     });
@@ -150,9 +166,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks( 'grunt-text-replace' );
     grunt.loadNpmTasks( 'grunt-shell' );
     grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
+    grunt.loadNpmTasks( 'grunt-contrib-uglify' );
+    grunt.loadNpmTasks( 'grunt-contrib-concat' );
 
 
     //register default task
+    grunt.registerTask( 'default', [ 'cssmin', 'concat', 'uglify' ] );
 
     //release tasks
     grunt.registerTask( 'version_number', [ 'replace:core_file', 'replace:readme' ] );
