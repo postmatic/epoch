@@ -124,7 +124,7 @@ class vars {
 	/**
 	 * Get URL for the API
 	 *
-	 * Note: URL is not escaped here, please late escape it.
+	 * IMPORTANT: URL is not escaped here, please late escape it, or you are wrong and should feel wrong.
 	 *
 	 * @since 0.0.1
 	 *
@@ -134,12 +134,24 @@ class vars {
 	 */
 	static public function api_url( $submit_comment = false ) {
 		$url =  home_url( self::$endpoint );
+
+		/**
+		 * Filter the API URL for where we process our AJAX
+		 *
+		 * NOTE: Runs before GET vars are, in some cases added to string.
+		 *
+		 * @since 0.0.5
+		 *
+		 * @param string $url URL for API
+		 */
+		add_filter( 'epoch_api_url', $url );
 		if ( $submit_comment ) {
 			$args = array(
 				self::$nonce_field => self::make_nonce(),
 				'action' => 'submit_comment'
 			);
 			$url = add_query_arg( $args, $url );
+
 		}
 
 		return $url;
