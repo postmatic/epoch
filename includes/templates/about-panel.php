@@ -9,4 +9,4 @@
  * Copyright 2015 Transitive, Inc.
  */
 ?>
-I am marketting and/or how to:)
+<h2>Testing this panel out</h2>
