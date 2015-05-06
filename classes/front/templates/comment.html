@@ -1,10 +1,10 @@
 <script id="epoch-comment-template" type="text/x-handlebars-template">
 
     <div id="comment-{{comment_ID}}" data-comment-id="{{comment_ID}}">
-        <article id="div-comment-{{comment_ID}}" class="comment-body">
-            <footer class="comment-meta">
-                <div class="comment-author">
-                    <div class="comment-author-avatar">
+        <article id="div-comment-{{comment_ID}}" class="epoch-comment-body">
+            <footer class="epoch-comment-meta">
+                <div class="epoch-comment-author">
+                    <div class="epoch-comment-author-avatar">
                         {{epochLink comment_author_url author_avatar 'author_url_link_title' 'epoch-author-avatar' '_blank' 'nofollow'}}
                     </div>
                       {{epochLink comment_author_url comment_author 'author_url_link_title' 'epoch-author-link' '_blank' 'nofollow'}}
@@ -15,15 +15,15 @@
                 {{#if comment_approved}}
 
                 {{else}}
-                <p class="comment-awaiting-moderation">{{epochTranslation 'awaiting_moderation'}}</p>
+                <p class="epoch-comment-awaiting-moderation">{{epochTranslation 'awaiting_moderation'}}</p>
                 {{/if}}
             </footer><!-- .comment-meta -->
 
-            <div class="comment-content">
+            <div class="epoch-comment-content">
                 {{{comment_content}}}
             </div><!-- .comment-content -->
 
-            <ul class="comment-actions">
+            <ul class="epoch-comment-actions">
                 {{#if reply_allowed}}
                     <li class="epoch-reply" data-comment-id="{{comment_ID}}">
                         {{{reply_link}}}
