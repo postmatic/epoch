@@ -11,6 +11,8 @@
 namespace postmatic\epoch\front;
 
 
+use postmatic\epoch\options;
+
 class api_process {
 
 	/**
@@ -23,11 +25,16 @@ class api_process {
 	 * @return array
 	 */
 	public static function form( $data ) {
+		$options = options::get();
+		$options = $options[ 'options' ];
 		$args = array(
 			'id_form' => vars::$form_id,
 			'id_submit ' => vars::$submit_id,
-			'title_reply_to' => 'Reply to comment'
 		);
+
+		if ( isset( $options[ 'before_text' ] ) && is_string( $options[ 'before_text' ] ) ) {
+			$args[ 'title_reply' ] = $options[ 'before_text' ];
+		}
 
 		ob_start();
 		comment_form( $args , $data[ 'postID' ] );
