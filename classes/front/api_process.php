@@ -322,5 +322,27 @@ class api_process {
 
 	}
 
+	/**
+	 * Get a single comment
+	 *
+	 * @since 0.0.5
+	 *
+	 * @param array $data
+	 *
+	 * @return array|null
+	 */
+	public static function get_comment( $data ) {
+		$comment = get_comment( $data[ 'commentID' ] );
+
+		if ( is_object( $comment ) ) {
+			$comment = self::add_data_to_comment( $comment );
+			return array(
+				'comment' => $comment
+			);
+
+		}
+
+	}
+
 
 }

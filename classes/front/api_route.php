@@ -155,6 +155,10 @@ class api_route {
 
 		}
 
+		if ( 'get_comment' == $action ) {
+			$fields[ 'commentID' ] = 'absint';
+		}
+
 		return $fields;
 	}
 

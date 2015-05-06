@@ -107,10 +107,11 @@ jQuery( document ).ready( function ( $ ) {
                             ).complete( function () {
                                     app.poll = setTimeout( app.comment_count, epoch_vars.epoch_options.interval );
                             } ).success( function ( response ) {
-                                app.last_count = 0;
-                                app.get_comments( true );
-                                app.form_el.reset();
+                                    app.form_el.reset();
+                                    response = app.get_data_from_response( response );
+                                    id = response.comment_id;
 
+                                    app.get_comment( id );
 
 
                             } ).fail( function ( xhr ) {
@@ -195,7 +196,7 @@ jQuery( document ).ready( function ( $ ) {
                         comments = JSON.parse( comments );
                         depth = epoch_vars;
 
-                        
+
                         if ( 'undefined' !== comments && 0 < comments.length ) {
                             $.each( comments, function ( key, comment ) {
                                 app.comments_store.push( comment.comment_ID );
@@ -215,6 +216,43 @@ jQuery( document ).ready( function ( $ ) {
                 }
 
             );
+
+        };
+
+        /**
+         * Get a single comment
+         *
+         * @since 0.0.5
+         */
+        app.get_comment = function( id ) {
+            window.clearTimeout( app.poll );
+            spinner = document.getElementById( 'comments_area_spinner_id' );
+            $( spinner ).show();
+
+            $.get(
+                epoch_vars.api_url, {
+                    action: 'get_comment',
+                    epochNonce: epoch_vars.nonce,
+                    commentID: id
+                }
+            ).done( function( response  ) {
+                    $( spinner ).hide();
+                    app.poll = setTimeout( app.comment_count, epoch_vars.epoch_options.interval );
+
+            } ).success( function( response ) {
+
+                    response = app.get_data_from_response( response );
+
+                    if ( 'object' == typeof response && 'undefined' != response && 'undefined' != response.comment ) {
+                        comment = response.comment;
+
+
+                        app.comments_store.push( comment.comment_ID );
+                        app.parse_comment( comment, comment.parent, 0 );
+
+                    }
+
+            } );
 
         };
 
