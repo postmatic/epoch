@@ -50,7 +50,7 @@
 
 		<div id="epoch-panel-options" class="epoch-editor-panel" {{#is _current_tab value="#epoch-panel-options"}}{{else}} style="display:none;" {{/is}}>		
 		<h4>
-			<?php _e('options', 'epoch') ; ?> <small class="description"><?php _e('Options', 'epoch') ; ?></small>
+			<?php _e('Options', 'epoch') ; ?>
 		</h4>
 
 		<?php
