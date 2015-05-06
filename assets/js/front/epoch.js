@@ -39,9 +39,7 @@ jQuery( document ).ready( function ( $ ) {
              * Poll for new comments when page is visible only.
              */
             Visibility.every( epoch_vars.epoch_options.interval, function () {
-                console.log( app.shut_it_off );
                 if ( false == app.shut_it_off ) {
-                    console.log( 44);
                     app.comment_count( true );
                 }
             });
@@ -106,8 +104,7 @@ jQuery( document ).ready( function ( $ ) {
                          */
                         $( app.form_el ).submit( function( event ) {
                             event.preventDefault();
-
-
+                            
                             data = $( this ).serializeArray();
                             $.post(
                                 epoch_vars.submit_api_url,
@@ -118,9 +115,8 @@ jQuery( document ).ready( function ( $ ) {
                                     app.form_el.reset();
 
                                     response = app.get_data_from_response( response );
-                                    id = response.comment_id;
 
-                                    app.get_comment( id );
+                                    app.parse_comment( response.comment, comment.parent_id, 0 );
 
 
                             } ).fail( function ( xhr ) {
