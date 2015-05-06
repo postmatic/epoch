@@ -107,14 +107,17 @@ class vars {
 	/**
 	 * Create a nonce
 	 *
-	 * @todo Use post ID in nonce creation.
-	 *
 	 * @return string
 	 */
 	static public function make_nonce() {
-		$nonce = wp_create_nonce( self::$nonce_field );
+		global $post;
+		if ( is_object( $post ) ) {
+			$nonce = wp_create_nonce( self::$nonce_field . (int) $post->ID );
 
-		return $nonce;
+			return $nonce;
+		}else{
+			return rand();
+		}
 
 	}
 

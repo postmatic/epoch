@@ -170,8 +170,6 @@ class api_route {
 	/**
 	 * Verify nonce
 	 *
-	 * @todo implement post ID check.
-	 *
 	 * @since 0.0.1
 	 *
 	 * @access protected
@@ -179,7 +177,16 @@ class api_route {
 	 * @return false|int
 	 */
 	protected function verify_nonce() {
-		$valid =  wp_verify_nonce( $_REQUEST[ $this->api_nonce_key ], $this->api_nonce_key );
+
+		if( isset( $_POST[ 'postID' ] ) ) {
+			$id = $_POST[ 'postID' ];
+		}elseif( isset( $_POST[  'comment_post_ID' ] ) ) {
+			$id = $_POST[  'comment_post_ID' ];
+		}else{
+			return false;
+		}
+
+		$valid =  wp_verify_nonce( $_REQUEST[ $this->api_nonce_key ], $this->api_nonce_key . (int) $id );
 
 		return $valid;
 
