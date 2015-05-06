@@ -170,8 +170,11 @@ class core {
 	 */
 	public function front_stylescripts() {
 		$version = EPOCH_VER;
+		$min = true;
+		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
 			$version = rand();
+			$min = false;
 		}
 
 		$options = options::get();
@@ -185,18 +188,25 @@ class core {
 			$theme = 'light';
 		}
 
+
+
 		//already registered baldrickJS
-		wp_enqueue_style( 'epoch-baldrick-modals' );
+		if ( $min ) {
+			wp_enqueue_style( 'epoch-baldrick-modals' );
+		}
 		wp_enqueue_script( 'epoch-wp-baldrick' );
 
 		//visibility API
 		wp_enqueue_script( 'visibility', '//cdnjs.cloudflare.com/ajax/libs/visibility.js/1.2.1/visibility.min.js' );
 
+		//our handlebars helpers
 		wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'epoch-wp-baldrick' ), $version );
 
 		//main scripts and styles
 		wp_enqueue_script( 'epoch', EPOCH_URL . '/assets/js/front/epoch.js', array( 'jquery', 'epoch-wp-baldrick', 'visibility' ), $version, true );
-		wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}.css",false, $version );
+
+
+		wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}{$suffix}.css",false, $version );
 
 		//make sure we have the comment reply JS from WordPress core.
 		if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {

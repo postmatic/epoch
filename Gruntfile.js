@@ -125,9 +125,22 @@ module.exports = function (grunt) {
                     to: "Stable Tag: <%= pkg.version %>"
                 }]
             }
+        },
+        cssmin: {
+            options: {
+                shorthandCompacting: false,
+                roundingPrecision: -1
+            },
+            target: {
+                files: {
+                    'assets/css/front/light.min.css': [ 'assets/css/front/light.css', 'assets/css/modals.css' ],
+                    'assets/css/front/dark.min.css': [ 'assets/css/front/dark.css', 'assets/css/modals.css' ]
+                }
+            }
         }
 
     });
+
 
     //load modules
     grunt.loadNpmTasks( 'grunt-contrib-compress' );
@@ -135,7 +148,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks( 'grunt-contrib-copy' );
     grunt.loadNpmTasks( 'grunt-git' );
     grunt.loadNpmTasks( 'grunt-text-replace' );
-    grunt.loadNpmTasks( 'grunt-shell');
+    grunt.loadNpmTasks( 'grunt-shell' );
+    grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 
 
     //register default task
