@@ -26,8 +26,9 @@
 	</label>
 	<input id="epoch-options-interval" type="number" name="options[interval]" value="{{options/interval}}" >
 	<p class="description" style="margin-left: 190px;">
-		<?php _e( 'How long to wait before checking for new comments (in seconds).', 'epoch' ); ?>
-		<?php _e( 'If no value set, interval will be 15 seconds.', 'epoch' ); ?>
+		<?php _e( 'How frequently should Epoch push new comments to active users (in seconds)? ', 'epoch' ); ?>
+		<?php _e( 'Comments are only pushed to users viewing the comments area of a post in an active browser tab. It\'s highly efficient. ', 'epoch' ); ?>
+		<?php _e( 'If no value set, interval will be 15 seconds, which should be fine on most hosts.', 'epoch' ); ?>
 	</p>
 </div>
 
