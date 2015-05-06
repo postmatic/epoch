@@ -60,6 +60,12 @@ ul.epoch-comment-actions li {
 	list-style: none;
 	display: inline;
 	font-size: 75%;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+ul.epoch-comment-actions li a {
+	color: #aaa;
 }
 
 .epoch-success {
@@ -78,6 +84,10 @@ ul.epoch-comment-actions li {
     -khtml-opacity: 0.5;
     opacity: 0.5;
     z-index: 10000;
+}
+
+#prompt-comment-subscribe input {
+	width: auto !important;
 }
 
 
