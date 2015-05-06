@@ -345,7 +345,7 @@ jQuery( document ).ready( function ( $ ) {
 
             }
 
-            $( '.comment-reply-link' ).click( function( event ) {
+            $( '.epoch-comment-reply-link' ).click( function( event ) {
                 event.preventDefault;
             });
         };
