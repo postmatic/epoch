@@ -89,6 +89,7 @@ class core {
 					add_action( 'wp_footer', array( $this, 'print_modals' ) );
 
 				}
+
 			});
 
 
@@ -245,15 +246,20 @@ class core {
 			'comments_area_spinner_id' => esc_attr( vars::$comments_area_spinner_id ),
 			'api_url' => esc_url( vars::api_url( false ) ),
 			'submit_api_url' => esc_url( vars::api_url( true ) ),
-			'depth' => absint( get_option( 'thread_comments_depth', 5 ) )
+			'depth' => absint( get_option( 'thread_comments_depth', 5 ) ),
 
 		);
 
+		//reset comment depth to 1 if threaded comments are disabled.
 		if ( true != get_option( 'thread_comments' ) ) {
 			$vars[ 'depth' ] = 1;
 		}
 
+		//add the options
 		$vars[ 'epoch_options' ] = $this->prepare_epoch_options();
+
+		//add postmatic status
+		$vars = $this->add_postmatic_vars( $vars );
 
 		global $post;
 		if ( is_object( $post ) ) {
@@ -341,6 +347,35 @@ class core {
 	public function register_common() {
 		wp_register_style( 'epoch-baldrick-modals', EPOCH_URL . '/assets/css/modals.css' );
 		wp_register_script( 'epoch-wp-baldrick', EPOCH_URL . '/assets/js/wp-baldrick-full.js', array( 'jquery' ) , false, true );
+	}
+
+	/**
+	 * Add the postmatic active/ subscribed variables to the data we are localizing into epoch.js
+	 *
+	 * @since 0.0.5
+	 *
+	 * @access protected
+	 *
+	 * @param array $epoch_vars
+	 *
+	 * @return array
+	 */
+	protected function add_postmatic_vars( $epoch_vars) {
+		global $post;
+
+		$epoch_vars[ 'postmatic_active' ] = false;
+		$epoch_vars[ 'postmatic_site_subscribed' ] = false;
+
+		if ( class_exists( '\\Prompt_Site' ) && is_user_logged_in() && is_object( $post ) ) {
+			$user_id     = get_current_user_id();
+			$site        = new \Prompt_Site();
+			$subscribed  = $site->is_subscribed( $user_id );
+			$epoch_vars[ 'postmatic_active' ] = $subscribed;
+			$epoch_vars[ 'postmatic_site_subscribed' ] = true;
+		}
+
+		return $epoch_vars;
+
 	}
 
 
