@@ -30,12 +30,21 @@ jQuery( document ).ready( function ( $ ) {
             app.shut_it_off = false;
 
             /**
-             * Run the system
+             * Start the system
              */
             app.comments_open();
             app.comment_count( false );
 
-            app.poll = setTimeout( app.comment_count, epoch_vars.epoch_options.interval );
+            /**
+             * Poll for new comments when page is visible only.
+             */
+            Visibility.every( epoch_vars.epoch_options.interval, function () {
+                console.log( app.shut_it_off );
+                if ( false == app.shut_it_off ) {
+                    console.log( 44);
+                    app.comment_count( true );
+                }
+            });
 
 
         };
@@ -97,14 +106,14 @@ jQuery( document ).ready( function ( $ ) {
                          */
                         $( app.form_el ).submit( function( event ) {
                             event.preventDefault();
-                            window.clearTimeout( app.poll );
+
 
                             data = $( this ).serializeArray();
                             $.post(
                                 epoch_vars.submit_api_url,
                                 data
                             ).complete( function () {
-                                    app.poll = setTimeout( app.comment_count, epoch_vars.epoch_options.interval );
+
                             } ).success( function ( response ) {
                                     app.form_el.reset();
 
@@ -138,15 +147,14 @@ jQuery( document ).ready( function ( $ ) {
          * @param bool updateCheck If true we are using this to check if comments have change, use false on initial load
          */
         app.comment_count = function( updateCheck ) {
-            if ( 'visible' == Visibility.state() ) {
-                window.clearTimeout( app.poll );
+                app.shut_it_off = true;
                 $.post(
                     epoch_vars.api_url, {
                         action: 'comment_count',
                         epochNonce: epoch_vars.nonce,
                         postID: epoch_vars.post_id
                     } ).done( function ( response ) {
-                        app.poll = setTimeout( app.comment_count, epoch_vars.epoch_options.interval );
+                        app.shut_it_off = false;
                     } ).success( function ( response ) {
                         response = app.get_data_from_response( response );
                         if ( 'undefined' != response.count && 0 < response.count ) {
@@ -166,7 +174,6 @@ jQuery( document ).ready( function ( $ ) {
                         }
                     }
                 );
-            }
 
         };
 
@@ -176,6 +183,7 @@ jQuery( document ).ready( function ( $ ) {
          * @since 0.0.1
          */
         app.get_comments = function() {
+            app.shut_it_off = true;
             spinner = document.getElementById( 'comments_area_spinner_id' );
             $( spinner ).show();
             $.post(
@@ -187,7 +195,7 @@ jQuery( document ).ready( function ( $ ) {
                 }
                 ).done( function( response  ) {
                     $( spinner ).hide();
-
+                    app.shut_it_off = false;
 
                 } ).success( function( response ) {
                     response = app.get_data_from_response( response );
@@ -225,7 +233,7 @@ jQuery( document ).ready( function ( $ ) {
          * @since 0.0.5
          */
         app.get_comment = function( id ) {
-            window.clearTimeout( app.poll );
+            app.shut_it_off = true;
             spinner = document.getElementById( 'comments_area_spinner_id' );
             $( spinner ).show();
 
@@ -237,7 +245,7 @@ jQuery( document ).ready( function ( $ ) {
                 }
             ).done( function( response  ) {
                     $( spinner ).hide();
-                    app.poll = setTimeout( app.comment_count, epoch_vars.epoch_options.interval );
+                    app.shut_it_off = false;
 
             } ).success( function( response ) {
 
@@ -330,14 +338,7 @@ jQuery( document ).ready( function ( $ ) {
             });
         };
 
-        app.shutdown = function() {
-            if ( true === app.comments_close && true === app.no_comments ) {
-                app.shut_it_off = true;
-                el = document.getElementById( epoch_vars.wrap_class );
-                $( el ).hide();
-            }
 
-        }
 
     })( jQuery, window.Epoch || ( window.Epoch = {} ) );
 
