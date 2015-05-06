@@ -39,6 +39,6 @@
 	</label>
 	<input id="epoch-options-before_text" type="text" class="regular-text" name="options[before_text]" value="{{options/before_text}}" >
 	<p class="description" style="margin-left: 190px;">
-		<?php _e( 'Text to show before comments', 'epoch' ); ?>
+		<?php _e( 'Text to show before the comment area.', 'epoch' ); ?>
 	</p>
 </div>
