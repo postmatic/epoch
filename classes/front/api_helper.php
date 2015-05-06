@@ -41,11 +41,15 @@ class api_helper {
 	 *
 	 * @since 0.0.4
 	 *
-	 * @param array $comment Comment as array
+	 * @param array|object $comment Comment as array
 	 *
 	 * @return array Comment as array with extra fields.
 	 */
 	public static function add_data_to_comment( $comment ) {
+		if ( is_object( $comment ) ) {
+			$comment = (array) $comment;
+		}
+
 		$date_format = get_option( 'date_format' );
 
 		$reply_link_args = array(
@@ -141,6 +145,8 @@ class api_helper {
 			}
 
 		}
+
+		return $data;
 
 	}
 

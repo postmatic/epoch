@@ -116,9 +116,11 @@ class api_process {
 		$data       = wp_filter_comment( $data );
 		if ( is_array( $data ) ) {
 			$comment_id = wp_insert_comment( $data );
-			$comment    = get_comment( $comment_id );
-			
+
 			if ( $comment_id ) {
+				$comment    = get_comment( $comment_id );
+				$comment = (object)
+api_helper::add_data_to_comment( $comment );
 				return array(
 					'comment_id' => $comment_id,
 					'comment'    => $comment

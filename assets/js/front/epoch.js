@@ -107,6 +107,7 @@ jQuery( document ).ready( function ( $ ) {
                                     app.poll = setTimeout( app.comment_count, epoch_vars.epoch_options.interval );
                             } ).success( function ( response ) {
                                     app.form_el.reset();
+
                                     response = app.get_data_from_response( response );
                                     id = response.comment_id;
 
