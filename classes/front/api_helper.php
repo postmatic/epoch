@@ -52,12 +52,6 @@ class api_helper {
 
 		$date_format = get_option( 'date_format' );
 
-		$reply_link_args = array(
-			'add_below'     => 'comment',
-			'depth'         => 1,
-			'max_depth'     => get_option( 'thread_comments_depth', 5 ),
-			'respond_id'    => vars::$reply_link_id
-		);
 
 		//add avatar markup as a string
 		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'] );
@@ -71,13 +65,27 @@ class api_helper {
 		//are comments replies allowed
 		$comment[ 'reply_allowed'] = comments_open( $comment['comment_post_ID'] );
 
-		//get reply link
-		$comment['reply_link'] = get_comment_reply_link( $reply_link_args, (int) $comment['comment_ID'] );
+
 
 		//if has no children add that key as false.
 		if ( ! isset( $comment[ 'children' ] ) ) {
 			$comment[ 'children' ] = false;
 		}
+
+		if ( ! isset( $comment[ 'depth' ] ) ) {
+			$comment[ 'depth' ] = 1;
+		}
+
+		//get reply link
+		$reply_link_args = array(
+			'add_below'     => 'comment',
+			'max_depth'     => get_option( 'thread_comments_depth', 5 ),
+			'before'        => sprintf( '<span id="%1s">', vars::$reply_link_id ),
+			'after'         => '</span>',
+			'depth'         => (int) $comment[ 'depth' ]
+		);
+
+		$comment['reply_link'] = get_comment_reply_link( $reply_link_args, (int) $comment['comment_ID'] );
 
 		return $comment;
 
@@ -150,5 +158,7 @@ class api_helper {
 		return $data;
 
 	}
+
+
 
 }

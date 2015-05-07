@@ -67,6 +67,8 @@ class api_process {
 			$comments = api_helper::improve_comment_response( $comments );
 
 			$comments = wp_json_encode( $comments );
+		}else{
+			return false;
 		}
 
 		return array(

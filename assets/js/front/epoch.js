@@ -104,6 +104,7 @@ jQuery( document ).ready( function ( $ ) {
                          */
                         $( app.form_el ).submit( function( event ) {
                             event.preventDefault();
+                            app.shut_it_off = true;
                             
                             data = $( this ).serializeArray();
                             $.post(
@@ -129,8 +130,8 @@ jQuery( document ).ready( function ( $ ) {
 
                                     response = app.get_data_from_response( response );
 
-                                    app.parse_comment( response.comment, comment.parent_id, 0 );
-
+                                    app.parse_comment( response.comment, response.comment.depth  );
+                                    app.shut_it_off = false;
 
                             } ).fail( function ( xhr ) {
                                     $(  app.form_wrap_el, 'textarea#comment' ).addClass ( 'epoch-failure' ).delay( 2500 ).queue( function( next ){
@@ -211,6 +212,7 @@ jQuery( document ).ready( function ( $ ) {
 
                 } ).success( function( response ) {
                     response = app.get_data_from_response( response );
+
                     if ( 'object' == typeof response && 'undefined' != response && 'undefined' != response.comments ) {
                         comments = response.comments;
                         comments = JSON.parse( comments );
@@ -220,7 +222,7 @@ jQuery( document ).ready( function ( $ ) {
                         if ( 'undefined' !== comments && 0 < comments.length ) {
                             $.each( comments, function ( key, comment ) {
                                 app.comments_store.push( comment.comment_ID );
-                                app.parse_comment( comment, false, 0 );
+                                app.parse_comment( comment, 0 );
 
                                 //parse its children if it has them and threaded comments is on
                                 if ( 1 != depth ) {
@@ -268,7 +270,7 @@ jQuery( document ).ready( function ( $ ) {
 
 
                         app.comments_store.push( comment.comment_ID );
-                        app.parse_comment( comment, comment.parent, 0 );
+                        app.parse_comment( comment, 0 );
 
                     }
 
@@ -296,10 +298,10 @@ jQuery( document ).ready( function ( $ ) {
                         for ( c = 0; c < size; c++ ) {
                             comment = children[ c ];
                             pid = comment.comment_ID;
-                            app.parse_comment( comment, parent_id, level );
+                            app.parse_comment( comment, level );
                             if ( false != comment.children ) {
                                 level++;
-                                app.parse_children( comment, pid, level );
+                                app.parse_children( comment, level );
                             }
 
                         }
@@ -331,8 +333,8 @@ jQuery( document ).ready( function ( $ ) {
          *
          * @param comment
          */
-        app.parse_comment = function( comment, parent_id, level ) {
-
+        app.parse_comment = function( comment, level ) {
+            parent_id = comment.comment_parent;
             source = $( app.template_el ).html();
             template = Handlebars.compile( source );
             html = template( comment );
@@ -341,7 +343,14 @@ jQuery( document ).ready( function ( $ ) {
                 $( html ).appendTo( app.comments_wrap_el );
             }else {
                 html = '<div class="epoch-child child-of-' + parent_id +' level-' + level + ' ">' + html + '</div>';
-                $( html ).appendTo( app.comments_wrap_el );
+
+                parent_el = document.getElementById( 'comment-' + parent_id );
+                if ( null != parent_el) {
+                    $( html ).appendTo(parent_el );
+                } else {
+                    alert();
+                    $( html ).appendTo( app.comments_wrap_el );
+                }
 
             }
 

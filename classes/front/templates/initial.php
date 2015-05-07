@@ -13,7 +13,7 @@ printf(
 		<div id="%2s">%3s</div>
 		<div id="%4s">%5s</div>
 	</div>',
-	esc_attr( \postmatic\epoch\front\vars::$wrap_id ),
+	esc_attr( \postmatic\epoch\front\vars::$wrap_class ),
 	esc_attr( \postmatic\epoch\front\vars::$wrap_class ),
 	esc_attr( \postmatic\epoch\front\vars::$form_wrap ),
 	\postmatic\epoch\front\layout::spinner_img_tag( \postmatic\epoch\front\vars::$comment_form_spinner_id ),

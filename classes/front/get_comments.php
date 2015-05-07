@@ -17,11 +17,45 @@ class get_comments {
 	/**
 	 * The comments we found.
 	 *
-	 * @since 0.0.4
+	 * @since 0.0.5
+	 *
+	 * @var array
+	 */
+	public $comments;
+
+	/**
+	 * Comments we found, with each one converted to an array.
+	 *
+	 * @since 0.0.6
+	 *
+	 * @access protected
 	 *
 	 * @var object
 	 */
-	public $comments;
+	protected $comments_as_arrays;
+
+	/**
+	 * Sorting array for finding parents of comments
+	 *
+	 * @since 0.0.6
+	 *
+	 * @access protected
+	 *
+	 * @var array
+	 */
+	protected $sorter;
+
+	/**
+	 * Indexing array for finding a value from $this->sorter in $this->comments_as_arrays
+	 *
+	 * @since 0.0.6
+	 *
+	 * @access protected
+	 *
+	 * @var array
+	 */
+	protected $indexer;
+
 
 	/**
 	 * Constructor for class
@@ -41,6 +75,7 @@ class get_comments {
 
 		$this->comments = $comments =  get_comments( $args  );
 		if (  get_option( 'thread_comments' ) ) {
+			$this->prepare_sort();
 			if ( is_array( $comments ) && ! empty( $comments ) ) {
 				$this->sort();
 			}
@@ -50,19 +85,35 @@ class get_comments {
 	}
 
 	/**
-	 * Thread comments
+	 * Prepares class properties we need for sorting
 	 *
-	 * @since 0.0.4
+	 * @since 0.0.6
+	 *
+	 * @access protected
 	 */
-	protected function sort() {
+	protected function prepare_sort() {
 		//make an array of comment_id => comment_parent
-		$sorter = array_combine( wp_list_pluck( $this->comments, 'comment_ID' ), wp_list_pluck( $this->comments, 'comment_parent') );
+		$this->sorter = array_combine( wp_list_pluck( $this->comments, 'comment_ID' ), wp_list_pluck( $this->comments, 'comment_parent') );
 
 		//make index array for sorter array
-		$indexer = array_combine( array_keys( (array) $this->comments ), wp_list_pluck( $this->comments, 'comment_ID' ) );
+		$this->indexer = $indexer = array_combine( array_keys( (array) $this->comments ), wp_list_pluck( $this->comments, 'comment_ID' ) );
 
 		//switch all comments to arrays
-		$comments = $this->to_arrays( $this->comments );
+		$this->comments_as_arrays = $comments = $this->to_arrays( $this->comments );
+
+	}
+
+	/**
+	 * Sort comments for proper threading
+	 *
+	 * @since 0.0.4
+	 *
+	 * @access protected
+	 */
+	protected function sort() {
+		$sorter = $this->sorter;
+		$indexer = $this->indexer;
+		$comments = $this->comments_as_arrays;
 
 		//add extra fields to responses
 		foreach( $comments as $i => $comment ) {
@@ -71,11 +122,12 @@ class get_comments {
 		}
 
 		//add children to their parents
-		foreach( $sorter as $id => $parent ) {
-			if ( $parent ) {
+		foreach( $sorter as $id => $parent_id ) {
+			if ( $parent_id ) {
 				$key     = array_search( $id, $indexer );
 				$comment = $comments[ $key ];
-				$parent_key = array_search( $parent, $indexer );
+				$parent_key = array_search( $parent_id, $indexer );
+				$comment[ 'depth' ] = $this->find_depth( $comment );
 				$parent = $comments[ $parent_key ];
 				$parent[ 'children' ][] = $comment;
 				$comments[ $parent_key ] = $parent;
@@ -138,6 +190,61 @@ class get_comments {
 		}
 
 		return $comments;
+
+	}
+
+	/**
+	 * A comment to find depth of
+	 *
+	 * @since 0.0.6
+	 *
+	 * @access protected
+	 *
+	 * @param array $comment a comment
+	 *
+	 * @return int The depth
+	 */
+	protected function find_depth( $comment ) {
+		$depth = 2;
+		$max_depth =  get_option( 'thread_comments_depth', 5 );
+		$parent_id = $comment[ 'comment_parent'];
+		$parent = $this->find_parent($parent_id );
+		for( $i = 0; $i <= $max_depth; $i++ ) {
+			if (  0 == $parent[ 'comment_parent' ] ) {
+				break;
+			}else{
+				$parent = $this->find_parent( $parent[ 'comment_parent' ] );
+				$depth++;
+				if ( is_array( $parent ) ) {
+					break;
+				}
+
+			}
+
+		}
+
+		return $depth;
+
+	}
+
+	/**
+	 * Find parent of a comment in $this->comments_as_arrays
+	 *
+	 * @since 0.0.6
+	 *
+	 * @access protected
+	 *
+	 * @param int|string $parent_id Parent ID
+	 *
+	 * @return array|void Comment as an array or void, if not found.
+	 */
+	protected function find_parent( $parent_id ) {
+		$parent_key = array_search( $parent_id, $this->indexer );
+		if ( isset( $this->comments_as_arrays[ $parent_key ] ) ) {
+			$parent = $this->comments_as_arrays[ $parent_key ];
+
+			return $parent;
+		}
 
 	}
 
