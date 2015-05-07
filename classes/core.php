@@ -303,7 +303,7 @@ class core {
 			'theme'       => 'light',
 			'threaded'    => false,
 			'before_text' => false,
-			'interval'    => 15
+			'interval'    => 15,
 		);
 
 		$options = wp_parse_args( $options, $defaults );

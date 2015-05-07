@@ -32,7 +32,6 @@
 	</p>
 </div>
 
-
 <div class="epoch-config-group">
 	<label for="epoch-options-before_text">
 		<?php _e( 'Headline', 'epoch' ); ?>
@@ -42,3 +41,21 @@
 		<?php _e( 'Text to show before the comment area.', 'epoch' ); ?>
 	</p>
 </div>
+
+<div class="epoch-config-group">
+	<label for="epoch-options-order">
+		<?php _e( 'Comment Order', 'epoch' ); ?>
+	</label>
+	<select id="epoch-options-order" name="options[order]" value="{{options/before_text}}" >
+		<option value="ASC" {{#is options/order value="ASC"}}selected{{/is}} >
+			<?php _e( 'Ascending', 'epoch' ); ?>
+		</option>
+		<option value="DESC" {{#is options/order value="DESC"}}selected{{/is}} >
+			<?php _e( 'Descending', 'epoch' ); ?>
+		</option>
+	</select>
+	<p class="description" style="margin-left: 190px;">
+		<?php _e( 'Should comments be shown in ascending or descending order of date?', 'epoch' ); ?>
+	</p>
+</div>
+

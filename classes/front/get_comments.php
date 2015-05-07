@@ -11,6 +11,8 @@
 namespace postmatic\epoch\front;
 
 
+use postmatic\epoch\options;
+
 class get_comments {
 
 
@@ -66,8 +68,19 @@ class get_comments {
 	 * @param null|array $not_in Optional. If is nto null, the default, should be an array of comment IDs to ignore.
 	 */
 	public function __construct( $post_id, $not_in = null ) {
+		$options = options::get();
+		if ( is_array( $options ) && isset( $options[ 'order' ] ) && in_array( $options[ 'order' ], array(
+				'ASC',
+				'DESC'
+			))){
+			$order = $options[ 'order' ];
+		}else{
+			$order = 'DESC';
+		}
+
 		$args = array(
-			'post_id' => $post_id
+			'post_id' => $post_id,
+			'order'   => $order
 		);
 		if ( $not_in ) {
 			$args[ 'comment__not_in' ] = $not_in;
