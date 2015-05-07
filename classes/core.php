@@ -250,20 +250,17 @@ class core {
 	 */
 	protected function prepare_data_to_be_localized() {
 		$vars = array(
-			'wrap_class' => esc_attr( vars::$wrap_class ),
-			'form_id' => esc_attr( vars::$form_id ),
-			'submit_id' => esc_attr( vars::$submit_id ),
-			'nonce' => esc_attr( vars::make_nonce() ),
-			'form_wrap' => esc_attr( vars::$form_wrap ),
-			'comments_wrap' => esc_attr( vars::$comments_wrap ),
-			'comments_template_id' => esc_attr( vars::$comments_template_id ),
-			'comment_form_spinner_id' => esc_attr( vars::$comment_form_spinner_id ),
-			'comments_area_spinner_id' => esc_attr( vars::$comments_area_spinner_id ),
 			'api_url' => esc_url( vars::api_url( false ) ),
 			'submit_api_url' => esc_url( vars::api_url( true ) ),
 			'depth' => absint( get_option( 'thread_comments_depth', 5 ) ),
 
 		);
+
+		//add all properties from vars class
+		$props = get_class_vars( "\\postmatic\\epoch\\front\\vars" );
+		foreach( $props as $var => $value ) {
+			$vars[ $var ] = esc_attr( $value );
+		}
 
 		//reset comment depth to 1 if threaded comments are disabled.
 		if ( true != get_option( 'thread_comments' ) ) {
