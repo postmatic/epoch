@@ -30,6 +30,7 @@ class api_process {
 		$args = array(
 			'id_form' => vars::$form_id,
 			'id_submit ' => vars::$submit_id,
+			'comment_notes_after' => '',
 		);
 
 		if ( isset( $options[ 'before_text' ] ) && is_string( $options[ 'before_text' ] ) ) {
