@@ -253,7 +253,7 @@ class core {
 			'api_url' => esc_url( vars::api_url( false ) ),
 			'submit_api_url' => esc_url( vars::api_url( true ) ),
 			'depth' => absint( get_option( 'thread_comments_depth', 5 ) ),
-
+			'nonce' => vars::make_nonce(),
 		);
 
 		//add all properties from vars class

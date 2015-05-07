@@ -55,7 +55,8 @@ class api_helper {
 		$reply_link_args = array(
 			'add_below'     => 'comment',
 			'depth'         => 1,
-			'max_depth'     => get_option( 'thread_comments_depth', 5 )
+			'max_depth'     => get_option( 'thread_comments_depth', 5 ),
+			'respond_id'    => vars::$reply_link_id
 		);
 
 		//add avatar markup as a string

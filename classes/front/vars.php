@@ -114,6 +114,15 @@ class vars {
 	static public $comments_area_spinner_id = 'epoch-comments-area-spinner';
 
 	/**
+	 * ID for reply link.
+	 *
+	 * @since 0.0.5
+	 *
+	 * @var string
+	 */
+	static public $reply_link_id = 'epoch-reply-link';
+
+	/**
 	 * Create a nonce
 	 *
 	 * @return string
