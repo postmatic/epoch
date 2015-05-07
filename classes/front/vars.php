@@ -15,13 +15,22 @@ namespace postmatic\epoch\front;
 class vars {
 
 	/**
-	 * ID for container wrapping our comment system
+	 * Class for container wrapping our comment system
 	 *
 	 * @since 0.0.1
 	 *
 	 * @var string
 	 */
 	static public $wrap_class = 'epoch-wrapper';
+
+	/**
+	 * ID for container wrapping our comment system
+	 *
+	 * @since 0.0.6
+	 *
+	 * @var string
+	 */
+	static public $wrap_id = 'epoch-comments';
 
 	/**
 	 * ID for container containing the comment form.
