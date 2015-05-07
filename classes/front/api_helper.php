@@ -80,12 +80,10 @@ class api_helper {
 		$reply_link_args = array(
 			'add_below'     => 'comment',
 			'max_depth'     => get_option( 'thread_comments_depth', 5 ),
-			'before'        => sprintf( '<span id="%1s">', vars::$reply_link_id ),
-			'after'         => '</span>',
 			'depth'         => (int) $comment[ 'depth' ]
 		);
 
-		$comment['reply_link'] = get_comment_reply_link( $reply_link_args, (int) $comment['comment_ID'] );
+		$comment[ 'reply_link' ] = get_comment_reply_link( $reply_link_args, (int) $comment['comment_ID'] );
 
 		return $comment;
 
