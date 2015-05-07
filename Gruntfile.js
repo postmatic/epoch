@@ -179,7 +179,7 @@ module.exports = function (grunt) {
     grunt.registerTask( 'do_git', [ 'gitadd', 'gitcommit', 'gittag', 'gitpush' ] );
     grunt.registerTask( 'just_build', [  'shell:composer', 'copy', 'compress' ] );
 
-    grunt.registerTask( 'release', [ 'pre_vcs', 'do_git', 'clean:post_build' ] );
+    grunt.registerTask( 'release', [ 'default', 'pre_vcs', 'do_git', 'clean:post_build' ] );
 
 
 };
