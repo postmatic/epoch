@@ -183,7 +183,7 @@ class core {
 		$options = options::get();
 		if ( is_array( $options ) && isset( $options['options'] ) && isset( $options['options' ][ 'theme' ] ) ) {
 			$theme = $options[ 'options' ][ 'theme' ];
-			if ( ! in_array( $theme, array( 'light', 'dark' ) ) ) {
+			if ( ! in_array( $theme, array( 'light', 'dark', 'none' ) ) ) {
 				$theme = 'light';
 			}
 
@@ -211,7 +211,11 @@ class core {
 
 		//main scripts and styles
 		wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch{$suffix}.js", array( 'jquery' ), $version, true );
-		wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}{$suffix}.css",false, $version );
+		if ( 'none' != $theme ) {
+			wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}{$suffix}.css", false, $version );
+		}else{
+			wp_enqueue_style( 'epoch-baldrick-modals' );
+		}
 
 		//make sure we have the comment reply JS from WordPress core.
 		if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
