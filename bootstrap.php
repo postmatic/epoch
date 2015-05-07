@@ -14,5 +14,6 @@ if ( file_exists( EPOCH_PATH . 'vendor/autoload.php' ) ){
 	require_once( EPOCH_PATH . 'vendor/autoload.php' );
 }
 
+
 // initialize plugin
 \postmatic\epoch\core::get_instance();

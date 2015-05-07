@@ -11,6 +11,7 @@
 namespace postmatic\epoch;
 use postmatic\epoch\front\api;
 use postmatic\epoch\front\api_route;
+use postmatic\epoch\front\end_points;
 use postmatic\epoch\front\layout;
 use postmatic\epoch\front\vars;
 
@@ -77,6 +78,7 @@ class core {
 		}else{
 
 			//boot API
+			new end_points();
 			new api_route();
 
 			//load the front-end if on single post
@@ -92,9 +94,17 @@ class core {
 
 			});
 
-
-
 		}
+
+		//flush permalinks if not on an API call and hasn't been done this version.
+		add_action( 'init', function() {
+			if( ! isset( $_REQUEST[ vars::$nonce_field ] ) && EPOCH_VER != get_option( 'epoch_ver' ) ) {
+				flush_rewrite_rules();
+				update_option( 'epoch_ver', EPOCH_VER );
+
+			}
+		});
+
 
 	}
 

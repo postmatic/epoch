@@ -39,13 +39,6 @@ class api_route {
 	 * @since 0.0.1
 	 */
 	public function do_api(  ) {
-		$uri = $_SERVER[ 'REQUEST_URI' ];
-		$uri = strtok( $uri, '?' );
-		if ( false === strpos( $uri, '/' . vars::$endpoint ) ) {
-			return;
-		}
-
-
 		if (
 			! isset( $_REQUEST[ $this->api_nonce_key ] )
 			|| ! $_REQUEST[ 'action' ]
