@@ -8,7 +8,7 @@
  * @link
  * Copyright 2015 Transitive, Inc.
  */
-$epoch = \postmatic\epoch\options::get( 'epoch' );
+$epoch = \postmatic\epoch\options::get();
 
 ?>
 <div class="wrap" id="epoch-main-canvas">

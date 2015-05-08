@@ -191,16 +191,13 @@ class core {
 		}
 
 		//determine theme
-		$options = options::get();
-		if ( is_array( $options ) && isset( $options['options'] ) && isset( $options['options' ][ 'theme' ] ) ) {
-			$theme = $options[ 'options' ][ 'theme' ];
-			if ( ! in_array( $theme, array( 'light', 'dark', 'none' ) ) ) {
-				$theme = 'light';
-			}
+		$options = options::get_display_options();
 
-		} else {
+		$theme = $options[ 'theme' ];
+		if ( ! in_array( $theme, array( 'light', 'dark', 'none' ) ) ) {
 			$theme = 'light';
 		}
+
 
 		//visibility API
 		wp_enqueue_script( 'visibility', '//cdnjs.cloudflare.com/ajax/libs/visibility.js/1.2.1/visibility.min.js' );
@@ -307,22 +304,8 @@ class core {
 	 * @return array
 	 */
 	protected function prepare_epoch_options() {
-		$_options = options::get();
-		if ( is_array( $_options ) && isset( $_options['options'] ) ) {
-			$options = $_options['options'];
-		} else {
-			$options = array();
-		}
 
-		$defaults = array(
-			'theme'       => 'light',
-			'threaded'    => false,
-			'before_text' => false,
-			'interval'    => 15,
-			'order'       => 'ASC'
-		);
-
-		$options = wp_parse_args( $options, $defaults );
+		$options = options::get_display_options();
 
 		$_interval = absint( $options[ 'interval' ] ) * 1000;
 		if ( 0 === $_interval || $_interval > 15000 ) {

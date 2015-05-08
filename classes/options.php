@@ -38,10 +38,38 @@ class options {
 	 *
 	 * @since 0.2.0
 	 *
-	 * @return mixed|void
+	 * @return array
 	 */
 	public static function get() {
-		return get_option( self::$option_name );
+		return get_option( self::$option_name, array() );
+	}
+
+	/**
+	 * Get display options with defaults set if needed.
+	 *
+	 * @since 0.0.6
+	 *
+	 * @return array
+	 */
+	public static function get_display_options() {
+		$_options = self::get();
+		if ( is_array( $_options ) && isset( $_options[ 'options' ] ) ) {
+			$options = $_options[ 'options' ];
+		} else {
+			$options = array();
+		}
+
+		$defaults = array(
+			'theme'       => 'light',
+			'threaded'    => false,
+			'before_text' => false,
+			'interval'    => 15,
+			'order'       => 'ASC'
+		);
+
+		$options = wp_parse_args( $options, $defaults );
+
+		return $options;
 	}
 
 

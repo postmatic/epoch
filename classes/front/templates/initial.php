@@ -8,6 +8,8 @@
  * @link
  * Copyright 2015 Transitive, Inc.
  */
+$options = \postmatic\epoch\options::$option_name;
+
 printf(
 	'<div id="%0s" class="comments-area %1s">
 		<div id="%2s">%3s</div>

@@ -25,17 +25,15 @@ class api_process {
 	 * @return array
 	 */
 	public static function form( $data ) {
-		$options = options::get();
-		$options = $options[ 'options' ];
+		$options = options::get_display_options()
+
 		$args = array(
 			'id_form' => vars::$form_id,
 			'id_submit ' => vars::$submit_id,
 			'comment_notes_after' => '',
 		);
 
-		if ( isset( $options[ 'before_text' ] ) && is_string( $options[ 'before_text' ] ) ) {
-			$args[ 'title_reply' ] = $options[ 'before_text' ];
-		}
+		$args[ 'title_reply' ] = $options[ 'before_text' ];
 
 		ob_start();
 		comment_form( $args , $data[ 'postID' ] );
