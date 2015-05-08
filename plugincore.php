@@ -10,7 +10,7 @@
  * Plugin Name: Epoch
  * Plugin URI:  http://CalderaWP.com
  * Description: Jason needs to write a description:)
- * Version: 0.0.7
+ * Version: 0.0.8
  * Author:      Postmatic
  * Author URI:  https://gopostmatic.com/
  * Text Domain: epoch
@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 define('EPOCH_PATH',  plugin_dir_path( __FILE__ ) );
 define('EPOCH_URL',  plugin_dir_url( __FILE__ ) );
-define( 'EPOCH_VER', '0.0.7' );
+define( 'EPOCH_VER', '0.0.8' );
 
 
 
