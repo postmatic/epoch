@@ -120,10 +120,10 @@ jQuery( document ).ready( function ( $ ) {
                                         next();
                                     });
 
-                                    if ( 'ahts' == 'noms' && true == epoch_vars.postmatic_active && false == epoch_vars.postmatic_site_subscribed ) {
+                                    if ( true == epoch_vars.postmatic_active && false == epoch_vars.postmatic_site_subscribed ) {
                                         $( '<div>' ).data( {
                                             modal: 'postmatic-widget',
-                                            target: '#epoch-postmatic-widget',
+                                            request: '#epoch-postmatic-widget',
                                             autoload: true
                                         } ).baldrick();
                                     }
@@ -177,7 +177,6 @@ jQuery( document ).ready( function ( $ ) {
                             } else {
                                 if ( response.count > app.last_count ) {
                                     app.get_comments();
-
 
                                     app.last_count = response.count;
                                 }
