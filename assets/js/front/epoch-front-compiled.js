@@ -5143,11 +5143,6 @@ jQuery( document ).ready( function ( $ ) {
                             } ).success( function ( response ) {
                                     app.form_el.reset();
 
-                                    $(  app.form_wrap_el, 'textarea#comment' ).addClass ( 'epoch-success' ).delay( 2500 ).queue( function( next ){
-                                        $( this ).removeClass( 'epoch-success' );
-                                        next();
-                                    });
-
                                     if ( true == epoch_vars.postmatic_active && false == epoch_vars.postmatic_site_subscribed ) {
                                         $( '<div>' ).data( {
                                             modal: 'postmatic-widget',
@@ -5169,6 +5164,16 @@ jQuery( document ).ready( function ( $ ) {
                                     response = app.get_data_from_response( response );
 
                                     app.parse_comment( response.comment, response.comment.depth  );
+
+                                    comment_el = document.getElementById( 'comment-' + response.comment.comment_ID );
+                                    if ( null != comment_el ) {
+                                        $( comment_el ).addClass( 'epoch-success' ).delay( 2500 ).queue( function ( next ) {
+                                            $( this ).removeClass( 'epoch-success' );
+                                            next();
+                                        } );
+
+                                    }
+
                                     app.shut_it_off = false;
 
                             } ).fail( function ( xhr ) {
