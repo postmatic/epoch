@@ -138,10 +138,19 @@ jQuery( document ).ready( function ( $ ) {
 
 
                                     response = app.get_data_from_response( response );
+                                    comment = response.comment;
 
-                                    app.parse_comment( response.comment, response.comment.depth  );
+                                    html = app.parse_comment( comment );
+                                    if ( 0 == comment.comment_parent && 'DESC' == epoch_vars.epoch_options.order ) {
+                                        first_child = app.comments_wrap_el.firstChild;
+                                        new_el = document.createElement( 'div' );
+                                        new_el.innerHTML = html;
+                                        app.comments_wrap_el.insertBefore( new_el, first_child );
+                                    }else{
+                                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
+                                    }
 
-                                    comment_el = document.getElementById( 'comment-' + response.comment.comment_ID );
+                                    comment_el = document.getElementById( 'comment-' + comment.comment_ID );
                                     if ( null != comment_el ) {
                                         $( comment_el ).addClass( 'epoch-success' ).delay( 2500 ).queue( function ( next ) {
                                             $( this ).removeClass( 'epoch-success' );
@@ -240,7 +249,8 @@ jQuery( document ).ready( function ( $ ) {
                         if ( 'undefined' !== comments && 0 < comments.length ) {
                             $.each( comments, function ( key, comment ) {
                                 app.comments_store.push( comment.comment_ID );
-                                app.parse_comment( comment, 0 );
+                                html =  app.parse_comment( comment );
+                                app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
 
                                 //parse its children if it has them and threaded comments is on
                                 if ( 1 != depth ) {
@@ -249,6 +259,7 @@ jQuery( document ).ready( function ( $ ) {
                                 }
 
                             } );
+
                         }
 
                     }
@@ -288,7 +299,8 @@ jQuery( document ).ready( function ( $ ) {
 
 
                         app.comments_store.push( comment.comment_ID );
-                        app.parse_comment( comment, 0 );
+                        html =  app.parse_comment( comment );
+                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
 
                     }
 
@@ -317,9 +329,12 @@ jQuery( document ).ready( function ( $ ) {
                             comment = children[ c ];
                             pid = comment.comment_ID;
                             app.parse_comment( comment, level );
+                            html =  app.parse_comment( comment );
+                            app.put_comment_in_dom( html, parent_id, comment.depth );
                             if ( false != comment.children ) {
                                 level++;
-                                app.parse_children( comment, level );
+                                app.parse_comment( comment );
+                                html =  app.parse_comment( comment, pid, level );
                             }
 
                         }
@@ -349,14 +364,24 @@ jQuery( document ).ready( function ( $ ) {
          *
          * @since 0.0.1
          *
-         * @param comment
+         * @param comment Comment object
          */
-        app.parse_comment = function( comment, level ) {
+        app.parse_comment = function( comment ) {
             parent_id = comment.comment_parent;
             source = $( app.template_el ).html();
             template = Handlebars.compile( source );
             html = template( comment );
+            return html;
+        };
 
+        /**
+         * Put a parse comment into the DOM
+         *
+         * @param html The actual HTML.
+         * @param parent_id ID of parent, or 0 for top level comment.
+         * @param level The threading level, not needed for top-level comments.
+         */
+        app.put_comment_in_dom = function( html, parent_id, level ) {
             if ( false == parent_id ) {
                 $( html ).appendTo( app.comments_wrap_el );
             }else {
@@ -366,7 +391,6 @@ jQuery( document ).ready( function ( $ ) {
                 if ( null != parent_el) {
                     $( html ).appendTo(parent_el );
                 } else {
-                    alert();
                     $( html ).appendTo( app.comments_wrap_el );
                 }
 

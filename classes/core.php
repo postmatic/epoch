@@ -319,6 +319,7 @@ class core {
 			'threaded'    => false,
 			'before_text' => false,
 			'interval'    => 15,
+			'order'       => 'ASC'
 		);
 
 		$options = wp_parse_args( $options, $defaults );
