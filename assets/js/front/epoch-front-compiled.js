@@ -5156,6 +5156,16 @@ jQuery( document ).ready( function ( $ ) {
                                         } ).baldrick();
                                     }
 
+                                    //test if WordPress moved the form
+                                    temp_el = document.getElementById( 'wp-temp-form-div' );
+                                    if ( null != temp_el ) {
+                                        respond_el = document.getElementById( 'respond' );
+                                        $( respond_el ).slideUp();
+                                        $( respond_el ).insertAfter( temp_el );
+                                        $( respond_el ).slideDown();
+                                    }
+
+
                                     response = app.get_data_from_response( response );
 
                                     app.parse_comment( response.comment, response.comment.depth  );
