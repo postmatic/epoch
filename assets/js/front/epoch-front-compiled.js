@@ -5081,13 +5081,14 @@ jQuery( document ).ready( function ( $ ) {
          * @since 0.0.1
          */
         app.comments_open = function() {
+            app.shut_it_off = true;
             $.post(
                 epoch_vars.api_url, {
                     action: 'comments_open',
                     epochNonce: epoch_vars.nonce,
                     postID: epoch_vars.post_id
-                } ).done( function( response  ) {
-
+                } ).fail( function( response  ) {
+                    app.shut_it_off = false;
                 } ).success( function( response ) {
                     response = app.get_data_from_response( response );
                     if ( true == response ) {
@@ -5095,6 +5096,8 @@ jQuery( document ).ready( function ( $ ) {
                     }else{
                         app.comments_closed = true;
                     }
+
+                    app.shut_it_off = false;
 
                 }
             );
@@ -5222,7 +5225,7 @@ jQuery( document ).ready( function ( $ ) {
                         action: 'comment_count',
                         epochNonce: epoch_vars.nonce,
                         postID: epoch_vars.post_id
-                    } ).done( function ( response ) {
+                    } ).fail( function ( response ) {
                         app.shut_it_off = false;
                     } ).success( function ( response ) {
                         response = app.get_data_from_response( response );
@@ -5240,6 +5243,8 @@ jQuery( document ).ready( function ( $ ) {
                         } else {
                             app.no_comments = true;
                         }
+
+                        app.shut_it_off = false;
                     }
                 );
 
