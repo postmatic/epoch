@@ -123,6 +123,15 @@ class vars {
 	static public $reply_link_id = 'epoch-reply-link';
 
 	/**
+	 * ID of div we use to get the width of the content area.
+	 *
+	 * @since 0.0.6
+	 *
+	 * @var string
+	 */
+	static public $sniffer = 'epoch-width-sniffer';
+
+	/**
 	 * Create a nonce
 	 *
 	 * @return string

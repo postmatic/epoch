@@ -85,6 +85,8 @@ class api_helper {
 
 		$comment[ 'reply_link' ] = get_comment_reply_link( $reply_link_args, (int) $comment['comment_ID'] );
 
+		$comment[ 'cancel_reply_link' ] = cancel_comment_reply_link();
+
 		return $comment;
 
 	}

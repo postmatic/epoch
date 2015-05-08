@@ -79,6 +79,17 @@ class layout {
 
 	}
 
+	/**
+	 * Output an empty container after the content so we can sniff out its width.
+	 *
+	 * @uses "the_content"
+	 *
+	 * @since 0.0.6
+	 */
+	public static function width_sniffer( $content ) {
+		return $content . sprintf( '<div id="%s"></div>', vars::$sniffer );
+
+	}
 
 
 }

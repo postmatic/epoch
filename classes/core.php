@@ -89,6 +89,7 @@ class core {
 					add_filter( 'comments_template', array( '\postmatic\epoch\front\layout', 'initial' ), 100 );
 					add_action( 'wp_footer', array( $this, 'print_template' ) );
 					add_action( 'wp_footer', array( $this, 'print_modals' ) );
+					add_filter( 'the_content', array( '\postmatic\epoch\front\layout', 'width_sniffer' ), 100 );
 
 				}
 

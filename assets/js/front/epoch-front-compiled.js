@@ -5056,8 +5056,12 @@ jQuery( document ).ready( function ( $ ) {
             /**
              * Start the system
              */
+            app.set_width();
             app.comments_open();
             app.comment_count( false );
+            window.onresize = function(event) {
+               app.set_width();
+            };
 
             /**
              * Poll for new comments when page is visible only.
@@ -5381,6 +5385,25 @@ jQuery( document ).ready( function ( $ ) {
                 event.preventDefault;
             });
         };
+
+        /**
+         * Resize the epoch container based on content width
+         *
+         * @since 0.0.6
+         */
+        app.set_width = function() {
+            el = document.getElementById( epoch_vars.sniffer );
+
+            if ( null != el ) {
+                content_width = $( el ).parent().parent().parent().parent().outerWidth();
+                if ( 'number' == typeof content_width ) {
+                    wrap_el = document.getElementById( epoch_vars.wrap_id );
+                    $( wrap_el ).css( 'width', content_width );
+                }
+
+            }
+
+        }
 
 
 
