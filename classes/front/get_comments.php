@@ -68,7 +68,7 @@ class get_comments {
 	 * @param null|array $not_in Optional. If is nto null, the default, should be an array of comment IDs to ignore.
 	 */
 	public function __construct( $post_id, $not_in = null ) {
-		$options = options::get();
+		$options = options::get_display_options();
 		if ( is_array( $options ) && isset( $options[ 'order' ] ) && in_array( $options[ 'order' ], array(
 				'ASC',
 				'DESC'
