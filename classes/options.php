@@ -70,8 +70,8 @@ class options {
 		$options = wp_parse_args( $options, $defaults );
 
 		return $options;
-	}
 
+	}
 
 
 }

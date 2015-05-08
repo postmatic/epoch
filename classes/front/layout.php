@@ -13,6 +13,8 @@
 namespace postmatic\epoch\front;
 
 
+use postmatic\epoch\options;
+
 class layout {
 
 	/**
@@ -33,6 +35,11 @@ class layout {
 	 * @return string
 	 */
 	public static function comments_template() {
+		$options = options::get_display_options();
+		if ( 'none' == $options[ 'theme' ] ) {
+			return file_get_contents( dirname( __FILE__ ) . '/templates/comment-no-theme.html' );
+		}
+
 		return file_get_contents( dirname( __FILE__ ) . '/templates/comment.html' );
 	}
 

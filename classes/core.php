@@ -84,6 +84,10 @@ class core {
 			//load the front-end if on single post
 			add_action( 'parse_query', function()  {
 				if ( is_singular() ) {
+					$options = options::get_display_options();
+					if ( 'none' == $options[ 'theme' ] ) {
+						vars::$wrap_id = 'comments';
+					}
 
 					add_action( 'wp_enqueue_scripts', array( $this, 'front_stylescripts' ) );
 					add_filter( 'comments_template', array( '\postmatic\epoch\front\layout', 'initial' ), 100 );
