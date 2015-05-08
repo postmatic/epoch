@@ -25,7 +25,7 @@ class api_process {
 	 * @return array
 	 */
 	public static function form( $data ) {
-		$options = options::get_display_options()
+		$options = options::get_display_options();
 
 		$args = array(
 			'id_form' => vars::$form_id,
