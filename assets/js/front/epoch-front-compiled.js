@@ -5142,6 +5142,7 @@ jQuery( document ).ready( function ( $ ) {
 
                             } ).success( function ( response ) {
                                     app.form_el.reset();
+                                    $( '#comment_parent' ).val( '0' );
 
                                     if ( true == epoch_vars.postmatic_active && false == epoch_vars.postmatic_site_subscribed ) {
                                         $( '<div>' ).data( {
@@ -5166,6 +5167,8 @@ jQuery( document ).ready( function ( $ ) {
                                     comment = response.comment;
 
                                     html = app.parse_comment( comment );
+                                    console.log( comment.comment_parent );
+                                    console.log( 0 );
                                     if ( 0 == comment.comment_parent && 'DESC' == epoch_vars.epoch_options.order ) {
                                         first_child = app.comments_wrap_el.firstChild;
                                         new_el = document.createElement( 'div' );
