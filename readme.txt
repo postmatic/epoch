@@ -1,5 +1,5 @@
 === Epoch ===
-Contributors: Vernal Desertsnowman, Shelob9
+Contributors: Vernal, Desertsnowman, Shelob9
 Donate link: https://GoPostmatic.com
 Tags:
 Requires at least: 3.9
