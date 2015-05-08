@@ -82,7 +82,7 @@ class core {
 			new api_route();
 
 			//load the front-end if on single post
-			add_action( 'parse_query', array( $this, 'boot_epoch_front' );
+			add_action( 'parse_query', array( $this, 'boot_epoch_front' ) );
 
 		}
 
