@@ -29,6 +29,13 @@ jQuery( document ).ready( function ( $ ) {
             //used to stop the system
             app.shut_it_off = false;
 
+            //change action for comment form
+            app.form_el = document.getElementById( epoch_vars.form_id );
+            if ( null != app.form_el) {
+                app.form_el.removeAttribute( 'action' );
+                app.form_el.setAttribute( 'action', 'post' );
+            }
+
             /**
              * Start the system
              */
@@ -48,6 +55,76 @@ jQuery( document ).ready( function ( $ ) {
                 }
             });
 
+            /**
+             * Submit form data
+             *
+             * @since 0.0.1
+             */
+            $( app.form_el ).submit( function( event ) {
+                event.preventDefault();
+                app.shut_it_off = true;
+
+                data = $( this ).serializeArray();
+                $.post(
+                    epoch_vars.submit_api_url,
+                    data
+                ).complete( function () {
+
+                    } ).success( function ( response ) {
+                        app.form_el.reset();
+                        $( '#comment_parent' ).val( '0' );
+
+                        if ( true == epoch_vars.postmatic_active && false == epoch_vars.postmatic_site_subscribed ) {
+                            $( '<div>' ).data( {
+                                modal: 'postmatic-widget',
+                                request: '#epoch-postmatic-widget',
+                                autoload: true
+                            } ).baldrick();
+                        }
+
+
+                        //test if WordPress moved the form
+                        temp_el = document.getElementById( 'wp-temp-form-div' );
+                        if ( null != temp_el ) {
+                            respond_el = document.getElementById( 'respond' );
+                            $( respond_el ).slideUp();
+                            $( respond_el ).insertAfter( temp_el );
+                            $( respond_el ).slideDown();
+                        }
+
+
+                        response = app.get_data_from_response( response );
+                        comment = response.comment;
+
+                        html = app.parse_comment( comment );
+
+                        if ( 0 == comment.comment_parent && 'DESC' == epoch_vars.epoch_options.order ) {
+                            first_child = app.comments_wrap_el.firstChild;
+                            new_el = document.createElement( 'div' );
+                            new_el.innerHTML = html;
+                            app.comments_wrap_el.insertBefore( new_el, first_child );
+                        } else {
+                            app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
+                        }
+
+                        comment_el = document.getElementById( 'comment-' + comment.comment_ID );
+                        if ( null != comment_el ) {
+                            $( comment_el ).addClass( 'epoch-success' ).delay( 2500 ).queue( function ( next ) {
+                                $( this ).removeClass( 'epoch-success' );
+                                next();
+                            } );
+
+                        }
+
+                        app.shut_it_off = false;
+
+                    } ).fail( function ( xhr ) {
+                        $( app.form_wrap_el, 'textarea#comment' ).addClass( 'epoch-failure' ).delay( 2500 ).queue( function ( next ) {
+                            $( this ).removeClass( 'epoch-failure' );
+                            next();
+                        } );
+                    } );
+            });
 
         };
 
@@ -68,124 +145,18 @@ jQuery( document ).ready( function ( $ ) {
                 } ).success( function( response ) {
                     response = app.get_data_from_response( response );
                     if ( true == response ) {
-                        app.get_form()
+                        app.shut_it_off = false;
                     }else{
                         app.comments_closed = true;
                     }
 
-                    app.shut_it_off = false;
+
 
                 }
             );
 
         };
 
-        /**
-         * Get comment form
-         *
-         * @since 0.0.1
-         */
-        app.get_form = function() {
-            spinner = document.getElementById( 'comment_form_spinner_id' );
-            $( spinner ).show();
-            $.post(
-                epoch_vars.api_url, {
-                    action: 'form',
-                    epochNonce: epoch_vars.nonce,
-                    postID: epoch_vars.post_id
-                }
-                ).done( function( response  ) {
-                    $( spinner ).hide();
-                } ).success( function( response ) {
-                    response = app.get_data_from_response( response );
-                    if ( 'undefined' != response.html ) {
-                        app.form_wrap_el.innerHTML = response.html;
-                        app.form_el = document.getElementById( epoch_vars.form_id );
-                        app.form_el.removeAttribute( 'action' );
-                        app.form_el.setAttribute( 'action', 'post' );
-
-                        /**
-                         * Submit form data
-                         *
-                         * @since 0.0.1
-                         */
-                        $( app.form_el ).submit( function( event ) {
-                            event.preventDefault();
-                            app.shut_it_off = true;
-                            
-                            data = $( this ).serializeArray();
-                            $.post(
-                                epoch_vars.submit_api_url,
-                                data
-                            ).complete( function () {
-
-                            } ).success( function ( response ) {
-                                    app.form_el.reset();
-                                    $( '#comment_parent' ).val( '0' );
-
-                                    if ( true == epoch_vars.postmatic_active && false == epoch_vars.postmatic_site_subscribed ) {
-                                        $( '<div>' ).data( {
-                                            modal: 'postmatic-widget',
-                                            request: '#epoch-postmatic-widget',
-                                            autoload: true
-                                        } ).baldrick();
-                                    }
-
-
-                                    //test if WordPress moved the form
-                                    temp_el = document.getElementById( 'wp-temp-form-div' );
-                                    if ( null != temp_el ) {
-                                        respond_el = document.getElementById( 'respond' );
-                                        $( respond_el ).slideUp();
-                                        $( respond_el ).insertAfter( temp_el );
-                                        $( respond_el ).slideDown();
-                                    }
-
-
-                                    response = app.get_data_from_response( response );
-                                    comment = response.comment;
-
-                                    html = app.parse_comment( comment );
-                                    console.log( comment.comment_parent );
-                                    console.log( 0 );
-                                    if ( 0 == comment.comment_parent && 'DESC' == epoch_vars.epoch_options.order ) {
-                                        first_child = app.comments_wrap_el.firstChild;
-                                        new_el = document.createElement( 'div' );
-                                        new_el.innerHTML = html;
-                                        app.comments_wrap_el.insertBefore( new_el, first_child );
-                                    }else{
-                                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
-                                    }
-
-                                    comment_el = document.getElementById( 'comment-' + comment.comment_ID );
-                                    if ( null != comment_el ) {
-                                        $( comment_el ).addClass( 'epoch-success' ).delay( 2500 ).queue( function ( next ) {
-                                            $( this ).removeClass( 'epoch-success' );
-                                            next();
-                                        } );
-
-                                    }
-
-                                    app.shut_it_off = false;
-
-                            } ).fail( function ( xhr ) {
-                                    $(  app.form_wrap_el, 'textarea#comment' ).addClass ( 'epoch-failure' ).delay( 2500 ).queue( function( next ){
-                                        $( this ).removeClass( 'epoch-failure' );
-                                        next();
-                                    });
-                            } );
-
-
-
-                        });
-
-                    }
-
-                }
-
-            );
-
-        };
 
         /**
          * Get comment count

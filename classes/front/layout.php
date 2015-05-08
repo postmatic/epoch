@@ -98,5 +98,36 @@ class layout {
 
 	}
 
+	/**
+	 * Get comment form HTML
+	 *
+	 * @since 0.0.9
+	 *
+	 * @param int $post_id Post ID for this comment form
+	 *
+	 * @return string
+	 */
+	public static function get_form( $post_id ) {
+		if ( 0 < absint( $post_id ) && comments_open( $post_id ) ) {
+			$options = options::get_display_options();
+
+			$args = array(
+				'id_form'             => vars::$form_id,
+				'id_submit '          => vars::$submit_id,
+				'comment_notes_after' => '',
+			);
+
+			$args['title_reply'] = $options['before_text'];
+
+			ob_start();
+			comment_form( $args, $post_id );
+			$html = ob_get_clean();
+		} else {
+			$html = '';
+		}
+
+		return $html;
+
+	}
 
 }

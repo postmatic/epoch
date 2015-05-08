@@ -9,11 +9,11 @@
  * Copyright 2015 Transitive, Inc.
  */
 $options = \postmatic\epoch\options::get_display_options();
-
+global $post;
 $form = sprintf(
 	'<div id="%1s">%2s</div>',
 	esc_attr( \postmatic\epoch\front\vars::$form_wrap ),
-	\postmatic\epoch\front\layout::spinner_img_tag( \postmatic\epoch\front\vars::$comment_form_spinner_id )
+	\postmatic\epoch\front\layout::get_form( $post->ID )
 );
 
 $comment_area = sprintf(

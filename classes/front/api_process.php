@@ -16,34 +16,6 @@ use postmatic\epoch\options;
 class api_process {
 
 	/**
-	 * Get comment form HTML
-	 *
-	 * @since 0.0.1
-	 *
-	 * @param array $data Sanitized data from request
-	 *
-	 * @return array
-	 */
-	public static function form( $data ) {
-		$options = options::get_display_options();
-
-		$args = array(
-			'id_form' => vars::$form_id,
-			'id_submit ' => vars::$submit_id,
-			'comment_notes_after' => '',
-		);
-
-		$args[ 'title_reply' ] = $options[ 'before_text' ];
-
-		ob_start();
-		comment_form( $args , $data[ 'postID' ] );
-		$html = ob_get_clean();
-		return array(
-			'html' => $html
-		);
-	}
-
-	/**
 	 * Get comments
 	 *
 	 * @since 0.0.1
