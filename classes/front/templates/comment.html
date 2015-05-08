@@ -1,36 +1,36 @@
-<script id="comment-template" type="text/x-handlebars-template">
+<script id="epoch-comment-template" type="text/x-handlebars-template">
 
     <div id="comment-{{comment_ID}}" data-comment-id="{{comment_ID}}">
-        <article id="div-comment-{{comment_ID}}" class="comment-body">
-            <footer class="comment-meta">
-                <div class="comment-author">
-                    <div class="comment-author-avatar">
-                        {{epochLink comment_author_url author_avatar 'author_url_link_title' 'author-avatar' '_blank' 'nofollow'}}
+        <article id="div-comment-{{comment_ID}}" class="epoch-comment-body">
+            <footer class="epoch-comment-meta">
+                <div class="epoch-comment-author">
+                    <div class="epoch-comment-author-avatar">
+                        {{epochLink comment_author_url author_avatar 'author_url_link_title' 'epoch-author-avatar' '_blank' 'nofollow'}}
                     </div>
-                      {{epochLink comment_author_url comment_author 'author_url_link_title' 'author-link' '_blank' 'nofollow'}}
-                      <span class="divide">&#183;</span>
-                      {{epochLink comment_link '<time datetime="comment_date">-comment_date-</time>' 'comment_link_title' 'comment-link'}}
+                      {{epochLink comment_author_url comment_author 'author_url_link_title' 'epoch-author-link' '_blank' 'nofollow'}}
+                      <span class="epoch-divide">&#183;</span>
+                      {{epochLink comment_link '<time datetime="comment_date">-comment_date-</time>' 'comment_link_title' 'epoch-comment-link'}}
                 </div><!-- .comment-author -->
 
                 {{#unless comment_approved}}
-                    <p class="comment-awaiting-moderation">{{epochTranslation 'awaiting_moderation'}}</p>
+                    <p class="epoch-comment-awaiting-moderation">{{epochTranslation 'awaiting_moderation'}}</p>
                 {{/unless}}
             </footer><!-- .comment-meta -->
 
-            <div class="comment-content">
+            <div class="epoch-comment-content">
                 {{{comment_content}}}
             </div><!-- .comment-content -->
 
-            <ul class="comment-actions">
+            <ul class="epoch-comment-actions">
                 {{#if reply_allowed}}
-                    <li class="reply" data-comment-id="{{comment_ID}}">
+                    <li class="epoch-reply" data-comment-id="{{comment_ID}}">
                         {{{reply_link}}}
                     </li>
                 {{/if}}
-                    <li class="tweet">
+                    <li class="epoch-tweet">
                     Tweet
                     </li>
-                    <li class="link">
+                    <li class="epoch-link">
                     Link
                     </li>
             </ul>
