@@ -23,9 +23,9 @@ $comment_area = sprintf(
 );
 
 if ( 'DESC' == $options[ 'order' ] ) {
-	$middle = $comment_area . $form;
-}else{
 	$middle = $form . $comment_area;
+}else{
+	$middle = $comment_area . $form;    
 }
 
 printf(
