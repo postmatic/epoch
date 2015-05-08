@@ -123,15 +123,17 @@ class api_process {
 		$data       = api_helper::pre_validate_comment( $data );
 		$data       = wp_filter_comment( $data );
 		if ( is_array( $data ) ) {
+			$data[ 'comment_approved' ] = $approved = (bool) wp_allow_comment( $data );
+
 			$comment_id = wp_insert_comment( $data );
 
 			if ( $comment_id ) {
 				$comment    = get_comment( $comment_id );
-				$comment = (object)
-api_helper::add_data_to_comment( $comment );
+				$comment = (object) api_helper::add_data_to_comment( $comment );
 				return array(
 					'comment_id' => $comment_id,
-					'comment'    => $comment
+					'comment'    => $comment,
+					'approved'   => $approved,
 				);
 
 			} else {

@@ -80,7 +80,8 @@ class get_comments {
 
 		$args = array(
 			'post_id' => $post_id,
-			'order'   => $order
+			'order'   => $order,
+			'status' => 'approve'
 		);
 		if ( $not_in ) {
 			$args[ 'comment__not_in' ] = $not_in;

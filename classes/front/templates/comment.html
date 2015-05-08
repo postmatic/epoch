@@ -12,11 +12,9 @@
                       {{epochLink comment_link '<time datetime="comment_date">-comment_date-</time>' 'comment_link_title' 'epoch-comment-link'}}
                 </div><!-- .comment-author -->
 
-                {{#if comment_approved}}
-
-                {{else}}
-                <p class="epoch-comment-awaiting-moderation">{{epochTranslation 'awaiting_moderation'}}</p>
-                {{/if}}
+                {{#unless comment_approved}}
+                    <p class="epoch-comment-awaiting-moderation">{{epochTranslation 'awaiting_moderation'}}</p>
+                {{/unless}}
             </footer><!-- .comment-meta -->
 
             <div class="epoch-comment-content">

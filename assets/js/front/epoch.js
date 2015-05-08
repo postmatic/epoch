@@ -127,6 +127,7 @@ jQuery( document ).ready( function ( $ ) {
                                         } ).baldrick();
                                     }
 
+
                                     //test if WordPress moved the form
                                     temp_el = document.getElementById( 'wp-temp-form-div' );
                                     if ( null != temp_el ) {

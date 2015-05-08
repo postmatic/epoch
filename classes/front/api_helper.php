@@ -134,23 +134,35 @@ class api_helper {
 
 		}
 
-		if ( ! isset( $data['comment_content'] ) || ! $data['comment_content'] ) {
-			if ( isset( $data['comment'] ) ) {
-				$data['comment_content'] = $data['comment'];
-				unset( $data['comment'] );
+		if ( ! isset( $data ['comment_content' ] ) || ! $data[ 'comment_content' ] ) {
+			if ( isset( $data[ 'comment' ] ) ) {
+				$data['comment_content' ] = $data[ 'comment' ];
+				unset( $data[ 'comment' ] );
 			} else {
-				$data['comment_content'] = ' ';
+				$data[ 'comment_content' ] = ' ';
 			}
 
 		}
 
-		if ( ! isset( $data['comment_author_IP'] ) || ! $data['comment_author_IP'] ) {
-			if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
-				$data['comment_author_IP'] = $_SERVER['REMOTE_ADDR'];
+		if ( ! isset( $data[ 'comment_author_IP' ] ) || ! $data[ 'comment_author_IP' ] ) {
+			if ( isset( $_SERVER[ 'REMOTE_ADDR' ] ) ) {
+				$data[ 'comment_author_IP' ] = $_SERVER[ 'REMOTE_ADDR' ];
 			} else {
-				$data['comment_author_IP'] = ' ';
+				$data[ 'comment_author_IP' ] = ' ';
 			}
 
+		}
+
+		if ( empty( $data[ 'comment_type' ] ) ) {
+			$data[ 'comment_type' ] = ' ';
+		}
+
+		if ( empty( $data[ 'comment_date' ] ) ) {
+			$data[ 'comment_date' ] = current_time( 'mysql' );
+		}
+
+		if ( empty( $data[ 'comment_date_gmt' ] ) ) {
+			$data[ 'comment_date_gmt' ] = current_time( 'mysql', 1 );
 		}
 
 		return $data;
