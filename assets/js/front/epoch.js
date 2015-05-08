@@ -95,6 +95,7 @@ jQuery( document ).ready( function ( $ ) {
 
                         response = app.get_data_from_response( response );
                         comment = response.comment;
+                        app.comments_store.push( comment.comment_ID );
 
                         html = app.parse_comment( comment );
 
