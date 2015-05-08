@@ -30,7 +30,7 @@ class vars {
 	 *
 	 * @var string
 	 */
-	static public $wrap_id = 'epoch-comments';
+	static public $wrap_id = 'epoch-wrap';
 
 	/**
 	 * ID for container containing the comment form.
