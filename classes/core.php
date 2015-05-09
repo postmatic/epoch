@@ -250,6 +250,7 @@ class core {
 		//localize translation strings we need in JS
 		$vars = $this->translation_strings();
 		wp_localize_script( 'epoch', 'epoch_translation', $vars );
+		
 	}
 
 	/**
@@ -344,7 +345,8 @@ class core {
 			'comment_link_title' => __( 'Link to comment' ),
 			'reply' => __( 'Reply', 'epoch' ),
 			'reply_link_title' => __( 'Reply To This Comment', 'epoch' ),
-			'author_url_link_title' => __( 'Link to comment author\'s website', 'epoch' )
+			'author_url_link_title' => __( 'Link to comment author\'s website', 'epoch' ),
+			'is_required' => __( 'is required', 'epoch' )
 		);
 	}
 
