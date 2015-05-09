@@ -5111,9 +5111,8 @@ jQuery( document ).ready( function ( $ ) {
                         temp_el = document.getElementById( 'wp-temp-form-div' );
                         if ( null != temp_el ) {
                             respond_el = document.getElementById( 'respond' );
-                            $( respond_el ).slideUp();
                             $( respond_el ).insertAfter( temp_el );
-                            $( respond_el ).slideDown();
+
                         }
 
                         app.last_count += 1;
