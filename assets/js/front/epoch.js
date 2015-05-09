@@ -92,7 +92,7 @@ jQuery( document ).ready( function ( $ ) {
                             $( respond_el ).slideDown();
                         }
 
-
+                        app.last_count += 1;
                         response = app.get_data_from_response( response );
                         comment = response.comment;
                         app.comments_store.push( comment.comment_ID );
