@@ -3,7 +3,7 @@
     text-align: center;
 }
 
-#epoch-comments {margin: 25px auto 0 auto; font-size: 90%; line-height: normal !important;}
+#epoch-comments {margin: 25px 0 0 0; font-size: 90%; line-height: normal !important;}
 
 .epoch-comment-author.vcard {
 }
@@ -93,7 +93,7 @@ ul.epoch-comment-actions li a {
 	width: 15px !important;
 	float: left !important;
 }
-
+ 
 /*inline reply interface*/
 
 #epoch-comments #reply-title {
