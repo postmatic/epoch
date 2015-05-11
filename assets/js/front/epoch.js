@@ -67,18 +67,23 @@ jQuery( document ).ready( function ( $ ) {
                 event.preventDefault();
                 app.shut_it_off = true;
 
-                var fields = $( this ).find( "select, textarea, input" ).serializeArray();
+                //validate fields
                 fail = false;
                 fail_log = '';
-                $.each( fields, function( i, field) {
-                    if ( ! field.value) {
-                        name = epoch_ucwords( field.name );
-                        fail_log += name + ' ' + epoch_translation.is_required + ".\n";
-                        fail = true;
-                    }
+                $( app.form_el ).find( 'select, textarea, input' ).each(function(){
+                    if( ! $( this ).prop( 'required' )){
 
+                    } else {
+                        if ( ! $( this ).val() ) {
+                            fail = true;
+                            name = epoch_ucwords( $( this ).attr( 'name' ) );
+                            fail_log += name + ' ' + epoch_translation.is_required + ".\n";
+                        }
+
+                    }
                 });
 
+                //submit if fail never got set to true
                 if ( ! fail ) {
                     data = $( this ).serializeArray();
                     $.post(
