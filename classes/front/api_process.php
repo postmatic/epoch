@@ -122,7 +122,7 @@ class api_process {
 	/**
 	 * Get new comments
 	 *
-	 * @since 0.0.10
+	 * @since 0.0.11
 	 *
 	 * @param array $data Sanitized data from request
 	 *

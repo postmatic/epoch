@@ -5292,7 +5292,7 @@ jQuery( document ).ready( function ( $ ) {
         /**
          * Takes response from get_comments & new_comment and parses them properly
          *
-         * @since 0.0.10
+         * @since 0.0.11
          *
          * @param response
          */
@@ -5328,7 +5328,7 @@ jQuery( document ).ready( function ( $ ) {
         /**
          * Get comments, use for getting new comments
          *
-         * @since 0.0.10
+         * @since 0.0.11
          */
         app.new_comments = function() {
             app.shut_it_off = true;

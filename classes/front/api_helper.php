@@ -171,6 +171,15 @@ class api_helper {
 
 	}
 
+	/**
+	 * Construct comment query args
+	 *
+	 * @since 0.0.11
+	 *
+	 * @param int $post_id The post ID to fetch from
+	 *
+	 * @return array
+	 */
 	public static function get_comment_args( $post_id ) {
 
 			$options = options::get_display_options();
@@ -193,7 +202,6 @@ class api_helper {
 			return $args;
 
 	}
-
 
 
 }
