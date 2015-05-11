@@ -65,27 +65,10 @@ class get_comments {
 	 * @since 0.0.4
 	 *
 	 * @param int $post_id Post ID
-	 * @param null|array $not_in Optional. If is nto null, the default, should be an array of comment IDs to ignore.
 	 */
-	public function __construct( $post_id, $not_in = null ) {
-		$options = options::get_display_options();
-		if ( is_array( $options ) && isset( $options[ 'order' ] ) && in_array( $options[ 'order' ], array(
-				'ASC',
-				'DESC'
-			))){
-			$order = $options[ 'order' ];
-		}else{
-			$order = 'DESC';
-		}
+	public function __construct( $post_id ) {
+		$args = api_helper::get_comment_args( $post_id );
 
-		$args = array(
-			'post_id' => $post_id,
-			'order'   => $order,
-			'status' => 'approve'
-		);
-		if ( $not_in ) {
-			$args[ 'comment__not_in' ] = $not_in;
-		}
 
 		$this->comments = $comments =  get_comments( $args  );
 		if (  get_option( 'thread_comments' ) ) {
@@ -261,5 +244,7 @@ class get_comments {
 		}
 
 	}
+
+
 
 }

@@ -12,6 +12,8 @@
 namespace postmatic\epoch\front;
 
 
+use postmatic\epoch\options;
+
 class api_helper {
 
 	/**
@@ -166,6 +168,29 @@ class api_helper {
 		}
 
 		return $data;
+
+	}
+
+	public static function get_comment_args( $post_id ) {
+
+			$options = options::get_display_options();
+			if ( is_array( $options ) && isset( $options['order'] ) && in_array( $options['order'], array(
+					'ASC',
+					'DESC'
+				) )
+			) {
+				$order = $options['order'];
+			} else {
+				$order = 'DESC';
+			}
+
+			$args = array(
+				'post_id' => $post_id,
+				'order'   => $order,
+				'status'  => 'approve'
+			);
+
+			return $args;
 
 	}
 

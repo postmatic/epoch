@@ -5045,8 +5045,11 @@ jQuery( document ).ready( function ( $ ) {
             //element for template
             app.template_el = document.getElementById( epoch_vars.comments_template_id );
 
-            //stores comments IDs we already Have in DOM
-            app.comments_store = [];
+            //stores number of comments we have in the DOM.
+            app.last_count = 0;
+
+            //highest comment ID we have parsed
+            app.highest_id = 0;
 
             //Will be set to true if post has no comments, may be use to shut down system in app.shutdown
             app.no_comments = false;
@@ -5135,7 +5138,11 @@ jQuery( document ).ready( function ( $ ) {
                             app.last_count += 1;
                             response = app.get_data_from_response( response );
                             comment = response.comment;
-                            app.comments_store.push( comment.comment_ID );
+
+                            id = parseInt( comment.comment_ID, 10 );
+                            if ( app.highest_id < id ) {
+                                app.highest_id = id;
+                            }
 
                             html = app.parse_comment( comment );
 
@@ -5211,7 +5218,6 @@ jQuery( document ).ready( function ( $ ) {
          *
          * @since 0.0.1
          *
-         * @param bool updateCheck If true we are using this to check if comments have change, use false on initial load
          */
         app.comment_count = function( updateCheck ) {
                 app.shut_it_off = true;
@@ -5224,17 +5230,20 @@ jQuery( document ).ready( function ( $ ) {
                         app.shut_it_off = false;
                     } ).success( function ( response ) {
                         response = app.get_data_from_response( response );
-                        if ( 'undefined' != response.count && 0 < response.count ) {
-                            if ( false == updateCheck ) {
-                                app.get_comments();
-                                app.last_count = response.count;
-                            } else {
-                                if ( response.count > app.last_count ) {
-                                    app.get_comments();
 
-                                    app.last_count = response.count;
+                        if ( 'undefined' != response.count && 0 < response.count ) {
+                            if ( updateCheck ) {
+                                if ( response.count > app.last_count ) {
+                                    app.new_comments();
+
                                 }
+                            }else{
+                                app.get_comments();
                             }
+
+
+                            app.last_count = response.count;
+
                         } else {
                             app.no_comments = true;
                         }
@@ -5246,7 +5255,7 @@ jQuery( document ).ready( function ( $ ) {
         };
 
         /**
-         * Get comments
+         * Get comments, use of inital load.
          *
          * @since 0.0.1
          */
@@ -5259,38 +5268,15 @@ jQuery( document ).ready( function ( $ ) {
                     action: 'get_comments',
                     epochNonce: epoch_vars.nonce,
                     postID: epoch_vars.post_id,
-                    i: app.comments_store
-                }
-                ).done( function( response  ) {
+                    highest: 0
+                } ).done( function( response  ) {
                     $( spinner ).hide();
                     app.shut_it_off = false;
 
                 } ).success( function( response ) {
                     response = app.get_data_from_response( response );
 
-                    if ( 'object' == typeof response && 'undefined' != response && 'undefined' != response.comments ) {
-                        comments = response.comments;
-                        comments = JSON.parse( comments );
-                        depth = epoch_vars;
-
-
-                        if ( 'undefined' !== comments && 0 < comments.length ) {
-                            $.each( comments, function ( key, comment ) {
-                                app.comments_store.push( comment.comment_ID );
-                                html =  app.parse_comment( comment );
-                                app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
-
-                                //parse its children if it has them and threaded comments is on
-                                if ( 1 != depth ) {
-                                    parent_id = comment.comment_ID;
-                                    app.parse_children( comment, parent_id, 1 );
-                                }
-
-                            } );
-
-                        }
-
-                    }
+                    app.comment_response( response );
 
                 }
 
@@ -5299,42 +5285,72 @@ jQuery( document ).ready( function ( $ ) {
         };
 
         /**
-         * Get a single comment
+         * Takes response from get_comments & new_comment and parses them properly
          *
-         * @since 0.0.5
+         * @since 0.0.10
+         *
+         * @param response
          */
-        app.get_comment = function( id ) {
+        app.comment_response = function ( response ) {
+            if ( 'object' == typeof response && 'undefined' != response && 'undefined' != response.comments ) {
+                comments = response.comments;
+                comments = JSON.parse( comments );
+                depth = epoch_vars;
+
+
+                if ( 'undefined' !== comments && 0 < comments.length ) {
+                    $.each( comments, function ( key, comment ) {
+                        id = parseInt( comment.comment_ID, 10 );
+                        if ( app.highest_id < id ) {
+                            app.highest_id = id;
+                        }
+                        html = app.parse_comment( comment );
+                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
+
+                        //parse its children if it has them and threaded comments is on
+                        if ( 1 != depth ) {
+                            parent_id = comment.comment_ID;
+                            app.parse_children( comment, parent_id, 1 );
+                        }
+
+                    } );
+
+                }
+
+            }
+        };
+
+        /**
+         * Get comments, use for getting new comments
+         *
+         * @since 0.0.10
+         */
+        app.new_comments = function() {
             app.shut_it_off = true;
-            spinner = document.getElementById( 'comments_area_spinner_id' );
-            $( spinner ).show();
 
             $.post(
                 epoch_vars.api_url, {
-                    action: 'get_comment',
+                    action: 'new_comments',
                     epochNonce: epoch_vars.nonce,
-                    commentID: id
-                }
-            ).done( function( response  ) {
-                    $( spinner ).hide();
+                    postID: epoch_vars.post_id,
+                    highest: app.highest_id
+                } ).done( function( response  ) {
+
                     app.shut_it_off = false;
 
-            } ).success( function( response ) {
-
+                } ).success( function( response ) {
                     response = app.get_data_from_response( response );
 
-                    if ( 'object' == typeof response && 'undefined' != response && 'undefined' != response.comment ) {
-                        comment = response.comment;
+                    app.comment_response( response );
 
+                }
 
-                        app.comments_store.push( comment.comment_ID );
-                        html =  app.parse_comment( comment );
-                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
-
-                    }
-
-            } );
+            );
 
         };
+
+
+
 
         /**
          * Parse children of comment

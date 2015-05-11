@@ -120,24 +120,49 @@ class api_process {
 	}
 
 	/**
-	 * Get a single comment
+	 * Get new comments
 	 *
-	 * @since 0.0.5
+	 * @since 0.0.10
 	 *
-	 * @param array $data
+	 * @param array $data Sanitized data from request
 	 *
-	 * @return array|null
+	 * @return array|bool New comments or false if none found
 	 */
-	public static function get_comment( $data ) {
-		$comment = get_comment( $data[ 'commentID' ] );
+	public static function new_comments( $data ) {
+		if ( 0 == $data[ 'highest' ] ) {
+			return false;
+		}else{
+			$highest = $data[ 'highest' ];
+		}
 
-		if ( is_object( $comment ) ) {
-			$comment = api_helper::add_data_to_comment( $comment );
-			return array(
-				'comment' => $comment
-			);
+		$args = api_helper::get_comment_args( $data[ 'postID' ] );
+
+		$comments = get_comments( $args );
+
+		if ( is_array( $comments ) && ! empty( $comments ) ) {
+			foreach ( $comments as $i => $comment ) {
+				if ( $highest > (int) $comment->comment_ID ) {
+					unset( $comments[ $i ] );
+				} else {
+					$comment        = (array) $comment;
+					$comment        = api_helper::add_data_to_comment( $comment );
+					$comments[ $i ] = (object) $comment;
+				}
+
+			}
+
+			$comments = array_values( $comments );
+			if ( ! empty( $comments ) && is_array( $comments ) ) {
+				$comments = wp_json_encode( $comments );
+			} else {
+				return false;
+			}
 
 		}
+
+		return array(
+			'comments' => $comments
+		);
 
 	}
 

@@ -142,7 +142,8 @@ class api_route {
 		$fields = array(
 			'postID' => 'absint',
 			'commentsPage' => 'absint',
-			vars::$nonce_field => 'strip_tags'
+			vars::$nonce_field => 'strip_tags',
+			'highest' => 'absint'
 		);
 
 
