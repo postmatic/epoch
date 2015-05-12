@@ -22,14 +22,15 @@ class api_helper {
 	 * @since 0.0.2
 	 *
 	 * @param array $comments
+	 * @param bool $flatten Optional. If true, will remove all hierarchy. Default is false.
 	 *
 	 * @return array
 	 */
-	public static function improve_comment_response( $comments ) {
+	public static function improve_comment_response( $comments, $flatten = false ) {
 
 		foreach ( $comments as $i => $comment ) {
 			$comment = (array) $comment;
-			$comment = self::add_data_to_comment( $comment );
+			$comment = self::add_data_to_comment( $comment, $flatten );
 			$comments[ $i ] = (object) $comment;
 
 		}

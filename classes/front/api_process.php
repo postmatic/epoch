@@ -26,8 +26,11 @@ class api_process {
 	 */
 	public static function get_comments( $data ) {
 
-		$comments = new get_comments( $data[ 'postID' ] );
-		$comments = array_values( $comments->comments );
+		$args = api_helper::get_comment_args( $data[ 'postID' ] );
+
+
+		$comments = get_comments( $args  );
+
 		if ( ! empty( $comments ) && is_array( $comments ) ) {
 			$comments = api_helper::improve_comment_response( $comments, ! api_helper::thread() );
 			$comments = wp_json_encode( $comments );
