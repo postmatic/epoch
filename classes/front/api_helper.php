@@ -164,7 +164,7 @@ class api_helper {
 		}
 
 		if ( empty( $data[ 'comment_type' ] ) ) {
-			$data[ 'comment_type' ] = ' ';
+			$data[ 'comment_type' ] = "";
 		}
 
 		if ( empty( $data[ 'comment_date' ] ) ) {
