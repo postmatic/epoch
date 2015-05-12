@@ -26,12 +26,7 @@ class api_process {
 	 */
 	public static function get_comments( $data ) {
 
-		$not_in = null;
-		if ( isset( $data[ 'ignore' ] ) ) {
-			$not_in = $data[ 'ignore' ];
-		}
-
-		$comments = new get_comments( $data[ 'postID' ], $not_in );
+		$comments = new get_comments( $data[ 'postID' ] );
 		$comments = array_values( $comments->comments );
 		if ( ! empty( $comments ) && is_array( $comments ) ) {
 			$comments = api_helper::improve_comment_response( $comments, ! api_helper::thread() );
