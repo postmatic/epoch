@@ -17,9 +17,8 @@ $form = sprintf(
 );
 
 $comment_area = sprintf(
-	'<div id="%1s">%2s</div>',
-	esc_attr( \postmatic\epoch\front\vars::$comments_wrap ),
-	\postmatic\epoch\front\layout::spinner_img_tag( \postmatic\epoch\front\vars::$comments_area_spinner_id )
+	'<div id="%1s"></div>',
+	esc_attr( \postmatic\epoch\front\vars::$comments_wrap )
 );
 
 if ( 'DESC' == $options[ 'order' ] ) {

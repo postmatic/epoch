@@ -96,24 +96,6 @@ class vars {
 	static public $endpoint = 'epoch-api';
 
 	/**
-	 * ID of the container with the comment form loading GIF in it
-	 *
-	 * @since 0.0.1
-	 *
-	 * @var string
-	 */
-	static public $comment_form_spinner_id = 'epoch-comment-form-spinner';
-
-	/**
-	 * ID of the container with the comments loading GIF in it
-	 *
-	 * @since 0.0.1
-	 *
-	 * @var string
-	 */
-	static public $comments_area_spinner_id = 'epoch-comments-area-spinner';
-
-	/**
 	 * ID for reply link.
 	 *
 	 * @since 0.0.5

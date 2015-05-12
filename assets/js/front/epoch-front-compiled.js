@@ -5266,8 +5266,7 @@ jQuery( document ).ready( function ( $ ) {
          */
         app.get_comments = function() {
             app.shut_it_off = true;
-            spinner = document.getElementById( 'comments_area_spinner_id' );
-            $( spinner ).show();
+
             $.post(
                 epoch_vars.api_url, {
                     action: 'get_comments',
@@ -5275,7 +5274,6 @@ jQuery( document ).ready( function ( $ ) {
                     postID: epoch_vars.post_id,
                     highest: 0
                 } ).done( function( response  ) {
-                    $( spinner ).hide();
                     app.shut_it_off = false;
 
                 } ).success( function( response ) {
