@@ -80,13 +80,6 @@ class get_comments {
 				$this->prepare_sort();
 				$this->sort();
 
-			}else{
-				//add extra fields to responses
-				foreach( $this->comments_as_arrays as $i => $comment ) {
-					$this->comments_as_arrays[ $i ] = api_helper::add_data_to_comment( $comment, true );
-
-				}
-
 			}
 
 		}
@@ -126,7 +119,7 @@ class get_comments {
 
 		//add extra fields to responses
 		foreach( $this->comments_as_arrays as $i => $comment ) {
-			$comments[ $i ] = api_helper::add_data_to_comment( $comment );
+			$this->comments_as_arrays[ $i ] = api_helper::add_data_to_comment( $comment );
 
 		}
 
@@ -139,7 +132,7 @@ class get_comments {
 				$comment[ 'depth' ] = $this->find_depth( $comment );
 				$parent = $this->comments_as_arrays[ $parent_key ];
 				$parent[ 'children' ][] = $comment;
-				$comments[ $parent_key ] = $parent;
+				$this->comments_as_arrays[ $parent_key ] = $parent;
 
 			}
 

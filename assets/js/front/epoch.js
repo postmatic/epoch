@@ -270,6 +270,7 @@ jQuery( document ).ready( function ( $ ) {
          * @param response
          */
         app.comment_response = function ( response ) {
+
             if ( 'object' == typeof response && 'undefined' != response && 'undefined' != response.comments ) {
                 comments = response.comments;
                 comments = JSON.parse( comments );

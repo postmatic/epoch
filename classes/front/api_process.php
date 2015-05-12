@@ -34,7 +34,7 @@ class api_process {
 		$comments = new get_comments( $data[ 'postID' ], $not_in );
 		$comments = array_values( $comments->comments );
 		if ( ! empty( $comments ) && is_array( $comments ) ) {
-
+			$comments = api_helper::improve_comment_response( $comments, ! api_helper::thread() );
 			$comments = wp_json_encode( $comments );
 		}else{
 			return false;
@@ -99,7 +99,7 @@ class api_process {
 
 			if ( $comment_id ) {
 				$comment    = get_comment( $comment_id );
-				$comment = (object) api_helper::add_data_to_comment( $comment, api_helper::thread() );
+				$comment = (object) api_helper::add_data_to_comment( $comment, ! api_helper::thread() );
 				return array(
 					'comment_id' => $comment_id,
 					'comment'    => $comment,
@@ -143,8 +143,8 @@ class api_process {
 					unset( $comments[ $i ] );
 				} else {
 					$comment        = (array) $comment;
-					$comment        = api_helper::add_data_to_comment( $comment, api_helper::thread() );
-					$comments[ $i ] = (object) $comment;
+					$comment        = api_helper::add_data_to_comment( $comment, ! api_helper::thread() );
+					$comments[ $i ] = $comment;
 				}
 
 			}

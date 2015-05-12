@@ -4951,7 +4951,6 @@ var handlebarsVariables = {};
  * Note: text and title args can be properties of epoch_translation object to use a translation string
  */
 Handlebars.registerHelper( 'epochLink', function( url, text, title, class_attr, target, rel ) {
-
     text = text.replace(/-comment_date-/g, this.comment_date );
 
     if  ( text in epoch_translation ) {
@@ -5298,6 +5297,7 @@ jQuery( document ).ready( function ( $ ) {
          * @param response
          */
         app.comment_response = function ( response ) {
+
             if ( 'object' == typeof response && 'undefined' != response && 'undefined' != response.comments ) {
                 comments = response.comments;
                 comments = JSON.parse( comments );

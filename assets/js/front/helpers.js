@@ -6,7 +6,6 @@
  * Note: text and title args can be properties of epoch_translation object to use a translation string
  */
 Handlebars.registerHelper( 'epochLink', function( url, text, title, class_attr, target, rel ) {
-
     text = text.replace(/-comment_date-/g, this.comment_date );
 
     if  ( text in epoch_translation ) {
