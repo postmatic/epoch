@@ -5281,7 +5281,7 @@ jQuery( document ).ready( function ( $ ) {
                 } ).success( function( response ) {
                     response = app.get_data_from_response( response );
 
-                    app.comment_response( response );
+                    app.comment_response( response, false );
 
                 }
 
@@ -5296,7 +5296,7 @@ jQuery( document ).ready( function ( $ ) {
          *
          * @param response
          */
-        app.comment_response = function ( response ) {
+        app.comment_response = function ( response, is_new ) {
 
             if ( 'object' == typeof response && 'undefined' != response && 'undefined' != response.comments ) {
                 comments = response.comments;
@@ -5316,10 +5316,22 @@ jQuery( document ).ready( function ( $ ) {
                             html = app.parse_comment( comment );
                             app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
 
+                            if ( is_new ) {
+                                comment_el = document.getElementById( 'comment-' + comment.comment_ID );
+                                if ( null != comment_el ) {
+                                    $( comment_el ).addClass( 'epoch-success' ).delay( 2500 ).queue( function ( next ) {
+                                        $( this ).removeClass( 'epoch-success' );
+                                        next();
+                                    } );
+
+                                }
+                            }
+
                             //parse its children if it has them and threaded comments is on
                             if ( 1 != depth ) {
                                 parent_id = comment.comment_ID;
                                 app.parse_children( comment, parent_id, 1 );
+
                             }
                         }
 
@@ -5352,7 +5364,8 @@ jQuery( document ).ready( function ( $ ) {
                 } ).success( function( response ) {
                     response = app.get_data_from_response( response );
 
-                    app.comment_response( response );
+                    app.comment_response( response, true );
+
 
                 }
 
