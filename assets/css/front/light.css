@@ -159,8 +159,8 @@ ul.epoch-comment-actions li a {
 	margin-bottom: 10px;
 	text-align: left;
 } 
+ 
 
-/* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 620px) {
 .epoch-comment-author-avatar img {
 	width: 24px; 
