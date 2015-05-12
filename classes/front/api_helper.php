@@ -44,10 +44,11 @@ class api_helper {
 	 * @since 0.0.4
 	 *
 	 * @param array|object $comment Comment as array
+	 * @param bool $flatten Optional. If true, will remove all hierarchy. Default is false.
 	 *
 	 * @return array Comment as array with extra fields.
 	 */
-	public static function add_data_to_comment( $comment ) {
+	public static function add_data_to_comment( $comment, $flatten = false ) {
 		if ( is_object( $comment ) ) {
 			$comment = (array) $comment;
 		}
@@ -67,10 +68,13 @@ class api_helper {
 		//are comments replies allowed
 		$comment[ 'reply_allowed'] = comments_open( $comment['comment_post_ID'] );
 
-
+		//remove parent_id if $flatten
+		if ( $flatten ) {
+			$comment[ 'comment_parent' ] = "0";
+		}
 
 		//if has no children add that key as false.
-		if ( ! isset( $comment[ 'children' ] ) ) {
+		if ( $flatten || ! isset( $comment[ 'children' ] ) ) {
 			$comment[ 'children' ] = false;
 		}
 
@@ -200,6 +204,20 @@ class api_helper {
 			);
 
 			return $args;
+
+	}
+
+	/**
+	 * Check if we should thread comments
+	 *
+	 * @since 0.0.12
+	 *
+	 * @return bool
+	 */
+	public static function thread() {
+		if ( get_option( 'thread_comments' ) && 0 != (int) get_option( 'thread_comments_depth' ) ) {
+			return true;
+		}
 
 	}
 

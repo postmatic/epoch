@@ -70,14 +70,29 @@ class get_comments {
 		$args = api_helper::get_comment_args( $post_id );
 
 
-		$this->comments = $comments =  get_comments( $args  );
-		if (  get_option( 'thread_comments' ) ) {
-			$this->prepare_sort();
-			if ( is_array( $comments ) && ! empty( $comments ) ) {
+		$this->comments = get_comments( $args  );
+
+		//switch all comments to arrays
+		$this->comments_as_arrays =  $this->to_arrays( $this->comments );
+
+		if ( is_array( $this->comments ) && ! empty( $this->comments ) ) {
+			if ( api_helper::thread() ) {
+				$this->prepare_sort();
 				$this->sort();
+
+			}else{
+				//add extra fields to responses
+				foreach( $this->comments_as_arrays as $i => $comment ) {
+					$this->comments_as_arrays[ $i ] = api_helper::add_data_to_comment( $comment, true );
+
+				}
+
 			}
 
 		}
+
+		//switch comments back to objects
+		$this->comments = $this->to_objects( $this->comments_as_arrays );
 
 	}
 
@@ -95,9 +110,6 @@ class get_comments {
 		//make index array for sorter array
 		$this->indexer = $indexer = array_combine( array_keys( (array) $this->comments ), wp_list_pluck( $this->comments, 'comment_ID' ) );
 
-		//switch all comments to arrays
-		$this->comments_as_arrays = $comments = $this->to_arrays( $this->comments );
-
 	}
 
 	/**
@@ -110,10 +122,10 @@ class get_comments {
 	protected function sort() {
 		$sorter = $this->sorter;
 		$indexer = $this->indexer;
-		$comments = $this->comments_as_arrays;
+		$this->comments_as_arrays;
 
 		//add extra fields to responses
-		foreach( $comments as $i => $comment ) {
+		foreach( $this->comments_as_arrays as $i => $comment ) {
 			$comments[ $i ] = api_helper::add_data_to_comment( $comment );
 
 		}
@@ -122,10 +134,10 @@ class get_comments {
 		foreach( $sorter as $id => $parent_id ) {
 			if ( $parent_id ) {
 				$key     = array_search( $id, $indexer );
-				$comment = $comments[ $key ];
+				$comment = $this->comments_as_arrays[ $key ];
 				$parent_key = array_search( $parent_id, $indexer );
 				$comment[ 'depth' ] = $this->find_depth( $comment );
-				$parent = $comments[ $parent_key ];
+				$parent = $this->comments_as_arrays[ $parent_key ];
 				$parent[ 'children' ][] = $comment;
 				$comments[ $parent_key ] = $parent;
 
@@ -137,14 +149,11 @@ class get_comments {
 		foreach( $sorter as $id => $parent ) {
 			if ( $parent ) {
 				$key     = array_search( $id, $indexer );
-				unset( $comments[ $key ] );
+				unset( $this->comments_as_arrays[ $key ] );
 
 			}
 
 		}
-
-		//switch comments back to objects
-		$this->comments = $this->to_objects( $comments );
 
 	}
 
