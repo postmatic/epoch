@@ -60,13 +60,13 @@ class api_helper {
 		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'] );
 
 		//format date according to WordPress settings
-		$comment[ 'comment_date'] = date( $date_format, strtotime( $comment['comment_date'] ) );
+		$comment[ 'comment_date' ] = date( $date_format, strtotime( $comment['comment_date'] ) );
 
 		//get comment link
-		$comment[ 'comment_link'] = get_comment_link( $comment['comment_ID'] );
+		$comment[ 'comment_link' ] = get_comment_link( $comment['comment_ID'] );
 
 		//are comments replies allowed
-		$comment[ 'reply_allowed'] = comments_open( $comment['comment_post_ID'] );
+		$comment[ 'reply_allowed' ] = comments_open( $comment['comment_post_ID'] );
 
 		//remove parent_id if $flatten
 		if ( $flatten ) {
@@ -82,14 +82,18 @@ class api_helper {
 			$comment[ 'depth' ] = 1;
 		}
 
-		//get reply link
-		$reply_link_args = array(
-			'add_below'     => 'comment',
-			'max_depth'     => get_option( 'thread_comments_depth', 5 ),
-			'depth'         => (int) $comment[ 'depth' ]
-		);
+		if ( ! $flatten ) {
+			//get reply link
+			$reply_link_args = array(
+				'add_below' => 'comment',
+				'max_depth' => get_option( 'thread_comments_depth', 5 ),
+				'depth'     => (int) $comment['depth']
+			);
 
-		$comment[ 'reply_link' ] = get_comment_reply_link( $reply_link_args, (int) $comment['comment_ID'] );
+			$comment[ 'reply_link' ] = get_comment_reply_link( $reply_link_args, (int) $comment['comment_ID'] );
+		}else{
+			$comment[ 'reply_link' ] = '';
+		}
 
 		return $comment;
 
