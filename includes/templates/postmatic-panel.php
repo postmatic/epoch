@@ -9,8 +9,7 @@
  * Copyright 2015 Transitive, Inc.
  */
 ?>
-<h1>I'm the postmatic panel</h1>
-<h2>Commenting Perfected - brought to you by Postmatic</h2>
+<h1>Send new comment notifictions - <strong>and let them hit reply</strong>.</h1>
 
 <p>Epoch is an amazing plugin that brings fantastic new technology to WordPress commenting - but it is only half the picture.</p>
 
