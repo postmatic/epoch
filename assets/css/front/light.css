@@ -3,7 +3,7 @@
     text-align: center;
 }
 
-#epoch-comments {font-size: 90%; line-height: normal !important;}
+#epoch-comments {font-size: 90%; line-height: normal !important; margin-top: 30px;}
 
 .epoch-comment-author.vcard {
 }
