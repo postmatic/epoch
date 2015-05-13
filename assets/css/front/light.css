@@ -88,19 +88,16 @@ ul.epoch-comment-actions li {
 ul.epoch-comment-actions li a {
 	color: #aaa;
 }
-
-.epoch-success {
+ 
+div.epoch-single-comment {
+   background-color:transparent;
+    -moz-transition:background-color 2s;
+    -webkit-transition:background-color 2s;
+    -o-transition:background-color 2s;
+    transition:background-color 2s;
+}
+div.epoch-single-comment.epoch-success {
     background-color: #feff86;
-    filter:alpha(opacity=80);
-    -moz-opacity:0.8;
-    -khtml-opacity: 0.8;
-    opacity: 0.8;
-    z-index: 10000;
-    padding: 5px;
-    margin: -5px;
-  	transition: opacity .25s ease-in-out;
-   -moz-transition: opacity .25s ease-in-out;
-   -webkit-transition: opacity .25s ease-in-out;
 }
 
 .epoch-failure {
