@@ -19,13 +19,18 @@
 		<?php _e( 'Updated Successfully', 'epoch' ); ?>
 	</div>
 	<div class="error_notice_box">
-		<?php _e( 'Could not save changes.', 'epoch' ); ?>
+		<?php _e( 'Could not save changes. Try again.', 'epoch' ); ?>
 	</div>
 
 	<ul class="epoch-header-tabs epoch-nav-tabs">
 		<li class="{{#is _current_tab value="#epoch-panel-about"}}active {{/is}}epoch-nav-tab">
 			<a href="#epoch-panel-about" id="epoch-go-about">
 				<?php _e('About', 'epoch') ; ?>
+			</a>
+		</li>
+		<li class="{{#is _current_tab value="#epoch-panel-postmatic"}}active {{/is}}epoch-nav-tab">
+			<a href="#epoch-panel-postmatic" id="epoch-go-postmatic">
+				<?php _e('Epoch + Postmatic', 'epoch') ; ?>
 			</a>
 		</li>
 	</ul>
@@ -69,6 +74,15 @@
 		?>
 	</div>
 
+	<div id="epoch-panel-postmatic" class="epoch-editor-panel" {{#is _current_tab value="#epoch-panel-postmatic"}}{{else}} style="display:none;" {{/is}}>
+		<h4>
+			<?php _e('Epoch + Postmatic', 'epoch') ; ?>
+		</h4>
+		<?php
+			// postmatic panel
+			include EPOCH_PATH . 'includes/templates/postmatic-panel.php';
+		?>
+	</div>
 	<div class="clear"></div>
 
 	<div class="epoch-footer-bar">
