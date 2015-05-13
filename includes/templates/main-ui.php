@@ -61,7 +61,7 @@
 
 	<div id="epoch-panel-about" class="epoch-editor-panel" {{#is _current_tab value="#epoch-panel-about"}}{{else}} style="display:none;" {{/is}}>
 		<h4>
-			<?php _e('about', 'epoch') ; ?> <small class="description"><?php _e('About', 'epoch') ; ?></small>
+			<?php _e('about', 'epoch') ; ?>
 		</h4>
 		<?php
 			// about panel
