@@ -97,8 +97,8 @@ div.epoch-single-comment {
     transition:background-color 2s;
 }
 div.epoch-single-comment.epoch-success {
-    background-color: #feff86;
-}
+    background-color: #FFFEDB;
+ }
 
 .epoch-failure {
     background-color: #CD5C5C;
@@ -135,6 +135,10 @@ div.epoch-single-comment.epoch-success {
 	float: left;
 	width: 32%;
 	margin-right: 1%;
+}
+
+.comment-form-author input,.comment-form-url input,.comment-form-email input {
+	width: 100% !important;
 }
 
 #epoch-comments div.comment-respond p.comment-form-comment {
