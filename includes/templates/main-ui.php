@@ -25,7 +25,7 @@
 	<ul class="epoch-header-tabs epoch-nav-tabs">
 		<li class="{{#is _current_tab value="#epoch-panel-about"}}active {{/is}}epoch-nav-tab">
 			<a href="#epoch-panel-about" id="epoch-go-about">
-				<?php _e('About', 'epoch') ; ?>
+				<?php _e('Welcome', 'epoch') ; ?>
 			</a>
 		</li>
 		<li class="{{#is _current_tab value="#epoch-panel-postmatic"}}active {{/is}}epoch-nav-tab">
