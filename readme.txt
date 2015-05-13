@@ -1,7 +1,7 @@
 === Epoch - Native WordPress Commenting Perfected ===
 Contributors: Vernal, Desertsnowman, Shelob9
 Donate link: https://gopostmatic.com
-Tags: ajax comments, comments, lightweight commenting, cdn, cache, engagement, postmatic, live update, wordpress comments, comment template, ajax commenting, better comments, disqus, discussion, seo, mobile commenting, chat, performance, site speed
+Tags: ajax comments, comments, lightweight commenting, cdn, cache, engagement, postmatic, live update, wordpress comments, comment template, ajax commenting, better comments, disqus, discussion, seo, mobile commenting, chat, performance, site speed, chatting, email commenting, comment notifications
 Requires at least: 3.9
 Tested up to: 4.2
 Stable tag: 0.0.1
@@ -12,9 +12,13 @@ Epoch - 100% realtime chat and commenting in a tiny little package that is fully
 
 == Description ==
 
-Epoch is a new plugin from the creators of Postmatic. The goal: To provide a realtime commenting/chat experience using fully native comments while being compatible with page caching, cdns, mobile, and seo best practices. A tall order? For sure. Try it out.
+Epoch is a new plugin from the creators of [Postmatic](http://gopostmatic.com). The goal: To provide a realtime commenting/chat experience using fully native comments while being compatible with page caching, cdns, mobile, other comment plugins, and seo best practices. A tall order? For sure. Try it out.
 
-Epoch provides an amazing commenting experience to your users while improving site performance at the same time.
+Epoch provides an amazing commenting experience to your users **while improving site performance at the same time**.
+
+= Combine Epoch with [Postmatic](http://gopostmatic.com) for the ultimate engagment package =
+
+Postmatic is a free plugin which lets users subscribe to comments **but also reply right from their inbox by hitting reply**. Postmatic and Epoch integrate perfectly to let you take the conversation on the road and keep the conversation going months after you hit publish.
 
 == Installation ==
 
