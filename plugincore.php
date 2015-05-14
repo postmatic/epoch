@@ -8,8 +8,8 @@
  *
  * @wordpress-plugin
  * Plugin Name: Epoch
- * Plugin URI:  http://CalderaWP.com
- * Description: Jason needs to write a description:)
+ * Plugin URI:  http://gopostmatic.com/epoch
+ * Description: Native commenting made realtime, mobile, CDN and Cache friendly, and full of SEO mojo as well. Commenting perfected.
  * Version: 0.0.14
  * Author:      Postmatic
  * Author URI:  https://gopostmatic.com/
