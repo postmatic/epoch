@@ -5163,7 +5163,7 @@ jQuery( document ).ready( function ( $ ) {
 
                                 comment_el = document.getElementById( 'comment-' + comment.comment_ID );
                                 if ( null != comment_el ) {
-                                    $( comment_el ).addClass( 'epoch-success' ).delay( 2500 ).queue( function ( next ) {
+                                    $( comment_el ).addClass( 'epoch-success' ).delay( 100 ).queue( function ( next ) {
                                         $( this ).removeClass( 'epoch-success' );
                                         next();
                                     } );
@@ -5174,13 +5174,13 @@ jQuery( document ).ready( function ( $ ) {
                             app.shut_it_off = false;
 
                         } ).fail( function ( xhr ) {
-                            $( app.form_wrap_el, 'textarea#comment' ).addClass( 'epoch-failure' ).delay( 2500 ).queue( function ( next ) {
+                            $( app.form_wrap_el, 'textarea#comment' ).addClass( 'epoch-failure' ).delay( 100 ).queue( function ( next ) {
                                 $( this ).removeClass( 'epoch-failure' );
                                 next();
                             } );
                         } );
                 } else {
-                    $( app.form_wrap_el, 'textarea#comment' ).addClass( 'epoch-failure' ).delay( 2500 ).queue( function ( next ) {
+                    $( app.form_wrap_el, 'textarea#comment' ).addClass( 'epoch-failure' ).delay( 100 ).queue( function ( next ) {
                         $( this ).removeClass( 'epoch-failure' );
                         next();
                     } );
@@ -5319,7 +5319,7 @@ jQuery( document ).ready( function ( $ ) {
                             if ( is_new ) {
                                 comment_el = document.getElementById( 'comment-' + comment.comment_ID );
                                 if ( null != comment_el ) {
-                                    $( comment_el ).addClass( 'epoch-success' ).delay( 2500 ).queue( function ( next ) {
+                                    $( comment_el ).addClass( 'epoch-success' ).delay( 100 ).queue( function ( next ) {
                                         $( this ).removeClass( 'epoch-success' );
                                         next();
                                     } );
