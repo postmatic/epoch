@@ -27,6 +27,10 @@ if ( 'DESC' == $options[ 'order' ] ) {
 	$middle = $comment_area . $form;    
 }
 
+if ( 'none' != $options[ 'theme' ] ) {
+	echo '<div id="comments"></div>';
+}
+
 printf(
 	'<div id="%1s" class="comments-area %2s">
 		%3s
