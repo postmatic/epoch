@@ -7,10 +7,11 @@
  * Copyright 2015 Transitive, Inc.
  *
  * @wordpress-plugin
+ *
  * Plugin Name: Epoch
- * Plugin URI:  http://CalderaWP.com
- * Description: Jason needs to write a description:)
  * Version: 0.1.0
+ * Plugin URI:  http://gopostmatic.com/epoch
+ * Description: Native commenting made realtime, mobile, CDN and Cache friendly, and full of SEO mojo as well. Commenting perfected.
  * Author:      Postmatic
  * Author URI:  https://gopostmatic.com/
  * Text Domain: epoch

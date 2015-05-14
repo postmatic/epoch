@@ -59,7 +59,7 @@
 		</option>
 	</select>
 	<p class="description" style="margin-left: 190px;">
-		<?php _e( 'Should comments be shown in ascending or descending order? Ascending puts the latest comment and comment form at the top of the comments area. Descending does the opposite.', 'epoch' ); ?>
+		<?php _e( 'Should comments be shown in ascending or descending order? Descending puts the latest comment and comment form at the top of the comments area. Ascending does the opposite.', 'epoch' ); ?>
 	</p>
 </div>
 
