@@ -115,7 +115,10 @@ class core {
 			add_action( 'wp_enqueue_scripts', array( $this, 'front_stylescripts' ) );
 			add_filter( 'comments_template', array( '\postmatic\epoch\front\layout', 'initial' ), 100 );
 			add_action( 'wp_footer', array( $this, 'print_template' ) );
-			add_action( 'wp_footer', array( $this, 'print_modals' ) );
+
+			//modal disable for now see #45
+			//add_action( 'wp_footer', array( $this, 'print_modals' ) );
+			
 			add_filter( 'the_content', array( '\postmatic\epoch\front\layout', 'width_sniffer' ), 100 );
 
 		}
@@ -392,7 +395,9 @@ class core {
 		$epoch_vars[ 'postmatic_active' ] = 0;
 		$epoch_vars[ 'postmatic_site_subscribed' ] = 0;
 
-		if ( class_exists( '\\Prompt_Site' ) && is_user_logged_in() && is_object( $post ) ) {
+		//hard disabling for now. See #45
+		//when putting back, don't forget to rehook $this->print_modals()
+		if ( 1 == 2 && class_exists( '\\Prompt_Site' ) && is_user_logged_in() && is_object( $post ) ) {
 			$user_id     = get_current_user_id();
 			$site        = new \Prompt_Site();
 			$subscribed  = $site->is_subscribed( $user_id );
