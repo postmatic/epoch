@@ -5119,7 +5119,7 @@ jQuery( document ).ready( function ( $ ) {
                     ).complete( function () {
 
                         } ).success( function ( response ) {
-                            app.form_el.reset();
+                            $( 'textarea#comment' ).val( '' );
                             $( '#comment_parent' ).val( '0' );
 
                             if ( true == epoch_vars.postmatic_active && false == epoch_vars.postmatic_site_subscribed ) {
