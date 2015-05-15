@@ -5153,6 +5153,7 @@ jQuery( document ).ready( function ( $ ) {
                                 html = app.parse_comment( comment );
 
                                 if ( 0 == comment.comment_parent && 'DESC' == epoch_vars.epoch_options.order ) {
+
                                     first_child = app.comments_wrap_el.firstChild;
                                     new_el = document.createElement( 'div' );
                                     new_el.innerHTML = html;
@@ -5304,42 +5305,63 @@ jQuery( document ).ready( function ( $ ) {
                 depth = epoch_vars;
 
 
+
                 if ( 'undefined' !== comments && 0 < comments.length ) {
+                    var parents = [];
+                    var children = [];
                     $.each( comments, function ( key, comment ) {
                         id = parseInt( comment.comment_ID, 10 );
                         if ( app.highest_id < id ) {
                             app.highest_id = id;
                         }
 
-                        //parse if comment isn't in the DOM already
-                        if ( null == document.getElementById( 'comment-' + comment.comment_ID ) ) {
-                            html = app.parse_comment( comment );
+                        if ( 0 == comment.comment_parent ) {
+                            parents.push( comment );
+                        }else{
+                            children.push( comment );
+                        }
+
+                    });
+
+                    if ( 'DESC' == epoch_vars.epoch_options.order ) {
+                        parents.reverse();
+                    }
+
+                    $.each( parents, function( key, comment ) {
+                        html = app.parse_comment( comment );
+                        if ( 'DESC' == epoch_vars.epoch_options.order ) {
+                            first_child = app.comments_wrap_el.firstChild;
+                            new_el = document.createElement( 'div' );
+                            new_el.innerHTML = html;
+                            app.comments_wrap_el.insertBefore( new_el, first_child );
+                        } else {
                             app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
+                        }
 
-                            if ( is_new ) {
-                                comment_el = document.getElementById( 'comment-' + comment.comment_ID );
-                                if ( null != comment_el ) {
-                                    $( comment_el ).addClass( 'epoch-success' ).delay( 100 ).queue( function ( next ) {
-                                        $( this ).removeClass( 'epoch-success' );
-                                        next();
-                                    } );
+                        if ( is_new ) {
 
-                                }
-                            }
-
-                            //parse its children if it has them and threaded comments is on
-                            if ( 1 != depth ) {
-                                parent_id = comment.comment_ID;
-                                app.parse_children( comment, parent_id, 1 );
+                            comment_el = document.getElementById( 'comment-' + comment.comment_ID );
+                            if ( null != comment_el ) {
+                                $( comment_el ).addClass( 'epoch-success' ).delay( 100 ).queue( function ( next ) {
+                                    $( this ).removeClass( 'epoch-success' );
+                                    next();
+                                } );
 
                             }
                         }
 
-                    } );
+                    });
+
+                    $.each( children, function( key, comment )  {
+                        html = app.parse_comment( comment );
+                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
+                    });
+
 
                 }
 
             }
+
 
         };
 
@@ -5373,55 +5395,6 @@ jQuery( document ).ready( function ( $ ) {
 
         };
 
-
-
-
-        /**
-         * Parse children of comment
-         *
-         * @since 0.0.4
-         *
-         * @param comment
-         * @param parent_id
-         */
-        app.parse_children = function( comment, parent_id, level ) {
-
-            if ( 'undefined' != comment ) {
-
-                if (  false != comment.children  ) {
-
-                    children = comment.children;
-                    size = children.length;
-                    if ( 0 != size ) {
-                        for ( c = 0; c < size; c++ ) {
-                            comment = children[ c ];
-
-                            if ( null == document.getElementById( 'comment-' + comment.comment_ID ) ) {
-                                pid = comment.comment_ID;
-                                app.parse_comment( comment, level );
-                                html = app.parse_comment( comment );
-                                app.put_comment_in_dom( html, parent_id, comment.depth );
-                            }
-
-
-                            if ( false != comment.children ) {
-                                level++;
-                                if ( null == document.getElementById( 'comment-' + comment.comment_ID ) ) {
-                                    app.parse_comment( comment );
-                                    html = app.parse_comment( comment, pid, level );
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        };
 
         /**
          * Utility function to get data key of responses.
