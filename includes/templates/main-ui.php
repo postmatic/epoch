@@ -102,7 +102,7 @@
 {{/unless}}
 
 <script>
-	jQuery( '#epoch-go-about' ).click(function() {
+	jQuery( '#epoch-go-about, #epoch-go-postmatic' ).click(function() {
 		jQuery( '#epoch-save' ).hide();
 	});
 
