@@ -1,5 +1,16 @@
 module.exports = function (grunt) {
 
+    copy_files = [
+        '**',
+        '!node_modules/**',
+        '!release/**',
+        '!.git/**',
+        '!.sass-cache/**',
+        '!Gruntfile.js',
+        '!package.json',
+        '!.gitignore',
+        '!.gitmodules'
+    ];
 
     // Project configuration.
     grunt.initConfig({
@@ -11,44 +22,36 @@ module.exports = function (grunt) {
         },
         clean: {
             post_build: [
-                'build/'
+                'build/',
+                'release/build'
             ],
             pre_compress: [
                 'build/releases'
             ]
         },
-        run: {
-            tool: {
-                cmd: './composer'
-            }
-        },
         copy: {
-            build: {
+            main: {
+                src:  copy_files,
+                dest: 'release/build/<%= pkg.version %>/'
+            },
+            svn_trunk: {
                 options : {
                     mode :true
                 },
-                src: [
-                    '**',
-                    '!node_modules/**',
-                    '!releases',
-                    '!releases/**',
-                    '!.git/**',
-                    '!Gruntfile.js',
-                    '!package.json',
-                    '!.gitignore',
-                    '!.gitmodules',
-                    '!.gitattributes',
-                    '!composer.lock',
-                    '!naming-conventions.txt',
-                    '!how-to-grunt.md',
-                    '!.travis.yml',
-                    '!.scrutinizer.yml',
-                    '!phpunit.xml',
-                    '!tests/**',
-                    '!build',
-                    '!build/**'
-                ],
-                dest: 'build/'
+                src: copy_files,
+                dest: 'release/<%= pkg.name %>/trunk/'
+            },
+            svn_tag: {
+                options : {
+                    mode :true
+                },
+                src: copy_files,
+                dest: 'release/<%= pkg.name %>/tags/<%= pkg.version %>/'
+            }
+        },
+        run: {
+            tool: {
+                cmd: './composer'
             }
         },
         compress: {
@@ -153,6 +156,27 @@ module.exports = function (grunt) {
                     'assets/js/front/epoch.min.js': [ 'assets/js/front/epoch-front-compiled.js' ]
                 }
             }
+        },
+        svn_checkout: {
+            make_local: {
+                repos: [
+                    {
+                        path: [ 'release' ],
+                        repo: 'http://plugins.svn.wordpress.org/acknowledge-me'
+                    }
+                ]
+            }
+        },
+        push_svn: {
+            options: {
+                remove: true,
+
+            },
+            main: {
+                src: 'release/<%= pkg.name %>',
+                dest: 'http://plugins.svn.wordpress.org/acknowledge-me',
+                tmp: './.build'
+            }
         }
 
     });
@@ -168,6 +192,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
     grunt.loadNpmTasks( 'grunt-contrib-uglify' );
     grunt.loadNpmTasks( 'grunt-contrib-concat' );
+    grunt.loadNpmTasks( 'grunt-text-replace' );
+    grunt.loadNpmTasks( 'grunt-svn-checkout' );
+    grunt.loadNpmTasks( 'grunt-push-svn' );
+    grunt.loadNpmTasks( 'grunt-remove' );
 
 
     //register default task

@@ -1,15 +1,15 @@
 {
   "name": "epoch",
-  "version": "0.1.0.1",
+  "version": "0.1.1",
   "description": "Native commenting made realtime, mobile, CDN and Cache friendly, and full of SEO mojo as well. Commenting perfected.)",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/calderadev/epoch"
+    "url": "https://github.com/postmatic/epoch"
   },
   "author": "CalderaWP",
   "license": "GPLv2+",
   "bugs": {
-    "url": "https://bitbucket.org/calderadev/epoch"
+    "url": "https://github.com/postmatic/epoch"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
@@ -22,6 +22,9 @@
     "grunt-contrib-uglify": "^0.9.1",
     "grunt-git": "^0.3.3",
     "grunt-shell": "^1.1.1",
+    "grunt-text-replace": "^0.4.0",
+    "grunt-push-svn": "^0.2.1",
+    "grunt-svn-checkout": "^0.1.1",
     "grunt-text-replace": "^0.4.0"
   }
 }
