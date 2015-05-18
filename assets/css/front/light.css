@@ -1,9 +1,9 @@
 .epoch-modal {
-    background-color:#d3d3d3;
-    text-align: center;
+    background-color:#d3d3d3 !important;
+    text-align: center !important;
 }
 
-#epoch-comments {font-size: 90%; line-height: normal !important; margin-top: 30px;}
+#epoch-comments {font-size: 90% !important; line-height: inherit !important; margin-top: 30px !important;}
 
 .epoch-comment-author.vcard {
 }
@@ -13,37 +13,37 @@ a.comment-reply-link {
 	border: none !important;
 	color: gray !important;
 	padding: 0 !important;
-	font-size: 100% !important;
+	font-size: 100% !important; 
 	float: none !important;
 	margin: 0 !important;
-	line-height: normal !important;
+	line-height: normal !important; 
 	display: inline !important;
-}
+} 
 
 .epoch-comment-author-avatar img {
-	width: 48px; 
-	height: 48px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	float: left;
-	margin-right: 12px; 
+	width: 48px !important; 
+	height: 48px !important; 
+	-webkit-border-radius: 4px !important;
+	-moz-border-radius: 4px !important;
+	border-radius: 4px !important;
+	float: left !important;
+	margin-right: 12px !important; 
 }
 
 .epoch-child .epoch-comment-author-avatar img {
-	width: 42px;
-	height: 42px;
+	width: 42px !important;
+	height: 42px !important;
 }
 
 #epoch-comments a.epoch-author-link { 
-	font-weight: bold;
+	font-weight: bold !important;
 	line-height: normal !important;
 }
 
 #epoch-comments a.epoch-comment-link {
-	font-size: 90%;
-	color: #aaa;
-	font-weight: normal;
+	font-size: 90% !important;
+	color: #aaa !important;
+	font-weight: normal !important;
 }
 
 .epoch-comment-meta {
@@ -55,7 +55,11 @@ a.comment-reply-link {
 }
 
 div.epoch-comment-content {
-	margin-left: 60px;
+	margin-left: 60px !important;
+}
+
+div.epoch-comment-content p {
+	margin-bottom: 10px !important;
 }
 
 article.epoch-comment-body {
@@ -65,7 +69,7 @@ article.epoch-comment-body {
 }
 
 .epoch-child {
-    margin-left: 60px;
+    margin-left: 60px !important;
 }
 
 .epoch-child.level-2 {
@@ -78,98 +82,128 @@ ul.epoch-comment-actions {
 }
 
 ul.epoch-comment-actions li {
-	list-style: none;
-	display: inline;
-	font-size: 75%;
+	list-style: none !important;
+	display: inline !important;
+	font-size: 75% !important;
 	margin: 0 !important;
 	padding: 0 !important;
 }
 
 ul.epoch-comment-actions li a {
-	color: #aaa;
+	color: #aaa !important;
 }
  
 div.epoch-single-comment {
-   background-color:transparent;
-    -moz-transition:background-color 2s;
-    -webkit-transition:background-color 2s;
-    -o-transition:background-color 2s;
-    transition:background-color 2s;
+   background-color:transparent !important;
+    -moz-transition:background-color 2s !important;
+    -webkit-transition:background-color 2s !important;
+    -o-transition:background-color 2s !important;
+    transition:background-color 2s !important;
 }
 div.epoch-single-comment.epoch-success {
-    background-color: #FFFEDB;
+    background-color: #FFFEDB !important;
  }
 
 .epoch-failure {
-    background-color: #CD5C5C;
-    filter:alpha(opacity=50);
-    -moz-opacity:0.5;
-    -khtml-opacity: 0.5;
-    opacity: 0.5;
-    z-index: 10000;
+    background-color: #CD5C5C !important;
+    filter:alpha(opacity=50) !important;
+    -moz-opacity:0.5 !important;
+    -khtml-opacity: 0.5 !important;
+    opacity: 0.5 !important;
+    z-index: 10000 !important;
+}
+
+#epoch-comments .comment-notes {
+	font-size: 90% !important;
+}
+
+#prompt-comment-subscribe {
+	margin: 10px 0 !important;
+	float: none !important;
+	display: block !important;
 }
 
 #prompt-comment-subscribe input {
 	width: 12px !important;
-
 }
  
 /*inline reply interface*/
 
 #epoch-comments #reply-title {
-	display: none;
+	display: none !important;
 }
 
 .epoch-child div.comment-respond, #epoch-comments #respond {
-	margin-left: 60px;
-	font-size: 85%;
-	line-height: normal;
-	margin-bottom: 35px;
+	margin-left: 60px !important;
+	font-size: 85% !important;
+	line-height: normal !important; 
+	margin-bottom: 35px !important;
 }
 
-#epoch-comments div.comment-respond p {
-	margin: 0;
-}
 
 #epoch-comments div.comment-respond p.comment-form-author,#epoch-comments div.comment-respond p.comment-form-email,#epoch-comments div.comment-respond p.comment-form-url {
-	float: left;
-	width: 32%;
-	margin-right: 1%;
+	float: left !important;
+	width: 32% !important;
+	margin: 0 1% 15px 0 !important;
+	padding: 0 !important;
 }
 
 .comment-form-author input,.comment-form-url input,.comment-form-email input {
-	width: 100% !important;
+	width: 96% !important;
+	margin-bottom: 15px !important;
+	padding: 5px !important;
 }
 
 #epoch-comments div.comment-respond p.comment-form-comment {
-	clear: left;
-	width: 98%;
-	margin-bottom: 10px;
+	clear: left !important;
+	width: 100% !important;
+	margin: 0 0 0 0 !important;
+	padding: 5px !important;
 }
 
 #epoch-comments p.logged-in-as {
-	float: right;
-	font-size: 85%;
+	float: right !important;
+	font-size: 85% !important;
 }
 
 #epoch-comments #comment {
-	height: 100px;
+	height: 100px !important;
+	min-height: 100px !important;
 }
 
 #epoch-comments div.comment-respond p.comment-notes {
-	margin-bottom: 10px;
-	text-align: left;
+	margin-bottom: 10px !important;
+	text-align: left !important;
 } 
- 
+
+#epoch-comments p.form-submit {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+#epoch-comments p.form-submit input {
+	margin: 0 !important;
+}
+
+
+/*New top level comment form*/
+
+#epoch-comments-form p.comment-form-author,#epoch-comments-form p.comment-form-email,#epoch-comments-form p.comment-form-url {
+	float: left !important;
+	width: 32% !important;
+	margin: 0 1% 15px 0 !important;
+	padding: 0 !important;
+}
+
 
 @media only screen and (max-width : 620px) {
 .epoch-comment-author-avatar img {
-	width: 24px; 
-	height: 24px;
-	margin-right: 10px;
+	width: 24px !important; 
+	height: 24px !important;
+	margin-right: 10px !important;
 }
 div.epoch-comment-content { 
-	margin-left: 34px;
+	margin-left: 34px !important;
 }
 
 ul.epoch-comment-actions {
@@ -178,30 +212,30 @@ ul.epoch-comment-actions {
 
 .epoch-child { 
     margin-left: 0 !important;
-    border-left: 1px solid #ddd;
-    padding-left: 10px;
+    border-left: 1px solid #ddd !important;
+    padding-left: 10px !important;
     font-size: 95%
 } 
 
 .epoch-child .epoch-comment-author-avatar img {
-	width: 24px;
-	height: 24px;
+	width: 24px !important;
+	height: 24px !important;
 }
 
 #epoch-comments div.comment-respond p.comment-form-author,#epoch-comments div.comment-respond p.comment-form-email {
-	float: left;
-	width: 49%;
-	margin-right: 1%; 
+	float: left !important;
+	width: 49% !important;
+	margin-right: 1% !important; 
 }
 
 #epoch-comments div.comment-respond p.comment-form-comment, #epoch-comments div.comment-respond p.comment-form-url {
-	width: 99%;
+	width: 99% !important;
 }
 
 .epoch-child div.comment-respond, #epoch-comments #respond {
-	margin-left: 25px;
-    border-left: 1px solid #ddd;
-    padding-left: 10px;
+	margin-left: 25px !important;
+    border-left: 1px solid #ddd !important;
+    padding-left: 10px !important;
 }
 
 
