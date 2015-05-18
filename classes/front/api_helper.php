@@ -54,7 +54,8 @@ class api_helper {
 			$comment = (array) $comment;
 		}
 
-		$date_format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
+		$date_format = get_option( 'date_format' );
+		$time_format = get_option( 'time_format' );
 		$time = strtotime( $comment['comment_date'] );
 
 		//wpautop it
@@ -64,7 +65,12 @@ class api_helper {
 		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'], 48 );
 
 		//format date according to WordPress settings
-		$comment[ 'comment_date' ] = date( $date_format, $time );
+		/* translators: 1: date, 2: time */
+		$comment[ 'comment_date' ] = sprintf(
+			__( '%1$s at %2$s', 'epoch' ),
+			date( $date_format, $time ),
+			date( $time_format, $time )
+		);
 
 		//get comment link
 		$comment[ 'comment_link' ] = get_comment_link( $comment['comment_ID'] );
