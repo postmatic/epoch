@@ -45,14 +45,14 @@ module.exports = function (grunt) {
                     mode :true
                 },
                 src: copy_files,
-                dest: 'releases/<%= pkg.name %>/trunk/'
+                dest: 'releases/build/<%= pkg.name %>/trunk/'
             },
             svn_tag: {
                 options : {
                     mode :true
                 },
                 src: copy_files,
-                dest: 'releases/<%= pkg.name %>/tags/<%= pkg.version %>/'
+                dest: 'releases/build/<%= pkg.name %>/tags/<%= pkg.version %>/'
             }
         },
         run: {
