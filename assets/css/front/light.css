@@ -18,7 +18,7 @@ a.comment-reply-link {
 	margin: 0 !important;
 	line-height: normal !important;
 	display: inline !important;
-}
+} 
 
 .epoch-comment-author-avatar img {
 	width: 48px !important; 
@@ -56,6 +56,10 @@ a.comment-reply-link {
 
 div.epoch-comment-content {
 	margin-left: 60px !important;
+}
+
+div.epoch-comment-content p {
+	margin-bottom: 10px !important;
 }
 
 article.epoch-comment-body {
@@ -109,14 +113,18 @@ div.epoch-single-comment.epoch-success {
     z-index: 10000 !important;
 }
 
+#epoch-comments .comment-notes {
+	font-size: 90% !important;
+}
+
 #prompt-comment-subscribe {
 	margin: 10px 0 !important;
+	float: none !important;
 	display: block !important;
 }
 
 #prompt-comment-subscribe input {
 	width: 12px !important;
-
 }
  
 /*inline reply interface*/
@@ -132,9 +140,6 @@ div.epoch-single-comment.epoch-success {
 	margin-bottom: 35px !important;
 }
 
-#epoch-comments div.comment-respond p {
-	margin: 0 !important;
-}
 
 #epoch-comments div.comment-respond p.comment-form-author,#epoch-comments div.comment-respond p.comment-form-email,#epoch-comments div.comment-respond p.comment-form-url {
 	float: left !important;
@@ -161,6 +166,7 @@ div.epoch-single-comment.epoch-success {
 
 #epoch-comments #comment {
 	height: 100px !important;
+	min-height: 100px !important;
 }
 
 #epoch-comments div.comment-respond p.comment-notes {
