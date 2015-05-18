@@ -60,7 +60,7 @@ class api_helper {
 		$comment[ 'comment_content' ] = wpautop( $comment[ 'comment_content' ] );
 
 		//add avatar markup as a string
-		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'] );
+		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'], 48 );
 
 		//format date according to WordPress settings
 		$comment[ 'comment_date' ] = date( $date_format, strtotime( $comment['comment_date'] ) );
