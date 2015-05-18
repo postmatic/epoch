@@ -9,7 +9,12 @@ module.exports = function (grunt) {
         '!Gruntfile.js',
         '!package.json',
         '!.gitignore',
-        '!.gitmodules'
+        '!.gitmodules',
+        '!releases/**',
+        '!naming-conventions.txt',
+        '!phpunit.xml',
+        '!bin/**',
+        '!tests/**'
     ];
 
     // Project configuration.
@@ -23,7 +28,8 @@ module.exports = function (grunt) {
         clean: {
             post_build: [
                 'build/',
-                'release/build'
+                'release/build',
+                './build'
             ],
             pre_compress: [
                 'build/releases'
@@ -32,21 +38,21 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 src:  copy_files,
-                dest: 'release/build/<%= pkg.version %>/'
+                dest: 'releases/build/<%= pkg.version %>/'
             },
             svn_trunk: {
                 options : {
                     mode :true
                 },
                 src: copy_files,
-                dest: 'release/<%= pkg.name %>/trunk/'
+                dest: 'releases/<%= pkg.name %>/trunk/'
             },
             svn_tag: {
                 options : {
                     mode :true
                 },
                 src: copy_files,
-                dest: 'release/<%= pkg.name %>/tags/<%= pkg.version %>/'
+                dest: 'releases/<%= pkg.name %>/tags/<%= pkg.version %>/'
             }
         },
         run: {
@@ -161,20 +167,20 @@ module.exports = function (grunt) {
             make_local: {
                 repos: [
                     {
-                        path: [ 'release' ],
-                        repo: 'http://plugins.svn.wordpress.org/acknowledge-me'
+                        path: [ 'releases' ],
+                        repo: 'http://plugins.svn.wordpress.org/epoch'
                     }
                 ]
             }
         },
         push_svn: {
             options: {
-                remove: true,
+                remove: true
 
             },
             main: {
-                src: 'release/<%= pkg.name %>',
-                dest: 'http://plugins.svn.wordpress.org/acknowledge-me',
+                src: 'releases/<%= pkg.name %>',
+                dest: 'http://plugins.svn.wordpress.org/epoch',
                 tmp: './.build'
             }
         }
@@ -206,6 +212,7 @@ module.exports = function (grunt) {
     grunt.registerTask( 'pre_vcs', [ 'shell:composer', 'version_number', 'copy', 'compress' ] );
     grunt.registerTask( 'do_git', [ 'gitadd', 'gitcommit', 'gittag', 'gitpush' ] );
     grunt.registerTask( 'just_build', [  'shell:composer', 'copy', 'compress' ] );
+    grunt.registerTask( 'do_svn', [ 'svn_checkout', 'copy:svn_trunk', 'copy:svn_tag', 'push_svn' ] );
 
     grunt.registerTask( 'release', [ 'default', 'pre_vcs', 'do_git', 'clean:post_build' ] );
 
