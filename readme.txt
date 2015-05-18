@@ -77,7 +77,7 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
-= 0.1.2 =
+= 0.2.0 =
 
 - There are still some bugs in the Descending order. It's probably best to stick to Ascending for now.
 - Major improvements to the native comment template functionality. If you want to use Epoch with the comment template that shipped with your theme it may be closer to possible now. Give it a try.
