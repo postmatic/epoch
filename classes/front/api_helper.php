@@ -81,6 +81,8 @@ class api_helper {
 			$comment[ 'children' ] = false;
 		}
 
+		$comment['list_class'] = ( $comment['comment_parent'] == '0' ) ? '' : 'children';
+
 		if ( ! isset( $comment[ 'depth' ] ) ) {
 			$comment[ 'depth' ] = 1;
 		}
