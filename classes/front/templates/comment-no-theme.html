@@ -1,16 +1,22 @@
 <script id="epoch-comment-template" type="text/x-handlebars-template">
-
-    <div id="comment-{{comment_ID}}" data-comment-id="{{comment_ID}}">
+<ol class="comment-list commentlist {{list_class}}">
+    <li id="comment-{{comment_ID}}" class="comment" data-comment-id="{{comment_ID}}">
         <article id="div-comment-{{comment_ID}}" class="comment-body">
             <footer class="comment-meta">
-                <div class="comment-author">
-                    <div class="comment-author-avatar">
-                        {{epochLink comment_author_url author_avatar 'author_url_link_title' 'author-avatar' '_blank' 'nofollow'}}
-                    </div>
-                      {{epochLink comment_author_url comment_author 'author_url_link_title' 'author-link' '_blank' 'nofollow'}}
-                      <span class="divide">&#183;</span>
-                      {{epochLink comment_link '<time datetime="comment_date">-comment_date-</time>' 'comment_link_title' 'comment-link'}}
+                <div class="comment-author vcard">
+                    <a href="{{comment_author_url}}" target="_blank" rel="nofollow">
+                        {{{author_avatar}}}
+                    </a>
+                    {{epochLink comment_author_url comment_author 'author_url_link_title' 'author-link' '_blank' 'nofollow'}}
                 </div><!-- .comment-author -->
+
+                <div class="comment-metadata">
+                    <a href="#comment-link">
+                        <time datetime="{{comment_date}}">
+                            {{comment_date}}
+                        </time>
+                    </a>
+                </div><!-- .comment-metadata -->
 
                 {{#unless comment_approved}}
                     <p class="comment-awaiting-moderation">{{epochTranslation 'awaiting_moderation'}}</p>
@@ -21,21 +27,13 @@
                 {{{comment_content}}}
             </div><!-- .comment-content -->
 
-            <ul class="comment-actions">
                 {{#if reply_allowed}}
-                    <li class="reply" data-comment-id="{{comment_ID}}">
+                    <div class="reply" data-comment-id="{{comment_ID}}">
                         {{{reply_link}}}
-                    </li>
+                    </div>
                 {{/if}}
-                    <li class="tweet">
-                    Tweet
-                    </li>
-                    <li class="link">
-                    Link
-                    </li>
-            </ul>
 
         </article><!-- .comment-body -->
-    </div>
-
+    </li>
+</ol>
 </script>

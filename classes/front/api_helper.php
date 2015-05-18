@@ -55,15 +55,22 @@ class api_helper {
 		}
 
 		$date_format = get_option( 'date_format' );
+		$time_format = get_option( 'time_format' );
+		$time = strtotime( $comment['comment_date'] );
 
 		//wpautop it
 		$comment[ 'comment_content' ] = wpautop( $comment[ 'comment_content' ] );
 
 		//add avatar markup as a string
-		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'] );
+		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'], 48 );
 
 		//format date according to WordPress settings
-		$comment[ 'comment_date' ] = date( $date_format, strtotime( $comment['comment_date'] ) );
+		/* translators: 1: date, 2: time */
+		$comment[ 'comment_date' ] = sprintf(
+			__( '%1$s at %2$s', 'epoch' ),
+			date( $date_format, $time ),
+			date( $time_format, $time )
+		);
 
 		//get comment link
 		$comment[ 'comment_link' ] = get_comment_link( $comment['comment_ID'] );
@@ -80,6 +87,8 @@ class api_helper {
 		if ( $flatten || ! isset( $comment[ 'children' ] ) ) {
 			$comment[ 'children' ] = false;
 		}
+
+		$comment['list_class'] = ( $comment['comment_parent'] == '0' ) ? '' : 'children';
 
 		if ( ! isset( $comment[ 'depth' ] ) ) {
 			$comment[ 'depth' ] = 1;
