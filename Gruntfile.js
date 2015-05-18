@@ -14,7 +14,8 @@ module.exports = function (grunt) {
         '!naming-conventions.txt',
         '!phpunit.xml',
         '!bin/**',
-        '!tests/**'
+        '!tests/**',
+        '!composer.lock'
     ];
 
     // Project configuration.
