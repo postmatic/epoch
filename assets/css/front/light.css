@@ -13,7 +13,7 @@ a.comment-reply-link {
 	border: none !important;
 	color: gray !important;
 	padding: 0 !important;
-	font-size: 100% !important;
+	font-size: 100% !important; 
 	float: none !important;
 	margin: 0 !important;
 	line-height: normal !important;
@@ -110,7 +110,8 @@ div.epoch-single-comment.epoch-success {
 }
 
 #prompt-comment-subscribe {
-	margin: 15px 0 !important;
+	margin: 10px 0 !important;
+	display: block !important;
 }
 
 #prompt-comment-subscribe input {
@@ -143,14 +144,14 @@ div.epoch-single-comment.epoch-success {
 }
 
 .comment-form-author input,.comment-form-url input,.comment-form-email input {
-	width: 97% !important;
+	width: 96% !important;
 	margin-bottom: 15px !important;
 }
 
 #epoch-comments div.comment-respond p.comment-form-comment {
 	clear: left !important;
-	width: 98% !important;
-	margin-bottom: 10px !important;
+	width: 100% !important;
+	margin: 0 0 0 0 !important;
 }
 
 #epoch-comments p.logged-in-as {
@@ -166,6 +167,15 @@ div.epoch-single-comment.epoch-success {
 	margin-bottom: 10px !important;
 	text-align: left !important;
 } 
+
+#epoch-comments p.form-submit {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+#epoch-comments p.form-submit input {
+	margin: 0 !important;
+}
 
 
 /*New top level comment form*/
