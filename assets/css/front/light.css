@@ -140,6 +140,9 @@ div.epoch-single-comment.epoch-success {
 	margin-bottom: 35px !important;
 }
 
+#epoch-comments div.comment-respond p.comment-form-author {
+	clear: left !important;
+}
 
 #epoch-comments div.comment-respond p.comment-form-author,#epoch-comments div.comment-respond p.comment-form-email,#epoch-comments div.comment-respond p.comment-form-url {
 	float: left !important;
@@ -152,6 +155,7 @@ div.epoch-single-comment.epoch-success {
 	width: 96% !important;
 	margin-bottom: 15px !important;
 	padding: 5px !important;
+	background: #fff;
 }
 
 #epoch-comments div.comment-respond p.comment-form-comment {
@@ -159,6 +163,10 @@ div.epoch-single-comment.epoch-success {
 	width: 100% !important;
 	margin: 0 0 0 0 !important;
 	padding: 5px !important;
+}
+
+#epoch-comments div.comment-respond p.comment-form-comment textarea {
+	background: #fff;
 }
 
 #epoch-comments p.logged-in-as {
