@@ -136,7 +136,7 @@ class api_process {
 
 		if ( is_array( $comments ) && ! empty( $comments ) ) {
 			foreach ( $comments as $i => $comment ) {
-				if ( $highest > (int) $comment->comment_ID ) {
+				if ( $highest >= (int) $comment->comment_ID ) {
 					unset( $comments[ $i ] );
 				} else {
 					$comment        = (array) $comment;
