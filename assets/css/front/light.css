@@ -155,7 +155,7 @@ div.epoch-single-comment.epoch-success {
 	width: 96% !important;
 	margin-bottom: 15px !important;
 	padding: 5px !important;
-	background: #fff;
+	background: #fff !important;
 }
 
 #epoch-comments div.comment-respond p.comment-form-comment {
@@ -166,7 +166,7 @@ div.epoch-single-comment.epoch-success {
 }
 
 #epoch-comments div.comment-respond p.comment-form-comment textarea {
-	background: #fff;
+	background: #fff !important;
 }
 
 #epoch-comments p.logged-in-as {
