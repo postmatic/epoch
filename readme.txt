@@ -77,6 +77,11 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 0.2.1 =
+
+- Fixed up all bugs and descending order as well as duplicating comments
+- Added in some more css to the light theme for increased compatability
+
 = 0.2.0 =
 
 - There are still some bugs in the Descending order. It's probably best to stick to Ascending for now.
