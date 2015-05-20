@@ -15,7 +15,7 @@
 	</label>
 	<input id="epoch-options-theme-dark" type="radio" name="options[theme]" value="dark" {{#is options/theme value="dark"}}checked{{/is}}><?php _e( 'Dark (coming soon)', 'epoch' ); ?>
 	<input id="epoch-options-theme-light" type="radio" name="options[theme]" value="light" {{#is options/theme value="light"}}checked{{/is}}><?php _e( 'Light', 'epoch' ); ?>
-	<input id="epoch-options-theme-none" type="radio" name="options[theme]" value="none" {{#is options/theme value="none"}}checked{{/is}}><?php _e( 'None (uses the style that came with your theme)', 'epoch' ); ?>
+	<input id="epoch-options-theme-none" type="radio" name="options[theme]" value="none" {{#is options/theme value="none"}}checked{{/is}}><?php _e( 'None (uses the style that came with your theme - results may vary)', 'epoch' ); ?>
 	<p class="description" style="margin-left: 190px;">
 		<?php _e( 'Epoch comes with a light theme and a dark theme for displaying your comments. Choose whichever works best for your site. The comment template can also be styled easily via css. See the documentation.', 'epoch' ); ?>
 	</p>
