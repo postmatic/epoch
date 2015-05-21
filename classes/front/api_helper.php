@@ -58,8 +58,8 @@ class api_helper {
 		$time_format = get_option( 'time_format' );
 		$time = strtotime( $comment['comment_date'] );
 
-		//wpautop it
-		$comment[ 'comment_content' ] = wpautop( $comment[ 'comment_content' ] );
+		//filter content (make_clickable, wpautop, etc)
+		$comment[ 'comment_content' ] = apply_filters( 'comment_text', $comment[ 'comment_content' ] );
 
 		//add avatar markup as a string
 		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'], 48 );
