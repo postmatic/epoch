@@ -5044,6 +5044,9 @@ jQuery( document ).ready( function ( $ ) {
             //element for template
             app.template_el = document.getElementById( epoch_vars.comments_template_id );
 
+            //element for comment count
+            app.count_el = document.getElementById( epoch_vars.count_id );
+
             //stores number of comments we have in the DOM.
             app.last_count = 0;
 
@@ -5139,7 +5142,7 @@ jQuery( document ).ready( function ( $ ) {
 
                             }
 
-                            app.last_count += 1;
+                            app.set_last_count( app.last_count + 1 );
                             response = app.get_data_from_response( response );
                             comment = response.comment;
 
@@ -5250,7 +5253,7 @@ jQuery( document ).ready( function ( $ ) {
                             }
 
 
-                            app.last_count = response.count;
+                            app.set_last_count( response.count );
 
                         } else {
                             app.no_comments = true;
@@ -5467,8 +5470,12 @@ jQuery( document ).ready( function ( $ ) {
 
             }
 
-        }
+        };
 
+        app.set_last_count = function( count ) {
+            app.last_count = count;
+            $( app.count_el ).text( count );
+        };
 
 
     })( jQuery, window.Epoch || ( window.Epoch = {} ) );

@@ -21,10 +21,24 @@ $comment_area = sprintf(
 	esc_attr( \postmatic\epoch\front\vars::$comments_wrap )
 );
 
-if ( 'DESC' == $options[ 'order' ] ) {
-	$middle = $form . $comment_area;
+if ( 'none' == $options[ 'theme' ] ) {
+	$comment_count_area = '';
 }else{
-	$middle = $comment_area . $form;    
+	$comment_count = sprintf(
+		__( 'There are <span id="%s">0</span> comments.', 'epoch' ),
+		esc_attr( \postmatic\epoch\front\vars::$count_id )
+	);
+
+	$comment_count_area = sprintf(
+		'<div class="comment-count-area">%s</div>',
+		$comment_count
+	);
+}
+
+if ( 'DESC' == $options[ 'order' ] ) {
+	$middle = $comment_count_area . $form . $comment_area;
+}else{
+	$middle = $comment_count_area . $comment_area . $form;
 }
 
 if ( 'none' != $options[ 'theme' ] ) {

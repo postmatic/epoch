@@ -24,6 +24,15 @@ class vars {
 	static public $wrap_class = 'epoch-wrapper';
 
 	/**
+	 * ID for the element containing the comment count
+	 *
+	 * @since 0.2.2
+	 *
+	 * @var string
+	 */
+	static public $count_id = 'epoch-count';
+
+	/**
 	 * ID for container wrapping our comment system
 	 *
 	 * @since 0.0.6
