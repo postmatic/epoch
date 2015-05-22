@@ -123,7 +123,7 @@ class layout {
 			comment_form( $args, $post_id );
 			$html = ob_get_clean();
 		} else if ( ! comments_open( $post_id ) ) {
-			$html = __( 'Comments are closed on this post.', 'epoch' );
+			$html = __( 'Comments are closed.', 'epoch' );
 		} else {
 			$html = '';
 		}
