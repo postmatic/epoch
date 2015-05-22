@@ -25,7 +25,7 @@ if ( 'none' == $options[ 'theme' ] ) {
 	$comment_count_area = '';
 }else{
 	$comment_count = sprintf(
-		__( 'There are <span id="%s">0</span> comments. <a href="#leave">Join the conversation</a>.', 'epoch' ),
+		__( 'There are <span id="%s">0</span> comments. <a href="#reply-title">Join the conversation</a>.', 'epoch' ),
 		esc_attr( \postmatic\epoch\front\vars::$count_id )
 	);
 
