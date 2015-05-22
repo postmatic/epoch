@@ -77,6 +77,15 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 0.2.2 =
+
+- Added a notice for when comments are closed
+- Added a header with an overview of the number of comments and anchor to the comment form
+- URLs in comments are now clickable
+- Fixed up an errant div tag
+- More duplicate-comment killing
+- Misc css tweaks to the light theme
+
 = 0.2.1 =
 
 - Fixed up all bugs and descending order as well as duplicating comments
