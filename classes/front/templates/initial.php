@@ -30,7 +30,7 @@ if ( 'none' == $options[ 'theme' ] ) {
 	);
 
 	$comment_count_area = sprintf(
-		'<div class="comment-count-area">%s</div>',
+		'<h3 class="comment-count-area">%s</h3>',
 		$comment_count
 	);
 }
