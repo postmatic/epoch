@@ -5073,6 +5073,7 @@ jQuery( document ).ready( function ( $ ) {
              * Start the system
              */
             app.set_width();
+            app.add_iframe;
             app.comments_open();
             app.comment_count( false );
             window.onresize = function(event) {
@@ -5087,6 +5088,7 @@ jQuery( document ).ready( function ( $ ) {
                     app.comment_count( true );
                 }
             });
+
 
             /**
              * Submit form data
@@ -5157,10 +5159,10 @@ jQuery( document ).ready( function ( $ ) {
 
                                 if ( 0 == comment.comment_parent && 'DESC' == epoch_vars.epoch_options.order ) {
 
-                                    first_child = app.comments_wrap_el.firstChild;
+                                    first_child = app.comment_inner_wrap_el.firstChild;
                                     new_el = document.createElement( 'div' );
                                     new_el.innerHTML = html;
-                                    app.comments_wrap_el.insertBefore( new_el, first_child );
+                                    app.comment_inner_wrap_el.insertBefore( new_el, first_child );
                                 } else {
                                     app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
                                 }
@@ -5333,10 +5335,10 @@ jQuery( document ).ready( function ( $ ) {
                     $.each( parents, function( key, comment ) {
                         html = app.parse_comment( comment );
                         if ( 'DESC' == epoch_vars.epoch_options.order ) {
-                            first_child = app.comments_wrap_el.firstChild;
+                            first_child = app.comment_inner_wrap_el.firstChild;
                             new_el = document.createElement( 'div' );
                             new_el.innerHTML = html;
-                            app.comments_wrap_el.insertBefore( new_el, first_child );
+                            app.comment_inner_wrap_el.insertBefore( new_el, first_child );
                         } else {
                             app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
                         }
@@ -5435,7 +5437,7 @@ jQuery( document ).ready( function ( $ ) {
          */
         app.put_comment_in_dom = function( html, parent_id, level ) {
             if ( false == parent_id ) {
-                $( html ).appendTo( app.comments_wrap_el );
+                $( html ).appendTo( app.comment_inner_wrap_el );
             }else {
                 html = '<div class="epoch-child child-of-' + parent_id +' level-' + level + ' ">' + html + '</div>';
 
@@ -5443,7 +5445,7 @@ jQuery( document ).ready( function ( $ ) {
                 if ( null != parent_el) {
                     $( html ).appendTo(parent_el );
                 } else {
-                    $( html ).appendTo( app.comments_wrap_el );
+                    $( html ).appendTo( app.comment_inner_wrap_el );
                 }
 
             }
@@ -5476,6 +5478,21 @@ jQuery( document ).ready( function ( $ ) {
             app.last_count = count;
             $( app.count_el ).text( count );
         };
+
+        /**
+         * Add our iFrame
+         *
+         * @since 0.3.0
+         */
+        app.add_iframe = function() {
+            app.comment_iframe_el = document.createElement('iframe');
+            app.comment_iframe_el.id = 'epoch-comment-iframe';
+            app.comment_inner_wrap_el = document.createElement('div');
+            app.comment_inner_wrap_el.id = 'epoch-comment-inner-wrap';
+
+            $( app.comment_iframe_el ).appendTo(  app.comments_wrap_el );
+            $(app.comment_iframe_el).contents().find( 'body' ).append( app.comment_inner_wrap_el );
+        }
 
 
     })( jQuery, window.Epoch || ( window.Epoch = {} ) );
