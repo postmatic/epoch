@@ -81,6 +81,11 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 0.2.3 =
+
+- Fixed the width bug which was causing the comment area to be enormous
+
+
 = 0.2.2 =
 
 - Added a notice for when comments are closed

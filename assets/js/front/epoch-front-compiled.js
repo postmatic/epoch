@@ -5462,7 +5462,7 @@ jQuery( document ).ready( function ( $ ) {
             el = document.getElementById( epoch_vars.sniffer );
 
             if ( null != el ) {
-                content_width = $( el ).parent().parent().parent().parent().outerWidth();
+                content_width = $( el ).parent().outerWidth();
                 if ( 'number' == typeof content_width ) {
                     wrap_el = document.getElementById( epoch_vars.wrap_id );
                     $( wrap_el ).css( 'width', content_width );

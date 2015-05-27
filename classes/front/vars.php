@@ -57,7 +57,7 @@ class vars {
 	 *
 	 * @var string
 	 */
-	static public $form_id = 'epoch-comments-form';
+	static public $form_id = 'commentform';
 
 	/**
 	 * ID of the comment submit button
