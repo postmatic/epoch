@@ -276,8 +276,8 @@ ul.epoch-comment-actions {
 
 .wp-social-login-connect-with {
 	float: left;
-	font-size: 100%;
-	font-weight: bold;
+	font-size: 85%;
+	margin-top: 3px;
 	margin-right: 15px;
 }
 
