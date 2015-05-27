@@ -73,6 +73,10 @@ div.epoch-comment-content p {
 	margin-bottom: 10px !important;
 }
 
+div.epoch-comment-content p:last-child {
+	margin-bottom: 0 !important;
+}
+
 article.epoch-comment-body {
 	margin: 0 0 25px 0 !important;
 	border: none !important;
