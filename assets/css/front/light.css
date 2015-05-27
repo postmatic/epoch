@@ -203,7 +203,7 @@ div.epoch-single-comment.epoch-success {
 
 /*New top level comment form*/
 
-#epoch-comments-form p.comment-form-author,#epoch-comments-form p.comment-form-email,#epoch-comments-form p.comment-form-url {
+#commentform p.comment-form-author,#commentform p.comment-form-email,#commentform p.comment-form-url {
 	float: left !important;
 	width: 32% !important;
 	margin: 0 1% 15px 0 !important;
