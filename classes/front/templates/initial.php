@@ -31,12 +31,12 @@ if ( 'none' == $options[ 'theme' ] ) {
 	} else {
 		$comment_count_message = sprintf(
 			_n( 'There is one comment.', 'There are %s comments.', $comment_count['approved'], 'epoch' ),
-			'<span id="' . \postmatic\epoch\front\vars::$count_id . '">' . $comment_count['approved']'</span>'
+			'<span id="' . \postmatic\epoch\front\vars::$count_id . '">' . $comment_count['approved'] . '</span>'
 		);
 	}
 
 	$comment_count_area = sprintf(
-		'<h3 class="comment-count-area">%1s <a href="#reply-title">%2s &#10549;</a>.</h3>',
+		'<h3 class="comment-count-area">%1s <a href="#reply-title">%2s &#10549;</a></h3>',
 		$comment_count_message,
 		$options['before_text']
 	);
