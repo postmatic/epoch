@@ -102,13 +102,13 @@ ul.epoch-comment-actions li a {
  
 div.epoch-single-comment {
    background-color:transparent !important;
-    -moz-transition:background-color 2s !important;
-    -webkit-transition:background-color 2s !important;
-    -o-transition:background-color 2s !important;
-    transition:background-color 2s !important;
+    -moz-transition:background-color 4s !important;
+    -webkit-transition:background-color 4s !important;
+    -o-transition:background-color 4s !important;
+    transition:background-color 4s !important;
 }
 div.epoch-single-comment.epoch-success {
-    background-color: #FFFEDB !important;
+    background-color: #F8FF73 !important;
  }
 
 .epoch-failure {
