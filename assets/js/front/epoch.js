@@ -465,6 +465,7 @@ jQuery( document ).ready( function ( $ ) {
 
             $( app.comment_iframe_el ).appendTo(  app.comments_wrap_el );
             $(app.comment_iframe_el).contents().find( 'body' ).append( app.comment_inner_wrap_el );
+            $(  app.comment_iframe_el ).contents().find('head').append('<link href="' + epoch_vars.iframe_css + '" rel="stylesheet" type="text/css" />');
         }
 
 

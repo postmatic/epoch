@@ -5073,7 +5073,7 @@ jQuery( document ).ready( function ( $ ) {
              * Start the system
              */
             app.set_width();
-            app.add_iframe;
+            document.body.onload = app.add_iframe();
             app.comments_open();
             app.comment_count( false );
             window.onresize = function(event) {
@@ -5492,6 +5492,7 @@ jQuery( document ).ready( function ( $ ) {
 
             $( app.comment_iframe_el ).appendTo(  app.comments_wrap_el );
             $(app.comment_iframe_el).contents().find( 'body' ).append( app.comment_inner_wrap_el );
+            $(  app.comment_iframe_el ).contents().find('head').append('<link href="' + epoch_vars.iframe_css + '" rel="stylesheet" type="text/css" />');
         }
 
 
