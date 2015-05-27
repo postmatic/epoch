@@ -278,7 +278,11 @@ ul.epoch-comment-actions {
 	float: left;
 	font-size: 85%;
 	margin-top: 3px;
-	margin-right: 15px;
+	margin-right: 10px;
+}
+
+.wp-social-login-provider-list a {
+	margin-right: 5px;
 }
 
 .wp-social-login-provider-list {
