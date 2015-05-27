@@ -8,6 +8,14 @@
 .epoch-comment-author.vcard {
 }
 
+a#reply-title {
+	float: right !important;
+	display: block !important;
+	border: 1px solid red !important;
+	font-size: 85% !important;
+	text-decoration: underline !important; 
+}
+
 a.comment-reply-link {
 	background: none !important;
 	border: none !important;
