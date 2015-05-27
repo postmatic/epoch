@@ -94,7 +94,7 @@ class layout {
 	 * @since 0.0.6
 	 */
 	public static function width_sniffer( $content ) {
-		return $content . sprintf( '<div id="%1"></div>', vars::$sniffer );
+		return $content . sprintf( '<div id="%1s"></div>', vars::$sniffer );
 
 	}
 
