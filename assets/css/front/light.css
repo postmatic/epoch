@@ -5,6 +5,10 @@
 
 #epoch-comments {font-size: 95% !important; line-height: inherit !important; margin-top: 30px !important;}
 
+#epoch-wrap {
+	margin: 0 auto !important;
+}
+
 .epoch-comment-author.vcard {
 }
 
