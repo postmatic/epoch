@@ -263,3 +263,18 @@ ul.epoch-comment-actions {
 
 
 }
+
+/*wordpress social login*/
+
+.wp-social-login-widget {
+	border: 1px solid red;
+	width: 100%; 
+	padding: 0 !important;
+}
+
+.wp-social-login-connect-with {
+	float: left;
+	font-size: 125%;
+	margin-top: 15px;
+	margin-right: 15px;
+}
