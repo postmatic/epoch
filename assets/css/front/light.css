@@ -108,7 +108,7 @@ div.epoch-single-comment {
     transition:background-color 4s !important;
 }
 div.epoch-single-comment.epoch-success {
-    background-color: #F8FF73 !important;
+    background-color: #FFFEDB !important;
  }
 
 .epoch-failure {
