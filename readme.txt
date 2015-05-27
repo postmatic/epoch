@@ -84,7 +84,10 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 = 0.2.3 =
 
 - Fixed the width bug which was causing the comment area to be enormous
-
+- Better compatibility with all themes
+- Sweet new integration with WordPress Social Login
+- Compatibility with front-end spam plugins such as WordPress Zero Spam
+- Misc bugs bugs bugs
 
 = 0.2.2 =
 
