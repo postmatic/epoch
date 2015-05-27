@@ -160,7 +160,7 @@ div.epoch-single-comment.epoch-success {
 
 #epoch-comments div.comment-respond p.comment-form-comment {
 	clear: left !important;
-	width: 100% !important;
+	width: auto !important;
 	margin: 0 0 0 0 !important;
 	padding: 5px !important;
 }
