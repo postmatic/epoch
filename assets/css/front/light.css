@@ -180,7 +180,7 @@ div.epoch-single-comment.epoch-success {
 	padding: 5px !important;
 }
 
-#epoch-comments div.comment-respond p.comment-form-comment textarea {
+#epoch-comments textarea {
 	background: #fff !important;
 }
 
