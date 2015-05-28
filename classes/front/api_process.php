@@ -89,28 +89,28 @@ class api_process {
 		}
 
 		$data       = api_helper::pre_validate_comment( $data );
-		if ( is_array( $data ) ) {
 
-			$comment_id = wp_new_comment( $data );
+		if ( ! is_array( $data ) ) {
+			return false;
+		}
 
-			if ( $comment_id ) {
-				$comment    = get_comment( $comment_id );
-				$approved = $comment->comment_approved;
-				$comment = (object) api_helper::add_data_to_comment( $comment, ! api_helper::thread() );
-				return array(
-					'comment_id' => $comment_id,
-					'comment'    => $comment,
-					'approved'   => $approved,
-				);
+		$comment_id = wp_new_comment( $data );
 
-			} else {
-				return false;
-
-			}
-		} else {
+		if ( ! $comment_id )
 			return false;
 
-		}
+		$comment    = get_comment( $comment_id );
+		$approved = $comment->comment_approved;
+
+		if ( 'spam' == $approved )
+			return false;
+
+		$comment = (object) api_helper::add_data_to_comment( $comment, ! api_helper::thread() );
+		return array(
+			'comment_id' => $comment_id,
+			'comment'    => $comment,
+			'approved'   => $approved,
+		);
 
 	}
 
