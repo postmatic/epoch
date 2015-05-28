@@ -10,6 +10,12 @@
  */
 $options = \postmatic\epoch\options::get_display_options();
 global $post;
+
+$comment_count = get_comment_count( $post->ID );
+
+if ( $comment_count['approved'] == 0 and ! comments_open( $post ) )
+	return;
+
 $form = sprintf(
 	'<div id="%1s">%2s</div>',
 	esc_attr( \postmatic\epoch\front\vars::$form_wrap ),
@@ -24,7 +30,6 @@ $comment_area = sprintf(
 if ( 'none' == $options[ 'theme' ] ) {
 	$comment_count_area = '';
 }else{
-	$comment_count = get_comment_count( $post->ID );
 
 	if ( $comment_count['approved'] == 0 ) {
 		$comment_count_message = __( 'There are no comments.', 'epoch' );
