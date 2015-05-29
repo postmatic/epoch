@@ -62,7 +62,7 @@ class options {
 		$defaults = array(
 			'theme'       => 'light',
 			'threaded'    => false,
-			'before_text' => false,
+			'before_text' => __( 'Join the conversation', 'epoch' ),
 			'interval'    => 15,
 			'order'       => 'ASC'
 		);
