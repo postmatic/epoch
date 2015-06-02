@@ -95,6 +95,12 @@ jQuery( document ).ready( function ( $ ) {
                     ).complete( function () {
 
                         } ).success( function ( response ) {
+
+                            if ( !response.success ) {
+                                alert( epoch_translation.comment_rejected );
+                                return false;
+                            }
+
                             $( 'textarea#comment' ).val( '' );
                             $( '#comment_parent' ).val( '0' );
 
@@ -422,7 +428,7 @@ jQuery( document ).ready( function ( $ ) {
             }
 
             $( '.comment-reply-link' ).click( function( event ) {
-                event.preventDefault;
+                event.preventDefault();
             });
         };
 
