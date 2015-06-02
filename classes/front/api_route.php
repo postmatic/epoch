@@ -61,6 +61,33 @@ class api_route {
 	}
 
 	/**
+	 * Die handler filter
+	 *
+	 * @since 0.2.4
+	 *
+	 * @return array
+	 */
+	public function return_die_handler() {
+		return array( $this, 'die_handler' );
+	}
+
+	/**
+	 * Handle wp_die() calls
+	 *
+	 * @since 0.2.4
+	 *
+	 * @param string $message
+	 * @param string $title
+	 * @param array $args
+	 */
+	public function die_handler( $message, $title, $args ) {
+		status_header( $args['response'] );
+		wp_send_json_error( compact( 'message' ) );
+		die();
+	}
+
+
+	/**
 	 * Route request to callback in api_process class
 	 *
 	 * @since 0.0.1
@@ -72,6 +99,9 @@ class api_route {
 	protected function route( $action ) {
 
 		if ( method_exists( '\postmatic\epoch\front\api_process', $action )  ) {
+
+			add_filter( 'wp_die_handler', array( $this, 'return_die_handler' ) );
+
 			$data = $this->data( $action );
 
 			$response = \postmatic\epoch\front\api_process::$action( $data );
@@ -185,8 +215,6 @@ class api_route {
 		return $valid;
 
 	}
-
-
 
 
 }
