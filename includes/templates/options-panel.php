@@ -13,7 +13,7 @@
 	<label for="epoch-options-theme">
 		<?php _e( 'Theme', 'epoch' ); ?>
 	</label>
-	<input id="epoch-options-theme-light" type="radio" name="options[theme]" value="light" {{#is options/theme value="light"}}checked{{/is}}><?php _e( 'Epoch (override the comment template which came with your theme while still inheriting typography and colors)', 'epoch' ); ?>
+	<input id="epoch-options-theme-light" type="radio" name="options[theme]" value="light" {{#is options/theme value="light"}}checked{{/is}}><?php _e( 'Epoch (override the comment template which came with your theme while still inheriting typography and colors)', 'epoch' ); ?><br />
 	<input id="epoch-options-theme-none" type="radio" name="options[theme]" value="none" {{#is options/theme value="none"}}checked{{/is}}><?php _e( 'None (attempts to use the style that came with your theme - results may vary)', 'epoch' ); ?>
 	<p class="description" style="margin-left: 190px;">
 		<?php _e( 'Epoch can integrate with your theme in one of two ways. Give each a try and see what works for you. The comment template can also be styled easily via css. See the documentation.', 'epoch' ); ?>
