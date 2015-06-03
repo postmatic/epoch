@@ -134,15 +134,9 @@ jQuery( document ).ready( function ( $ ) {
                             if ( null == document.getElementById( 'comment-' + comment.comment_ID ) ) {
                                 html = app.parse_comment( comment );
 
-                                if ( 0 == comment.comment_parent && 'DESC' == epoch_vars.epoch_options.order ) {
 
-                                    first_child = app.comments_wrap_el.firstChild;
-                                    new_el = document.createElement( 'div' );
-                                    new_el.innerHTML = html;
-                                    app.comments_wrap_el.insertBefore( new_el, first_child );
-                                } else {
-                                    app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
-                                }
+                                app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
+
 
                                 comment_el = document.getElementById( 'comment-' + comment.comment_ID );
                                 if ( null != comment_el ) {
@@ -314,14 +308,8 @@ jQuery( document ).ready( function ( $ ) {
 
                     $.each( parents, function( key, comment ) {
                         html = app.parse_comment( comment );
-                        if ( 'DESC' == epoch_vars.epoch_options.order ) {
-                            first_child = app.comments_wrap_el.firstChild;
-                            new_el = document.createElement( 'div' );
-                            new_el.innerHTML = html;
-                            app.comments_wrap_el.insertBefore( new_el, first_child );
-                        } else {
-                            app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
-                        }
+
+                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
 
                         if ( is_new ) {
 
@@ -416,18 +404,27 @@ jQuery( document ).ready( function ( $ ) {
          * @param level The threading level, not needed for top-level comments.
          */
         app.put_comment_in_dom = function( html, parent_id, level ) {
-            if ( false == parent_id ) {
-                $( html ).appendTo( app.comments_wrap_el );
-            }else {
-                html = '<div class="epoch-child child-of-' + parent_id +' level-' + level + ' ">' + html + '</div>';
+            if ( 0 == comment.comment_parent && 'DESC' == epoch_vars.epoch_options.order ) {
 
-                parent_el = document.getElementById( 'comment-' + parent_id );
-                if ( null != parent_el) {
-                    $( html ).appendTo(parent_el );
-                } else {
+                first_child = app.comments_wrap_el.firstChild;
+                new_el = document.createElement( 'div' );
+                new_el.innerHTML = html;
+                app.comments_wrap_el.insertBefore( new_el, first_child );
+            } else {
+
+                if ( false == parent_id ) {
                     $( html ).appendTo( app.comments_wrap_el );
-                }
+                } else {
+                    html = '<div class="epoch-child child-of-' + parent_id + ' level-' + level + ' ">' + html + '</div>';
 
+                    parent_el = document.getElementById( 'comment-' + parent_id );
+                    if ( null != parent_el ) {
+                        $( html ).appendTo( parent_el );
+                    } else {
+                        $( html ).appendTo( app.comments_wrap_el );
+                    }
+
+                }
             }
 
             $( '.comment-reply-link' ).click( function( event ) {
