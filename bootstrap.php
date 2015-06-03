@@ -2,7 +2,7 @@
 /**
  * Loads the plugin if dependencies are met.
  *
- * @package   Epoch by Postmatic
+ * @package   Epoch
  * @author    Postmatic
  * @license   GPL-2.0+
  * @link
