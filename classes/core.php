@@ -350,7 +350,10 @@ class core {
 			'reply_link_title' => __( 'Reply To This Comment', 'epoch' ),
 			'author_url_link_title' => __( 'Link to comment author\'s website', 'epoch' ),
 			'is_required' => __( 'is required', 'epoch' ),
-			'comment_rejected' => __( 'Your comment was not accepted, please check that everything is filled out correctly.', 'epoch' ),
+			'comment_rejected' => __(
+				'Your comment was not accepted, please check that everything is filled out correctly.',
+				'epoch'
+			),
 		);
 	}
 

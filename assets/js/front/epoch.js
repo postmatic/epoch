@@ -157,6 +157,9 @@ jQuery( document ).ready( function ( $ ) {
                             app.shut_it_off = false;
 
                         } ).fail( function ( xhr ) {
+                            if ( xhr.responseJSON && xhr.responseJSON.data && xhr.responseJSON.data.message ) {
+                                alert( $( '<div/>' ).html( xhr.responseJSON.data.message ).text() );
+                            }
                             $( app.form_wrap_el, 'textarea#comment' ).addClass( 'epoch-failure' ).delay( 100 ).queue( function ( next ) {
                                 $( this ).removeClass( 'epoch-failure' );
                                 next();
