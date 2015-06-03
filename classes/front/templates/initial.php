@@ -13,8 +13,9 @@ global $post;
 
 $comment_count = get_comment_count( $post->ID );
 
-if ( $comment_count['approved'] == 0 and ! comments_open( $post ) )
+if ( $comment_count['approved'] == 0 and ! comments_open( $post ) ) {
 	return;
+}
 
 $form = sprintf(
 	'<div id="%1s">%2s</div>',
