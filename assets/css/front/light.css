@@ -178,11 +178,14 @@ div.epoch-single-comment.epoch-success {
 	width: auto !important;
 	margin: 0 0 0 0 !important;
 	padding: 5px !important;
+	width: 99% !important;
 }
 
-#epoch-comments textarea {
+#epoch-comments textarea, textarea#comment {
 	background: #fff !important;
+	width: 100%;
 }
+
 
 #epoch-comments p.logged-in-as {
 	float: right !important;
