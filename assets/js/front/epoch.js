@@ -302,8 +302,10 @@ jQuery( document ).ready( function ( $ ) {
 
                     });
 
+
                     if ( 'DESC' == epoch_vars.epoch_options.order ) {
                         parents.reverse();
+                        children.reverse();
                     }
 
                     $.each( parents, function( key, comment ) {
@@ -405,14 +407,13 @@ jQuery( document ).ready( function ( $ ) {
          */
         app.put_comment_in_dom = function( html, parent_id, level ) {
             if ( 0 == comment.comment_parent && 'DESC' == epoch_vars.epoch_options.order ) {
-
                 first_child = app.comments_wrap_el.firstChild;
                 new_el = document.createElement( 'div' );
                 new_el.innerHTML = html;
                 app.comments_wrap_el.insertBefore( new_el, first_child );
             } else {
 
-                if ( false == parent_id ) {
+                if ( 0 == parent_id ) {
                     $( html ).appendTo( app.comments_wrap_el );
                 } else {
                     html = '<div class="epoch-child child-of-' + parent_id + ' level-' + level + ' ">' + html + '</div>';
