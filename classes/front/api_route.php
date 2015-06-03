@@ -56,8 +56,7 @@ class api_route {
 			}
 
 		}
-
-
+		
 	}
 
 	/**
@@ -69,6 +68,7 @@ class api_route {
 	 */
 	public function return_die_handler() {
 		return array( $this, 'die_handler' );
+
 	}
 
 	/**
@@ -76,14 +76,15 @@ class api_route {
 	 *
 	 * @since 0.2.4
 	 *
-	 * @param string $message
-	 * @param string $title
-	 * @param array $args
+	 * @param string $message Message to send.
+	 * @param string $title Title for message
+	 * @param array $args Arguments from request
 	 */
 	public function die_handler( $message, $title, $args ) {
 		status_header( $args['response'] );
 		wp_send_json_error( compact( 'message' ) );
 		die();
+
 	}
 
 
