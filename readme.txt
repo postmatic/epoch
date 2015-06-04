@@ -81,6 +81,13 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 0.2.4 =
+
+- Fixed a bug in descending order sorting. Try again if you love descending.
+- Added support for captcha plugins, specifically WP-reCAPTCHA
+- Took care of a bug which would show *there are no comments* even on pages
+- Added support for the native WordPress *you're commenting too quickly* and *duplicate comment* errors
+
 = 0.2.3 =
 
 - Fixed the width bug which was causing the comment area to be enormous
