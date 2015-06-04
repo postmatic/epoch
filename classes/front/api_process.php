@@ -28,8 +28,25 @@ class api_process {
 
 		$args = api_helper::get_comment_args( $data[ 'postID' ] );
 
-
+		$options = options::get_display_options();
 		$comments = get_comments( $args  );
+		if ( 'ASC' == $options[ 'order' ] ) {
+			$parents = array_combine( wp_list_pluck( $comments, 'comment_ID'),wp_list_pluck( $comments, 'comment_parent' ) );
+
+			asort( $parents );
+
+			$comments = (array) $comments;
+			$comments = array_combine( wp_list_pluck( $comments, 'comment_ID'), $comments );
+			$i = 0;
+			foreach( $comments as $id => $parent ) {
+				$_comments[ $i ] = $comments[ $id ];
+				$i++;
+			}
+			rsort( $_comments );
+
+			$comments = $_comments;
+		}
+
 
 		if ( ! empty( $comments ) && is_array( $comments ) ) {
 			$comments = api_helper::improve_comment_response( $comments, ! api_helper::thread() );

@@ -5162,7 +5162,7 @@ jQuery( document ).ready( function ( $ ) {
                                 html = app.parse_comment( comment );
 
 
-                                app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
+                                app.put_comment_in_dom( html, comment.comment_parent, comment.depth, id );
 
 
                                 comment_el = document.getElementById( 'comment-' + comment.comment_ID );
@@ -5329,16 +5329,17 @@ jQuery( document ).ready( function ( $ ) {
 
                     });
 
-
-                    if ( 'DESC' == epoch_vars.epoch_options.order ) {
+                    if ( 'ASC' == epoch_vars.epoch_options.order ) {
+                        children.reverse();
                         parents.reverse();
+                    }else{
                         children.reverse();
                     }
 
                     $.each( parents, function( key, comment ) {
                         html = app.parse_comment( comment );
 
-                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
+                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth, parseInt( comment.comment_ID, 10 ) );
 
                         if ( is_new ) {
 
@@ -5356,7 +5357,7 @@ jQuery( document ).ready( function ( $ ) {
 
                     $.each( children, function( key, comment )  {
                         html = app.parse_comment( comment );
-                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth );
+                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth, parseInt( comment.comment_ID, 10 ) );
                     });
 
 
@@ -5432,7 +5433,8 @@ jQuery( document ).ready( function ( $ ) {
          * @param parent_id ID of parent, or 0 for top level comment.
          * @param level The threading level, not needed for top-level comments.
          */
-        app.put_comment_in_dom = function( html, parent_id, level ) {
+        app.put_comment_in_dom = function( html, parent_id, level, id ) {
+
             if ( 0 == comment.comment_parent && 'DESC' == epoch_vars.epoch_options.order ) {
                 first_child = app.comments_wrap_el.firstChild;
                 new_el = document.createElement( 'div' );
@@ -5447,8 +5449,10 @@ jQuery( document ).ready( function ( $ ) {
 
                     parent_el = document.getElementById( 'comment-' + parent_id );
                     if ( null != parent_el ) {
+                        console.log( id );
                         $( html ).appendTo( parent_el );
                     } else {
+                        console.log( 'ID-' + id + ' pid-' + parent_id );
                         $( html ).appendTo( app.comments_wrap_el );
                     }
 

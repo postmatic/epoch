@@ -202,24 +202,15 @@ class api_helper {
 	 */
 	public static function get_comment_args( $post_id ) {
 
-			$options = options::get_display_options();
-			if ( is_array( $options ) && isset( $options['order'] ) && in_array( $options['order'], array(
-					'ASC',
-					'DESC'
-				) )
-			) {
-				$order = $options['order'];
-			} else {
-				$order = 'DESC';
-			}
+		$options = options::get_display_options();
 
-			$args = array(
-				'post_id' => $post_id,
-				'order'   => $order,
-				'status'  => 'approve'
-			);
+		$args = array(
+			'post_id' => $post_id,
+			'order'   => $options['order'],
+			'status'  => 'approve',
+		);
 
-			return $args;
+		return $args;
 
 	}
 
