@@ -75,9 +75,9 @@ You choose. Epoch can go either way.
 Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Screenshots ==
-
-1. Screenshot 1 description
-2. Screenshot 2 description
+1. Epoch integrates with your existing theme by matching the colors, typography, and width of your content area. Automatically.
+2. The options are simple. Installation is as simple as activating the plugin.
+3. Epoch is 100% mobile friendly and fully responsive. Nested comments 6 levels deep still look awesome.
 
 == Changelog ==
 
