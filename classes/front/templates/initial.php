@@ -41,11 +41,18 @@ if ( 'none' == $options[ 'theme' ] ) {
 		);
 	}
 
-	$comment_count_area = sprintf(
-		'<h3 class="comment-count-area">%1s <a href="#reply-title">%2s</a></h3>',
-		$comment_count_message,
-		$options['before_text']
-	);
+	if ( 'ASC' == $options['order'] ) {
+		$comment_count_area = sprintf(
+			'<h3 class="comment-count-area">%1s <a href="#reply-title">%2s</a></h3>',
+			$comment_count_message,
+			$options['before_text']
+		);
+	} else {
+		$comment_count_area = sprintf(
+			'<h3 class="comment-count-area">%1s</h3>',
+			$comment_count_message
+		);
+	}
 }
 
 if ( 'DESC' == $options[ 'order' ] ) {
