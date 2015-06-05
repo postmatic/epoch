@@ -304,5 +304,7 @@ ul.epoch-comment-actions {
   position: inherit !important;
 }
 
+.wp-editor-container {border: 1px solid #ddd !important; margin-bottom: 15px !important;}
+
 /*get rid of box shadows*/
  input:required,textarea:required {box-shadow: none !important;}
