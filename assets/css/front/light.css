@@ -300,7 +300,7 @@ ul.epoch-comment-actions {
 }
 
 /*wysiwyg comments*/
-#epoch-comments .wp-editor-wrap {
+.wp-editor-wrap {
   position: inherit !important;
 }
 
