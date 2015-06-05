@@ -78,6 +78,7 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 1. Epoch integrates with your existing theme by matching the colors, typography, and width of your content area. Automatically.
 2. The options are simple. Installation is as simple as activating the plugin.
 3. Epoch is 100% mobile friendly and fully responsive. Nested comments 6 levels deep still look awesome.
+4. Epoch is compatible with other 3rd party commenting plugins such as Postmatic (enable commenting by email), WordPress Social Login (for logging in via Twitter, Facebook, and more), WP-reCAPTCHA, Aksimet, and WordPress Zero Spam (Spam protection), and WYSIWYG Comment Form (for adding a toolbard to the comment area).
 
 == Changelog ==
 
