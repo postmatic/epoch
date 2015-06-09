@@ -33,6 +33,9 @@
 				<?php _e('Epoch + Postmatic', 'epoch') ; ?>
 			</a>
 		</li>
+		<li id="postmatic-brand">
+			<a href="http://gopostmatic.com"><span>Brought to you by Postmatic</span></a>
+		</li>
 	</ul>
 
 	<span class="wp-baldrick" id="epoch-field-sync" data-event="refresh" data-target="#epoch-main-canvas" data-callback="epoch_canvas_init" data-type="json" data-request="#epoch-live-config" data-template="#main-ui-template"></span>
