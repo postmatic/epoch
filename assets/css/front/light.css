@@ -302,14 +302,15 @@ ul.epoch-comment-actions {
 
 /*WordPress Markdown*/
 div#wmd-button-barcomment {
-  clear: both;
+  clear: both !important;
   padding-bottom: 5px !important;
 }
 
 .wmd-preview {
-	padding: 5px !important;
+	padding: 10px !important;
 	margin: 10px 0 !important;
 	width: 100% !important;
+	min-height: 30px !important;
 }
 
 /*get rid of box shadows*/
