@@ -397,15 +397,17 @@ div.column {
 }
 
 #epoch-main-form h3 {
-  color: gray;
-  border-bottom: 1px solid #ddd;
+  color: #BB4F51;
+  font-size: 140%;
+  font-variant: small-caps;
+  margin-bottom: 10px;
 }
 
 #epoch-splash {
   background: #424242;
   margin: 0 -25px 45px -25px;
   padding: 45px 0
-}
+} 
 
 #epoch-splash h1 {
   background: url(../image/epoch-logo-x.png) top right no-repeat;
