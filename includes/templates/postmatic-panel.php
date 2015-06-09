@@ -9,11 +9,21 @@
  * Copyright 2015 Transitive, Inc.
  */
 ?>
-<h1>Send new comment notifictions - <strong>and let them hit reply</strong>.</h1>
 
-<p>Epoch is an amazing plugin that brings fantastic new technology to WordPress commenting - but it is only half the picture.</p>
+<div class="epoch-splash" id="splash-postmatic">
+<h1><span>Postmatic</span></h1>
 
-<p>Add Postmatic to your site (it's free!) to enable two-way email comment notifications. Two way? Yes. The days of <em>notifications</em> are over. <strong>It's time to let them hit reply</strong>.</p>
+<h2>Install Postmatic to engage your readers at their own pace with 100% email-based commenting</h2>
+</div>
+
+<h3 style="margin-bottom: 25px;">The days of one-way notifications are over. It’s time to let them hit reply.</h3>
+
+<iframe src="//fast.wistia.net/embed/iframe/e9ylk540qv" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="500" height="309" style="float: right;margin:0 0 25px 25px;"></iframe>
+<p>Increased engagement is just the natural result when you make it easy for your readers to be a part of the conversation.</p>
+
+<p>Postmatic lets your readers subscribe by email when they leave a comment. Subsequent comments and replies will land in their inbox, just like with <em>Jetpack</em> or <em>Subscribe to Comments</em>. <strong>Except now with Postmatic, they can comment back and keep the conversation going just by hitting reply</strong>. They never have to leave their inbox.</p>
+
+<p>Online or offline, everyone stays in the loop—regardless of web, desktop or mobile.</p>
 
 <h2>Epoch + Postmatic</h2>
 <p>When running Epoch along with Postmatic the magic really happens. The comment stream is updated in realtime with comments being posted from web as well as email. Subscribing to new comments is quick and simple while users are intelligently invited to become site subscribers as well. All without ugly checkboxes and obtrusive forms.</p>

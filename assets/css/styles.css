@@ -12,16 +12,16 @@ h4 > small.description {
 }
 .epoch-main-headerbrickroad,
 .epoch-main-headercaldera {
-	background: none repeat scroll 0 0 #fff;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 8px 0 0 #28b0c8 inset;
-	margin: -10px -20px 10px -22px;
-	padding: 0 0 8px 22px;
-	overflow: hidden;
+  background: none repeat scroll 0 0 #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 8px 0 0 #28b0c8 inset;
+  margin: -10px -20px 10px -22px;
+  padding: 0 0 8px 22px;
+  overflow: hidden;
 }
 .epoch-sub-headercaldera {
   background: none repeat scroll 0 0 #f8f8f8;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04), 8px 0 0 #28b0c8 inset;
-  margin: -10px -20px 10px -22px;
+  margin: -10px -20px 0px -22px;
   padding: 0 0 0 8px;
   overflow: hidden;
 }
@@ -46,14 +46,14 @@ h4 > small.description {
 
 .epoch-main-headerbrickroad h2,
 .epoch-main-headercaldera h2 {
-	color: #4f4f4f;
-	font-size: 20px;
-	font-weight: 300;
+  color: #4f4f4f;
+  font-size: 20px;
+  font-weight: 300;
   float: left;
 }
 .epoch-main-headerbrickroad .logo-icon,
 .epoch-main-headercaldera .logo-icon{
-	color: #28b0c8;
+  color: #28b0c8;
   font-size: 72px;
   margin: -18px 20px 0 -60px;
   opacity: 0.2;
@@ -93,13 +93,13 @@ h4 > small.description {
 }
 .wrap .epoch-main-headerbrickroad .add-new-h2,
 .wrap .epoch-main-headercaldera .add-new-h2{
-	font-size: 12px;
-	margin: 13px;
-	cursor: pointer;
+  font-size: 12px;
+  margin: 13px;
+  cursor: pointer;
 }
 .epoch-main-headerbrickroad .add-new-h2:hover,
 .epoch-main-headercaldera .add-new-h2:hover {
-	background: none repeat scroll 0 0 #28b0c8;
+  background: none repeat scroll 0 0 #28b0c8;
 }
 
 .epoch-main-headerbrickroad .epoch-header-tabs,
@@ -107,6 +107,7 @@ h4 > small.description {
   float: left;
   margin: 0 0 0 25px;
   padding: 0;
+  width: 80%;
 }
 .epoch-sub-headerbrickroad .epoch-sub-tabs,
 .epoch-sub-headercaldera .epoch-sub-tabs {
@@ -180,11 +181,11 @@ h4 > small.description {
   width: 280px;
 }
 .epoch-side-list > label{
-	display: block;
+  display: block;
 }
 .epoch-side-list > select {
-	width: 100%;
-	margin-bottom: 2px;
+  width: 100%;
+  margin-bottom: 2px;
 }
 
 .epoch-footer-bar {
@@ -202,10 +203,11 @@ h4 > small.description {
 
 .epoch-config-group {
   margin-bottom: 6px;
+  margin-top: 25px;
 }
 .epoch-config-group > label {
   display: inline-block;
-  margin: 6px 0 0;
+  margin: 0;
   vertical-align: top;
   width: 180px;
 }
@@ -338,7 +340,7 @@ h4 > small.description {
   display: none;
 }
 .epoch-card-item .epoch-card-content > h4{
-	margin: 0;
+  margin: 0;
 }
 
 .epoch-card-content input[type="text"] {
@@ -352,10 +354,10 @@ h4 > small.description {
   padding: 0;
 }
 .epoch-card-content .epoch-card-actions .row-actions{
-	visibility: visible;
+  visibility: visible;
 }
 .epoch-card-content .epoch-card-actions .row-actions a{
-	text-decoration: none;
+  text-decoration: none;
 }
 #epoch-save-indicator.loading .spinner{
   display: block;
@@ -374,5 +376,94 @@ h4 > small.description {
   background-color: #28b0c8;
 }
 .epoch-main-headercaldera .loading{
-	top: -2px;
+  top: -2px;
+}
+
+div.column {
+  width: 30%;
+  float: left;
+  margin-right: 2%;
+  margin-bottom: 45px;
+}
+
+.clear {clear: both;}
+
+#epoch-main-form {
+  color: #424242;
+  line-height: 170%;
+}
+
+#epoch-main-form h1, #epoch-main-form h2 {
+  color:#28B0C8;
+  line-height: normal;
+}
+
+#epoch-main-form h3 {
+  color: #BB4F51;
+  font-size: 150%;
+  margin-bottom: 10px;
+}
+
+.epoch-splash {
+  background: #424242;
+  margin: 0 -20px 45px -25px;
+  padding: 45px;
+} 
+
+.epoch-splash h1 {
+  background: url(../image/epoch-logo-x.png) top right no-repeat;
+  width: 225px;
+  height: 164px;
+  background-size: 225px;
+  margin: 0 auto;
+}
+
+.epoch-splash h2 {
+  text-align: center;
+  color: #fff !important;
+  font-size: 240%;
+}
+
+.epoch-splash span {
+  display: none;
+}
+
+#postmatic-brand {
+  float: right;
+  display: block;
+  margin: 0;
+}
+
+#splash-postmatic {
+  background: #52BFC5;
+}
+
+#splash-postmatic h2 {
+  color: #fff;
+}
+
+#splash-postmatic h1 {
+   background: url(../image/postmatic-white.png) top right no-repeat;
+  width: 432px;
+  height: 164px;
+  background-size: 432px;
+}
+
+#postmatic-brand span {
+  display: none;
+}
+
+#postmatic-brand a {
+  background: url(../image/postmatic.png) top right no-repeat; 
+  background-size: 138px;
+  width: 138px;
+  height: 38px;
+  margin: 12px 0 0 0;
+  display: block; 
+  padding: 0;
+}
+
+#love {
+  margin: 45px auto;  
+  display: block;
 }

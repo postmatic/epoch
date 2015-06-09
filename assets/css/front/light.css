@@ -4,6 +4,7 @@
 }
 
 #epoch-comments {font-size: 95% !important; line-height: inherit !important; margin-top: 30px !important;}
+#epoch-commenting {margin-bottom: 25px;}
 
 #epoch-wrap {
 	margin: 0 auto !important;
@@ -178,13 +179,17 @@ div.epoch-single-comment.epoch-success {
 	clear: left !important;
 	width: auto !important;
 	margin: 0 0 0 0 !important;
-	padding: 5px !important;
+	padding: 0px !important;
 	width: 99% !important;
+}
+
+#epoch-comments div.comment-respond textarea {
+	width: 98% !important;
 }
 
 #epoch-comments textarea, textarea#comment {
 	background: #fff !important;
-	width: 100%;
+	width: 97% !important;
 	border: 1px solid #ddd !important;
 }
 
@@ -256,7 +261,7 @@ ul.epoch-comment-actions {
 	margin-right: 1% !important; 
 }
 
-#epoch-comments div.comment-respond p.comment-form-comment, #epoch-comments div.comment-respond p.comment-form-url {
+#epoch-comments div.comment-respond p.comment-form-comment, #epoch-comments div.comment-respond p.comment-form-url, #epoch-comments div.comment-respond p.comment-form-url input {
 	width: 99% !important;
 }
 
@@ -267,6 +272,10 @@ ul.epoch-comment-actions {
 }
 
 
+}
+
+@media only screen and (max-width : 550px) {
+#wmd-button-barcomment,#wmd-previewcomment {display: none !important;}
 }
 
 /*wordpress social login*/
@@ -297,6 +306,20 @@ ul.epoch-comment-actions {
 .wp-social-login-provider-list img {
 	width: 20px;
 	height: 20px;
+}
+
+/*WordPress Markdown*/
+div#wmd-button-barcomment {
+  clear: both !important;
+  padding-bottom: 5px !important;
+  filter: grayscale (100%);
+}
+
+.wmd-preview {
+	padding: 10px !important;
+	margin: 10px 0 !important;
+	width: 100% !important;
+	min-height: 30px !important;
 }
 
 /*get rid of box shadows*/

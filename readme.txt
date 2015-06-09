@@ -12,10 +12,6 @@ Epoch - 100% realtime chat and commenting in a tiny little package that is fully
 
 == Description ==
 
-= Heads up! This is early beta software. =
-
-Epoch is in very early-stage beta. Maybe even alpha. It's not production ready (just look at that version number!) unless you are brave, smart, and foolish. Please don't trash our star rating with premature reviews. Download it. Kick the tires. [Help out if you can](https://github.com/postmatic/epoch). Let's perfect commenting together.
-
 Epoch is a new plugin from the creators of [Postmatic](http://gopostmatic.com). The goal: To provide a realtime commenting/chat experience using fully native comments while being compatible with page caching, cdns, mobile, other comment plugins, and seo best practices. A tall order? For sure. Try it out.
 
 Epoch provides an amazing commenting experience to your users **while improving site performance at the same time**.
@@ -75,11 +71,19 @@ You choose. Epoch can go either way.
 Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Screenshots ==
-
-1. Screenshot 1 description
-2. Screenshot 2 description
+1. Epoch integrates with your existing theme by matching the colors, typography, and width of your content area. Automatically.
+2. The options are simple. Installation is as simple as activating the plugin.
+3. Epoch is 100% mobile friendly and fully responsive. Nested comments 6 levels deep still look awesome.
+4. Epoch is compatible with other 3rd party commenting plugins such as Postmatic (enable commenting by email), WordPress Social Login (for logging in via Twitter, Facebook, and more), WP-reCAPTCHA, Aksimet, and WordPress Zero Spam (Spam protection), and WYSIWYG Comment Form (for adding a toolbard to the comment area).
 
 == Changelog ==
+
+= 0.5 =
+
+- Added support for WP-Markdown for making a nice little toolbar on your comment form. This brings the count of officially supported integrations to 4: WP-reCAPTCHA, WP-Markdown, WordPress Social Login, and Postmatic. That's a nice lineup.
+- Cleaned up descending order a bit on the presentation side
+- The submit button now greys out if the comment is taking longer than normal to post
+- Pretty icons and screenshots.
 
 = 0.2.4 =
 
