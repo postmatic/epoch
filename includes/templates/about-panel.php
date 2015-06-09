@@ -12,7 +12,7 @@
 <h1>Welcome to Epoch</h1>
 <h2>Commenting Perfected - brought to you by Postmatic</h2>
 
-<p>Epoch solves three big native commenting problems</p>
+<p>Epoch solves three big native commenting problems:</p>
 <div class="column">
 <h3>1. User Experience</h3>
 Comment forms and display are often neglected by theme developers. We've been there ourselves. The functions and templates involved in WordPress commenting are complicated, frustrating, and no fun to work with. Every day we see fantastic themes with ridiculously poor commenting experiences. So that's the first thing Epoch fixes.
@@ -33,7 +33,7 @@ Epoch is hands down the fastest commenting system available for WordPress, all t
 </div>
 
 
-<h2>Success through compatibility</h2>
+<h2 class="clear">Success through compatibility</h2>
 Epoch is built for compatibility. Just like Postmatic. It uses fully native WordPress commenting, plays nicely with most all other commenting plugins, and employs WordPress coding standards. Use it with your favorite social login, voting, moderation, and other commenting plugins.
 
 <h3>Want to jump into the ring?</h3>

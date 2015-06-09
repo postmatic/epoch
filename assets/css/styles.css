@@ -382,3 +382,5 @@ div.column {
   float: left;
   margin-right: 2%;
 }
+
+.clear {clear: both;}
