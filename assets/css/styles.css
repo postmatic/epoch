@@ -401,6 +401,12 @@ div.column {
   border-bottom: 1px solid #ddd;
 }
 
+#epoch-splash {
+  background: #424242;
+  margin: 0 -25px 45px -25px;
+  padding: 15px 0
+}
+
 #epoch-splash h1 {
   background: url(../image/epoch-logo-x.png) top right no-repeat;
   width: 225px;
@@ -411,6 +417,8 @@ div.column {
 
 #epoch-splash h2 {
   text-align: center;
+  color: #fff;
+  font-size: 240%;
 }
 
 #epoch-splash span {
