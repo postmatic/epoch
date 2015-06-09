@@ -38,7 +38,7 @@
 
 
 <h2 class="clear">Free Addons and Recommended Plugins</h2>
-Epoch is built for compatibility. Just like <a href="http://gopostmatic.com">Postmatic</a>. It uses fully native WordPress commenting, plays nicely with most all other commenting plugins, and employs WordPress coding standards. 
+<p>Epoch is built for compatibility. Just like <a href="http://gopostmatic.com">Postmatic</a>. It uses fully native WordPress commenting, plays nicely with most all other commenting plugins, and employs WordPress coding standards. </p>
 
 <div class="column">
 <h4>Fight Spam</h4>
@@ -55,5 +55,5 @@ Epoch is built for compatibility. Just like <a href="http://gopostmatic.com">Pos
 <p style="text-align: left;">Let your commenters leave rich-text comments with beautiful simplicity. Epoch works out of the box with <a href="https://wordpress.org/plugins/wp-markdown/">WP-Markdown</a>.</p>
 </div>
 
-<h3>Want to jump into the ring?</h3>
-This is just 1.0. We're hoping the WordPress community will lend strength, ideas, and code to this project. That's why we've kept it open-source. You can find Epoch on Github and jump right in. We can't wait to see where commenting goes next.
+<h3 class="clear">Want to help build Epoch?</h3>
+<p>This is just 1.0. We're hoping the WordPress community will lend strength, ideas, and code to this project. That's why we've kept it open-source. You can find Epoch on Github and jump right in. We can't wait to see where commenting goes next.</p>
