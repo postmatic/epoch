@@ -270,6 +270,10 @@ ul.epoch-comment-actions {
 
 }
 
+@media only screen and (max-width : 550px) {
+#wmd-button-barcomment,#wmd-previewcomment {display: none !important;}
+}
+
 /*wordpress social login*/
 
 .wp-social-login-widget {
