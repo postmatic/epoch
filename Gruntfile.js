@@ -15,7 +15,8 @@ module.exports = function (grunt) {
         '!phpunit.xml',
         '!bin/**',
         '!tests/**',
-        '!composer.lock'
+        '!composer.lock',
+        '!wp-org-assets/**'
     ];
 
     // Project configuration.
@@ -54,6 +55,13 @@ module.exports = function (grunt) {
                 },
                 src: copy_files,
                 dest: 'releases/<%= pkg.name %>/tags/<%= pkg.version %>/'
+            },
+            svn_assets: {
+                options : {
+                    mode: true
+                },
+                src: [ 'wp-org-assets/**' ],
+                dest: 'releases/<%= pkg.name %>/assets/'
             }
         },
         run: {
@@ -128,7 +136,7 @@ module.exports = function (grunt) {
                 }]
             },
             readme: {
-                src: [ 'reamde.txt' ],
+                src: [ 'readme.txt' ],
                 overwrite: true,
                 replacements: [{
                     from: /Stable Tag:\s*(.*)/,
@@ -213,7 +221,7 @@ module.exports = function (grunt) {
     grunt.registerTask( 'pre_vcs', [ 'shell:composer', 'version_number', 'copy', 'compress' ] );
     grunt.registerTask( 'do_git', [ 'gitadd', 'gitcommit', 'gittag', 'gitpush' ] );
     grunt.registerTask( 'just_build', [  'shell:composer', 'copy', 'compress' ] );
-    grunt.registerTask( 'do_svn', [ 'svn_checkout', 'copy:svn_trunk', 'copy:svn_tag', 'push_svn' ] );
+    grunt.registerTask( 'do_svn', [ 'svn_checkout', 'copy:svn_trunk', 'copy:svn_tag', 'copy:svn_assets', 'push_svn' ] );
 
     grunt.registerTask( 'release', [ 'default', 'pre_vcs', 'do_git', 'do_svn', 'clean:post_build' ] );
 
