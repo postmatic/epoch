@@ -189,7 +189,7 @@ div.epoch-single-comment.epoch-success {
 
 #epoch-comments textarea, textarea#comment {
 	background: #fff !important;
-	width: 97%;
+	width: 97% !important;
 	border: 1px solid #ddd !important;
 }
 
