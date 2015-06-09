@@ -10,10 +10,10 @@
  */
 ?>
 
-<div class="epoch-splash">
+<div class="epoch-splash" id="splash-postmatic">
 <img id="love" src="<?php echo EPOCH_URL; ?>assets/image/postmatic.png" />
 
-<h1>Install Postmatic to engage your readers at their own pace with 100% email-based commenting</h1>
+<h2>Install Postmatic to engage your readers at their own pace with 100% email-based commenting</h2>
 </div>
 
 <h3>The days of one-way notifications are over. It’s time to let them hit reply.</h3>
