@@ -11,7 +11,7 @@
 ?>
 <div class="epoch-splash">
 <h1><span>Welcome to Epoch</span></h1>
-<h2>Commenting Perfected <br /><em>Brought to you by Postmatic</em></h2>
+<h2>Commenting Perfected<br /><small>A magical accompaniment by Postmatic</small></h2>
 </div>
 
 <h2>What Epoch Does</h2>
