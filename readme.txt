@@ -12,10 +12,6 @@ Epoch - 100% realtime chat and commenting in a tiny little package that is fully
 
 == Description ==
 
-= Heads up! This is early beta software. =
-
-Epoch is in very early-stage beta. Maybe even alpha. It's not production ready (just look at that version number!) unless you are brave, smart, and foolish. Please don't trash our star rating with premature reviews. Download it. Kick the tires. [Help out if you can](https://github.com/postmatic/epoch). Let's perfect commenting together.
-
 Epoch is a new plugin from the creators of [Postmatic](http://gopostmatic.com). The goal: To provide a realtime commenting/chat experience using fully native comments while being compatible with page caching, cdns, mobile, other comment plugins, and seo best practices. A tall order? For sure. Try it out.
 
 Epoch provides an amazing commenting experience to your users **while improving site performance at the same time**.
