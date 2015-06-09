@@ -30,8 +30,11 @@
 		</li>
 		<li class="{{#is _current_tab value="#epoch-panel-postmatic"}}active {{/is}}epoch-nav-tab">
 			<a href="#epoch-panel-postmatic" id="epoch-go-postmatic">
-				<?php _e('Epoch + Postmatic', 'epoch') ; ?>
+				<?php _e('Enable free email commenting with Postmatic', 'epoch') ; ?>
 			</a>
+		</li>
+		<li id="postmatic-brand">
+			<a href="http://gopostmatic.com" target="_blank"><span>Brought to you by Postmatic</span></a>
 		</li>
 	</ul>
 
@@ -54,9 +57,6 @@
 	<input type="hidden" value="{{_current_tab}}" name="_current_tab" id="epoch-active-tab">
 
 		<div id="epoch-panel-options" class="epoch-editor-panel" {{#is _current_tab value="#epoch-panel-options"}}{{else}} style="display:none;" {{/is}}>		
-		<h4>
-			<?php _e('Options', 'epoch') ; ?>
-		</h4>
 
 		<?php
 			//main options
@@ -65,9 +65,6 @@
 	</div>
 
 	<div id="epoch-panel-about" class="epoch-editor-panel" {{#is _current_tab value="#epoch-panel-about"}}{{else}} style="display:none;" {{/is}}>
-		<h4>
-			<?php _e('About', 'epoch') ; ?>
-		</h4>
 		<?php
 			// about panel
 			include EPOCH_PATH . 'includes/templates/about-panel.php';
@@ -75,9 +72,6 @@
 	</div>
 
 	<div id="epoch-panel-postmatic" class="epoch-editor-panel" {{#is _current_tab value="#epoch-panel-postmatic"}}{{else}} style="display:none;" {{/is}}>
-		<h4>
-			<?php _e('Epoch + Postmatic', 'epoch') ; ?>
-		</h4>
 		<?php
 			// postmatic panel
 			include EPOCH_PATH . 'includes/templates/postmatic-panel.php';
