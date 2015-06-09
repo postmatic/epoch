@@ -442,6 +442,13 @@ div.column {
   color: #fff;
 }
 
+#splash-postmatic h1 {
+   background: url(../image/postmatic-white.png) top right no-repeat;
+  width: 432px;
+  height: 164px;
+  background-size: 432px;
+}
+
 #postmatic-brand span {
   display: none;
 }
