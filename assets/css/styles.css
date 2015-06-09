@@ -407,7 +407,7 @@ div.column {
 .epoch-splash {
   background: #424242;
   margin: 0 -20px 45px -25px;
-  padding: 45px 0
+  padding: 45px;
 } 
 
 .epoch-splash h1 {
