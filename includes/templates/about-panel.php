@@ -55,7 +55,7 @@
 <p style="text-align: left;">Let your commenters leave rich-text comments with beautiful simplicity. Epoch works out of the box with <a href="https://wordpress.org/plugins/wp-markdown/">WP-Markdown</a>.</p>
 </div>
 
-<h3>Contributors</h3>
+<h3 style=-"clear;">Contributors</h3>
 <p>Epoch is a collaboration between <a href="http://gopostmatic.com">Postmatic</a> and <a href="http://calderawp.com">CalderaWP</a>. We knew WordPress commenting could be better. Together we made it happen.</p>
 
 <p>This is just 1.0. We're hoping the WordPress community will lend strength, ideas, and code to this project. That's why we've kept it open-source. You can find Epoch on Github and jump right in. We can't wait to see where commenting goes next.</p>
