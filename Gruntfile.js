@@ -58,7 +58,9 @@ module.exports = function (grunt) {
             },
             svn_assets: {
                 options : {
-                    mode: true
+                    mode: true,
+                    expand: true,
+                    flatten: true
                 },
                 src: [ 'wp-org-assets/**' ],
                 dest: 'releases/<%= pkg.name %>/assets/'
