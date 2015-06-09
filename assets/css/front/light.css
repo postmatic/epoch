@@ -312,6 +312,7 @@ ul.epoch-comment-actions {
 div#wmd-button-barcomment {
   clear: both !important;
   padding-bottom: 5px !important;
+  filter: grayscale (100%);
 }
 
 .wmd-preview {
