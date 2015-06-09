@@ -16,7 +16,7 @@
 <h2>Install Postmatic to engage your readers at their own pace with 100% email-based commenting</h2>
 </div>
 
-<h3>The days of one-way notifications are over. It’s time to let them hit reply.</h3>
+<h3 style="margin-bottom: 25px;">The days of one-way notifications are over. It’s time to let them hit reply.</h3>
 
 <iframe src="//fast.wistia.net/embed/iframe/e9ylk540qv" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="500" height="309" style="float: right;margin:0 0 25px 25px;"></iframe>
 <p>Increased engagement is just the natural result when you make it easy for your readers to be a part of the conversation.</p>
