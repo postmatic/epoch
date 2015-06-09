@@ -9,6 +9,9 @@
  * Copyright 2015 Transitive, Inc.
  */
 ?>
+
+<img id="love" src="../image/love.png" width="313" />
+
 <h1>Engage your readers at their own pace with 100% email-based commenting</h1>
 <h3>The days of one-way notifications are over. It’s time to let them hit reply.</h3>
 <p>Increased engagement is just the natural result when you make it easy for your readers to be a part of the conversation.</p>

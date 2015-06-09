@@ -405,7 +405,7 @@ div.column {
 
 #epoch-splash {
   background: #424242;
-  margin: 0 -25px 45px -25px;
+  margin: 0 -20px 45px -25px;
   padding: 45px 0
 } 
 
@@ -445,4 +445,9 @@ div.column {
   margin: 12px 0 0 0;
   display: block; 
   padding: 0;
+}
+
+#love {
+  margin: 45px auto;
+  display: block;
 }
