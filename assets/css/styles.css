@@ -401,9 +401,20 @@ div.column {
   border-bottom: 1px solid #ddd;
 }
 
-#epoch-panel-about {
-  background: url(../image/logo.png) top right no-repeat;
-  background-size: 147px;
+#epoch-splash h1 {
+  background: url(../image/epoch-logo-x.png) top right no-repeat;
+  width: 225px;
+  height: 164px;
+  background-size: 225px;
+  margin: 0 auto;
+}
+
+#epoch-splash h2 {
+  text-align: center;
+}
+
+#epoch-splash span {
+  display: none;
 }
 
 #postmatic-brand {

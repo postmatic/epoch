@@ -9,8 +9,10 @@
 * Copyright 2015 Transitive, Inc.
 */
 ?>
-<h1 id="epoch-splash"><span>Welcome to Epoch</span></h1>
+<div id="epoch-splash">
+<h1><span>Welcome to Epoch</span></h1>
 <h2>Commenting Perfected - brought to you by Postmatic</h2>
+</div>
 
 <h2>What Epoch Does</h2>
 <p>In a nutshell: <strong>Epoch makes commenting <em>fun</em> again.</strong>. <em>Espcially when you combine it with <a href="http://gopostmatic.com">Postmatic</a>.</em></p>
