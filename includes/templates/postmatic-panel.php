@@ -11,7 +11,7 @@
 ?>
 
 <div class="epoch-splash" id="splash-postmatic">
-<img id="love" src="<?php echo EPOCH_URL; ?>assets/image/postmatic.png" />
+<h1><span>Postmatic</span></h1>
 
 <h2>Install Postmatic to engage your readers at their own pace with 100% email-based commenting</h2>
 </div>

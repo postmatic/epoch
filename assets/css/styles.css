@@ -434,6 +434,14 @@ div.column {
   margin: 0;
 }
 
+#splash-postmatic {
+  background: #52BFC5;
+}
+
+#splash-postmatic h2 {
+  color: #fff;
+}
+
 #postmatic-brand span {
   display: none;
 }
