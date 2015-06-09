@@ -395,6 +395,7 @@ div.column {
 
 #epoch-main-form h1, #epoch-main-form h2 {
   color:#28B0C8;
+  line-height: normal;
 }
 
 #epoch-main-form h3 {
@@ -403,13 +404,13 @@ div.column {
   margin-bottom: 10px;
 }
 
-#epoch-splash {
+.epoch-splash {
   background: #424242;
   margin: 0 -20px 45px -25px;
   padding: 45px 0
 } 
 
-#epoch-splash h1 {
+.epoch-splash h1 {
   background: url(../image/epoch-logo-x.png) top right no-repeat;
   width: 225px;
   height: 164px;
@@ -417,13 +418,13 @@ div.column {
   margin: 0 auto;
 }
 
-#epoch-splash h2 {
+.epoch-splash h2 {
   text-align: center;
   color: #fff;
   font-size: 240%;
 }
 
-#epoch-splash span {
+.epoch-splash span {
   display: none;
 }
 
@@ -448,6 +449,6 @@ div.column {
 }
 
 #love {
-  margin: 45px auto;
+  margin: 45px auto;  
   display: block;
 }

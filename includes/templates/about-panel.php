@@ -9,7 +9,7 @@
 * Copyright 2015 Transitive, Inc.
 */
 ?>
-<div id="epoch-splash">
+<div class="epoch-splash">
 <h1><span>Welcome to Epoch</span></h1>
 <h2>Commenting Perfected - brought to you by Postmatic</h2>
 </div>
