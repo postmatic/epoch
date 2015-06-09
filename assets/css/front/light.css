@@ -261,7 +261,7 @@ ul.epoch-comment-actions {
 	margin-right: 1% !important; 
 }
 
-#epoch-comments div.comment-respond p.comment-form-comment, #epoch-comments div.comment-respond p.comment-form-url {
+#epoch-comments div.comment-respond p.comment-form-comment, #epoch-comments div.comment-respond p.comment-form-url input {
 	width: 99% !important;
 }
 
