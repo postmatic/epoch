@@ -203,10 +203,11 @@ h4 > small.description {
 
 .epoch-config-group {
   margin-bottom: 6px;
+  margin-top: 25px;
 }
 .epoch-config-group > label {
   display: inline-block;
-  margin: 6px 0 0;
+  margin: 0;
   vertical-align: top;
   width: 180px;
 }
@@ -398,8 +399,7 @@ div.column {
 
 #epoch-main-form h3 {
   color: #BB4F51;
-  font-size: 140%;
-  font-variant: small-caps;
+  font-size: 150%;
   margin-bottom: 10px;
 }
 
