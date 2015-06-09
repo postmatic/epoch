@@ -376,3 +376,9 @@ h4 > small.description {
 .epoch-main-headercaldera .loading{
 	top: -2px;
 }
+
+div.column {
+  width: 30%;
+  float: left;
+  margin-right: 2%;
+}
