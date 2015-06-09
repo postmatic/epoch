@@ -420,7 +420,7 @@ div.column {
 
 .epoch-splash h2 {
   text-align: center;
-  color: #fff;
+  color: #fff !important;
   font-size: 240%;
 }
 

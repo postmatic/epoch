@@ -56,6 +56,6 @@
 </div>
 
 <h3 class="clear">Contributors</h3>
-<p>Epoch is a collaboration between <a href="http://gopostmatic.com">Postmatic</a> and <a href="http://calderawp.com">CalderaWP</a>. We knew WordPress commenting could be better. Together we made it happen. Need a hand with developing your own dream plugin? Check out <a href="https://calderawp.com/custom-plugin-development/">CalderaWP</a>.</p>
+<p>Epoch (we like to pronounce it 'epic') is a collaboration between <a href="http://gopostmatic.com">Postmatic</a> and <a href="http://calderawp.com">CalderaWP</a>. We knew WordPress commenting could be better. Together we made it happen. Need a hand with developing your own dream plugin? Check out <a href="https://calderawp.com/custom-plugin-development/">CalderaWP</a>.</p>
 
 <p>This is just 1.0. We're hoping the WordPress community will lend strength, ideas, and code to this project. That's why we've kept it open-source. You can find Epoch on Github and jump right in. We can't wait to see where commenting goes next.</p>
