@@ -15,24 +15,25 @@
 </div>
 
 <h2>What Epoch Does</h2>
-<p>In a nutshell: <strong>Epoch makes commenting <em>fun</em> again.</strong>. <em>Espcially when you combine it with <a href="http://gopostmatic.com">Postmatic</a>.</em></p>
+<p>In a nutshell: <strong>Epoch makes commenting fun again.</strong>. <em>Espcially when you combine it with <a href="http://gopostmatic.com">Postmatic</a> (it's free!).</em></p>
 <div class="column">
-<h3>Fixes The Commenting User Experience</h3>
-Comment forms and display are often neglected by theme developers. We've been there ourselves. The functions and templates involved in WordPress commenting are complicated, frustrating, and no fun to work with. Every day we see fantastic themes with ridiculously poor commenting experiences. So that's the first thing Epoch fixes.
+<h3>Epoch makes commenting fun again</h3>
+<p>Comment forms and display are often neglected by theme developers. The functions and templates involved in WordPress commenting are complicated, frustrating, and no fun to use. Every day we see fantastic themes with ridiculously poor commenting experiences. So that's the first thing Epoch fixes.</p>
 
-<strong>Epoch is now overrideing your native comment templates with a simple, elegant, and highly usable experience.</strong>
+<p><strong>Epoch is now overriding your native comment templates with a simple, elegant, and highly usable experience.</strong></p>
 </div>
 
 <div class="column">
-<h3>Enables Insanely Fast Realtime Commenting</h3>
-No more submitting comments and watching the page reload. All Epoch comments are submitted via ajax and post instantly in their proper place within the conversation.
+<h3>Is it commenting... or chat? It's hard to tell.</h3>
+<p>No more submitting comments and watching the page reload. All Epoch comments are submitted via ajax and post instantly in their proper place within the conversation.</p>
 
-And, as it should be, new comments from other users show up like magic automatically. It doesn't matter if they are posted from the web, or from email via <a href="http://gopostmatic.com">Postmatic</a>. The conversation is instantly updated.
+<p>And, as it should be, new comments from other users show up like magic automatically. It doesn't matter if they are posted from the web, or from email via <a href="http://gopostmatic.com">Postmatic</a>. The conversation is instantly updated.</p>
 </div>
 
 <div class="column">
-<h3>With Cacheing, CDN's and Modern Host Support</h3>
-Epoch is hands down the fastest commenting system available for WordPress, all the while supporting page cacheing and CDNs.Epoch comments lazy load into a placeholder container only when needed. This means your post will load instantly, your comments will load instantly, and your server won't blink. And no, we don't use iframes. Your full SEO mojo is in tact.
+<h3>All with cacheing, CDN's and modern host support</h3>
+<p>Epoch is hands down the fastest commenting system available for WordPress, all the while supporting page cacheing and CDNs. Epoch comments lazy load into a placeholder container only when needed. </p>
+<p>This means your post will load instantly, your comments will load instantly, and your server won't blink. And no, we don't use iframes. Your full SEO mojo is in tact.</p>
 </div>
 
 
