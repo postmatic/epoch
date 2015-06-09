@@ -13,6 +13,7 @@
 <h2>Commenting Perfected - brought to you by Postmatic</h2>
 
 <h2>What Epoch Does</h2>
+<p>In a nutshell: <strong>Epoch makes commenting <em>fun</em> again.</strong>. <em>Espcially when you combine it with <a href="http://gopostmatic.com">Postmatic</a>.</em></p>
 <div class="column">
 <h3>Fixes The Commenting User Experience</h3>
 Comment forms and display are often neglected by theme developers. We've been there ourselves. The functions and templates involved in WordPress commenting are complicated, frustrating, and no fun to work with. Every day we see fantastic themes with ridiculously poor commenting experiences. So that's the first thing Epoch fixes.
@@ -36,7 +37,6 @@ Epoch is hands down the fastest commenting system available for WordPress, all t
 <h2 class="clear">Free Addons and Recommended Plugins</h2>
 Epoch is built for compatibility. Just like <a href="http://gopostmatic.com">Postmatic</a>. It uses fully native WordPress commenting, plays nicely with most all other commenting plugins, and employs WordPress coding standards. 
 
-<h3>Recommended plugins that have been tested for compatibility</h3>
 <div class="column">
 <h4>Fight Spam</h4>
 <p style="text-align: left;">Since Epoch is fully WordPress native it plays well with your existing spam deterrents. It'll work seamlessly with <a href="https://wordpress.org/plugins/zero-spam/">WordPress Zero Spam</a>, <a href="https://wordpress.org/plugins/wp-recaptcha/">WP-reCaptcha</a>, and <a href="http://akismet.com">Akismet</a>. That should take care of things.</p>
