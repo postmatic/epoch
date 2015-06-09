@@ -30,11 +30,11 @@
 		</li>
 		<li class="{{#is _current_tab value="#epoch-panel-postmatic"}}active {{/is}}epoch-nav-tab">
 			<a href="#epoch-panel-postmatic" id="epoch-go-postmatic">
-				<?php _e('Epoch + Postmatic', 'epoch') ; ?>
+				<?php _e('Enable email commenting with Postmatic', 'epoch') ; ?>
 			</a>
 		</li>
 		<li id="postmatic-brand">
-			<a href="http://gopostmatic.com"><span>Brought to you by Postmatic</span></a>
+			<a href="http://gopostmatic.com" target="_blank"><span>Brought to you by Postmatic</span></a>
 		</li>
 	</ul>
 

@@ -107,6 +107,7 @@ h4 > small.description {
   float: left;
   margin: 0 0 0 25px;
   padding: 0;
+  width: 80%;
 }
 .epoch-sub-headerbrickroad .epoch-sub-tabs,
 .epoch-sub-headercaldera .epoch-sub-tabs {
@@ -403,4 +404,24 @@ div.column {
 #epoch-panel-about {
   background: url(../image/logo.png) top right no-repeat;
   background-size: 147px;
+}
+
+#postmatic-brand {
+  float: right;
+  display: block;
+  margin: 0;
+}
+
+#postmatic-brand span {
+  display: none;
+}
+
+#postmatic-brand a {
+  background: url(../image/postmatic.png) top right no-repeat; 
+  background-size: 138px;
+  width: 138px;
+  height: 38px;
+  margin: 12px 0 0 0;
+  display: block; 
+  padding: 0;
 }
