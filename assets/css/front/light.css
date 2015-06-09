@@ -179,13 +179,17 @@ div.epoch-single-comment.epoch-success {
 	clear: left !important;
 	width: auto !important;
 	margin: 0 0 0 0 !important;
-	padding: 5px !important;
+	padding: 0px !important;
 	width: 99% !important;
+}
+
+#epoch-comments div.comment-respond textarea {
+	width: 98% !important;
 }
 
 #epoch-comments textarea, textarea#comment {
 	background: #fff !important;
-	width: 100%;
+	width: 97%;
 	border: 1px solid #ddd !important;
 }
 
