@@ -381,6 +381,23 @@ div.column {
   width: 30%;
   float: left;
   margin-right: 2%;
+  margin-bottom: 45px;
 }
 
 .clear {clear: both;}
+
+#epoch-main-form {
+  color: #424242;
+  line-height: 170%;
+}
+
+#epoch-main-form h1, #epoch-main-form h2 {
+  color:#28B0C8;
+}
+
+#epoch-main-form h3 {
+  color: gray;
+  border-bottom: 1px solid #ddd;
+}
+
+#welcome {background: url(assets/image/logo.png);}

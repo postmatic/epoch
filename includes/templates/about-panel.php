@@ -9,6 +9,7 @@
 * Copyright 2015 Transitive, Inc.
 */
 ?>
+<div id="welcome">
 <h1>Welcome to Epoch</h1>
 <h2>Commenting Perfected - brought to you by Postmatic</h2>
 
@@ -38,3 +39,4 @@ Epoch is built for compatibility. Just like Postmatic. It uses fully native Word
 
 <h3>Want to jump into the ring?</h3>
 This is just 1.0. We're hoping the WordPress community will lend strength, ideas, and code to this project. That's why we've kept it open-source. You can find Epoch on Github and jump right in. We can't wait to see where commenting goes next.
+</div>
