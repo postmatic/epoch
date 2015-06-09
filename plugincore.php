@@ -9,7 +9,7 @@
  * @wordpress-plugin
  *
  * Plugin Name: Epoch
- * Version: 0.2.5
+ * Version: 0.3.0
  * Plugin URI:  http://gopostmatic.com/epoch
  * Description: Native commenting made realtime, mobile, CDN and Cache friendly, and full of SEO mojo as well. Commenting perfected.
  * Author:      Postmatic
@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 define('EPOCH_PATH',  plugin_dir_path( __FILE__ ) );
 define('EPOCH_URL',  plugin_dir_url( __FILE__ ) );
-define( 'EPOCH_VER', '0.2.5' );
+define( 'EPOCH_VER', '0.3.0' );
 
 
 
