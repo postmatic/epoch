@@ -12,11 +12,11 @@ h4 > small.description {
 }
 .epoch-main-headerbrickroad,
 .epoch-main-headercaldera {
-	background: none repeat scroll 0 0 #fff;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 8px 0 0 #28b0c8 inset;
-	margin: -10px -20px 10px -22px;
-	padding: 0 0 8px 22px;
-	overflow: hidden;
+  background: none repeat scroll 0 0 #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 8px 0 0 #28b0c8 inset;
+  margin: -10px -20px 10px -22px;
+  padding: 0 0 8px 22px;
+  overflow: hidden;
 }
 .epoch-sub-headercaldera {
   background: none repeat scroll 0 0 #f8f8f8;
@@ -46,14 +46,14 @@ h4 > small.description {
 
 .epoch-main-headerbrickroad h2,
 .epoch-main-headercaldera h2 {
-	color: #4f4f4f;
-	font-size: 20px;
-	font-weight: 300;
+  color: #4f4f4f;
+  font-size: 20px;
+  font-weight: 300;
   float: left;
 }
 .epoch-main-headerbrickroad .logo-icon,
 .epoch-main-headercaldera .logo-icon{
-	color: #28b0c8;
+  color: #28b0c8;
   font-size: 72px;
   margin: -18px 20px 0 -60px;
   opacity: 0.2;
@@ -93,13 +93,13 @@ h4 > small.description {
 }
 .wrap .epoch-main-headerbrickroad .add-new-h2,
 .wrap .epoch-main-headercaldera .add-new-h2{
-	font-size: 12px;
-	margin: 13px;
-	cursor: pointer;
+  font-size: 12px;
+  margin: 13px;
+  cursor: pointer;
 }
 .epoch-main-headerbrickroad .add-new-h2:hover,
 .epoch-main-headercaldera .add-new-h2:hover {
-	background: none repeat scroll 0 0 #28b0c8;
+  background: none repeat scroll 0 0 #28b0c8;
 }
 
 .epoch-main-headerbrickroad .epoch-header-tabs,
@@ -180,11 +180,11 @@ h4 > small.description {
   width: 280px;
 }
 .epoch-side-list > label{
-	display: block;
+  display: block;
 }
 .epoch-side-list > select {
-	width: 100%;
-	margin-bottom: 2px;
+  width: 100%;
+  margin-bottom: 2px;
 }
 
 .epoch-footer-bar {
@@ -338,7 +338,7 @@ h4 > small.description {
   display: none;
 }
 .epoch-card-item .epoch-card-content > h4{
-	margin: 0;
+  margin: 0;
 }
 
 .epoch-card-content input[type="text"] {
@@ -352,10 +352,10 @@ h4 > small.description {
   padding: 0;
 }
 .epoch-card-content .epoch-card-actions .row-actions{
-	visibility: visible;
+  visibility: visible;
 }
 .epoch-card-content .epoch-card-actions .row-actions a{
-	text-decoration: none;
+  text-decoration: none;
 }
 #epoch-save-indicator.loading .spinner{
   display: block;
@@ -374,7 +374,7 @@ h4 > small.description {
   background-color: #28b0c8;
 }
 .epoch-main-headercaldera .loading{
-	top: -2px;
+  top: -2px;
 }
 
 div.column {
@@ -400,4 +400,7 @@ div.column {
   border-bottom: 1px solid #ddd;
 }
 
-#welcome {background: url(assets/image/logo.png);}
+#epoch-panel-about {
+  background: url(../image/logo.png) top right no-repeat;
+  background-size: 147px;
+}
