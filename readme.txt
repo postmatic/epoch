@@ -82,6 +82,13 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 0.5 =
+
+- Added support for WP-Markdown for making a nice little toolbar on your comment form
+- Cleaned up descending order a bit on the presentation side
+- The submit button now greys out if the comment is taking longer than normal to post
+- Pretty icons and screenshots
+
 = 0.2.4 =
 
 - Fixed a bug in descending order sorting. Try again if you love descending.
