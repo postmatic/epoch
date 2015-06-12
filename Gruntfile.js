@@ -164,7 +164,7 @@ module.exports = function (grunt) {
 
             },
             dist: {
-                src: [ 'assets/js/wp-baldrick-full.js', 'assets/js/front/helpers.js', 'assets/js/front/epoch.js' ],
+                src: [ 'assets/js/front/helpers.js', 'assets/js/front/epoch.js' ],
                 dest: 'assets/js/front/epoch-front-compiled.js'
             }
         },
