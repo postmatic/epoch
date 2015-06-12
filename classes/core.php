@@ -115,10 +115,6 @@ class core {
 			add_action( 'wp_enqueue_scripts', array( $this, 'front_stylescripts' ) );
 			add_filter( 'comments_template', array( '\postmatic\epoch\front\layout', 'initial' ), 100 );
 			add_action( 'wp_footer', array( $this, 'print_template' ) );
-
-			//modal disable for now see #45
-			//add_action( 'wp_footer', array( $this, 'print_modals' ) );
-			
 			add_filter( 'the_content', array( '\postmatic\epoch\front\layout', 'width_sniffer' ), 100 );
 
 		}
@@ -221,10 +217,6 @@ class core {
 
 		//load unminified if !SCRIPT_DEBUG
 		if ( ! $min ) {
-			//already registered baldrickJS
-			wp_enqueue_style( 'epoch-baldrick-modals' );
-			wp_enqueue_script( 'epoch-wp-baldrick' );
-
 			//our handlebars helpers
 			wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'epoch-wp-baldrick' ), $version );
 
@@ -237,8 +229,6 @@ class core {
 		wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch{$suffix}.js", array( 'jquery' ), $version, true );
 		if ( 'none' != $theme ) {
 			wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}{$suffix}.css", false, $version );
-		}else{
-			wp_enqueue_style( 'epoch-baldrick-modals' );
 		}
 
 		//make sure we have the comment reply JS from WordPress core.
@@ -299,9 +289,6 @@ class core {
 		//add the options
 		$vars[ 'epoch_options' ] = $this->prepare_epoch_options();
 
-		//add postmatic status
-		$vars = $this->add_postmatic_vars( $vars );
-
 		global $post;
 		if ( is_object( $post ) ) {
 			$vars[ 'post_id' ] = $post->ID;
@@ -357,18 +344,6 @@ class core {
 		);
 	}
 
-	/**
-	 * Print modal content in footer hidden
-	 *
-	 * @uses "wp_footer"
-	 *
-	 * @since 0.0.2
-	 */
-	public function print_modals() {
-		if ( class_exists( '\\Prompt_Subscribe_Widget_Shortcode' ) ) {
-			printf( '<div id="epoch-postmatic-widget" style="display: none;">%1s</div>', layout::postmatic_widget() );
-		}
-	}
 
 	/**
 	 * Register scripts shared between front-end and back-end
@@ -381,37 +356,5 @@ class core {
 		wp_register_style( 'epoch-baldrick-modals', EPOCH_URL . '/assets/css/modals.css' );
 		wp_register_script( 'epoch-wp-baldrick', EPOCH_URL . '/assets/js/wp-baldrick-full.js', array( 'jquery' ) , false, true );
 	}
-
-	/**
-	 * Add the postmatic active/ subscribed variables to the data we are localizing into epoch.js
-	 *
-	 * @since 0.0.5
-	 *
-	 * @access protected
-	 *
-	 * @param array $epoch_vars
-	 *
-	 * @return array
-	 */
-	protected function add_postmatic_vars( $epoch_vars) {
-		global $post;
-
-		$epoch_vars[ 'postmatic_active' ] = 0;
-		$epoch_vars[ 'postmatic_site_subscribed' ] = 0;
-
-		//hard disabling for now. See #45
-		//when putting back, don't forget to rehook $this->print_modals()
-		if ( 1 == 2 && class_exists( '\\Prompt_Site' ) && is_user_logged_in() && is_object( $post ) ) {
-			$user_id     = get_current_user_id();
-			$site        = new \Prompt_Site();
-			$subscribed  = $site->is_subscribed( $user_id );
-			$epoch_vars[ 'postmatic_active' ] = 1;
-			$epoch_vars[ 'postmatic_site_subscribed' ] = (int) $subscribed;
-		}
-
-		return $epoch_vars;
-
-	}
-
 
 }

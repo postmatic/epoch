@@ -104,14 +104,6 @@ jQuery( document ).ready( function ( $ ) {
                             $( 'textarea#comment' ).val( '' );
                             $( '#comment_parent' ).val( '0' );
 
-                            if ( true == epoch_vars.postmatic_active && false == epoch_vars.postmatic_site_subscribed ) {
-                                $( '<div>' ).data( {
-                                    modal: 'postmatic-widget',
-                                    request: '#epoch-postmatic-widget',
-                                    autoload: true
-                                } ).baldrick();
-                            }
-
 
                             //test if WordPress moved the form
                             temp_el = document.getElementById( 'wp-temp-form-div' );

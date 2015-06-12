@@ -5131,14 +5131,6 @@ jQuery( document ).ready( function ( $ ) {
                             $( 'textarea#comment' ).val( '' );
                             $( '#comment_parent' ).val( '0' );
 
-                            if ( true == epoch_vars.postmatic_active && false == epoch_vars.postmatic_site_subscribed ) {
-                                $( '<div>' ).data( {
-                                    modal: 'postmatic-widget',
-                                    request: '#epoch-postmatic-widget',
-                                    autoload: true
-                                } ).baldrick();
-                            }
-
 
                             //test if WordPress moved the form
                             temp_el = document.getElementById( 'wp-temp-form-div' );
@@ -5449,10 +5441,9 @@ jQuery( document ).ready( function ( $ ) {
 
                     parent_el = document.getElementById( 'comment-' + parent_id );
                     if ( null != parent_el ) {
-                        console.log( id );
                         $( html ).appendTo( parent_el );
                     } else {
-                        console.log( 'ID-' + id + ' pid-' + parent_id );
+
                         $( html ).appendTo( app.comments_wrap_el );
                     }
 
