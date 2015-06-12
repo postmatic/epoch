@@ -422,10 +422,9 @@ jQuery( document ).ready( function ( $ ) {
 
                     parent_el = document.getElementById( 'comment-' + parent_id );
                     if ( null != parent_el ) {
-                        console.log( id );
                         $( html ).appendTo( parent_el );
                     } else {
-                        console.log( 'ID-' + id + ' pid-' + parent_id );
+
                         $( html ).appendTo( app.comments_wrap_el );
                     }
 
