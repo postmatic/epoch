@@ -78,7 +78,12 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
-= 0.3.0 =
+= 0.3.1 =
+
+- Cleaned up dependencies a bit
+- Misc bug fixes
+
+= 0.3 =
 
 - Added support for WP-Markdown for making a nice little toolbar on your comment form. This brings the count of officially supported integrations to 4: WP-reCAPTCHA, WP-Markdown, WordPress Social Login, and Postmatic. That's a nice lineup.
 - Cleaned up descending order a bit on the presentation side
