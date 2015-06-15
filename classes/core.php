@@ -220,14 +220,14 @@ class core {
 		//load unminified if !SCRIPT_DEBUG
 		if ( ! $min ) {
 			//our handlebars helpers
-			wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array(), $version );
+			wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'epoch-handlebars' ), $version );
 
 			//main script
 			wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch.js", array( 'jquery', 'visibility' ), $version, true );
 		}
 
 		//main scripts and styles
-		wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch{$suffix}.js", array( 'jquery' ), $version, true );
+		wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch{$suffix}.js", array( 'jquery', 'epoch-handlebars' ), $version, true );
 		if ( 'none' != $theme ) {
 			wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}{$suffix}.css", false, $version );
 		}
