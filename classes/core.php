@@ -216,14 +216,14 @@ class core {
 
 		//handlebars
 		wp_enqueue_script( 'epoch-handlebars', EPOCH_URL . "/assets/js/front/handlebars.js", array(), false, $version );
-		
+
 		//load unminified if !SCRIPT_DEBUG
 		if ( ! $min ) {
 			//our handlebars helpers
 			wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array(), $version );
 
 			//main script
-			wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch.js", array( 'jquery', 'epoch-wp-baldrick', 'visibility' ), $version, true );
+			wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch.js", array( 'jquery', 'visibility' ), $version, true );
 		}
 
 		//main scripts and styles
