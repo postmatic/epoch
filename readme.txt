@@ -78,6 +78,10 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 0.3.2 =
+
+- Just a quick bug fix for handlebars dependencies. Buggers. 
+
 = 0.3.1 =
 
 - Cleaned up dependencies a bit
