@@ -255,14 +255,16 @@ ul.epoch-comment-actions {
 	height: 24px !important;
 }
 
-#epoch-comments div.comment-respond p.comment-form-author,#epoch-comments div.comment-respond p.comment-form-email {
+
+
+#epoch-comments div.comment-respond p.comment-form-author,#epoch-comments div.comment-respond p.comment-form-email,#commentform p.comment-form-author,#commentform p.comment-form-email {
 	float: left !important;
 	width: 49% !important;
 	margin-right: 1% !important; 
 }
 
-#epoch-comments div.comment-respond p.comment-form-comment, #epoch-comments div.comment-respond p.comment-form-url, #epoch-comments div.comment-respond p.comment-form-url input {
-	width: 99% !important;
+#epoch-comments div.comment-respond p.comment-form-comment, #epoch-comments div.comment-respond p.comment-form-url, #epoch-comments div.comment-respond p.comment-form-url input,#commentform p.comment-form-url {
+	width: 100% !important;
 }
 
 .epoch-child div.comment-respond, #epoch-comments #respond {
