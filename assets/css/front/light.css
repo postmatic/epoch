@@ -173,6 +173,7 @@ div.epoch-single-comment.epoch-success {
 	padding: 5px !important;
 	background: #fff !important;
 	border: 1px solid #ddd !important;
+	color: #383838 !important;
 }
 
 #epoch-comments div.comment-respond p.comment-form-comment {
@@ -185,6 +186,7 @@ div.epoch-single-comment.epoch-success {
 
 #epoch-comments div.comment-respond textarea {
 	width: 98% !important;
+	color: #383838 !important;
 }
 
 #epoch-comments textarea, textarea#comment {
