@@ -184,7 +184,7 @@ div.epoch-single-comment.epoch-success {
 	width: 99% !important;
 }
 
-#epoch-comments div.comment-respond textarea {
+#epoch-comments div.comment-respond textarea, #commentform textarea {
 	width: 98% !important;
 	color: #383838 !important;
 }
