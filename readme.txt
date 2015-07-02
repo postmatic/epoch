@@ -78,6 +78,10 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 0.3.4 =
+
+- Quick fix for text color on input fields
+
 = 0.3.3 =
 
 - Improved mobile reply forms
