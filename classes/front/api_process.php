@@ -178,4 +178,8 @@ class api_process {
 
 	}
 
+	public static function get_comment_form( $data ) {
+		return layout::get_form( $data[ 'postID' ] );
+	}
+
 }

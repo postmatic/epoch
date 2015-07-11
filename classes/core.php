@@ -276,6 +276,7 @@ class core {
 			'submit_api_url' => esc_url( vars::api_url( true ) ),
 			'depth' => absint( get_option( 'thread_comments_depth', 5 ) ),
 			'nonce' => vars::make_nonce(),
+			'iframe_css' => EPOCH_URL . "assets/css/front/light-iframe.css"
 		);
 
 		//add all properties from vars class

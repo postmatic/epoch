@@ -46,6 +46,7 @@ jQuery( document ).ready( function ( $ ) {
              * Start the system
              */
             app.set_width();
+            document.body.onload = app.add_iframe();
             app.comments_open();
             app.comment_count( false );
             window.onresize = function(event) {
@@ -60,6 +61,7 @@ jQuery( document ).ready( function ( $ ) {
                     app.comment_count( true );
                 }
             });
+
 
             /**
              * Submit form data
@@ -129,11 +131,7 @@ jQuery( document ).ready( function ( $ ) {
                             //parse if comment isn't in DOM already
                             if ( null == document.getElementById( 'comment-' + comment.comment_ID ) ) {
                                 html = app.parse_comment( comment );
-
-
                                 app.put_comment_in_dom( html, comment.comment_parent, comment.depth, id );
-
-
                                 comment_el = document.getElementById( 'comment-' + comment.comment_ID );
                                 if ( null != comment_el ) {
                                     $( comment_el ).addClass( 'epoch-success' ).delay( 100 ).queue( function ( next ) {
@@ -307,9 +305,7 @@ jQuery( document ).ready( function ( $ ) {
 
                     $.each( parents, function( key, comment ) {
                         html = app.parse_comment( comment );
-
                         app.put_comment_in_dom( html, comment.comment_parent, comment.depth, parseInt( comment.comment_ID, 10 ) );
-
                         if ( is_new ) {
 
                             comment_el = document.getElementById( 'comment-' + comment.comment_ID );
@@ -414,7 +410,7 @@ jQuery( document ).ready( function ( $ ) {
                 if ( 0 == parent_id ) {
                     $( html ).appendTo( app.comments_wrap_el );
                 } else {
-                    html = '<div class="epoch-child child-of-' + parent_id + ' level-' + level + ' ">' + html + '</div>';
+                    html = '<div class="epoch-child child-of-' + parent_id + ' level-' + level + ' ">' + html + '</div>'
 
                     parent_el = document.getElementById( 'comment-' + parent_id );
                     if ( null != parent_el ) {
@@ -455,6 +451,22 @@ jQuery( document ).ready( function ( $ ) {
             app.last_count = count;
             $( app.count_el ).text( count );
         };
+
+        /**
+         * Add our iFrame
+         *
+         * @since 0.3.0
+         */
+        app.add_iframe = function() {
+            app.comment_iframe_el = document.createElement('iframe');
+            app.comment_iframe_el.id = 'epoch-comment-iframe';
+            app.comment_inner_wrap_el = document.createElement('div');
+            app.comment_inner_wrap_el.id = 'epoch-comment-inner-wrap';
+
+            $( app.comment_iframe_el ).appendTo(  app.comments_wrap_el );
+            $(app.comment_iframe_el).contents().find( 'body' ).append( app.comment_inner_wrap_el );
+            $(  app.comment_iframe_el ).contents().find('head').append('<link href="' + epoch_vars.iframe_css + '" rel="stylesheet" type="text/css" />');
+        }
 
 
     })( jQuery, window.Epoch || ( window.Epoch = {} ) );
