@@ -17,11 +17,7 @@ if ( $comment_count['approved'] == 0 and ! comments_open( $post ) ) {
 	return;
 }
 
-$form = sprintf(
-	'<div id="%1s">%2s</div>',
-	esc_attr( \postmatic\epoch\front\vars::$form_wrap ),
-	\postmatic\epoch\front\layout::get_form( $post->ID )
-);
+$form = '';
 
 $comment_area = sprintf(
 	'<div id="%1s"></div>',
