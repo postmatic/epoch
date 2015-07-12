@@ -129,19 +129,24 @@ jQuery( document ).ready( function ( $ ) {
             var count = response.data.count;
             if ( count > app.last_count ) {
                 app.new_comments();
-            }else{
-                console.log( 'no new comments' );
             }
         };
 
         app.setup_form = function( response ) {
-
+            if ( 'DESC' == epoch_vars.epoch_options.order ) {
+                $( app.comments_wrap_el ).append( response.data );
+            }else{
+                $( response.data ).prependTo( app.comments_wrap_el );
+            }
 
 
         };
 
         app.get_comments = function( response ) {
+
             app.comment_response( response.data, false );
+
+
         };
 
         /**
