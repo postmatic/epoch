@@ -6,20 +6,22 @@ jQuery( document ).ready( function ( $ ) {
          * @since 0.0.1
          */
         app.init = function() {
+
             /**
              * Setup some vars
              */
             //element for the form wrap
-            app.form_wrap_el = document.getElementById( epoch_vars.form_wrap );
+            app.form_wrap_el = document.getElementById( epoch_vars.iframe_id ).contentDocument.getElementById( epoch_vars.form_wrap );
+
 
             //element for comments area
-            app.comments_wrap_el = document.getElementById( epoch_vars.comments_wrap );
+            app.comments_wrap_el = document.getElementById( epoch_vars.iframe_id ).contentDocument.getElementById( epoch_vars.comments_wrap );
 
             //element for template
-            app.template_el = document.getElementById( epoch_vars.comments_template_id );
+            app.template_el = document.getElementById( epoch_vars.iframe_id ).contentDocument.getElementById( epoch_vars.comments_template_id );
 
             //element for comment count
-            app.count_el = document.getElementById( epoch_vars.count_id );
+            app.count_el = document.getElementById( epoch_vars.iframe_id ).contentDocument.getElementById( epoch_vars.count_id );
 
             //stores number of comments we have in the DOM.
             app.last_count = 0;
@@ -211,7 +213,7 @@ jQuery( document ).ready( function ( $ ) {
                         app.put_comment_in_dom( html, comment.comment_parent, comment.depth, parseInt( comment.comment_ID, 10 ) );
                         if ( is_new ) {
 
-                            comment_el = document.getElementById( 'comment-' + comment.comment_ID );
+                            comment_el = document.getElementById( epoch_vars.iframe_id ).contentDocument.getElementById( 'comment-' + comment.comment_ID );
                             if ( null != comment_el ) {
                                 $( comment_el ).addClass( 'epoch-success' ).delay( 100 ).queue( function ( next ) {
                                     $( this ).removeClass( 'epoch-success' );
@@ -288,7 +290,7 @@ jQuery( document ).ready( function ( $ ) {
          */
         app.parse_comment = function( comment ) {
             parent_id = comment.comment_parent;
-            source = $( app.template_el ).html();
+            source = $( app.iframe_comment_template ).html();
             template = Handlebars.compile( source );
             html = template( comment );
             return html;
@@ -302,8 +304,7 @@ jQuery( document ).ready( function ( $ ) {
          * @param level The threading level, not needed for top-level comments.
          */
         app.put_comment_in_dom = function( html, parent_id, level, id ) {
-
-            if ( 0 == comment.comment_parent && 'DESC' == epoch_vars.epoch_options.order ) {
+            if ( 0 == parent_id && 'DESC' == epoch_vars.epoch_options.order ) {
                 first_child = app.comment_inner_wrap_el.firstChild;
                 new_el = document.createElement( 'div' );
                 new_el.innerHTML = html;
@@ -315,7 +316,7 @@ jQuery( document ).ready( function ( $ ) {
                 } else {
                     html = '<div class="epoch-child child-of-' + parent_id + ' level-' + level + ' ">' + html + '</div>'
 
-                    parent_el = document.getElementById( 'comment-' + parent_id );
+                    parent_el = document.getElementById( epoch_vars.iframe_id ).contentDocument.getElementById( 'comment-' + parent_id );
                     if ( null != parent_el ) {
                         $( html ).appendTo( parent_el );
                     } else {
@@ -394,9 +395,9 @@ jQuery( document ).ready( function ( $ ) {
 
 
                                 //test if WordPress moved the form
-                                temp_el = document.getElementById( 'wp-temp-form-div' );
+                                temp_el = document.getElementById( epoch_vars.iframe_id ).contentDocument.getElementById( 'wp-temp-form-div' );
                                 if ( null != temp_el ) {
-                                    respond_el = document.getElementById( 'respond' );
+                                    respond_el = document.getElementById( epoch_vars.iframe_id ).contentDocument.getElementById( 'respond' );
                                     $( respond_el ).insertAfter( temp_el );
 
                                 }
@@ -412,10 +413,10 @@ jQuery( document ).ready( function ( $ ) {
                                 }
 
                                 //parse if comment isn't in DOM already
-                                if ( null == document.getElementById( 'comment-' + comment.comment_ID ) ) {
+                                if ( null == document.getElementById( epoch_vars.iframe_id ).contentDocument.getElementById( 'comment-' + comment.comment_ID ) ) {
                                     html = app.parse_comment( comment );
                                     app.put_comment_in_dom( html, comment.comment_parent, comment.depth, id );
-                                    comment_el = document.getElementById( 'comment-' + comment.comment_ID );
+                                    comment_el = document.getElementById( epoch_vars.iframe_id ).contentDocument.( 'comment-' + comment.comment_ID );
                                     if ( null != comment_el ) {
                                         $( comment_el ).addClass( 'epoch-success' ).delay( 100 ).queue( function ( next ) {
                                             $( this ).removeClass( 'epoch-success' );

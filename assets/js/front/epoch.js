@@ -58,9 +58,9 @@ jQuery( document ).ready( function ( $ ) {
         app.add_iframe = function() {
             //create iFrame
             app.comment_iframe_el = document.createElement('iframe');
-            app.comment_iframe_el.id = 'epoch-comment-iframe';
+            app.comment_iframe_el.id = epoch_vars.iframe_id;
             app.comment_inner_wrap_el = document.createElement('div');
-            app.comment_inner_wrap_el.id = 'epoch-comment-inner-wrap';
+            app.comment_inner_wrap_el.id = epoch_vars.inner_wrap_id;
 
             //append iFrame to DOM
             $( app.comment_iframe_el ).appendTo(  app.comments_wrap_el );
@@ -68,13 +68,10 @@ jQuery( document ).ready( function ( $ ) {
             //add the element inside the iFrame to put comments in
             $( app.comment_iframe_el ).contents().find( 'body' ).append( app.comment_inner_wrap_el );
 
-
-
             //add JS inside
-            var script = document.createElement( 'script') ;
-            script.setAttribute('src', epoch_vars.iframe_js );
-            script.setAttribute('type', 'text/javascript' );
-            $( app.comment_iframe_el ).contents().find('head').append( script );
+            app.add_script( epoch_vars.iframe_visibility );
+            app.add_script( epoch_vars.iframe_handlebars );
+            app.add_script( epoch_vars.iframe_js );
 
             //add CSS inside
             var style = document.createElement( 'link' );
@@ -84,6 +81,13 @@ jQuery( document ).ready( function ( $ ) {
             $( app.comment_iframe_el ).contents().find('head').append( style );
 
 
+        };
+
+        app.add_script( src ) {
+            var script = document.createElement( 'script' ) ;
+            script.setAttribute('src', src );
+            script.setAttribute('type', 'text/javascript' );
+            $( app.comment_iframe_el ).contents().find('head').append( script );
         }
 
 

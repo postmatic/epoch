@@ -122,6 +122,10 @@ class vars {
 	 */
 	static public $sniffer = 'epoch-width-sniffer';
 
+	static public $iframe_id = 'epoch-comment-iframe';
+
+	static public $inner_wrap_id = 'epoch-comment-inner-wrap';
+
 	/**
 	 * Create a nonce
 	 *

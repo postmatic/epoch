@@ -114,7 +114,7 @@ class core {
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'front_stylescripts' ) );
 			add_filter( 'comments_template', array( '\postmatic\epoch\front\layout', 'initial' ), 100 );
-			add_action( 'wp_footer', array( $this, 'print_template' ) );
+			//add_action( 'wp_footer', array( $this, 'print_template' ) );
 			add_filter( 'the_content', array( '\postmatic\epoch\front\layout', 'width_sniffer' ), 100 );
 
 		}
@@ -211,12 +211,6 @@ class core {
 		}
 
 
-		//visibility API
-		wp_enqueue_script( 'visibility', '//cdnjs.cloudflare.com/ajax/libs/visibility.js/1.2.1/visibility.min.js' );
-
-		//handlebars
-		wp_enqueue_script( 'epoch-handlebars', EPOCH_URL . "/assets/js/front/handlebars.js", array(), false, $version );
-
 		//load unminified if !SCRIPT_DEBUG
 		if ( ! $min ) {
 			//our handlebars helpers
@@ -278,6 +272,10 @@ class core {
 			'nonce' => vars::make_nonce(),
 			'iframe_css' => EPOCH_URL . "assets/css/front/light-iframe.css",
 			'iframe_js' => EPOCH_URL . "assets/js/front/epoch-iframe.js",
+			'iframe_handlebars' => EPOCH_URL . "/assets/js/front/handlebars.js",
+			'iframe_visibility' => '//cdnjs.cloudflare.com/ajax/libs/visibility.js/1.2.1/visibility.min.js',
+			'iframe_comment_template' => layout::comments_template()
+
 		);
 
 		//add all properties from vars class
