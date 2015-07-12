@@ -217,11 +217,11 @@ class core {
 			wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'epoch-handlebars' ), $version );
 
 			//main script
-			wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch.js", array( 'jquery', 'visibility' ), $version, true );
+			wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch.js", array( 'jquery' ), $version, true );
 		}
 
 		//main scripts and styles
-		wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch{$suffix}.js", array( 'jquery', 'epoch-handlebars' ), $version, true );
+		wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch{$suffix}.js", array( 'jquery' ), $version, true );
 		if ( 'none' != $theme ) {
 			wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}{$suffix}.css", false, $version );
 		}
@@ -271,9 +271,9 @@ class core {
 			'depth' => absint( get_option( 'thread_comments_depth', 5 ) ),
 			'nonce' => vars::make_nonce(),
 			'iframe_css' => EPOCH_URL . "assets/css/front/light-iframe.css",
-			'iframe_js' => EPOCH_URL . "assets/js/front/epoch-iframe.js",
-			'iframe_handlebars' => EPOCH_URL . "/assets/js/front/handlebars.js",
-			'iframe_visibility' => '//cdnjs.cloudflare.com/ajax/libs/visibility.js/1.2.1/visibility.min.js',
+			'iframe_handlebars' => EPOCH_URL . "assets/js/front/handlebars.js",
+			'iframe_handlebars_helpers' => EPOCH_URL . "assets/js/front/helpers.js",
+			'iframe_visibility' => EPOCH_URL . "assets/js/front/visibility.js",
 			'iframe_comment_template' => layout::comments_template()
 
 		);
