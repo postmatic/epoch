@@ -2,26 +2,26 @@
 jQuery( document ).ready( function ( $ ) {
 
     (function ( $, app ) {
+        //element for comments area
+        app.comments_wrap_el = document.getElementById( epoch_vars.wrap_id );
+
+        //element for template
+        app.template_el = document.getElementById( epoch_vars.comments_template_id );
+
+        //highest ID of comment we've parsed so far
+        app.highest_id = 0;
+
+        //count # of comments we have
+        app.last_count = 0;
+
+        app.shut_it_off = false;
+
         /**
          * Bootstrap
          *
          * @since 0.0.1
          */
         app.init = function() {
-            //element for comments area
-            app.comments_wrap_el = document.getElementById( epoch_vars.wrap_id );
-
-            //element for template
-            app.template_el = document.getElementById( epoch_vars.comments_template_id );
-
-            //highest ID of comment we've parsed so far
-            app.highest_id = 0;
-
-            //count # of comments we have
-            app.last_count = 0;
-
-            app.shit_it_off = false;
-
             /**
              * Start it up!
              */
@@ -64,42 +64,55 @@ jQuery( document ).ready( function ( $ ) {
             //create iFrame
             app.comment_iframe_el = document.createElement('iframe');
             app.comment_iframe_el.id = epoch_vars.iframe_id;
-            app.comment_inner_wrap_el = document.createElement('div');
-            app.comment_inner_wrap_el.id = epoch_vars.inner_wrap_id;
+
 
             //append iFrame to DOM
-            $( app.comment_iframe_el ).appendTo(  app.comments_wrap_el );
+            $( app.comment_iframe_el ).appendTo( app.comments_wrap_el );
 
-            //add the element inside the iFrame to put comments in
-            $( app.comment_iframe_el ).contents().find( 'body' ).append( app.comment_inner_wrap_el );
+            $( 'iframe#epoch-comment-iframe').ready(function() {
 
-            //add JS inside
-            app.add_script( epoch_vars.iframe_visibility );
-            app.add_script( epoch_vars.iframe_handlebars );
-            app.add_script( epoch_vars.iframe_handlebars_helpers );
 
-            //add CSS inside
-            var style = document.createElement( 'link' );
-            style.setAttribute( 'href', epoch_vars.iframe_css );
-            style.setAttribute( 'rel', 'stylesheet' );
-            style.setAttribute( 'type', 'text/css' );
-            $( app.comment_iframe_el ).contents().find('head').append( style );
+                //add JS inside
+                app.add_script( epoch_vars.iframe_js );
 
-            //define the container we use inside the iFrame
-            app.inner = $( app.comment_iframe_el ).contents().find( app.comment_inner_wrap_el );
 
-            //OK, now really go.
-            app.epoch();
+                app.add_script( epoch_vars.iframe_visibility );
+                app.add_script( epoch_vars.iframe_handlebars );
+                app.add_script( epoch_vars.iframe_handlebars_helpers );
+
+                //add CSS inside
+                var style = document.createElement( 'link' );
+                style.setAttribute( 'href', epoch_vars.iframe_css );
+                style.setAttribute( 'rel', 'stylesheet' );
+                style.setAttribute( 'type', 'text/css' );
+                $( app.comment_iframe_el ).contents().find('head').append( style );
+
+                $( app.comment_iframe_el ).contents().find('body' ).append( '<div id="' + epoch_vars.comments_wrap + '">hats</div><div id="'+  epoch_vars.form_wrap + '"></div>' );
+
+                app.epoch();
+            });
+
+
+
+
+
+
         };
+
+
+
+
+
 
         /**
          * Run the Epoch comment system inside of the iFrame
          */
         app.epoch = function() {
-            app.request( 'get_comment_form', app.setup_form, app.nothing );
+
             app.request( 'comment_count', function ( response ) {
                 app.last_count = response.data.count;
             }, app.nothing );
+            app.request( 'get_comment_form', app.setup_form, app.nothing );
             app.request( 'get_comments', app.get_comments, function() {
                     $(app.inner ).html( 'No comments found' );
             });
@@ -132,16 +145,34 @@ jQuery( document ).ready( function ( $ ) {
             }
         };
 
+        /**
+         * Setup the form inside iFrame
+         *
+         * @since 0.4.0
+         *
+         * @param response
+         */
         app.setup_form = function( response ) {
-            if ( 'DESC' == epoch_vars.epoch_options.order ) {
-                $( app.comments_wrap_el ).append( response.data );
-            }else{
-                $( response.data ).prependTo( app.comments_wrap_el );
-            }
+            console.log( response.data );
+            console.log( $( app.comment_iframe_el ).contents().find( epoch_vars.form_wrap ) );
+           // $( app.comment_iframe_el ).contents().find( epoch_vars.form_wrap ).append( response.data );
+            //$( 'iframe#epoch-comment-iframe' ).append(response.data );
+            var  el = document.createElement( 'div' );
+            el.innerHTML = response.data;
+            $( app.comment_iframe_el ).contents().find( epoch_vars.form_wrap ).append( el );
+            $( 'iframe#epoch-comment-iframe' ).append( el );
+            console.log( $( app.comment_iframe_el ).contents().find( epoch_vars.form_wrap ) );
 
 
         };
 
+        /**
+         * Pase through to comment response of succes of get_comments action
+         *
+         * @since 0.4.0
+         *
+         * @param response
+         */
         app.get_comments = function( response ) {
 
             app.comment_response( response.data, false );

@@ -271,6 +271,7 @@ class core {
 			'depth' => absint( get_option( 'thread_comments_depth', 5 ) ),
 			'nonce' => vars::make_nonce(),
 			'iframe_css' => EPOCH_URL . "assets/css/front/light-iframe.css",
+			'iframe_js' => EPOCH_URL . "assets/js/front/epoch-iframe.js",
 			'iframe_handlebars' => EPOCH_URL . "assets/js/front/handlebars.js",
 			'iframe_handlebars_helpers' => EPOCH_URL . "assets/js/front/helpers.js",
 			'iframe_visibility' => EPOCH_URL . "assets/js/front/visibility.js",
