@@ -105,8 +105,8 @@ class core {
 	 *
 	 * @since 0.0.8
 	 */
-	public function boot_epoch_front() {
-		if ( is_singular() ) {
+	public function boot_epoch_front( $query ) {
+		if ( false !== $query->is_single ) {
 			$options = options::get_display_options();
 			if ( 'none' == $options[ 'theme' ] ) {
 				vars::$wrap_id = 'comments';
