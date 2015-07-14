@@ -83,6 +83,8 @@ class core {
 
 			//load the front-end if on single post
 			add_action( 'parse_query', array( $this, 'boot_epoch_front' ) );
+			// inner comment
+			add_filter( 'template_redirect', array( $this, 'boot_epoch_front_comment' ) );
 
 		}
 
@@ -93,6 +95,7 @@ class core {
 				update_option( 'epoch_ver', EPOCH_VER );
 
 			}
+			add_rewrite_endpoint( 'epoch', EP_PERMALINK | EP_PAGES );
 		});
 
 
@@ -112,7 +115,7 @@ class core {
 				vars::$wrap_id = 'comments';
 			}
 
-			add_action( 'wp_enqueue_scripts', array( $this, 'front_stylescripts' ) );
+			//add_action( 'wp_enqueue_scripts', array( $this, 'front_stylescripts' ) );
 			add_filter( 'comments_template', array( '\postmatic\epoch\front\layout', 'initial' ), 100 );
 			add_action( 'wp_footer', array( $this, 'print_template' ) );
 			add_filter( 'the_content', array( '\postmatic\epoch\front\layout', 'width_sniffer' ), 100 );
@@ -121,6 +124,23 @@ class core {
 		
 	}
 
+	/**
+	 * Load Epoch's front-end template
+	 *
+	 *
+	 * @since 0.0.8
+	 */
+	public function boot_epoch_front_comment( $template ) {
+		global $wp_query;
+		if ( ! isset( $wp_query->query_vars['epoch'] ) || ! is_singular() ){
+			return $template;
+		}
+		$this->front_stylescripts();
+		add_filter( 'show_admin_bar', '__return_false' );
+
+		include EPOCH_PATH . 'includes/templates/comment-template.php';
+		exit;
+	}
 
 	/**
 	 * Return an instance of this class.
@@ -212,15 +232,15 @@ class core {
 
 
 		//visibility API
-		wp_enqueue_script( 'visibility', '//cdnjs.cloudflare.com/ajax/libs/visibility.js/1.2.1/visibility.min.js' );
+		wp_enqueue_script( 'visibility', '//cdnjs.cloudflare.com/ajax/libs/visibility.js/1.2.1/visibility.min.js', array('jquery'), $version, true );
 
 		//handlebars
-		wp_enqueue_script( 'epoch-handlebars', EPOCH_URL . "/assets/js/front/handlebars.js", array(), false, $version );
+		wp_enqueue_script( 'epoch-handlebars', EPOCH_URL . "/assets/js/front/handlebars.js", array('jquery'), $version, true );
 
 		//load unminified if !SCRIPT_DEBUG
 		if ( ! $min ) {
 			//our handlebars helpers
-			wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'epoch-handlebars' ), $version );
+			wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'epoch-handlebars' ), $version, true  );
 
 			//main script
 			wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch.js", array( 'jquery', 'visibility' ), $version, true );
@@ -229,7 +249,7 @@ class core {
 		//main scripts and styles
 		wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch{$suffix}.js", array( 'jquery', 'epoch-handlebars' ), $version, true );
 		if ( 'none' != $theme ) {
-			wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}{$suffix}.css", false, $version );
+			wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}{$suffix}.css", $version, true  );
 		}
 
 
