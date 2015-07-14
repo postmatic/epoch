@@ -175,5 +175,14 @@ class vars {
 		return $url;
 
 	}
+	/**
+	 * get the theme stylesheet url
+	 *
+	 * @since 0.0.1
+	 *
+	 * @return string|void
+	 */
+	static public function get_theme() {
 
+	}
 }

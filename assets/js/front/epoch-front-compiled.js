@@ -490,6 +490,7 @@ jQuery( document ).ready( function ( $ ) {
             } else {
 
                 if ( 0 == parent_id ) {
+                    console.log( html );
                     $( html ).appendTo( app.comments_wrap_el );
                 } else {
                     html = '<div class="epoch-child child-of-' + parent_id + ' level-' + level + ' ">' + html + '</div>';

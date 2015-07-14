@@ -105,8 +105,9 @@ class core {
 	 *
 	 * @since 0.0.8
 	 */
-	public function boot_epoch_front() {
-		if ( is_singular() ) {
+	public function boot_epoch_front( $query ) {
+		
+		if ( false !== $query->is_single ) {
 			$options = options::get_display_options();
 			if ( 'none' == $options[ 'theme' ] ) {
 				vars::$wrap_id = 'comments';
@@ -229,7 +230,7 @@ class core {
 		//main scripts and styles
 		wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch{$suffix}.js", array( 'jquery', 'epoch-handlebars' ), $version, true );
 		if ( 'none' != $theme ) {
-			wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}{$suffix}.css", false, $version );
+		//	wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}{$suffix}.css", false, $version );
 		}
 
 
@@ -271,11 +272,26 @@ class core {
 	 * @return array
 	 */
 	protected function prepare_data_to_be_localized() {
+
+		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
+			$version = rand();
+			$min = false;
+		}
+		//determine theme
+		$options = options::get_display_options();
+
+		$theme = $options[ 'theme' ];
+		if ( ! in_array( $theme, array( 'light', 'dark', 'none' ) ) ) {
+			$theme = 'light';
+		}
+
 		$vars = array(
 			'api_url' => esc_url( vars::api_url( false ) ),
 			'submit_api_url' => esc_url( vars::api_url( true ) ),
 			'depth' => absint( get_option( 'thread_comments_depth', 5 ) ),
 			'nonce' => vars::make_nonce(),
+			'stylesheet' => EPOCH_URL . "/assets/css/front/{$theme}{$suffix}.css",
 		);
 
 		//add all properties from vars class
