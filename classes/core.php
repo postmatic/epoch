@@ -225,7 +225,7 @@ class core {
 		$options = options::get_display_options();
 
 		$theme = $options[ 'theme' ];
-		if ( ! in_array( $theme, array( 'light', 'dark', 'none' ) ) ) {
+		if ( ! in_array( $theme, array( 'light', 'dark', 'none', 'iframe' ) ) ) {
 			$theme = 'light';
 		}
 

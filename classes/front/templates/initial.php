@@ -55,7 +55,7 @@ if ( 'none' == $options[ 'theme' ] ) {
 	}
 
 	global $wp_query;
-	if( !isset( $wp_query->query['epoch'] ) ){
+	if( 'iframe' == $options[ 'theme' ] && !isset( $wp_query->query['epoch'] ) ){
 		$comment_area = sprintf(
 		'<iframe id="%1s" src="' . get_permalink( $post->ID ) . 'epoch/" scrolling="no"></iframe>',
 		esc_attr( \postmatic\epoch\front\vars::$comments_wrap )

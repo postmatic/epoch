@@ -17,7 +17,7 @@
 		
 		<meta charset="<?php bloginfo( 'charset' ); ?>">				
 		<?php if ( is_singular() ) wp_enqueue_script( "comment-reply" ); ?>
-	
+		<link rel="stylesheet" href="<?php echo EPOCH_URL; ?>assets/css/front/iframe.css" type="text/css" media="all" />
 	</head>
 	
 	<body style="padding:0; margin:0;">

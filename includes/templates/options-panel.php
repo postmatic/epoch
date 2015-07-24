@@ -13,6 +13,7 @@
 	<label for="epoch-options-theme">
 		<?php _e( 'Theme', 'epoch' ); ?>
 	</label>
+	<input id="epoch-options-theme-iframe" type="radio" name="options[theme]" value="iframe" {{#is options/theme value="iframe"}}checked{{/is}}><?php _e( 'iFrame', 'epoch' ); ?>
 	<input id="epoch-options-theme-light" type="radio" name="options[theme]" value="light" {{#is options/theme value="light"}}checked{{/is}}><?php _e( 'Epoch', 'epoch' ); ?>
 	<input id="epoch-options-theme-none" type="radio" name="options[theme]" value="none" {{#is options/theme value="none"}}checked{{/is}}><?php _e( 'None', 'epoch' ); ?>
 	<p class="description" style="margin-left: 190px;"><strong>Epoch</strong>: Override the comment template which came with your theme while still inheriting typography and colors. The best option if you don't like your current comments template.
