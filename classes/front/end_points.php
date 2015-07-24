@@ -38,6 +38,7 @@ class end_points {
 		//add the endpoint
 		$endpoint = vars::$endpoint;
 		add_rewrite_rule( "{$endpoint}/^[a-z0-9_\-]+$/?", 'index.php?action=$matches[1]', 'top' );
-
+		// add template endpoint
+		add_rewrite_endpoint( 'epoch', EP_PERMALINK | EP_PAGES );
 	}
 }

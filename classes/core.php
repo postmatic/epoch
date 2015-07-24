@@ -93,9 +93,7 @@ class core {
 			if( ! isset( $_REQUEST[ vars::$nonce_field ] ) && EPOCH_VER != get_option( 'epoch_ver' ) ) {
 				flush_rewrite_rules();
 				update_option( 'epoch_ver', EPOCH_VER );
-
 			}
-			add_rewrite_endpoint( 'epoch', EP_PERMALINK | EP_PAGES );
 		});
 
 
