@@ -75,6 +75,8 @@ class core {
 		//load settings class in admin
 		if ( is_admin() ) {
 			new settings();
+			new end_points();
+			
 		}else{
 
 			//boot API
