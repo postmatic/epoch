@@ -15,7 +15,7 @@
 </div>
 
 <p style="float:right;"><a href="http://wordpress.org/plugins/postmatic" target="_blank" class="button button-primary button-large">Get Postmatic. It's free!</a></p>
-<h2>What Epoch Does</h2>
+<h2>What does Epoch do and how does it work?</h2>
 <p>In a nutshell: <strong>Epoch makes commenting fun again.</strong>. <em>Espcially when you combine it with <a href="http://gopostmatic.com">Postmatic</a> (it's free!).</em></p>
 <div class="column">
 <h3>Epoch makes commenting fun again</h3>

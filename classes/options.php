@@ -60,7 +60,7 @@ class options {
 		}
 
 		$defaults = array(
-			'theme'       => 'light',
+			'theme'       => 'iframe',
 			'threaded'    => false,
 			'before_text' => __( 'Join the conversation', 'epoch' ),
 			'interval'    => 15,
