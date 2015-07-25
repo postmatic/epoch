@@ -405,7 +405,7 @@ div.column {
 }
 
 .epoch-splash {
-  background: #424242;
+  background: #424242 url(../image/configure.png) top left no-repeat;
   margin: 0 -20px 45px -25px;
   padding: 45px;
 } 
@@ -427,6 +427,7 @@ div.column {
 .epoch-splash span {
   display: none;
 }
+
 
 #postmatic-brand {
   float: right;

@@ -11,17 +11,19 @@
 ?>
 <div class="epoch-config-group">
 	<label for="epoch-options-theme">
-		<?php _e( 'Theme', 'epoch' ); ?>
+		<?php _e( 'How agressively should Epoch override your default comment template?', 'epoch' ); ?>
 	</label>
-	<input id="epoch-options-theme-iframe" type="radio" name="options[theme]" value="iframe" {{#is options/theme value="iframe"}}checked{{/is}}><?php _e( 'iFrame', 'epoch' ); ?>
-	<input id="epoch-options-theme-light" type="radio" name="options[theme]" value="light" {{#is options/theme value="light"}}checked{{/is}}><?php _e( 'Epoch', 'epoch' ); ?>
-	<input id="epoch-options-theme-none" type="radio" name="options[theme]" value="none" {{#is options/theme value="none"}}checked{{/is}}><?php _e( 'None', 'epoch' ); ?>
-	<p class="description" style="margin-left: 190px;"><strong>Epoch</strong>: Override the comment template which came with your theme while still inheriting typography and colors. The best option if you don't like your current comments template.
+	<input id="epoch-options-theme-iframe" type="radio" name="options[theme]" value="iframe" {{#is options/theme value="iframe"}}checked{{/is}}><?php _e( 'Completely', 'epoch' ); ?>
+	<input id="epoch-options-theme-light" type="radio" name="options[theme]" value="light" {{#is options/theme value="light"}}checked{{/is}}><?php _e( 'Use my typography and colors', 'epoch' ); ?>
+	<input id="epoch-options-theme-none" type="radio" name="options[theme]" value="none" {{#is options/theme value="none"}}checked{{/is}}><?php _e( 'Minimally', 'epoch' ); ?>
+	<p class="description" style="margin-left: 190px;"><strong>Override Completely</strong>: Entirely replace the comment template which came with your theme. Much like Disqus or Jetpack Commenting. Works 100% in all themes.
 	</p>
-	<p class="description" style="margin-left: 190px;"><strong>None</strong>: Attempt to use the comment style that came with your theme. This approach is highly unstable and depends on the coding practices of your theme developer. Try it. Maybe it'll work! If not, use Epoch.
+	<p class="description" style="margin-left: 190px;"><strong>Use my typography and colors </strong>: Override the comment template which came with your theme while still using colors, typography settings, and branding that you have in place. Works well in most themes.
+	</p>
+	<p class="description" style="margin-left: 190px;"><strong>Minimally</strong>: Attempt to use the comment style that came with your theme. This approach is highly unstable and depends on the coding practices of your theme developer. Try it. Maybe it'll work! If not, try one of the other settings.
 	</p>
 	<p class="description" style="margin-left: 190px;">
-		<?php _e( 'Epoch can integrate with your theme in one of two ways. Give each a try and see what works for you. The comment template can also be styled easily via css. See the documentation.', 'epoch' ); ?>
+		<?php _e( 'Epoch can integrate with your theme in three different. Give each a try and see what works for you. The comment template can also be styled easily via css. See the documentation.', 'epoch' ); ?>
 	</p>
 </div>
 

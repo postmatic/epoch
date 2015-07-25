@@ -170,12 +170,16 @@ jQuery( document ).ready( function ( $ ) {
 
                 //submit if fail never got set to true
                 if ( ! fail ) {
+
+                    $( app.form_el ).find( 'input[type="submit"]' ).attr( 'disabled', 'disabled' );
+
                     data = $( this ).serializeArray();
                     $.post(
                         epoch_vars.submit_api_url,
                         data
                     ).complete( function () {
 
+                            $( app.form_el ).find( 'input[type="submit"]' ).removeAttr( 'disabled' );
                         } ).success( function ( response ) {
 
                             if ( !response.success ) {
