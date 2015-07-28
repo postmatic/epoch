@@ -40,7 +40,7 @@ function epoch_iframe_footer_print_scripts() {
 		}
 		foreach( $scripts as $handle ) {
 			if( !empty( $wp_scripts->registered[ $handle ] ) ){
-				var_dump( $wp_scripts->do_item( $handle ) );
+				$wp_scripts->do_item( $handle );
 			}
 		}
 
