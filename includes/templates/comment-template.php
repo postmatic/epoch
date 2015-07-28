@@ -1,12 +1,10 @@
 <?php
 /**
- * Single post (not download or free_plugin) view
+ * Tempalte for inside of iFrame
  *
- * @package   epock comment theme
+ * @package   epoch
  * @author    David Cramer <david@calderawp.com>
  * @license   GPL-2.0+
- * @link      
- * @copyright 2015 David Cramer
  */
 ?>
 <!DOCTYPE html>
@@ -14,16 +12,15 @@
 <html <?php language_attributes(); ?>>
 
 	<head>
-		
-		<meta charset="<?php bloginfo( 'charset' ); ?>">				
+		<meta charset="<?php bloginfo( 'charset' ); ?>">
+
 		<?php if ( is_singular() ) wp_enqueue_script( "comment-reply" ); ?>
 		<link rel="stylesheet" href="<?php echo EPOCH_URL; ?>assets/css/front/iframe.css" type="text/css" media="all" />
 	</head>
 	
 	<body style="padding:0; margin:0;">
 	<?php
-	comments_template( '', true );
-	wp_footer();
+		comments_template( '', true );
 	?>
 	<script>
 
@@ -38,6 +35,14 @@
 	} );
 		 
 
-	</script
+	</script>
+	<?php
+		/**
+		 * Runs in footer of the iFrame template
+		 *
+		 * @since 1.0.0
+		 */
+		do_action( 'epoch_iframe_footer' );
+	?>
 	</body>
 </body>

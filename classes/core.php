@@ -127,7 +127,6 @@ class core {
 	/**
 	 * Load Epoch's front-end template
 	 *
-	 *
 	 * @since 0.0.8
 	 */
 	public function boot_epoch_front_comment( $template ) {
