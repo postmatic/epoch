@@ -26,19 +26,22 @@ function epoch_iframe_footer_print_scripts() {
 	 * @param array $scripts An array of registered script handles
 	 */
 	$scripts = apply_filters( 'epoch_iframe_scripts', array() );
+	$scripts[] = 'epoch-handlebars';
+	$scripts[] = 'epoch-handlebars-helpers';
 	$scripts[] = 'jquery-core';
 	$scripts[] = 'jquery-migrate';
 	$scripts[] = 'epoch';
 	$scripts[] = 'visibility';
-	$scripts[] = 'epoch-handlebars';
-	$scripts[] = 'epoch-handlebars-helpers';
+
 	if ( is_array( $scripts ) && ! empty( $scripts ) ) {
 		$wp_scripts->reset();
 		if ( true == $wp_scripts->do_concat ) {
 			$wp_scripts->do_concat = false;
 		}
 		foreach( $scripts as $handle ) {
-			$wp_scripts->do_item( $handle );
+			if( !empty( $wp_scripts->registered[ $handle ] ) ){
+				var_dump( $wp_scripts->do_item( $handle ) );
+			}
 		}
 
 	}

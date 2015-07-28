@@ -117,6 +117,7 @@ class core {
 
 			//add_action( 'wp_enqueue_scripts', array( $this, 'front_stylescripts' ) );
 			add_filter( 'comments_template', array( '\postmatic\epoch\front\layout', 'initial' ), 100 );
+			add_action( 'epoch_iframe_footer', array( $this, 'print_template' ), 9 );
 			add_action( 'wp_footer', array( $this, 'print_template' ) );
 			add_filter( 'the_content', array( '\postmatic\epoch\front\layout', 'width_sniffer' ), 100 );
 

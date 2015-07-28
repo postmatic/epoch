@@ -21,6 +21,12 @@
 	<body style="padding:0; margin:0;">
 	<?php
 		comments_template( '', true );
+		/**
+		 * Runs in footer of the iFrame template
+		 *
+		 * @since 1.0.0
+		 */
+		do_action( 'epoch_iframe_footer' );
 	?>
 	<script>
 
@@ -35,14 +41,6 @@
 	} );
 		 
 
-	</script>
-	<?php
-		/**
-		 * Runs in footer of the iFrame template
-		 *
-		 * @since 1.0.0
-		 */
-		do_action( 'epoch_iframe_footer' );
-	?>
+	</script>	
 	</body>
 </body>
