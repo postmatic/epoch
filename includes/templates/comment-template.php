@@ -35,7 +35,7 @@
 		frame.css({ width: '100%', overflow: 'hidden'});
 		setInterval( function(){
 			frame.height( $( document ).outerHeight() );
-			$('a').attr('target', '_parent');
+			$('a:not([href="#reply-title"]').attr('target', '_parent');
 		}, 100 );
 
 	} );
