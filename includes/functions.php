@@ -32,6 +32,7 @@ function epoch_iframe_footer_print_scripts() {
 	$scripts[] = 'jquery-migrate';
 	$scripts[] = 'epoch';
 	$scripts[] = 'visibility';
+	$scripts[] = 'comment-reply';
 
 	if ( is_array( $scripts ) && ! empty( $scripts ) ) {
 		$wp_scripts->reset();
