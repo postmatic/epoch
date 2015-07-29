@@ -117,6 +117,9 @@ jQuery( document ).ready( function ( $ ) {
             //used to stop the system
             app.shut_it_off = false;
 
+            //set max comment depth
+            app.max_depth = parseInt( epoch_vars.depth );
+
             //change action for comment form
             app.form_el = document.getElementById( epoch_vars.form_id );
             if ( null != app.form_el) {
@@ -359,9 +362,6 @@ jQuery( document ).ready( function ( $ ) {
             if ( 'object' == typeof response && 'undefined' != response && 'undefined' != response.comments ) {
                 comments = response.comments;
                 comments = JSON.parse( comments );
-                depth = epoch_vars;
-
-
 
                 if ( 'undefined' !== comments && 0 < comments.length ) {
                     var parents = [];
@@ -485,8 +485,13 @@ jQuery( document ).ready( function ( $ ) {
          * @param level The threading level, not needed for top-level comments.
          */
         app.put_comment_in_dom = function( html, parent_id, level, id ) {
+            console.log( level );
+            if ( level > app.max_depth ) {
+                alert();
+                level = app.max_depth;
+            }
 
-            if ( 0 == comment.comment_parent && 'DESC' == epoch_vars.epoch_options.order ) {
+            if ( 0 == parent_id && 'DESC' == epoch_vars.epoch_options.order ) {
                 first_child = app.comments_wrap_el.firstChild;
                 new_el = document.createElement( 'div' );
                 new_el.innerHTML = html;

@@ -81,6 +81,10 @@ class api_helper {
 		//remove parent_id if $flatten
 		if ( $flatten ) {
 			$comment[ 'comment_parent' ] = "0";
+		}else{
+			$depth = self::reset_depth( $comment[ 'comment_ID' ] );
+			$comment[ 'depth' ] = $depth[ 'depth' ];
+			$comment[ 'comment_parent' ] = $depth[ 'parent' ];
 		}
 
 		//if has no children add that key as false.
@@ -90,9 +94,6 @@ class api_helper {
 
 		$comment['list_class'] = ( $comment['comment_parent'] == '0' ) ? '' : 'children';
 
-		if ( ! isset( $comment[ 'depth' ] ) ) {
-			$comment[ 'depth' ] = 1;
-		}
 
 		if ( ! $flatten ) {
 			//get reply link
@@ -225,6 +226,41 @@ class api_helper {
 		if ( get_option( 'thread_comments' ) && 0 != (int) get_option( 'thread_comments_depth' ) ) {
 			return true;
 		}
+
+	}
+
+	/**
+	 * Ensures depth is correct and doesn't exceed max depth. Also resets parent up depth tree if depth does exceed max.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @access protected
+	 *
+	 * @param $comment_id
+	 *
+	 * @return array Contains new depth and parent
+	 */
+	protected static function reset_depth( $comment_id ) {
+		$depth_level = 0;
+		$parent = 0;
+		$max = get_option( 'thread_comments_depth', 5 );
+		while( $comment_id > 0 ) {
+			$comment = get_comment( $comment_id );
+			$parent = $comment->comment_parent;
+			$comment_id = $parent;
+
+			$depth_level++;
+			if ( $depth_level == $max ) {
+				break;
+			}
+
+		}
+
+		return array(
+			'depth' => $depth_level,
+			'parent' => $parent
+		);
+
 
 	}
 
