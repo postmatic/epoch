@@ -226,7 +226,7 @@ module.exports = function (grunt) {
     grunt.registerTask( 'just_build', [  'shell:composer', 'copy', 'compress' ] );
     grunt.registerTask( 'do_svn', [ 'svn_checkout', 'copy:svn_trunk', 'copy:svn_tag', 'copy:svn_assets', 'push_svn' ] );
 
-    grunt.registerTask( 'release', [ 'default', 'pre_vcs', 'do_git', 'do_svn', 'clean:post_build' ] );
+    grunt.registerTask( 'release', [ 'default', 'pre_vcs', 'do_git', 'clean:post_build' ] );
 
 
 };
