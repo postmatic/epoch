@@ -404,7 +404,7 @@ jQuery( document ).ready( function ( $ ) {
          */
         app.put_comment_in_dom = function( html, parent_id, level, id ) {
 
-            if ( 0 == comment.comment_parent && 'DESC' == epoch_vars.epoch_options.order ) {
+            if ( 0 == parent_id && 'DESC' == epoch_vars.epoch_options.order ) {
                 first_child = app.comments_wrap_el.firstChild;
                 new_el = document.createElement( 'div' );
                 new_el.innerHTML = html;
