@@ -54,6 +54,8 @@ class api_helper {
 			$comment = (array) $comment;
 		}
 
+		$max_depth = (int) get_option( 'thread_comments_depth', 5 );
+
 		$date_format = get_option( 'date_format' );
 		$time_format = get_option( 'time_format' );
 		$time = strtotime( $comment['comment_date'] );
@@ -82,9 +84,17 @@ class api_helper {
 		if ( $flatten ) {
 			$comment[ 'comment_parent' ] = "0";
 		}else{
-			$depth = self::reset_depth( $comment[ 'comment_ID' ] );
-			$comment[ 'depth' ] = $depth[ 'depth' ];
-			$comment[ 'comment_parent' ] = $depth[ 'parent' ];
+			$parents = self::find_parents( $comment[ 'comment_ID' ] );
+			if ( empty( $parents ) ) {
+				$comment[ 'depth' ] = 1;
+			}else{
+				$count = count( $parents );
+				if ( $count > $max_depth) {
+					$comment[ 'comment_parent' ] = $parents[ $max_depth - 1 ];
+					$count = $max_depth;
+				}
+				$comment[ 'depth' ] = $count;
+			}
 		}
 
 		//if has no children add that key as false.
@@ -99,7 +109,7 @@ class api_helper {
 			//get reply link
 			$reply_link_args = array(
 				'add_below' => 'comment',
-				'max_depth' => get_option( 'thread_comments_depth', 5 ),
+				'max_depth' => $max_depth,
 				'depth'     => (int) $comment['depth']
 			);
 
@@ -240,26 +250,22 @@ class api_helper {
 	 *
 	 * @return array Contains new depth and parent
 	 */
-	protected static function reset_depth( $comment_id ) {
-		$depth_level = 0;
-		$parent = 0;
+	protected static function find_parents( $comment_id ) {
+		$parents = array();
 		$max = get_option( 'thread_comments_depth', 5 );
 		while( $comment_id > 0 ) {
 			$comment = get_comment( $comment_id );
 			$parent = $comment->comment_parent;
+			if ( $parent ) {
+				$parents[] = $comment->comment_parent;
+			}
 			$comment_id = $parent;
 
-			$depth_level++;
-			if ( $depth_level == $max ) {
-				break;
-			}
+
 
 		}
 
-		return array(
-			'depth' => $depth_level,
-			'parent' => $parent
-		);
+		return $parents;
 
 
 	}

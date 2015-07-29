@@ -34,7 +34,7 @@
 <div class="column">
 <h3>All with cacheing, CDN's and modern host support</h3>
 <p>Epoch is hands down the fastest commenting system available for WordPress, all the while supporting page cacheing and CDNs. Epoch comments lazy load into a placeholder container only when needed. </p>
-<p>This means your post will load instantly, your comments will load instantly, and your server won't blink. And no, we don't use iframes. Your full SEO mojo is in tact.</p>
+<p>This means your post will load instantly, your comments will load instantly, and your server won't blink. Comments are magically injected into your page so your full SEO mojo stays in tact.</p>
 </div>
 
 
