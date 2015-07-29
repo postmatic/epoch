@@ -7,7 +7,11 @@
                     <div class="epoch-comment-author-avatar">
                         {{epochLink comment_author_url author_avatar 'author_url_link_title' 'epoch-author-avatar' '_blank' 'nofollow'}}
                     </div>
-                      {{epochLink comment_author_url comment_author 'author_url_link_title' 'epoch-author-link' '_blank' 'nofollow'}}
+                       {{#if comment_author_url}}
+                            {{epochLink comment_author_url comment_author 'author_url_link_title' 'epoch-author-link' '_blank' 'nofollow'}}
+                       {{else}}
+                            {{comment_author}}
+                        {{/if}}
                       <span class="epoch-divide">&#183;</span>
                       {{epochLink comment_link '<time datetime="comment_date">-comment_date-</time>' 'comment_link_title' 'epoch-comment-link'}}
                 </div><!-- .comment-author -->

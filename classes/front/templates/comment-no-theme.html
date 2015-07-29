@@ -7,7 +7,11 @@
                     <a href="{{comment_author_url}}" target="_blank" rel="nofollow">
                         {{{author_avatar}}}
                     </a>
-                    {{epochLink comment_author_url comment_author 'author_url_link_title' 'author-link' '_blank' 'nofollow'}}
+                    {{#if comment_author_url}}
+                        {{epochLink comment_author_url comment_author 'author_url_link_title' 'epoch-author-link' '_blank' 'nofollow'}}
+                    {{else}}
+                        {{comment_author}}
+                    {{/if}}
                 </div><!-- .comment-author -->
 
                 <div class="comment-metadata">
