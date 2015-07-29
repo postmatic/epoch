@@ -1,13 +1,12 @@
 .epoch-modal {
-    background-color:#d3d3d3 !important;
-    text-align: center !important;
+    background-color:#d3d3d3;
+    text-align: center;
 }
 
-#epoch-comments {font-size: 95% !important; line-height: inherit !important; margin-top: 30px !important;}
+#epoch-comments {font-size: 95%; line-height: inherit; margin-top: 15px; border: none;}
 #epoch-commenting {margin-bottom: 25px;}
 
 #epoch-wrap {
-	margin: 0 auto !important;
 	font-family:"Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
@@ -15,82 +14,68 @@
     color: gray;
 }
 
-.epoch-comment-author.vcard {
-}
-
 .comment-count-area a {
-	float: right !important; 
-	display: block !important;
-	font-size: 75% !important;
-	text-decoration: underline !important; 
+	float: right; 
+	display: block;
+	font-size: 75%;
 }
 
 a.comment-reply-link { 
-	background: none !important;
-	border: none !important;
-	color: gray !important;
-	padding: 0 !important; 
-	font-size: 100% !important; 
-	float: none !important;
-	margin: 0 !important;
-	line-height: normal !important; 
-	display: inline !important;
+	color: gray;
 } 
 
 .epoch-comment-author-avatar img {
-	width: 48px !important; 
-	height: 48px !important; 
-	-webkit-border-radius: 4px !important;
-	-moz-border-radius: 4px !important;
-	border-radius: 4px !important;
-	float: left !important;
-	margin-right: 12px !important; 
+	width: 48px; 
+	height: 48px; 
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	float: left;
+	margin-right: 12px; 
 }
 
 .epoch-child .epoch-comment-author-avatar img {
-	width: 42px !important;
-	height: 42px !important;
+	width: 42px;
+	height: 42px;
 }
 
 #epoch-comments a.epoch-author-link { 
-	font-weight: bold !important;
-	line-height: normal !important;
+	font-weight: bold;
 }
 
 #epoch-comments a.epoch-comment-link {
-	font-size: 90% !important;
-	color: #aaa !important;
-	font-weight: normal !important;
+	font-size: 90%;
+	color: #aaa;
 }
 
 .epoch-comment-meta {
-	line-height: normal !important;
+
 }
 
 .epoch-comment-meta a {
-	text-decoration: none !important;
+	text-decoration: none;
 }
 
 div.epoch-comment-content {
-	margin-left: 60px !important;
+	margin-left: 60px;
 }
 
 div.epoch-comment-content p {
-	margin-bottom: 10px !important;
+	margin-bottom: 10px;
 }
 
 div.epoch-comment-content p:last-child {
-	margin-bottom: 0 !important;
+	margin-bottom: 0;
 }
 
 article.epoch-comment-body {
-	margin: 0 0 25px 0 !important;
-	border: none !important;
-	padding: 0 !important;
+	margin: 0 0 25px 0;
+	border: none;
+	padding: 0;
 }
 
 .epoch-child {
-    margin-left: 60px !important;
+    margin-left: 60px;
 }
 
 .epoch-child.level-2 {
@@ -98,193 +83,197 @@ article.epoch-comment-body {
 
 
 ul.epoch-comment-actions {
-	margin-left: 60px !important;
-	padding: 0 !important
+	margin-left: 60px;
+	padding: 0
 }
 
 ul.epoch-comment-actions li {
-	list-style: none !important;
-	display: inline !important;
-	font-size: 75% !important;
-	margin: 0 !important;
-	padding: 0 !important;
+	list-style: none;
+	display: inline;
+	font-size: 75%;
+	margin: 0;
+	padding: 0;
 }
 
 ul.epoch-comment-actions li a {
-	color: #aaa !important;
+	color: #aaa;
 }
  
 div.epoch-single-comment {
-   background-color:transparent !important;
-    -moz-transition:background-color 4s !important;
-    -webkit-transition:background-color 4s !important;
-    -o-transition:background-color 4s !important;
-    transition:background-color 4s !important;
+   background-color:transparent;
+    -moz-transition:background-color 4s;
+    -webkit-transition:background-color 4s;
+    -o-transition:background-color 4s;
+    transition:background-color 4s;
 }
 div.epoch-single-comment.epoch-success {
-    background-color: #FFFEDB !important;
+    background-color: #FFFEDB;
  }
 
 .epoch-failure {
-    background-color: #CD5C5C !important;
-    filter:alpha(opacity=50) !important;
-    -moz-opacity:0.5 !important;
-    -khtml-opacity: 0.5 !important;
-    opacity: 0.5 !important;
-    z-index: 10000 !important;
+    background-color: #CD5C5C;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    z-index: 10000;
 }
 
 #epoch-comments .comment-notes {
-	font-size: 90% !important;
+	font-size: 90%;
 }
 
 #prompt-comment-subscribe {
-	margin: 10px 0 !important;
-	float: none !important;
-	display: block !important;
+	margin: 10px 0;
+	float: none;
+	display: block;
 }
 
 #prompt-comment-subscribe input {
-	width: 12px !important;
+	width: 12px;
 }
  
 /*inline reply interface*/
 
 #epoch-comments #reply-title {
-	display: none !important;
+	display: none;
 }
 
 .epoch-child div.comment-respond, #epoch-comments #respond {
-	margin-left: 60px !important;
-	font-size: 85% !important;
-	line-height: normal !important; 
-	margin-bottom: 35px !important;
+	margin-left: 60px;
+	font-size: 85%;
+	line-height: normal; 
+	margin-bottom: 35px;
 }
 
 #epoch-comments p.comment-form-author {
-	clear: left !important;
+	clear: left;
 }
 
 #epoch-comments div.comment-respond p.comment-form-author,#epoch-comments div.comment-respond p.comment-form-email,#epoch-comments div.comment-respond p.comment-form-url {
-	float: left !important;
-	width: 32% !important;
-	margin: 0 1% 15px 0 !important;
-	padding: 0 !important;
+	float: left;
+	width: 30%;
+	margin: 0 2% 15px 0;
+	padding: 0;
 }
 
 .comment-form-author input,.comment-form-url input,.comment-form-email input {
-	width: 96% !important;
-	margin-bottom: 15px !important;
-	padding: 5px !important;
-	background: #fff !important;
-	border: 1px solid #ddd !important;
-	color: #383838 !important;
+	width: 96%;
+	margin-bottom: 15px;
+	padding: 5px;
+	background: #fff;
+	border: 1px solid #ddd;
+	color: #383838;
+	font-size: 100%;
 }
 
 #epoch-comments div.comment-respond p.comment-form-comment {
-	clear: left !important;
-	width: auto !important;
-	margin: 0 0 0 0 !important;
-	padding: 0px !important;
-	width: 99% !important;
+	clear: left;
+	width: auto;
+	margin: 0 0 0 0;
+	padding: 0px;
+	width: 99%;
 }
 
 #epoch-comments div.comment-respond textarea, #commentform textarea {
-	width: 98% !important;
-	color: #383838 !important;
+	width: 98%;
+	color: #383838;
+	font-size: 100%;
+	padding: 5px;
 }
 
 #epoch-comments textarea, textarea#comment {
-	background: #fff !important;
-	width: 97% !important;
-	border: 1px solid #ddd !important;
+	background: #fff;
+	width: 97%;
+	border: 1px solid #ddd;
+	padding: 5px;
 }
 
 
 #epoch-comments p.logged-in-as {
-	float: right !important;
-	font-size: 85% !important;
+	float: right;
+	font-size: 90%;
 }
 
 #epoch-comments #comment {
-	height: 100px !important;
-	min-height: 100px !important;
+	height: 100px;
+	min-height: 100px;
 }
 
 #epoch-comments div.comment-respond p.comment-notes {
-	margin-bottom: 10px !important;
-	text-align: left !important;
+	margin-bottom: 10px;
+	text-align: left;
 } 
 
 #epoch-comments p.form-submit {
-	padding: 0 !important;
-	margin: 0 !important;
+	padding: 0;
+	margin: 0;
 }
 
 #epoch-comments p.form-submit input {
-	margin: 0 !important;
+	margin: 0;
 }
 
 
 /*New top level comment form*/
 
 #commentform p.comment-form-author,#commentform p.comment-form-email,#commentform p.comment-form-url {
-	float: left !important;
-	width: 32% !important;
-	margin: 0 1% 15px 0 !important;
-	padding: 0 !important;
+	float: left;
+	width: 30%;
+	margin: 0 2% 15px 0;
+	padding: 0;
 }
 
 
 @media only screen and (max-width : 620px) {
 .epoch-comment-author-avatar img {
-	width: 24px !important; 
-	height: 24px !important;
-	margin-right: 10px !important;
+	width: 24px; 
+	height: 24px;
+	margin-right: 18px;
 }
 div.epoch-comment-content { 
-	margin-left: 34px !important;
+	margin-left: 34px;
 }
 
 ul.epoch-comment-actions {
-	margin-left: 33px !important;
+	margin-left: 33px;
 }
 
 .epoch-child { 
-    margin-left: 0 !important;
-    border-left: 1px solid #ddd !important;
-    padding-left: 10px !important;
+    margin-left: 0;
+    border-left: 1px solid #ddd;
+    padding-left: 10px;
     font-size: 95%
 } 
 
 .epoch-child .epoch-comment-author-avatar img {
-	width: 24px !important;
-	height: 24px !important;
+	width: 24px;
+	height: 24px;
 }
 
 
 
 #epoch-comments div.comment-respond p.comment-form-author,#epoch-comments div.comment-respond p.comment-form-email,#commentform p.comment-form-author,#commentform p.comment-form-email {
-	float: left !important;
-	width: 49% !important;
-	margin-right: 1% !important; 
+	float: left;
+	width: 49%;
+	margin-right: 1%; 
 }
 
 #epoch-comments div.comment-respond p.comment-form-comment, #epoch-comments div.comment-respond p.comment-form-url, #epoch-comments div.comment-respond p.comment-form-url input,#commentform p.comment-form-url {
-	width: 100% !important;
+	width: 100%;
 }
 
 .epoch-child div.comment-respond, #epoch-comments #respond {
-	margin-left: 25px !important;
-    border-left: 1px solid #ddd !important;
-    padding-left: 10px !important;
+	margin-left: 25px;
+    border-left: 1px solid #ddd;
+    padding-left: 10px;
 }
 
 
 }
 
 @media only screen and (max-width : 550px) {
-#wmd-button-barcomment,#wmd-previewcomment {display: none !important;}
+#wmd-button-barcomment,#wmd-previewcomment {display: none;}
 }
 
 /*wordpress social login*/
@@ -293,7 +282,7 @@ ul.epoch-comment-actions {
 	background: #eee;
 	border: 1px solid #ddd;
 	width: 100%; 
-	padding: 5px 10px !important;
+	padding: 5px 10px;
 	margin-bottom: 10px;
 }
 
@@ -320,24 +309,24 @@ ul.epoch-comment-actions {
 /*WordPress Markdown*/
 
 li.wmd-button {
-    margin-left: 0 !important;
+    margin-left: 0;
 }
 div#wmd-button-barcomment #wmd-help-buttoncomment {
-    left: 375px !important;
+    left: 375px;
 }
 
 div#wmd-button-barcomment {
-  clear: left !important;
-  padding-bottom: 5px !important;
+  clear: left;
+  padding-bottom: 5px;
   filter: grayscale (100%);
 }
 
 .wmd-preview {
-	padding: 10px !important;
-	margin: 10px 0 !important;
-	width: 100% !important;
-	min-height: 30px !important;
+	padding: 10px;
+	margin: 10px 0;
+	width: 100%;
+	min-height: 30px;
 }
 
 /*get rid of box shadows*/
- input:required,textarea:required {box-shadow: none !important;}
+ input:required,textarea:required {box-shadow: none;}
