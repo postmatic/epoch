@@ -33,10 +33,10 @@ if ( 'none' == $options[ 'theme' ] ) {
 }else{
 
 	if ( $comment_count['approved'] == 0 ) {
-		$comment_count_message = __( 'There are no comments.', 'epoch' );
+		$comment_count_message = __( 'There are no comments', 'epoch' );
 	} else {
 		$comment_count_message = sprintf(
-			_n( 'There is one comment.', 'There are %s comments.', $comment_count['approved'], 'epoch' ),
+			_n( 'There is one comment', 'There are %s comments', $comment_count['approved'], 'epoch' ),
 			'<span id="' . \postmatic\epoch\front\vars::$count_id . '">' . $comment_count['approved'] . '</span>'
 		);
 	}
