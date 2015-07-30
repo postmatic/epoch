@@ -38,33 +38,12 @@ module.exports = function (grunt) {
             ]
         },
         copy: {
-            main: {
-                src:  copy_files,
-                dest: 'releases/build/<%= pkg.version %>/'
-            },
-            svn_trunk: {
+            build: {
                 options : {
                     mode :true
                 },
                 src: copy_files,
-                dest: 'releases/<%= pkg.name %>/trunk/'
-            },
-            svn_tag: {
-                options : {
-                    mode :true
-                },
-                src: copy_files,
-                dest: 'releases/<%= pkg.name %>/tags/<%= pkg.version %>/'
-            },
-            svn_assets: {
-                options : {
-                    mode: true
-                },
-                expand: true,
-                flatten: true,
-                cwd: 'wp-org-assets/',
-                src: '**',
-                dest: 'releases/<%= pkg.name %>/assets/'
+                dest: 'build/<%= pkg.name %>/'
             }
         },
         run: {
@@ -174,27 +153,6 @@ module.exports = function (grunt) {
                     'assets/js/front/epoch.min.js': [ 'assets/js/front/epoch-front-compiled.js' ]
                 }
             }
-        },
-        svn_checkout: {
-            make_local: {
-                repos: [
-                    {
-                        path: [ 'releases' ],
-                        repo: 'http://plugins.svn.wordpress.org/epoch'
-                    }
-                ]
-            }
-        },
-        push_svn: {
-            options: {
-                remove: true
-
-            },
-            main: {
-                src: 'releases/<%= pkg.name %>',
-                dest: 'http://plugins.svn.wordpress.org/epoch',
-                tmp: './.build'
-            }
         }
 
     });
@@ -211,8 +169,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks( 'grunt-contrib-uglify' );
     grunt.loadNpmTasks( 'grunt-contrib-concat' );
     grunt.loadNpmTasks( 'grunt-text-replace' );
-    grunt.loadNpmTasks( 'grunt-svn-checkout' );
-    grunt.loadNpmTasks( 'grunt-push-svn' );
     grunt.loadNpmTasks( 'grunt-remove' );
 
 
@@ -220,13 +176,12 @@ module.exports = function (grunt) {
     grunt.registerTask( 'default', [ 'cssmin', 'concat', 'uglify' ] );
 
     //release tasks
-    grunt.registerTask( 'version_number', [ 'replace:core_file', 'replace:readme' ] );
-    grunt.registerTask( 'pre_vcs', [ 'shell:composer', 'version_number', 'copy', 'compress' ] );
+    grunt.registerTask( 'version_number', [ 'replace:readme_txt', 'replace:core_file' ] );
+    grunt.registerTask( 'pre_vcs', [ 'version_number', 'shell:composer', 'copy', 'compress' ] );
     grunt.registerTask( 'do_git', [ 'gitadd', 'gitcommit', 'gittag', 'gitpush' ] );
-    grunt.registerTask( 'just_build', [  'shell:composer', 'copy', 'compress' ] );
-    grunt.registerTask( 'do_svn', [ 'svn_checkout', 'copy:svn_trunk', 'copy:svn_tag', 'copy:svn_assets', 'push_svn' ] );
+    grunt.registerTask( 'just_build', [ 'shell:composer', 'copy', 'compress' ] );
 
-    grunt.registerTask( 'release', [ 'default', 'pre_vcs', 'do_git', 'clean:post_build' ] );
+    grunt.registerTask( 'release', [ 'pre_vcs', 'do_git', 'clean:post_build' ] );
 
 
 };
