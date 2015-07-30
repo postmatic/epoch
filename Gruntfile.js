@@ -176,7 +176,7 @@ module.exports = function (grunt) {
     grunt.registerTask( 'default', [ 'cssmin', 'concat', 'uglify' ] );
 
     //release tasks
-    grunt.registerTask( 'version_number', [ 'replace:readme_txt', 'replace:core_file' ] );
+    grunt.registerTask( 'version_number', [ 'replace:readme', 'replace:core_file' ] );
     grunt.registerTask( 'pre_vcs', [ 'version_number', 'shell:composer', 'copy', 'compress' ] );
     grunt.registerTask( 'do_git', [ 'gitadd', 'gitcommit', 'gittag', 'gitpush' ] );
     grunt.registerTask( 'just_build', [ 'shell:composer', 'copy', 'compress' ] );
