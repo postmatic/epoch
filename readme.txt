@@ -80,8 +80,12 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 = 1.0.0 =
 
-- Thanks for your patience everyone. Epoch 1.0 is here and now ads compatibilty with any WordPress site. We've added a third integration option which offers an Epoch solution for even the most troubled of themes.
-- Added some hooks 
+- Epoch 1.0 is here and now ads compatibilty with any WordPress site runing any crazy theme! We've added a third integration option which offers a beautiful (and fast!) solution for even the most troubled of themes.
+- Fixed a bug in which Epoch did not respect comment depth.
+- Tightned up styles all around.
+- Names of authors that do not have associated URLS are now not linked.
+- The *Join the Discussion* headline hides until there is actually a discussion to join (more than 3 comments).
+- New admin screens and misc icons.
 
 = 0.3.4 =
 
