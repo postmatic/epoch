@@ -51,3 +51,13 @@ function epoch_bootstrap(){
 	}
 
 }
+
+register_activation_hook( __FILE__, 'epoch_activate' );
+/**
+ * Flush permalinks on activation
+ */
+function epoch_activate() {
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
+	update_option( 'epoch_ver', EPOCH_VER );
+}
