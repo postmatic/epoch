@@ -63,6 +63,18 @@ class api_helper {
 		//filter content (make_clickable, wpautop, etc)
 		$comment[ 'comment_content' ] = apply_filters( 'comment_text', $comment[ 'comment_content' ] );
 
+		$comment[ 'comment_author' ] = self::find_user_display_name( $comment );
+
+		if ( is_a( $user,  '\WP_User' ) ) {
+			$display_name = $user->display_name;
+			if ( $display_name ) {
+				$comment[ 'comment_author' ] = $display_name;
+			}
+
+			unset( $user );
+		}
+
+
 		//add avatar markup as a string
 		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'], 48 );
 
@@ -267,6 +279,78 @@ class api_helper {
 
 		return $parents;
 
+
+	}
+
+	/**
+	 * Try are damndest to find display name for comment author.
+	 *
+	 * @since 1.0.1
+	 *
+	 * @param array $comment The comment
+	 *
+	 * @return string Display name.
+	 */
+	protected static function find_user_display_name( $comment ) {
+		$key = md5( $comment[ 'comment_author_email' ], $comment[ 'comment_author' ] );
+		if ( false == ( $display_name = wp_cache_get( $key, 'epoch' ) ) ) {
+
+			$found = false;
+			if ( is_email( $comment[ 'comment_author_email' ] ) ){
+				$user = get_user_by( 'email', $comment[ 'comment_author_email' ] );
+				$_display_name = self::get_display_name( $user );
+				if ( $_display_name ) {
+					$found = true;
+					$display_name = $_display_name;
+				}
+
+			}
+
+			if ( ! $found ) {
+				$value = $comment[ 'comment_author' ] ;
+				foreach( array( 'login', 'id', 'slug', 'email' ) as $field ) {
+					$user = \WP_User::get_data_by( $field, $value );
+					$_display_name = self::get_display_name( $user );
+					if ( $_display_name ) {
+						$display_name = $_display_name;
+						$found = true;
+						break;
+					}
+
+				}
+
+			}
+
+			if ( ! $found ) {
+				$display_name = $comment[ 'comment_author' ];
+			}else{
+				wp_cache_add( $key, 'epoch', HOUR_IN_SECONDS );
+			}
+
+		}
+
+		return $display_name;
+
+	}
+
+	/**
+	 * Checks if $user is a WP_User object and if so attempts to return their display name.
+	 *
+	 * @since 1.0.1
+	 *
+	 * @param bool|\WP_User $user
+	 *
+	 * @return string|void
+	 */
+	protected static function get_display_name( $user ) {
+		if ( is_a( $user,  '\WP_User' ) ) {
+			$display_name = $user->display_name;
+			if ( is_string( $display_name ) ) {
+				return $display_name;
+
+			}
+
+		}
 
 	}
 
