@@ -17,6 +17,17 @@ use postmatic\epoch\options;
 class api_helper {
 
 	/**
+	 * Cache group to use in this class
+	 *
+	 * @acces protected
+	 *
+	 * @since 1.0.1
+	 *
+	 * @var string
+	 */
+	protected static $cache_group = 'epoch_api_helper';
+
+	/**
 	 * Change the data returned to make our lives easier client side.
 	 *
 	 * @since 0.0.2
@@ -50,8 +61,15 @@ class api_helper {
 	 * @return array Comment as array with extra fields.
 	 */
 	public static function add_data_to_comment( $comment, $flatten = false ) {
+
 		if ( is_object( $comment ) ) {
 			$comment = (array) $comment;
+		}
+
+		$key = ( __FUNCTION__ . $comment['comment_post_ID'] . $comment['comment_ID'] );
+		if ( false !=  ( $_comment = wp_cache_get( $key, self::$cache_group  ) ) ) {
+			return $_comment;
+
 		}
 
 		$max_depth = (int) get_option( 'thread_comments_depth', 5 );
@@ -63,17 +81,8 @@ class api_helper {
 		//filter content (make_clickable, wpautop, etc)
 		$comment[ 'comment_content' ] = apply_filters( 'comment_text', $comment[ 'comment_content' ] );
 
+		//use display name for comment
 		$comment[ 'comment_author' ] = self::find_user_display_name( $comment );
-
-		if ( is_a( $user,  '\WP_User' ) ) {
-			$display_name = $user->display_name;
-			if ( $display_name ) {
-				$comment[ 'comment_author' ] = $display_name;
-			}
-
-			unset( $user );
-		}
-
 
 		//add avatar markup as a string
 		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'], 48 );
@@ -129,6 +138,9 @@ class api_helper {
 		}else{
 			$comment[ 'reply_link' ] = '';
 		}
+
+
+		wp_cache_set( $key, $comment, self::$cache_group, HOUR_IN_SECONDS );
 
 		return $comment;
 
@@ -324,7 +336,7 @@ class api_helper {
 			if ( ! $found ) {
 				$display_name = $comment[ 'comment_author' ];
 			}else{
-				wp_cache_add( $key, 'epoch', HOUR_IN_SECONDS );
+				wp_cache_set( $key, $display_name, self::$cache_group, HOUR_IN_SECONDS );
 			}
 
 		}
