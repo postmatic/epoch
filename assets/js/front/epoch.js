@@ -74,16 +74,16 @@ jQuery( document ).ready( function ( $ ) {
                 app.shut_it_off = true;
 
                 //validate fields
-                fail = false;
-                fail_log = '';
+                var fail = false;
+                var fails = [];
+
                 $( app.form_el ).find( 'select, textarea, input' ).each(function(){
                     if( ! $( this ).prop( 'required' )){
 
                     } else {
                         if ( ! $( this ).val() ) {
                             fail = true;
-                            name = epoch_ucwords( $( this ).attr( 'name' ) );
-                            fail_log += name + ' ' + epoch_translation.is_required + ".\n";
+                            fails.push( $( this ).attr( 'id' ) );
                         }
 
                     }
@@ -91,6 +91,7 @@ jQuery( document ).ready( function ( $ ) {
 
                 //submit if fail never got set to true
                 if ( ! fail ) {
+                    $( '.epoch-failure' ).removeClass( 'epoch-failure' );
 
                     $( app.form_el ).find( 'input[type="submit"]' ).attr( 'disabled', 'disabled' );
 
@@ -159,11 +160,17 @@ jQuery( document ).ready( function ( $ ) {
                             } );
                         } );
                 } else {
-                    $( app.form_wrap_el, 'textarea#comment' ).addClass( 'epoch-failure' ).delay( 100 ).queue( function ( next ) {
-                        $( this ).removeClass( 'epoch-failure' );
-                        next();
-                    } );
-                    alert( fail_log );
+                    $( '.epoch-failure' ).removeClass( 'epoch-failure' );
+                    if ( 0 < fails.length ) {
+                        $.each( fails, function( i, the_fail ) {
+                            the_fail = document.getElementById( the_fail );
+                            if ( null !== the_fail ) {
+                                $( the_fail ).parent().addClass( 'epoch-failure' );
+                            }
+                        });
+                    }
+
+
                 }
             });
 
@@ -403,7 +410,6 @@ jQuery( document ).ready( function ( $ ) {
          * @param level The threading level, not needed for top-level comments.
          */
         app.put_comment_in_dom = function( html, parent_id, level, id ) {
-            console.log( level );
             if ( level > app.max_depth ) {
                 alert();
                 level = app.max_depth;

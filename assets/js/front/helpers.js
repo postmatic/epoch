@@ -72,10 +72,3 @@ Handlebars.registerHelper( 'epochTranslation', function( slug ) {
     return new Handlebars.SafeString( string );
 
 });
-
-
-function epoch_ucwords (str) {
-    return (str + '').replace(/^([a-z])|\s+([a-z])/g, function ($1) {
-        return $1.toUpperCase();
-    });
-}
