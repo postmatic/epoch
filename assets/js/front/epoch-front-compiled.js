@@ -133,11 +133,14 @@ jQuery( document ).ready( function ( $ ) {
             /**
              * Poll for new comments when page is visible only.
              */
-            Visibility.every( epoch_vars.epoch_options.interval, function () {
-                if ( false == app.shut_it_off ) {
-                    app.comment_count( true );
-                }
-            });
+            if ( epoch_vars.live_mode ) {
+                Visibility.every( epoch_vars.epoch_options.interval, function () {
+                    if ( false == app.shut_it_off ) {
+                        app.comment_count( true );
+                    }
+                });
+            }
+
 
             /**
              * Submit form data

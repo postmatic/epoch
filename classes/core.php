@@ -300,6 +300,15 @@ class core {
 			'nonce' => vars::make_nonce(),
 		);
 
+		/**
+		 * Turn live update mode on and off.
+		 *
+		 * If this filter is set to false, comments from other users will not live update.
+		 *
+		 * @since 1.0.1
+		 */
+		$vars[ 'live_mode' ] = (bool) apply_filters( 'epoch_live_mode', true );
+
 		//add all properties from vars class
 		$props = get_class_vars( "\\postmatic\\epoch\\front\\vars" );
 		foreach( $props as $var => $value ) {
