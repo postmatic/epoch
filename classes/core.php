@@ -85,8 +85,9 @@ class core {
 
 			//load the front-end if on single post
 			add_action( 'parse_query', array( $this, 'boot_epoch_front' ) );
+
 			// inner comment
-			add_filter( 'template_redirect', array( $this, 'boot_epoch_front_comment' ) );
+			add_action( 'template_redirect', array( $this, 'boot_epoch_front_comment' ) );
 
 		}
 
