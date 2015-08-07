@@ -54,6 +54,26 @@ function epoch_iframe_footer_print_scripts() {
 }
 
 /**
+ * Add third-party scripts we want iFrame to play nice with to the iFrame.
+ *
+ * @since 1.0.1
+ *
+ * @param array $handles
+ *
+ * @return array
+ */
+add_filter( 'epoch_iframe_scripts', 'epoch_add_thirdparty_scripts_in_footer' );
+function epoch_add_thirdparty_scripts_in_footer( $handles ) {
+	if ( class_exists( 'ZeroSpam_Scripts' ) ) {
+		$handles[] = 'zerospam';
+	}
+
+	return $handles;
+	
+}
+
+
+/**
  * One rewrite flush and rebuild to rule them all and in the darkness bind them.
  *
  * Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk, agh burzum-ishi krimpatul.
