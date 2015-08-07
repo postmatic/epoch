@@ -220,6 +220,15 @@ div.epoch-single-comment.epoch-success {
 	margin: 0 !important;
 }
 
+#epoch-comments input#submit:disabled {
+	color: #ABABAB !important;
+	background: #F5F5F5 !important;
+	cursor: not-allowed !important;
+}
+
+#epoch-comments input#submit:disabled:hover {
+	cursor: not-allowed !important;
+}
 
 /*New top level comment form*/
 

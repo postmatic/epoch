@@ -80,13 +80,18 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 = 1.0.1 =
 
-The response to Epoch has been epic! Thanks everyone for your kind words, contributions, and encouragement. Heres a bunch of bug fixes and tweaks.
+The response to Epoch has been epic! Thanks everyone for your kind words, contributions, and encouragement. Here's a bunch of bug fixes and tweaks.
 
-- 
+- Fixed conflicts with WP-Rocket and similar minification plugins. This clears up the b.replace errors.
+- Gravatars on comments without an author URL no longer link to #.
+- Added a filter to completely disable live updating. Useful for testing and development.
+- Comments are now properly attributed to the user nicename in all circumstances.
+- Improved permalink flushing - this will help things work better somehow but nobody explained to me what it really means. Flush away!
+- Plugin authors - Epoch iframe mode is now ready for hooking into. We've some documentation on how to do that over here:*****
 
 = 1.0.0 =
 
-- Epoch 1.0 is here and now ads compatibilty with any WordPress site runing any crazy theme! We've added a third integration option which offers a beautiful (and fast!) solution for even the most troubled of themes.
+- Epoch 1.0 is here and now adds compatibilty with any WordPress site runing any crazy theme! We've added a third integration option which offers a beautiful (and fast!) solution for even the most troubled of themes.
 - Fixed a bug in which Epoch did not respect comment depth.
 - Tightned up styles all around.
 - Names of authors that do not have associated URLS are now not linked.
