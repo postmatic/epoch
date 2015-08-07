@@ -1,5 +1,5 @@
 === Epoch - A native Disqus alternative with a focus on speed and privacy ===
-Contributors: Vernal, Desertsnowman, Shelob9
+Contributors: Postmatic, Desertsnowman, Shelob9
 Donate link: https://gopostmatic.com/epoch
 Tags: ajax comments, comments, lightweight commenting, cdn, cache, engagement, postmatic, live update, wordpress comments, comment template, ajax commenting, better comments, disqus, discussion, seo, mobile commenting, chat, performance, site speed, chatting, email commenting, comment notifications
 Requires at least: 3.9
@@ -77,6 +77,12 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 4. Epoch is compatible with other 3rd party commenting plugins such as Postmatic (enable commenting by email), WordPress Social Login (for logging in via Twitter, Facebook, and more), WP-reCAPTCHA, Aksimet, and WordPress Zero Spam (Spam protection), and WYSIWYG Comment Form (for adding a toolbard to the comment area).
 
 == Changelog ==
+
+= 1.0.1 =
+
+The response to Epoch has been epic! Thanks everyone for your kind words, contributions, and encouragement. Heres a bunch of bug fixes and tweaks.
+
+- 
 
 = 1.0.0 =
 
