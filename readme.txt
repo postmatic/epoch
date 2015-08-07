@@ -82,12 +82,14 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 The response to Epoch has been epic! Thanks everyone for your kind words, contributions, and encouragement. Here's a bunch of bug fixes and tweaks.
 
+- We're ready for localization. Spanish translation is in place, provided by @telesemana. POT file is in /languages. Submit translations via support@gopostmatic.com.
 - Fixed conflicts with WP-Rocket and similar minification plugins. This clears up the b.replace errors.
 - Gravatars on comments without an author URL no longer link to #.
 - Added a filter to completely disable live updating. Useful for testing and development.
 - Comments are now properly attributed to the user nicename in all circumstances.
 - Improved permalink flushing - this will help things work better somehow but nobody explained to me what it really means. Flush away!
-- Plugin authors - Epoch iframe mode is now ready for hooking into. We've some documentation on how to do that over here:*****
+- Plugin authors - Epoch iframe mode is now ready for hooking into. We've some documentation on how to do that over at http://docs.gopostmatic.com.
+- We caught a bug that was leading to runaway server requests in some environments. Squashed.
 
 = 1.0.0 =
 
