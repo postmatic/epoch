@@ -35,6 +35,7 @@ function epoch_iframe_footer_print_scripts() {
 	$scripts[] = 'comment-reply';
 
 	if ( is_array( $scripts ) && ! empty( $scripts ) ) {
+		$scripts = array_unique( $scripts );
 		$wp_scripts->reset();
 		if ( true == $wp_scripts->do_concat ) {
 			$wp_scripts->do_concat = false;
