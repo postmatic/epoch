@@ -34,6 +34,10 @@ function epoch_iframe_footer_print_scripts() {
 	$scripts[] = 'visibility';
 	$scripts[] = 'comment-reply';
 
+	if ( ! did_action( 'wp_enqueue_scripts' ) ) {
+		do_action( 'wp_enqueue_scripts' );
+	}
+
 	if ( is_array( $scripts ) && ! empty( $scripts ) ) {
 		$scripts = array_unique( $scripts );
 		$wp_scripts->reset();
