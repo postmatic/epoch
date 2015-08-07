@@ -219,21 +219,9 @@ class core {
 		$version = EPOCH_VER;
 		$min = true;
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-		if ( '.min' == $suffix ) {
-			$min = false;
-		}
-
-		/**
-		 * Override minification of scripts
-		 *
-		 * @since 1.0.1
-		 *
-		 * @param bool $min Whether to minify or not.
-		 */
-		$min = apply_filters( 'epoch_minify_scripts', $min );
-
-		if ( ! $min ) {
+		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
 			$version = rand();
+			$min = false;
 		}
 
 		//determine theme
