@@ -345,7 +345,7 @@ class core {
 		$options = options::get_display_options();
 
 		$_interval = absint( $options[ 'interval' ] ) * 1000;
-		if ( 0 === $_interval || $_interval > 15000 ) {
+		if ( 15000 > $_interval ) {
 			$options[ 'interval' ] = 15000;
 		}else{
 			$options[ 'interval' ] = $_interval;
