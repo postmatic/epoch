@@ -5,7 +5,11 @@
             <footer class="epoch-comment-meta">
                 <div class="epoch-comment-author">
                     <div class="epoch-comment-author-avatar">
-                        {{epochLink comment_author_url author_avatar 'author_url_link_title' 'epoch-author-avatar' '_blank' 'nofollow'}}
+                        {{#if comment_author_url}}
+                            {{epochLink comment_author_url author_avatar 'author_url_link_title' 'epoch-author-avatar' '_blank' 'nofollow'}}
+                        {{else}}
+                            {{{author_avatar}}}
+                        {{/if}}
                     </div>
                        {{#if comment_author_url}}
                             {{epochLink comment_author_url comment_author 'author_url_link_title' 'epoch-author-link' '_blank' 'nofollow'}}

@@ -121,12 +121,8 @@ div.epoch-single-comment.epoch-success {
  }
 
 .epoch-failure {
-    background-color: #CD5C5C !important;
-    filter:alpha(opacity=50) !important;
-    -moz-opacity:0.5 !important;
-    -khtml-opacity: 0.5 !important;
-    opacity: 0.5 !important;
-    z-index: 10000 !important;
+    color: #c0392b !important;
+    font-weight: bold;
 }
 
 #epoch-comments .comment-notes {
@@ -220,6 +216,15 @@ div.epoch-single-comment.epoch-success {
 	margin: 0 !important;
 }
 
+#epoch-comments input#submit:disabled {
+	color: #ABABAB !important;
+	background: #F5F5F5 !important;
+	cursor: not-allowed !important;
+}
+
+#epoch-comments input#submit:disabled:hover {
+	cursor: not-allowed !important;
+}
 
 /*New top level comment form*/
 

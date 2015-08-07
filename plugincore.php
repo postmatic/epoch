@@ -51,3 +51,18 @@ function epoch_bootstrap(){
 	}
 
 }
+
+register_activation_hook( __FILE__, 'epoch_activate' );
+/**
+ * Flush permalinks on activation
+ */
+function epoch_activate() {
+	if ( version_compare( PHP_VERSION, '5.3.0', '>=' ) ) {
+		if ( file_exists( EPOCH_PATH . 'vendor/autoload.php' ) ){
+			require_once( EPOCH_PATH . 'vendor/autoload.php' );
+			epoch_fix_rewrites();
+		}
+
+	}
+
+}

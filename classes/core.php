@@ -85,16 +85,16 @@ class core {
 
 			//load the front-end if on single post
 			add_action( 'parse_query', array( $this, 'boot_epoch_front' ) );
+
 			// inner comment
-			add_filter( 'template_redirect', array( $this, 'boot_epoch_front_comment' ) );
+			add_action( 'template_redirect', array( $this, 'boot_epoch_front_comment' ) );
 
 		}
 
 		//flush permalinks if not on an API call and hasn't been done this version.
 		add_action( 'init', function() {
 			if( ! isset( $_REQUEST[ vars::$nonce_field ] ) && EPOCH_VER != get_option( 'epoch_ver' ) ) {
-				flush_rewrite_rules();
-				update_option( 'epoch_ver', EPOCH_VER );
+				epoch_fix_rewrites();
 			}
 		});
 
@@ -299,6 +299,15 @@ class core {
 			'nonce' => vars::make_nonce(),
 		);
 
+		/**
+		 * Turn live update mode on and off.
+		 *
+		 * If this filter is set to false, comments from other users will not live update.
+		 *
+		 * @since 1.0.1
+		 */
+		$vars[ 'live_mode' ] = (bool) apply_filters( 'epoch_live_mode', true );
+
 		//add all properties from vars class
 		$props = get_class_vars( "\\postmatic\\epoch\\front\\vars" );
 		foreach( $props as $var => $value ) {
@@ -336,7 +345,7 @@ class core {
 		$options = options::get_display_options();
 
 		$_interval = absint( $options[ 'interval' ] ) * 1000;
-		if ( 0 === $_interval || $_interval > 15000 ) {
+		if ( 15000 > $_interval ) {
 			$options[ 'interval' ] = 15000;
 		}else{
 			$options[ 'interval' ] = $_interval;

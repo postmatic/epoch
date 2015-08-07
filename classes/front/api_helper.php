@@ -17,6 +17,17 @@ use postmatic\epoch\options;
 class api_helper {
 
 	/**
+	 * Cache group to use in this class
+	 *
+	 * @acces protected
+	 *
+	 * @since 1.0.1
+	 *
+	 * @var string
+	 */
+	protected static $cache_group = 'epoch_api_helper';
+
+	/**
 	 * Change the data returned to make our lives easier client side.
 	 *
 	 * @since 0.0.2
@@ -50,8 +61,15 @@ class api_helper {
 	 * @return array Comment as array with extra fields.
 	 */
 	public static function add_data_to_comment( $comment, $flatten = false ) {
+
 		if ( is_object( $comment ) ) {
 			$comment = (array) $comment;
+		}
+
+		$key = ( __FUNCTION__ . $comment['comment_post_ID'] . $comment['comment_ID'] );
+		if ( false !=  ( $_comment = wp_cache_get( $key, self::$cache_group  ) ) ) {
+			return $_comment;
+
 		}
 
 		$max_depth = (int) get_option( 'thread_comments_depth', 5 );
@@ -62,6 +80,9 @@ class api_helper {
 
 		//filter content (make_clickable, wpautop, etc)
 		$comment[ 'comment_content' ] = apply_filters( 'comment_text', $comment[ 'comment_content' ] );
+
+		//use display name for comment
+		$comment[ 'comment_author' ] = self::find_user_display_name( $comment );
 
 		//add avatar markup as a string
 		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'], 48 );
@@ -117,6 +138,9 @@ class api_helper {
 		}else{
 			$comment[ 'reply_link' ] = '';
 		}
+
+
+		wp_cache_set( $key, $comment, self::$cache_group, HOUR_IN_SECONDS );
 
 		return $comment;
 
@@ -267,6 +291,78 @@ class api_helper {
 
 		return $parents;
 
+
+	}
+
+	/**
+	 * Try are damndest to find display name for comment author.
+	 *
+	 * @since 1.0.1
+	 *
+	 * @param array $comment The comment
+	 *
+	 * @return string Display name.
+	 */
+	protected static function find_user_display_name( $comment ) {
+		$key = md5( $comment[ 'comment_author_email' ], $comment[ 'comment_author' ] );
+		if ( false == ( $display_name = wp_cache_get( $key, 'epoch' ) ) ) {
+
+			$found = false;
+			if ( is_email( $comment[ 'comment_author_email' ] ) ){
+				$user = get_user_by( 'email', $comment[ 'comment_author_email' ] );
+				$_display_name = self::get_display_name( $user );
+				if ( $_display_name ) {
+					$found = true;
+					$display_name = $_display_name;
+				}
+
+			}
+
+			if ( ! $found ) {
+				$value = $comment[ 'comment_author' ] ;
+				foreach( array( 'login', 'id', 'slug', 'email' ) as $field ) {
+					$user = \WP_User::get_data_by( $field, $value );
+					$_display_name = self::get_display_name( $user );
+					if ( $_display_name ) {
+						$display_name = $_display_name;
+						$found = true;
+						break;
+					}
+
+				}
+
+			}
+
+			if ( ! $found ) {
+				$display_name = $comment[ 'comment_author' ];
+			}else{
+				wp_cache_set( $key, $display_name, self::$cache_group, HOUR_IN_SECONDS );
+			}
+
+		}
+
+		return $display_name;
+
+	}
+
+	/**
+	 * Checks if $user is a WP_User object and if so attempts to return their display name.
+	 *
+	 * @since 1.0.1
+	 *
+	 * @param bool|\WP_User $user
+	 *
+	 * @return string|void
+	 */
+	protected static function get_display_name( $user ) {
+		if ( is_a( $user,  '\WP_User' ) ) {
+			$display_name = $user->display_name;
+			if ( is_string( $display_name ) ) {
+				return $display_name;
+
+			}
+
+		}
 
 	}
 
