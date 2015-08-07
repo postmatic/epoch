@@ -93,9 +93,7 @@ class core {
 		//flush permalinks if not on an API call and hasn't been done this version.
 		add_action( 'init', function() {
 			if( ! isset( $_REQUEST[ vars::$nonce_field ] ) && EPOCH_VER != get_option( 'epoch_ver' ) ) {
-				global $wp_rewrite;
-				$wp_rewrite->flush_rules();
-				update_option( 'epoch_ver', EPOCH_VER );
+				epoch_fix_rewrites();
 			}
 		});
 

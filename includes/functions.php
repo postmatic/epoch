@@ -48,3 +48,18 @@ function epoch_iframe_footer_print_scripts() {
 
 	}
 }
+
+/**
+ * One rewrite flush and rebuild to rule them all and in the darkness bind them.
+ *
+ * Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk, agh burzum-ishi krimpatul.
+ *
+ * @since 1.0.1
+ */
+function epoch_fix_rewrites() {
+	$endpoints = new \postmatic\epoch\front\end_points();
+	$endpoints->add_endpoints();
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
+	update_option( 'epoch_ver', EPOCH_VER );
+}
