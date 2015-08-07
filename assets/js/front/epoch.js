@@ -72,7 +72,7 @@ jQuery( document ).ready( function ( $ ) {
              *
              * @since 0.0.1
              */
-            $( app.form_el ).submit( function( event ) {
+            $( document ).on( 'submit', '#' + epoch_vars.form_id, function( event ) {
                 event.preventDefault();
                 app.shut_it_off = true;
 
