@@ -3,7 +3,8 @@
     text-align: center;
 }
 
-{font-size: 15px; line-height: 135%; margin-top: 15px; border: none;}
+#epoch-comments {font-size: 15px; line-height: 135%; margin-top: 15px; border: none !important;}
+
 #epoch-commenting {margin-bottom: 25px;}
 
 #epoch-wrap {
