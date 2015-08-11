@@ -10,6 +10,7 @@
  */
 namespace postmatic\epoch;
 use postmatic\epoch\front\api;
+use postmatic\epoch\front\api_paths;
 use postmatic\epoch\front\api_route;
 use postmatic\epoch\front\end_points;
 use postmatic\epoch\front\layout;
@@ -293,8 +294,9 @@ class core {
 	 */
 	protected function prepare_data_to_be_localized() {
 		$vars = array(
-			'api_url' => esc_url( vars::api_url( false ) ),
-			'submit_api_url' => esc_url( vars::api_url( true ) ),
+			'api_url' => esc_url( api_paths::api_url( false ) ),
+			'submit_api_url' => esc_url( api_paths::api_url( true ) ),
+			'alt_comment_count' => null,
 			'depth' => absint( get_option( 'thread_comments_depth', 5 ) ),
 			'nonce' => vars::make_nonce(),
 		);
@@ -324,6 +326,7 @@ class core {
 
 		global $post;
 		if ( is_object( $post ) ) {
+			$vars[ 'alt_comment_count'] = esc_url( api_paths::comment_count_alt_check_url( $post->ID ) );
 			$vars[ 'post_id' ] = $post->ID;
 		}
 

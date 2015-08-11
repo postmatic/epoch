@@ -144,6 +144,8 @@ class vars {
 	 *
 	 * IMPORTANT: URL is not escaped here, please late escape it, or you are wrong and should feel wrong.
 	 *
+	 * @deprecated
+	 *
 	 * @since 0.0.1
 	 *
 	 * @param bool $submit_comment Optional. If true, the get var for comment submission is added. Default is false.
@@ -151,6 +153,7 @@ class vars {
 	 * @return string|void
 	 */
 	static public function api_url( $submit_comment = false ) {
+		_deprecated_function( __FUNCTION__, '1.0.2.', '\postmatic\epoch\front\class api_paths::api_url' );
 		$url =  home_url( self::$endpoint );
 
 		/**
