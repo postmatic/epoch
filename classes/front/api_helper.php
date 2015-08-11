@@ -382,7 +382,7 @@ class api_helper {
 				'code' => 501,
 				'message' => __( 'File system comment count checks not enabled.', 'epoch' )
 			);
-			
+
 		}
 
 		$url = wp_nonce_url('plugins.php');
