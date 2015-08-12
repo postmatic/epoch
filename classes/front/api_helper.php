@@ -385,6 +385,8 @@ class api_helper {
 
 		}
 
+		$fail = false;
+
 		$url = wp_nonce_url('plugins.php');
 		if ( is_null( $comment_count ) ) {
 			$comment_count = get_comment_count( $post_id );
@@ -393,11 +395,15 @@ class api_helper {
 		$return = array( 'code' => 500 );
 		if (false === ($creds = request_filesystem_credentials( $url, '', false, false ) ) ) {
 			$return[ 'message' ] = __( 'Could not use WordPress file system.', 'epoch' );
+			return $return;
+
 		}
 
 
 		if ( ! WP_Filesystem($creds) ) {
 			$return[ 'message' ] = __( 'Could not access WordPress file system.', 'epoch' );
+			return $return;
+
 		}
 
 		$dir =  api_paths::comment_count_dir();
@@ -408,6 +414,8 @@ class api_helper {
 
 		if ( ! file_exists( $dir ) ) {
 			$return[ 'message' ] = __( 'Could not create directory.', 'epoch' );
+			return $return;
+
 		}
 
 
