@@ -80,7 +80,7 @@ class api_paths extends vars {
 	 */
 	static public  function comment_count_dir() {
 		$upload_dir = wp_upload_dir();
-		$dir =  trailingslashit( $upload_dir[ 'path' ] ) .'epoch/';
+		$dir =  trailingslashit( $upload_dir[ 'baseurl' ] ) .'epoch/';
 
 		/**
 		 * Filter the location for comment count files
