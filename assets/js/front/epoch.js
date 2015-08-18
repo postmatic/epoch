@@ -322,6 +322,8 @@ jQuery( document ).ready( function ( $ ) {
                     response = app.get_data_from_response( response );
 
                     app.comment_response( response, false );
+                    
+                    jQuery( 'body' ).triggerHandler( 'epoch.comments.loaded' );
 
                 }
 
