@@ -25,6 +25,7 @@ class api_process {
 	 * @return array
 	 */
 	public static function get_comments( $data ) {
+		if ( !defined( 'DOING_AJAX' ) ) define( 'DOING_AJAX', true );
 
 		$args = api_helper::get_comment_args( $data[ 'postID' ] );
 
@@ -71,6 +72,8 @@ class api_process {
 	 * @return array
 	 */
 	public static function comment_count( $data ) {
+		if ( !defined( 'DOING_AJAX' ) ) define( 'DOING_AJAX', true );
+		
 		$count = wp_count_comments( $data[ 'postID' ] );
 		if ( EPOCH_ALT_COUNT_CHECK_MODE ) {
 			api_helper::write_comment_count( $data[ 'postID' ], $count );
@@ -91,6 +94,8 @@ class api_process {
 	 * @return bool
 	 */
 	public static function comments_open( $data ) {
+		if ( !defined( 'DOING_AJAX' ) ) define( 'DOING_AJAX', true );
+		
 		$open = comments_open( $data[ 'postID' ] );
 		return $open;
 	}
@@ -105,6 +110,8 @@ class api_process {
 	 * @return array|bool
 	 */
 	public static function submit_comment( $data ) {
+		if ( !defined( 'DOING_AJAX' ) ) define( 'DOING_AJAX', true );
+		
 		if (! isset( $data[ 'comment_post_ID' ] ) ) {
 			return false;
 		}
@@ -145,6 +152,8 @@ class api_process {
 	 * @return array|bool New comments or false if none found
 	 */
 	public static function new_comments( $data ) {
+		if ( !defined( 'DOING_AJAX' ) ) define( 'DOING_AJAX', true );
+		
 		if ( 0 == $data[ 'highest' ] ) {
 			return false;
 		}else{
