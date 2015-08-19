@@ -79,7 +79,7 @@ class api_helper {
 		$time = strtotime( $comment['comment_date'] );
 
 		//filter content (make_clickable, wpautop, etc)
-		$comment[ 'comment_content' ] = apply_filters( 'comment_text', $comment[ 'comment_content' ] );
+		$comment[ 'comment_content' ] = apply_filters( 'comment_text', $comment[ 'comment_content' ], (object)$comment );
 
 		//use display name for comment
 		$comment[ 'comment_author' ] = self::find_user_display_name( $comment );
