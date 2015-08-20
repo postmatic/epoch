@@ -76,7 +76,12 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 3. Epoch is 100% mobile friendly and fully responsive. Nested comments 6 levels deep still look awesome.
 4. Epoch is compatible with other 3rd party commenting plugins such as Postmatic (enable commenting by email), WordPress Social Login (for logging in via Twitter, Facebook, and more), WP-reCAPTCHA, Aksimet, and WordPress Zero Spam (Spam protection), and WYSIWYG Comment Form (for adding a toolbard to the comment area).
 
+
+
 == Changelog ==
+
+= 1.0.2 =
+Added: Ability to turn on and off the ability to embed iframe comments onto other domains.
 
 = 1.0.1 =
 

@@ -47,12 +47,19 @@ class api_route {
 		) {
 			return;
 		}else {
-			$action = strip_tags( trim($_REQUEST[ 'action' ] ) );
-			$response = self::route( $action );
-			if ( ! $response ) {
-				wp_send_json_error();
-			}else{
-				wp_send_json_success( $response );
+			if ( ! $this->maybe_verify_origin() ) {
+				$response = __( 'Access to the Epoch API from external sites is not enabled.', 'epoch' );
+				wp_send_json_error( $response );
+			}else {
+				$action   = strip_tags( trim( $_REQUEST['action'] ) );
+				$response = self::route( $action );
+
+				if ( ! $response ) {
+					wp_send_json_error();
+				}else{
+					wp_send_json_success( $response );
+				}
+
 			}
 
 		}
@@ -214,6 +221,51 @@ class api_route {
 		$valid =  wp_verify_nonce( $_REQUEST[ $this->api_nonce_key ], $this->api_nonce_key . (int) $id );
 
 		return $valid;
+
+	}
+
+	/**
+	 * If required, check if origin is the same.
+	 *
+	 * @since 1.0.2
+	 *
+	 * @access protected
+	 *
+	 * @return bool
+	 */
+	protected function maybe_verify_origin() {
+
+		/**
+		 * Optionally other sites to access API.
+		 *
+		 * @since 1.0.2
+		 *
+		 * @param bool $verify Whether to allow or not. Default is false, which prevents. Change to true to allow.
+		 */
+		$verify = apply_filters( 'epoch_api_allow_other_origins', false );
+		if ( false == $verify ) {
+			$ref = false;
+			if ( ! empty( $_REQUEST['_wp_http_referer'] ) )
+				$ref = wp_unslash( $_REQUEST['_wp_http_referer'] );
+			elseif ( ! empty( $_SERVER['HTTP_REFERER'] ) )
+				$ref = wp_unslash( $_SERVER['HTTP_REFERER'] );
+
+
+			if ( $ref  ) {
+				$ref = parse_url( $ref );
+				if ( $ref[ 'host' ] == $_SERVER[ 'SERVER_NAME' ] ) {
+					return true;
+					
+				}
+
+			}
+
+			return false;
+
+		}else{
+			return true;
+
+		}
 
 	}
 
