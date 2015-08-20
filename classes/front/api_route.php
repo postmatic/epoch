@@ -255,7 +255,7 @@ class api_route {
 				$ref = parse_url( $ref );
 				if ( $ref[ 'host' ] == $_SERVER[ 'SERVER_NAME' ] ) {
 					return true;
-					
+
 				}
 
 			}
