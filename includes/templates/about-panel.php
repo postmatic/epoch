@@ -37,13 +37,18 @@
 <p>This means your post will load instantly, your comments will load instantly, and your server won't blink. Comments are magically injected into your page so your full SEO mojo stays in tact.</p>
 </div>
 
+<h2 class="clear">Keep up to date with Epoch news</h2>
+<p>Epoch is developing quickly. If you would like news and announcments about our progress sign up below.<br />No spam. No ads.</p>
+<p><a href="http://eepurl.com/bwi27n" target="_blank" class="button button-primary button-large">Sign up for Epoch News</a></p>
+
+
 
 <h2 class="clear">Free Addons and Recommended Plugins</h2>
 <p>Epoch is built for compatibility. Just like <a href="http://gopostmatic.com">Postmatic</a>. It uses fully native WordPress commenting, plays nicely with most all other commenting plugins, and employs WordPress coding standards. </p>
 
 <div class="column">
 <h4>Fight Spam</h4>
-<p style="text-align: left;">Since Epoch is fully WordPress native it plays well with your existing spam deterrents. It'll work seamlessly with <a href="https://wordpress.org/plugins/zero-spam/">WordPress Zero Spam</a>, <a href="https://wordpress.org/plugins/wp-recaptcha/">WP-reCaptcha</a>, and <a href="http://akismet.com">Akismet</a>. That should take care of things.</p>
+<p style="text-align: left;">Since Epoch is fully WordPress native it plays well with your existing spam deterrents. It'll work seamlessly with <a href="https://wordpress.org/plugins/goodbye-captcha/">GoodBye Captcha</a>, <a href="https://wordpress.org/plugins/wp-recaptcha/">WP-reCaptcha</a>, and <a href="http://akismet.com">Akismet</a>. That should take care of things.</p>
 </div>
 
 <div class="column">
