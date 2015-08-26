@@ -41,7 +41,7 @@ if ( 'none' == $options[ 'theme' ] ) {
 		);
 	}
 
-	if ( 'ASC' == $options['order'] && $comment_count['approved'] > 3 ) {
+	if ( 'ASC' == $options['order'] && $comment_count['approved'] > 3 && 'iframe' != $options['theme'] ) {
 		$comment_count_area = sprintf(
 			'<h3 class="comment-count-area">%1s <a href="#reply-title">%2s</a></h3>',
 			$comment_count_message,
