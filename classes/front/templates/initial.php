@@ -41,7 +41,7 @@ if ( 'none' == $options[ 'theme' ] ) {
 		);
 	}
 
-	if ( 'ASC' == $options['order'] && $comment_count['approved'] > 3 ) {
+	if ( 'ASC' == $options['order'] && $comment_count['approved'] > 3 && 'iframe' != $options['theme'] ) {
 		$comment_count_area = sprintf(
 			'<h3 class="comment-count-area">%1s <a href="#reply-title">%2s</a></h3>',
 			$comment_count_message,
@@ -56,10 +56,16 @@ if ( 'none' == $options[ 'theme' ] ) {
 
 	global $wp_query;
 	if( 'iframe' == $options[ 'theme' ] && !isset( $wp_query->query['epoch'] ) ){
+		$area_before = $area_after = '';
+		if ( 'ASC' == $options['order'] && $comment_count['approved'] > 3 ) {
+			$area_before = sprintf( '<a href="#epoch-comments-bottom">%s</a>', $options['before_text'] );
+			$area_after = '<div id="epoch-comments-bottom" style="margin-top:-330px;height:330px;"></div>';
+		}
 		$comment_area = sprintf(
 		'<iframe id="%1s" src="' . get_permalink( $post->ID ) . 'epoch/" scrolling="no"></iframe>',
 		esc_attr( \postmatic\epoch\front\vars::$comments_wrap )
-		);		
+		);
+		$comment_area = $area_before . $comment_area . $area_after;
 		$comment_count_area = $form = null;
 	}
 
