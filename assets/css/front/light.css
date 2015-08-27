@@ -84,6 +84,13 @@ article.epoch-comment-body {
 	padding: 0 !important;
 }
 
+.bypostauthor article.epoch-comment-body {
+    border: 1px solid #ddd !important;
+    padding: 15px 15px 0 15px !important;
+    margin-left: -15px !important;
+    background-color: #ecf0f1;
+}
+
 .epoch-child {
     margin-left: 60px !important;
 }

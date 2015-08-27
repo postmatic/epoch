@@ -385,7 +385,7 @@ class api_helper {
 		$post = get_post( $comment['comment_post_ID'] );
 
 		if ( $post && $author_user && $post->post_author == $author_user->ID ) {
-			$classes[] = 'bytheauthor';
+			$classes[] = 'bypostauthor';
 		}
 
 		return implode( ' ', $classes );
