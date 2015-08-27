@@ -81,7 +81,14 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 == Changelog ==
 
 = 1.0.2 =
-Added: Ability to turn on and off the ability to embed iframe comments onto other domains.
+
+- Fixed the nasty bug that kept descending comments from sorting in the correct order. Again. Sorry.
+- Added: Ability to turn on and off the ability to embed iframe comments onto other domains.
+- Removed the headline while in iframe mode (Join the Conversation) as there was no way to properly link it to the comment form.
+- Added special styling for comments left by the post author.
+- Added the user role as a class to the comment. That way you can style comments differently depending on if they are admins, contributors, subscribers, etc.
+- Added German translation by R. Koller. Thanks!
+- Made it easier to download and install Postmatic right from within Epoch.
 
 = 1.0.1 =
 
