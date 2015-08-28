@@ -1,0 +1,216 @@
+# Copyright (C) 2015 Epoch
+# This file is distributed under the same license as the Epoch package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Epoch 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/epoch\n"
+"POT-Creation-Date: 2015-08-27 11:45+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-08-28 22:48+0200\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.4\n"
+"Last-Translator: fxbenard | FxB <fx@fxbenard.com>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr_FR\n"
+
+#: classes/core.php:358
+msgid "Your comment is awaiting moderation."
+msgstr "Votre commentaire est en attente de modération"
+
+#: classes/core.php:359
+msgid "Link to comment"
+msgstr "Lien vers le commentaire"
+
+#: classes/core.php:360
+msgid "Reply"
+msgstr "Répondre"
+
+#: classes/core.php:361
+msgid "Reply To This Comment"
+msgstr "Répondre à ce commentaire"
+
+#: classes/core.php:362
+msgid "Link to comment author's website"
+msgstr "Lien vers le site web de l'auteur du commentaire"
+
+#: classes/core.php:363
+msgid "is required"
+msgstr "est obligatoire"
+
+#: classes/core.php:364
+msgid ""
+"Your comment was not accepted, please check that everything is filled out "
+"correctly."
+msgstr ""
+"Votre commentaire n'a pas été accepté, veuillez vérifier que tout est "
+"correctement rempli."
+
+#. translators: 1: date, 2: time
+#: classes/front/api_helper.php:72
+msgid "%1$s at %2$s"
+msgstr "%1$s à %2$s"
+
+#: classes/front/layout.php:75
+msgid "Subscribe to Comments Via Email"
+msgstr "Abonnez-vous aux commentaires par e-mail"
+
+#: classes/front/layout.php:126
+msgid "Comments are closed."
+msgstr "Les commentaires sont fermés."
+
+#: classes/front/templates/initial.php:36
+msgid "There are no comments"
+msgstr "Il n&rsquo;y a pas d&rsquo;autres commentaires."
+
+#: classes/front/templates/initial.php:39
+msgid "There is one comment"
+msgid_plural "There are %s comments"
+msgstr[0] "Il y a un commentaire"
+msgstr[1] "Il y a %s commentaires"
+
+#: classes/options.php:65
+msgid "Join the conversation"
+msgstr "Rejoignez la discussion"
+
+#. Plugin Name of the plugin/theme
+#: classes/settings.php:87 includes/templates/main-ui.php:15
+msgid "Epoch"
+msgstr "Epoch"
+
+#: includes/templates/main-ui.php:19
+msgid "Updated Successfully"
+msgstr "Mis à jour avec succès"
+
+#: includes/templates/main-ui.php:22
+msgid "Could not save changes. Try again."
+msgstr "Impossible d'enregistrer les modifications. Veuillez réessayer."
+
+#: includes/templates/main-ui.php:28
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: includes/templates/main-ui.php:33
+msgid "Enable free email commenting with Postmatic"
+msgstr "Activer le service de commentaire gratuit par e-mail avec Postmatic"
+
+#: includes/templates/main-ui.php:48
+msgid "Options"
+msgstr "Choix"
+
+#: includes/templates/main-ui.php:84
+msgid "Save Changes"
+msgstr "Sauvergarder les modifications"
+
+#: includes/templates/options-panel.php:14
+msgid "How agressively should Epoch override your default comment template?"
+msgstr ""
+"Comment Epoch devrait prendre la main sur votre modèle de commentaire par "
+"défaut ?"
+
+#: includes/templates/options-panel.php:16
+msgid "Completely (beta)"
+msgstr "Complètement (bêta)"
+
+#: includes/templates/options-panel.php:17
+msgid "Use my typography and colors"
+msgstr "Utiliser ma typographie et mes couleurs"
+
+#: includes/templates/options-panel.php:18
+msgid "Minimally"
+msgstr "De façon minimale"
+
+#: includes/templates/options-panel.php:26
+msgid ""
+"Epoch can integrate with your theme in three different. Give each a try and "
+"see what works for you. The comment template can also be styled easily via "
+"css. See the documentation."
+msgstr ""
+"Epoch peut s'intégrer avec votre thème de trois façons différentes. Essayez "
+"chacunes et voyez celle qui fonctionne le mieux pour vous. Le modèle de "
+"commentaire peut aussi être stylisé facilement via css. Reportez-vous à la "
+"documentation pour cela."
+
+#: includes/templates/options-panel.php:32
+msgid "Comment Check Interval"
+msgstr "Intervalle de vérification des commentaires"
+
+#: includes/templates/options-panel.php:36
+msgid ""
+"How frequently should Epoch push new comments to active users (in seconds)? "
+msgstr ""
+"À quelle fréquence Epoch devrait-il pousser de nouveaux commentaires aux "
+"utilisateurs actifs (en secondes)&nbsp;:?"
+
+#: includes/templates/options-panel.php:37
+msgid ""
+"Comments are only pushed to users viewing the comments area of a post in an "
+"active browser tab. It is highly efficient. "
+msgstr ""
+"Les commentaires sont poussés uniquement pour les utilisateurs qui "
+"visualisent la zone de commentaires d'un article dans un onglet actif du "
+"navigateur. C'est très efficace."
+
+#: includes/templates/options-panel.php:38
+msgid ""
+"If no value set, interval will be 15 seconds, which should be fine on most "
+"hosts."
+msgstr ""
+"Si aucune valeur n'est définie,l&rsquo;intervalle sera de 15 secondes, ce "
+"qui devrait fonctionné parfaitement sur la plupart des hébergeurs."
+
+#: includes/templates/options-panel.php:44
+msgid "Headline"
+msgstr "En-tête"
+
+#: includes/templates/options-panel.php:48
+msgid "Text to show before the comment form."
+msgstr "Texte à afficher avant le formulaire de commentaires."
+
+#: includes/templates/options-panel.php:54
+msgid "Comment Order"
+msgstr "Ordre des commentaires"
+
+#: includes/templates/options-panel.php:58
+msgid "Ascending"
+msgstr "Ordre croissant"
+
+#: includes/templates/options-panel.php:61
+msgid "Descending"
+msgstr "Ordre décroissant"
+
+#: includes/templates/options-panel.php:65
+msgid ""
+"Should comments be shown in ascending or descending order? Descending puts "
+"the latest comment and comment form at the top of the comments area. "
+"Ascending does the opposite."
+msgstr ""
+"Les commentaires doivent-ils être affichés dans l'ordre croissant ou "
+"décroissant ? L&rsquo;rdre décroissant met le dernier commentaire en haut de "
+"la zone des commentaires. L&rsquo;rdre croissant fait l'inverse."
+
+#: vendor/calderawp/dismissible-notice/src/Caldera_Warnings_Dismissible_Notice.php:129
+msgid "Dismiss this notice."
+msgstr "Ignorer cet avertissement."
+
+#. Plugin URI of the plugin/theme
+msgid "http://gopostmatic.com/epoch"
+msgstr "http://gopostmatic.com/epoch"
+
+#. Description of the plugin/theme
+msgid ""
+"Native commenting made realtime, mobile, CDN and Cache friendly, and full of "
+"SEO mojo as well. Commenting perfected."
+msgstr ""
+"Les commentaires natifs en temps réel, sur mobile, CDN et cache friendly, et "
+"plein de SEO mojo en prime. Le système de commentaires performant et "
+"perfectionné."
+
+#. Author of the plugin/theme
+msgid "Postmatic"
+msgstr "Postmatic"
+
+#. Author URI of the plugin/theme
+msgid "https://gopostmatic.com/"
+msgstr "https://gopostmatic.com/"
