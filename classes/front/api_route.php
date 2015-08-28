@@ -47,6 +47,7 @@ class api_route {
 		) {
 			return;
 		}else {
+			define( 'EPOCH_API', true );
 			$action = strip_tags( trim($_REQUEST[ 'action' ] ) );
 			$response = self::route( $action );
 			if ( ! $response ) {
