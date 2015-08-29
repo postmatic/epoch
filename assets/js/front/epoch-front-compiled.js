@@ -540,12 +540,10 @@ jQuery( document ).ready( function ( $ ) {
          */
         app.put_comment_in_dom = function( html, parent_id, level, id ) {
             if ( level > app.max_depth ) {
-                alert();
                 level = app.max_depth;
             }
 
             if ( 0 == parent_id && 'DESC' == epoch_vars.epoch_options.order ) {
-                console.log( id );
                 first_child = app.comments_wrap_el.firstChild;
                 new_el = document.createElement( 'div' );
                 new_el.innerHTML = html;
