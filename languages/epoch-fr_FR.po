@@ -8,7 +8,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-08-28 22:48+0200\n"
+"PO-Revision-Date: 2015-08-28 23:24+0200\n"
 "Language-Team: \n"
 "X-Generator: Poedit 1.8.4\n"
 "Last-Translator: fxbenard | FxB <fx@fxbenard.com>\n"
@@ -97,7 +97,7 @@ msgstr "Activer le service de commentaire gratuit par e-mail avec Postmatic"
 
 #: includes/templates/main-ui.php:48
 msgid "Options"
-msgstr "Choix"
+msgstr "Options"
 
 #: includes/templates/main-ui.php:84
 msgid "Save Changes"
@@ -141,7 +141,7 @@ msgid ""
 "How frequently should Epoch push new comments to active users (in seconds)? "
 msgstr ""
 "À quelle fréquence Epoch devrait-il pousser de nouveaux commentaires aux "
-"utilisateurs actifs (en secondes)&nbsp;:?"
+"utilisateurs actifs (en secondes)&nbsp;?"
 
 #: includes/templates/options-panel.php:37
 msgid ""
@@ -187,8 +187,8 @@ msgid ""
 "Ascending does the opposite."
 msgstr ""
 "Les commentaires doivent-ils être affichés dans l'ordre croissant ou "
-"décroissant ? L&rsquo;rdre décroissant met le dernier commentaire en haut de "
-"la zone des commentaires. L&rsquo;rdre croissant fait l'inverse."
+"décroissant ? L&rsquo;ordre décroissant met le dernier commentaire en haut "
+"de la zone des commentaires. L&rsquo;ordre croissant fait l'inverse."
 
 #: vendor/calderawp/dismissible-notice/src/Caldera_Warnings_Dismissible_Notice.php:129
 msgid "Dismiss this notice."
