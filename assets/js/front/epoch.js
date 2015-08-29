@@ -8,6 +8,7 @@ jQuery( document ).ready( function ( $ ) {
          * @since 0.0.1
          */
         app.init = function() {
+
             //element for the form wrap
             app.form_wrap_el = document.getElementById( epoch_vars.form_wrap );
 
@@ -361,6 +362,7 @@ jQuery( document ).ready( function ( $ ) {
                         children.reverse();
                         parents.reverse();
                     }else{
+                        parents.reverse();
                         children.reverse();
                     }
 
@@ -468,6 +470,7 @@ jQuery( document ).ready( function ( $ ) {
             }
 
             if ( 0 == parent_id && 'DESC' == epoch_vars.epoch_options.order ) {
+                console.log( id );
                 first_child = app.comments_wrap_el.firstChild;
                 new_el = document.createElement( 'div' );
                 new_el.innerHTML = html;
