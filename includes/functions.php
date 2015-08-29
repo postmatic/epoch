@@ -87,3 +87,57 @@ function epoch_fix_rewrites() {
 	$wp_rewrite->flush_rules();
 	update_option( 'epoch_ver', EPOCH_VER );
 }
+
+/**
+ * Function for Postmatic Install/Activate/Learn More button
+ *
+ * @since 1.0.2
+ *
+ * @return string
+ */
+function epoch_postmatic_link() {
+
+	if( empty( $_GET[ 'action' ] ) ){
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		$plugins = get_plugins();
+		$found = false;
+		foreach( $plugins as $plugin_file => $a_plugin ){
+			if( $a_plugin['Name'] == 'Postmatic - WordPress Subscriptions & Commenting by Email' ){
+				$found = $plugin_file;
+				break;
+
+			}
+		}
+
+
+
+		if ( is_admin()  ) {
+
+			if( ! empty( $found ) ){
+
+				// installed but not active
+				$text = __( 'Activate Postmatic', 'epoch' );
+				$link = wp_nonce_url( self_admin_url( 'plugins.php?action=activate&plugin=' . urlencode( $found ) ), 'activate-plugin_' . $found );
+
+			}else{
+
+				// not installed
+				$text = __( 'Install Postmatic', 'epoch' );
+				$link =  wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=postmatic' ) );
+
+			}
+
+		}
+
+
+
+	}else{
+		$text = __( 'Learn More About Postmatic', 'epoch' );
+		$link = 'https://gopostmatic.com/';
+
+
+	}
+
+	return sprintf( '<p><a href="%1s" target="_blank" class="button button-primary button-large">%2s</a></p>', $link, $text );
+
+}
