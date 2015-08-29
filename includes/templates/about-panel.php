@@ -14,7 +14,7 @@
 <h2>Commenting Perfected<br /><small>A magical accompaniment by Postmatic</small></h2>
 </div>
 
-<p style="float:right;"><a href="http://wordpress.org/plugins/postmatic" target="_blank" class="button button-primary button-large">Get Postmatic. It's free!</a></p>
+<div style="float:right;"><?php echo epoch_postmatic_link(); ?></div>
 <h2>What does Epoch do and how does it work?</h2>
 <p>In a nutshell: <strong>Epoch makes commenting fun again.</strong>. <em>Espcially when you combine it with <a href="http://gopostmatic.com">Postmatic</a> (it's free!).</em></p>
 <div class="column">
