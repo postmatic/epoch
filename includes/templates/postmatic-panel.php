@@ -27,4 +27,4 @@
 <h2>Epoch + Postmatic</h2>
 <p>When running Epoch along with Postmatic the magic really happens. The comment stream is updated in realtime with comments being posted from web as well as email. Subscribing to new comments is quick and simple while users are intelligently invited to become site subscribers as well. All without ugly checkboxes and obtrusive forms.</p>
 
-<p><a href="http://wordpress.org/plugins/postmatic" target="_blank" class="button button-primary button-large">Get Postmatic</a></p>
+<?php echo epoch_postmatic_link(); ?>

@@ -89,6 +89,15 @@ a.epoch-comment-link {
 	padding: 0;
 }
 
+.bypostauthor article.epoch-comment-body {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 15px 0 15px;
+    margin-left: -15px;
+    background-color: #ecf0f1;
+}
+
+
 .epoch-child {
     margin-left: 60px;
 }

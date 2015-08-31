@@ -72,6 +72,10 @@ class api_process {
 	 */
 	public static function comment_count( $data ) {
 		$count = wp_count_comments( $data[ 'postID' ] );
+		if ( EPOCH_ALT_COUNT_CHECK_MODE ) {
+			api_helper::write_comment_count( $data[ 'postID' ], $count );
+		}
+
 		return array(
 			'count' => (int) $count->approved
 		);

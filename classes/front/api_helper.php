@@ -81,8 +81,12 @@ class api_helper {
 		//filter content (make_clickable, wpautop, etc)
 		$comment[ 'comment_content' ] = apply_filters( 'comment_text', $comment[ 'comment_content' ] );
 
+		$author_user = self::find_user( $comment );
+
 		//use display name for comment
-		$comment[ 'comment_author' ] = self::find_user_display_name( $comment );
+		$comment[ 'comment_author' ] = self::get_display_name( $author_user ) ?: $comment['comment_author'];
+
+		$comment[ 'comment_classes' ] = self::comment_classes( $comment, $author_user );
 
 		//add avatar markup as a string
 		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'], 48 );
@@ -295,53 +299,49 @@ class api_helper {
 	}
 
 	/**
-	 * Try are damndest to find display name for comment author.
+	 * Try our damndest to find a user record for comment author.
 	 *
-	 * @since 1.0.1
+	 * @since 1.0.2
 	 *
 	 * @param array $comment The comment
 	 *
-	 * @return string Display name.
+	 * @return bool|\WP_User The user who submitted the comment, false if not found.
 	 */
-	protected static function find_user_display_name( $comment ) {
-		$key = md5( $comment[ 'comment_author_email' ], $comment[ 'comment_author' ] );
-		if ( false == ( $display_name = wp_cache_get( $key, 'epoch' ) ) ) {
+	protected static function find_user( $comment ) {
 
-			$found = false;
-			if ( is_email( $comment[ 'comment_author_email' ] ) ){
-				$user = get_user_by( 'email', $comment[ 'comment_author_email' ] );
-				$_display_name = self::get_display_name( $user );
-				if ( $_display_name ) {
-					$found = true;
-					$display_name = $_display_name;
-				}
-
-			}
-
-			if ( ! $found ) {
-				$value = $comment[ 'comment_author' ] ;
-				foreach( array( 'login', 'id', 'slug', 'email' ) as $field ) {
-					$user = \WP_User::get_data_by( $field, $value );
-					$_display_name = self::get_display_name( $user );
-					if ( $_display_name ) {
-						$display_name = $_display_name;
-						$found = true;
-						break;
-					}
-
-				}
-
-			}
-
-			if ( ! $found ) {
-				$display_name = $comment[ 'comment_author' ];
-			}else{
-				wp_cache_set( $key, $display_name, self::$cache_group, HOUR_IN_SECONDS );
-			}
-
+		if ( isset( $comment['user_id'] ) ) {
+			return get_user_by( 'id', $comment['user_id'] );
 		}
 
-		return $display_name;
+		$key = md5( $comment[ 'comment_author_email' ], $comment[ 'comment_author' ] );
+
+		$user = false;
+
+		$id = wp_cache_get( $key, self::$cache_group );
+
+		if ( false !== $id ) {
+			return get_user_by( 'id', $id );
+		}
+
+		if ( is_email( $comment[ 'comment_author_email' ] ) ) {
+			$user = get_user_by( 'email', $comment[ 'comment_author_email' ] );
+		}
+
+		if ( ! $user ) {
+			$value = $comment['comment_author'];
+			foreach ( array( 'login', 'id', 'slug', 'email' ) as $field ) {
+				$user = get_user_by( $field, $value );
+				if ( $user ) {
+					break;
+				}
+			}
+		}
+
+		// Cache the ID as zero when not found to prevent repeat searches
+		$id = $user ? $user->ID : 0;
+		wp_cache_set( $key, $id, self::$cache_group, HOUR_IN_SECONDS );
+
+		return $user;
 
 	}
 
@@ -365,6 +365,103 @@ class api_helper {
 		}
 
 	}
+
+	/**
+	 * Builds a string of CSS classes for a comment.
+	 *
+	 * @since 1.0.2
+	 *
+	 * @param array $comment
+	 * @param bool|\WP_User $author_user
+	 * @return string
+	 */
+	protected static function comment_classes( $comment, $author_user ) {
+		$classes = array( 'epoch-single-comment' );
+
+		if ( is_a( $author_user, 'WP_User' ) ) {
+			$classes = array_merge( $classes, $author_user->roles );
+		}
+
+		$post = get_post( $comment['comment_post_ID'] );
+
+		if ( $post && $author_user && $post->post_author == $author_user->ID ) {
+			$classes[] = 'bypostauthor';
+		}
+
+		return implode( ' ', $classes );
+	}
+
+	/**
+	 * If possible, write comment count to a text file.
+	 *
+	 * @since 1.0.2
+	 *
+	 * @param int $post_id
+	 * @param null $comment_count
+	 *
+	 * @return array
+	 */
+	public static function write_comment_count( $post_id, $comment_count = null ) {
+		if ( ! EPOCH_ALT_COUNT_CHECK_MODE ){
+			return array(
+				'code' => 501,
+				'message' => __( 'File system comment count checks not enabled.', 'epoch' )
+			);
+
+		}
+
+		$fail = false;
+
+		$url = wp_nonce_url('plugins.php');
+		if ( is_null( $comment_count ) ) {
+			$comment_count = get_comment_count( $post_id );
+		}
+
+		$return = array( 'code' => 500 );
+		if (false === ($creds = request_filesystem_credentials( $url, '', false, false ) ) ) {
+			$return[ 'message' ] = __( 'Could not use WordPress file system.', 'epoch' );
+			return $return;
+
+		}
+
+
+		if ( ! WP_Filesystem($creds) ) {
+			$return[ 'message' ] = __( 'Could not access WordPress file system.', 'epoch' );
+			return $return;
+
+		}
+
+		$dir =  api_paths::comment_count_dir();
+
+		if ( ! file_exists( $dir ) ) {
+			wp_mkdir_p( $dir );
+		}
+
+		if ( ! file_exists( $dir ) ) {
+			$return[ 'message' ] = __( 'Could not create directory.', 'epoch' );
+			return $return;
+
+		}
+
+
+		$filename = api_paths::comment_count_alt_check_url( $post_id );
+
+		// by this point, the $wp_filesystem global should be working, so let's use it to create a file
+		global $wp_filesystem;
+		if ( ! $wp_filesystem->put_contents( $filename, absint( $comment_count ), FS_CHMOD_FILE) ) {
+			$return[ 'message' ] = __( 'Could not write file.', 'epoch' );
+		}
+		else{
+			$return = array(
+				'code' => 200,
+				'message' => $comment_count
+			);
+		}
+
+		return $return;
+
+	}
+
 
 
 }

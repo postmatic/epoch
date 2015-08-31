@@ -83,6 +83,7 @@ jQuery( document ).ready( function ( $ ) {
          * @since 0.0.1
          */
         app.init = function() {
+
             //element for the form wrap
             app.form_wrap_el = document.getElementById( epoch_vars.form_wrap );
 
@@ -147,7 +148,7 @@ jQuery( document ).ready( function ( $ ) {
              *
              * @since 0.0.1
              */
-            $( app.form_el ).submit( function( event ) {
+            $( document ).on( 'submit', '#' + epoch_vars.form_id, function( event ) {
                 event.preventDefault();
                 app.shut_it_off = true;
 
@@ -291,38 +292,87 @@ jQuery( document ).ready( function ( $ ) {
          *
          */
         app.comment_count = function( updateCheck ) {
-                app.shut_it_off = true;
-                $.post(
-                    epoch_vars.api_url, {
-                        action: 'comment_count',
-                        epochNonce: epoch_vars.nonce,
-                        postID: epoch_vars.post_id
-                    } ).fail( function ( response ) {
-                        app.shut_it_off = false;
-                    } ).success( function ( response ) {
-                        response = app.get_data_from_response( response );
+            if ( null != epoch_vars.alt_comment_count ) {
+                app.check_comment_count_from_file( updateCheck );
+            }else{
+                app.comment_count_from_wp( updateCheck );
+            }
 
-                        if ( 'undefined' != response.count && 0 < response.count ) {
-                            if ( updateCheck ) {
-                                if ( response.count > app.last_count ) {
-                                    app.new_comments();
+        };
 
-                                }
-                            }else{
-                                app.get_comments();
+        /**
+         * Get comment count by querying WordPress
+         *
+         * @since 1.0.2
+         */
+        app.comment_count_from_wp = function( updateCheck ) {
+            app.shut_it_off = true;
+            $.post(
+                epoch_vars.api_url, {
+                    action: 'comment_count',
+                    epochNonce: epoch_vars.nonce,
+                    postID: epoch_vars.post_id
+                } ).fail( function ( response ) {
+                    app.shut_it_off = false;
+                } ).success( function ( response ) {
+                    response = app.get_data_from_response( response );
+
+                    if ( 'undefined' != response.count && 0 < response.count ) {
+                        if ( updateCheck ) {
+                            if ( response.count > app.last_count ) {
+                                app.new_comments();
+
                             }
-
-
-                            app.set_last_count( response.count );
-
-                        } else {
-                            app.no_comments = true;
+                        }else{
+                            app.get_comments();
                         }
 
-                        app.shut_it_off = false;
-                    }
-                );
 
+                        app.set_last_count( response.count );
+
+                    } else {
+                        app.no_comments = true;
+                    }
+
+                    app.shut_it_off = false;
+                }
+            );
+
+        };
+
+        /**
+         * Get comment count by checking in file system. Will recheck via regualr query if file doesn't exist.
+         *
+         * @since 1.0.2
+         */
+        app.check_comment_count_from_file = function( updateCheck ) {
+            app.shut_it_off = true;
+            $.get(
+                epoch_vars.alt_comment_count,{}
+            ).fail( function () {
+                    app.comment_count_from_wp( updateCheck );
+                }
+            ).success( function ( response ) {
+                    if ( 'undefined' != response && 0 < response ) {
+                        if ( updateCheck ) {
+                            if ( response > app.last_count ) {
+                                app.new_comments();
+
+                            }
+                        }else{
+                            app.get_comments();
+                        }
+
+
+                        app.set_last_count( response );
+
+                    } else {
+                        app.no_comments = true;
+                    }
+
+                    app.shut_it_off = false;
+                }
+            );
         };
 
         /**
@@ -387,6 +437,7 @@ jQuery( document ).ready( function ( $ ) {
                         children.reverse();
                         parents.reverse();
                     }else{
+                        parents.reverse();
                         children.reverse();
                     }
 
@@ -489,7 +540,6 @@ jQuery( document ).ready( function ( $ ) {
          */
         app.put_comment_in_dom = function( html, parent_id, level, id ) {
             if ( level > app.max_depth ) {
-                alert();
                 level = app.max_depth;
             }
 
