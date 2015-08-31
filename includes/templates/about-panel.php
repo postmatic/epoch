@@ -46,17 +46,22 @@
 <h2 class="clear">Free Addons and Recommended Plugins</h2>
 <p>Epoch is built for compatibility. Just like <a href="http://gopostmatic.com">Postmatic</a>. It uses fully native WordPress commenting, plays nicely with most all other commenting plugins, and employs WordPress coding standards. </p>
 
-<div class="column">
+<div class="column4">
 <h4>Fight Spam</h4>
 <p style="text-align: left;">Since Epoch is fully WordPress native it plays well with your existing spam deterrents. It'll work seamlessly with <a href="https://wordpress.org/plugins/goodbye-captcha/">GoodBye Captcha</a>, <a href="https://wordpress.org/plugins/wp-recaptcha/">WP-reCaptcha</a>, and <a href="http://akismet.com">Akismet</a>. That should take care of things.</p>
 </div>
 
-<div class="column">
+<div class="column4">
 <h4>Social Login</h4>
 <p style="text-align: left;">Support for <a href="https://wordpress.org/plugins/wordpress-social-login/">WordPress Social Login</a> is built in and ready to go. Users can sign in with any of a dozen different social networks and services.</p>
 </div>
 
-<div class="column">
+<div class="column4">
+<h4>Enable comment editing</h4>
+<p style="text-align: left;">Uh oh. Typo! Users can edit comments for 5 minutes with the addition of <a href="https://wordpress.org/plugins/simple-comment-editing/">Simple Comment Editing</a>.</p>
+</div>
+
+<div class="column4">
 <h4>Add a toolbar</h4>
 <p style="text-align: left;">Let your commenters leave rich-text comments with beautiful simplicity. Epoch works out of the box with <a href="https://wordpress.org/plugins/wp-markdown/">WP-Markdown</a>.</p>
 </div>

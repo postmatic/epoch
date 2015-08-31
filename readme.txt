@@ -83,7 +83,8 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 = 1.0.2 =
 
 - Fixed the nasty bug that kept descending comments from sorting in the correct order. Again. Sorry.
-- Added: Ability to turn on and off the ability to embed iframe comments onto other domains.
+- Added support for [Simple Comment Editing](https://wordpress.org/plugins/simple-comment-editing/). Tons of thanks to @ronalfy for making that happen.
+- Fixed - various iframe security issues.
 - Removed the headline while in iframe mode (Join the Conversation) as there was no way to properly link it to the comment form.
 - Added special styling for comments left by the post author.
 - Added the user role as a class to the comment. That way you can style comments differently depending on if they are admins, contributors, subscribers, etc.
