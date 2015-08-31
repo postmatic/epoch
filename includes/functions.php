@@ -26,10 +26,10 @@ function epoch_iframe_footer_print_scripts() {
 	 * @param array $scripts An array of registered script handles
 	 */
 	$scripts = apply_filters( 'epoch_iframe_scripts', array() );
-	$scripts[] = 'epoch-handlebars';
-	$scripts[] = 'epoch-handlebars-helpers';
 	$scripts[] = 'jquery-core';
 	$scripts[] = 'jquery-migrate';
+	$scripts[] = 'epoch-handlebars';
+	$scripts[] = 'epoch-handlebars-helpers';
 	$scripts[] = 'epoch';
 	$scripts[] = 'visibility';
 	$scripts[] = 'comment-reply';
