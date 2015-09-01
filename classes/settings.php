@@ -44,7 +44,7 @@ class settings extends core{
 		if( ! current_user_can( 'manage_options' ) ) {
 			status_header( '500' );
 			die();
-			
+
 		}
 
 		if( empty( $_POST[ 'epoch-setup' ] ) || ! wp_verify_nonce( $_POST[ 'epoch-setup' ], 'epoch' ) ){

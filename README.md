@@ -8,3 +8,9 @@ Learn more at [https://gopostmatic.com/epoch/](https://gopostmatic.com/epoch/)
 
 ### Read Before Downloading or Cloning From This Repository
 This repository is for development purposes. If you checkout this repository, or download the provided zip file, you must run `composer update` in the plugin directory to get the dependencies. If you do not know how to do that, or do not wish to, please install via the WordPress plugin admin or [download from WordPress.org](https://wordpress.org/plugins/epoch/)
+
+
+### Contributing
+Pull requests are welcome. Please do not submit pull requests against master. Please use the development branch for the next version.
+
+At this time 1.0.3-dev branch is the correct branch to submit pull requests.
