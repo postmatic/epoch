@@ -138,7 +138,7 @@ function epoch_postmatic_link() {
 				),
 				self_admin_url( 'update.php' )
 			),
-			$action. '_' . $slug
+			$action. '_' . 'postmatic'
 		);
 
 
