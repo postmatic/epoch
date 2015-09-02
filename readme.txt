@@ -80,6 +80,16 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 1.0.4 =
+
+- Minification did not properly occur in 1.0.3. Sorry for the sloppy releases. We're going to work on automating it. 
+
+= 1.0.3 =
+
+- Fixed a bug in which installing Postmatic from the dashboard did not work.
+- Fixed a bug in which bypostauthor comment styling was inherited by the children of the author comment.
+- Fixed a bug keeping Simple Comment Editing from working correctly. Sorry for all that.
+
 = 1.0.2 =
 
 - Fixed the nasty bug that kept descending comments from sorting in the correct order. Again. Sorry.
