@@ -4,7 +4,7 @@ Donate link: https://gopostmatic.com/epoch
 Tags: ajax comments, comments, lightweight commenting, cdn, cache, engagement, postmatic, live update, wordpress comments, comment template, ajax commenting, better comments, disqus, discussion, seo, mobile commenting, chat, performance, site speed, chatting, email commenting, comment notifications
 Requires at least: 3.9
 Tested up to: 4.3
-Stable tag: 1.0
+Stable tag: 1.0.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,16 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 
 == Changelog ==
+
+= 1.0.3.1 =
+
+- Minification did not properly occur in 1.0.3. Sorry for the sloppy releases. We're going to work on automating it. 
+
+= 1.0.3 =
+
+- Fixed a bug in which installing Postmatic from the dashboard did not work.
+- Fixed a bug in which bypostauthor comment styling was inherited by the children of the author comment.
+- Fixed a bug keeping Simple Comment Editing from working correctly. Sorry for all that.
 
 = 1.0.2 =
 
