@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CalderaWP/dismissible_notice.git",
-                "reference": "352cb1732fe82c0befac24b1300400a282e1e197"
+                "reference": "26a0a00cced207464eb005d2eeb3ab93727363d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CalderaWP/dismissible_notice/zipball/352cb1732fe82c0befac24b1300400a282e1e197",
-                "reference": "352cb1732fe82c0befac24b1300400a282e1e197",
+                "url": "https://api.github.com/repos/CalderaWP/dismissible_notice/zipball/26a0a00cced207464eb005d2eeb3ab93727363d3",
+                "reference": "26a0a00cced207464eb005d2eeb3ab93727363d3",
                 "shasum": ""
             },
             "type": "library",
@@ -32,7 +32,7 @@
                 }
             ],
             "description": "Creates a dismissible--via AJAX--admin nag.",
-            "time": "2015-07-24 05:30:06"
+            "time": "2015-08-24 20:27:16"
         },
         {
             "name": "calderawp/magic-tags",

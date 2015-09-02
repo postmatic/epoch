@@ -89,14 +89,11 @@ a.epoch-comment-link {
 	padding: 0;
 }
 
-.bypostauthor article.epoch-comment-body {
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    padding: 15px 15px 0 15px;
-    margin-left: -15px;
-    background-color: #ecf0f1;
+article.bypostauthor {
+    padding: 15px 15px 0 0;
+    background-color: #ecf0f1;;
+    border: 1px solid #ddd;
 }
-
 
 .epoch-child {
     margin-left: 60px;
@@ -104,7 +101,7 @@ a.epoch-comment-link {
 
 
 ul.epoch-comment-actions {
-	margin-left: 60px;
+	margin: 5px 0 5px 60px;
 	padding: 0
 }
 
@@ -191,7 +188,6 @@ div.comment-respond p.comment-form-author,div.comment-respond p.comment-form-ema
 	margin-bottom: 15px;
 	padding: 5px;
 	background: #fff;
-	border: 1px solid #ddd;
 	color: #383838;
 	font-size: 100%;
 }
@@ -302,14 +298,14 @@ p.form-submit input {
 .epoch-comment-author-avatar img {
 	width: 24px; 
 	height: 24px;
-	margin-right: 18px;
+	margin-right: 10px;
 }
 .epoch-child .epoch-comment-content, .epoch-comment-content, .epoch-child .epoch-comment-actions  { 
-	margin-left: 42px;
+	margin-left: 34px;
 }
 
 ul.epoch-comment-actions {
-	margin-left: 42px;
+	margin: 5px 0 5px 34px;
 }
 
 .epoch-comment-actions a {

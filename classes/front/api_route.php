@@ -51,6 +51,7 @@ class api_route {
 				$response = __( 'Access to the Epoch API from external sites is not enabled.', 'epoch' );
 				wp_send_json_error( $response );
 			}else {
+				define( 'EPOCH_API', true );
 				$action   = strip_tags( trim( $_REQUEST['action'] ) );
 				$response = self::route( $action );
 
