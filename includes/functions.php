@@ -103,7 +103,7 @@ function epoch_postmatic_link() {
 		$found = false;
 		foreach( $plugins as $plugin_file => $a_plugin ){
 			if( $a_plugin['Name'] == 'Postmatic - WordPress Subscriptions & Commenting by Email' ){
-				$found = $plugin_file;
+				$found = $a_plugin;
 				break;
 
 			}
@@ -117,17 +117,30 @@ function epoch_postmatic_link() {
 
 				// installed but not active
 				$text = __( 'Activate Postmatic', 'epoch' );
-				$link = wp_nonce_url( self_admin_url( 'plugins.php?action=activate&plugin=' . urlencode( $found ) ), 'activate-plugin_' . $found );
-
+				$action = 'activate';
+				$slug = $found[ 'slug' ];
 			}else{
 
 				// not installed
 				$text = __( 'Install Postmatic', 'epoch' );
-				$link =  wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=postmatic' ) );
+				$action = 'install-plugin';
+				$slug = 'postmatic';
+
 
 			}
 
 		}
+
+		$link = wp_nonce_url(
+			add_query_arg(
+				array(
+					'action' => $action,
+					'plugin' => $slug
+				),
+				self_admin_url( 'update.php' )
+			),
+			$action. '_' . $slug
+		);
 
 
 
