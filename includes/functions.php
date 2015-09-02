@@ -118,13 +118,12 @@ function epoch_postmatic_link() {
 				// installed but not active
 				$text = __( 'Activate Postmatic', 'epoch' );
 				$action = 'activate';
-				$slug = $found[ 'slug' ];
+
 			}else{
 
 				// not installed
 				$text = __( 'Install Postmatic', 'epoch' );
 				$action = 'install-plugin';
-				$slug = 'postmatic';
 
 
 			}
@@ -135,7 +134,7 @@ function epoch_postmatic_link() {
 			add_query_arg(
 				array(
 					'action' => $action,
-					'plugin' => $slug
+					'plugin' => 'postmatic'
 				),
 				self_admin_url( 'update.php' )
 			),
