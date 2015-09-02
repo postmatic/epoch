@@ -151,6 +151,8 @@ jQuery( document ).ready( function ( $ ) {
 
                                 }
                             }
+                            
+                            jQuery( 'body' ).triggerHandler( 'epoch.comment.posted', [ comment.comment_post_ID, comment.comment_ID ] );
 
                             app.shut_it_off = false;
 
@@ -420,6 +422,8 @@ jQuery( document ).ready( function ( $ ) {
                     response = app.get_data_from_response( response );
 
                     app.comment_response( response, true );
+                    
+                    jQuery( 'body' ).triggerHandler( 'epoch.comments.loaded' );
 
 
                 }
