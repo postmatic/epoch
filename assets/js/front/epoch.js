@@ -392,9 +392,9 @@ jQuery( document ).ready( function ( $ ) {
                         app.put_comment_in_dom( html, comment.comment_parent, comment.depth, parseInt( comment.comment_ID, 10 ) );
                     });
                     
-                    if ( !is_new ) {
-	                	  jQuery( 'body' ).triggerHandler( 'epoch.comments.loaded' );   
-	                }
+					if ( !is_new ) {
+						jQuery( 'body' ).triggerHandler( 'epoch.comments.loaded' );   
+					}
 
 
                 }
