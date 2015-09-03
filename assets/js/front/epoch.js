@@ -391,6 +391,10 @@ jQuery( document ).ready( function ( $ ) {
                         html = app.parse_comment( comment );
                         app.put_comment_in_dom( html, comment.comment_parent, comment.depth, parseInt( comment.comment_ID, 10 ) );
                     });
+                    
+                    if ( !is_new ) {
+	                	  jQuery( 'body' ).triggerHandler( 'epoch.comments.loaded' );   
+	                }
 
 
                 }
@@ -422,8 +426,6 @@ jQuery( document ).ready( function ( $ ) {
                     response = app.get_data_from_response( response );
 
                     app.comment_response( response, true );
-                    
-                    jQuery( 'body' ).triggerHandler( 'epoch.comments.loaded' );
 
 
                 }
