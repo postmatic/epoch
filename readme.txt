@@ -80,6 +80,13 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 1.0.4 =
+
+- Better notifications and styling for comments being held in moderation.
+- Better styling of author comments across all themes.
+- Improved support for Simple Comment Editing.
+- Added support for the very cool [Basic Comment Quicktags](https://wordpress.org/plugins/basic-comment-quicktags/).
+
 = 1.0.3.1 =
 
 - Minification did not properly occur in 1.0.3. Sorry for the sloppy releases. We're going to work on automating it. 

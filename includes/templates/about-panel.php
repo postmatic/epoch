@@ -63,7 +63,7 @@
 
 <div class="column4">
 <h4>Add a toolbar</h4>
-<p style="text-align: left;">Let your commenters leave rich-text comments with beautiful simplicity. Epoch works out of the box with <a href="https://wordpress.org/plugins/wp-markdown/">WP-Markdown</a>.</p>
+<p style="text-align: left;">Let your commenters leave rich-text comments with beautiful simplicity. Epoch works out of the box with <a href="https://wordpress.org/plugins/wp-markdown/">WP-Markdown</a> or the ultra-simple <a href="https://wordpress.org/plugins/basic-comment-quicktags/">Basic Comment Quicktags</a>.</p>
 </div>
 
 <h3 class="clear">Contributors</h3>

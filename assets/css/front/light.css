@@ -99,9 +99,7 @@ article.bypostauthor {
 .epoch-child.level-2 {
 }
 
-.epoch-wrap-comment-awaiting-moderation {
-	border: 1px solid red !imporant;
-}
+
 ul.epoch-comment-actions {
 	margin-left: 55px !important;
 	padding: 0 !important
@@ -134,6 +132,11 @@ div.epoch-single-comment.epoch-success {
     color: #c0392b !important;
     font-weight: bold;
 }
+
+.epoch-wrap-comment-awaiting-moderation {
+	
+}
+
 
 #epoch-comments .comment-notes {
 	font-size: 90% !important;
@@ -340,6 +343,15 @@ div#wmd-button-barcomment {
 	width: 100% !important;
 	min-height: 30px !important;
 }
+
+/*Basic comment quicktags*/
+
+.quicktags-toolbar {
+  padding: 1%;
+  width: 96%;
+}
+
+
 
 /*get rid of box shadows*/
  input:required,textarea:required {box-shadow: none !important;}

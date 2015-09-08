@@ -412,3 +412,10 @@ div#wmd-button-barcomment {
 	width: 100%;
 	min-height: 30px;
 }
+
+/*Basic comment quicktags*/
+
+.quicktags-toolbar {
+  padding: 1%;
+  width: 96%;
+}

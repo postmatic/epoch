@@ -381,6 +381,10 @@ class api_helper {
 		if ( is_a( $author_user, 'WP_User' ) ) {
 			$classes = array_merge( $classes, $author_user->roles );
 		}
+		
+		if ( 1 != $comment['comment_approved'] ) {
+			$classes[] = 'epoch-wrap-comment-awaiting-moderation';
+		}
 
 		$post = get_post( $comment['comment_post_ID'] );
 
