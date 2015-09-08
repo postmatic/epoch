@@ -90,6 +90,8 @@ article.bypostauthor {
     margin-left: -15px !important;
 }
 
+
+
 .epoch-child {
     margin-left: 60px !important;
 }
@@ -97,7 +99,9 @@ article.bypostauthor {
 .epoch-child.level-2 {
 }
 
-
+.epoch-wrap-comment-awaiting-moderation {
+	border: 1px solid red !imporant;
+}
 ul.epoch-comment-actions {
 	margin-left: 55px !important;
 	padding: 0 !important
