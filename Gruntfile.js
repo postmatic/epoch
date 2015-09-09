@@ -48,7 +48,7 @@ module.exports = function (grunt) {
                 }
             },
             svn_commit: {
-                command: 'svn ci -m "Version <%= pkg.version %>"',
+                command: 'svn ci --force-interactive -m "Version <%= pkg.version %>"',
                 options: {
                     execOptions: {
                         cwd: 'build/svn/trunk'
@@ -232,7 +232,8 @@ module.exports = function (grunt) {
         'clean:pre_svn_copy',
         'copy:svn',
         'shell:svn_add',
-        'shell:svn_rm'
+        'shell:svn_rm',
+        'shell:svn_commit'
     ] );
 
     grunt.registerTask( 'release', [ 'pre_vcs', 'do_git', 'clean:post_build' ] );
