@@ -101,7 +101,7 @@ article.bypostauthor {
 
 
 ul.epoch-comment-actions {
-	margin-left: 55px !important;
+	margin-left: 60px !important;
 	padding: 0 !important
 }
 
@@ -117,14 +117,15 @@ ul.epoch-comment-actions li a {
 	color: #aaa !important;
 }
  
-div.epoch-single-comment {
+article.epoch-single-comment {
    background-color:transparent !important;
     -moz-transition:background-color 4s !important;
     -webkit-transition:background-color 4s !important;
     -o-transition:background-color 4s !important;
     transition:background-color 4s !important;
+    border: none !important;
 }
-div.epoch-single-comment.epoch-success {
+article.epoch-single-comment.epoch-success {
     background-color: #FFFEDB !important;
  }
 
@@ -133,8 +134,15 @@ div.epoch-single-comment.epoch-success {
     font-weight: bold;
 }
 
-.epoch-wrap-comment-awaiting-moderation {
+article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comment-author {
+	background: url(../../../assets/image/el.png) center right no-repeat;
+	background-size: 30px;
+	padding-right: 40px;
 	
+}
+
+article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
+	opacity: 0.4;
 }
 
 
@@ -159,7 +167,7 @@ div.epoch-single-comment.epoch-success {
 }
 
 .epoch-child div.comment-respond, #epoch-comments #respond {
-	margin-left: 60px !important;
+	margin-left: 55px !important;
 	font-size: 85% !important;
 	line-height: normal !important; 
 	margin-bottom: 35px !important;
@@ -346,7 +354,7 @@ div#wmd-button-barcomment {
 
 /*Basic comment quicktags*/
 
-.quicktags-toolbar {
+#epoch-commenting .quicktags-toolbar {
   padding: 1%;
   width: 96%;
 }

@@ -90,7 +90,7 @@ a.epoch-comment-link {
 }
 
 article.bypostauthor {
-    padding: 15px 15px 0 0;
+    padding: 15px 0 0 15px;
     background: url(../../../assets/image/et.png);
     margin-left: -15px;
 }
@@ -327,6 +327,7 @@ ul.epoch-comment-actions {
 
 
 
+
 div.comment-respond p.comment-form-author,div.comment-respond p.comment-form-email,#commentform p.comment-form-author,#commentform p.comment-form-email {
 	float: left;
 	width: 49%;
@@ -415,7 +416,7 @@ div#wmd-button-barcomment {
 
 /*Basic comment quicktags*/
 
-.quicktags-toolbar {
+#epoch-wrap .quicktags-toolbar {
   padding: 1%;
   width: 96%;
 }
