@@ -121,14 +121,14 @@ ul.epoch-comment-actions li a {
 	margin-left: 52px;
 }
  
-div.epoch-single-comment {
+.epoch-single-comment {
    background-color:transparent;
     -moz-transition:background-color 4s;
     -webkit-transition:background-color 4s;
     -o-transition:background-color 4s;
     transition:background-color 4s;
 }
-div.epoch-single-comment.epoch-success {
+.epoch-single-comment.epoch-success {
     background-color: #FFFEDB;
  }
 
@@ -139,6 +139,17 @@ div.epoch-single-comment.epoch-success {
     -khtml-opacity: 0.5;
     opacity: 0.5;
     z-index: 10000;
+}
+
+article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comment-author {
+	background: url(../../../assets/image/el.png) center right no-repeat;
+	background-size: 30px;
+	padding-right: 40px;
+	
+}
+
+article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
+	opacity: 0.4;
 }
 
 .comment-notes {
