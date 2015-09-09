@@ -56,7 +56,7 @@ module.exports = function (grunt) {
                 }
             },
             svn_tag: {
-                command: 'svn copy <%= svn_url %>/trunk <%= svn_url %>/tags/<%= pkg.version %>'
+                command: 'svn copy -m "Tagging version <%= pkg.version %>" <%= svn_url %>/trunk <%= svn_url %>/tags/<%= pkg.version %>'
             }
         },
         clean: {
@@ -233,10 +233,11 @@ module.exports = function (grunt) {
         'copy:svn',
         'shell:svn_add',
         'shell:svn_rm',
-        'shell:svn_commit'
+        'shell:svn_commit',
+        'shell:svn_tag'
     ] );
 
-    grunt.registerTask( 'release', [ 'pre_vcs', 'do_git', 'clean:post_build' ] );
+    grunt.registerTask( 'release', [ 'default', 'pre_vcs', 'do_git', 'do_svn', 'clean:post_build' ] );
 
 
 };
