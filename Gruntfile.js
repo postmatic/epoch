@@ -16,15 +16,47 @@ module.exports = function (grunt) {
         '!bin/**',
         '!tests/**',
         '!composer.lock',
-        '!wp-org-assets/**'
+        '!wp-org-assets/**',
+        '!build/**'
     ];
 
     // Project configuration.
     grunt.initConfig({
         pkg     : grunt.file.readJSON( 'package.json' ),
+        svn_url: 'https://plugins.svn.wordpress.org/epoch',
         shell: {
             composer: {
                 command: 'composer update'
+            },
+            svn_checkout: {
+                command: 'svn checkout --force <%= svn_url %>/trunk build/svn/trunk'
+            },
+            svn_add: {
+                command: "svn stat | grep '^\\?' | awk '{print $2}' | xargs svn add",
+                options: {
+                    execOptions: {
+                        cwd: 'build/svn/trunk'
+                    }
+                }
+            },
+            svn_rm: {
+                command: "svn stat | grep '^\\!' | awk '{print $2}' | xargs svn rm",
+                options: {
+                    execOptions: {
+                        cwd: 'build/svn/trunk'
+                    }
+                }
+            },
+            svn_commit: {
+                command: 'svn ci -m "Version <%= pkg.version %>"',
+                options: {
+                    execOptions: {
+                        cwd: 'build/svn/trunk'
+                    }
+                }
+            },
+            svn_tag: {
+                command: 'svn copy <%= svn_url %>/trunk <%= svn_url %>/tags/<%= pkg.version %>'
             }
         },
         clean: {
@@ -35,6 +67,13 @@ module.exports = function (grunt) {
             ],
             pre_compress: [
                 'build/releases'
+            ],
+            pre_svn_deploy: [
+                'build/svn'
+            ],
+            pre_svn_copy: [
+                'build/svn/trunk/**/*',
+                '!build/svn/trunk/**/*.svn*'
             ]
         },
         copy: {
@@ -44,6 +83,13 @@ module.exports = function (grunt) {
                 },
                 src: copy_files,
                 dest: 'build/<%= pkg.name %>/'
+            },
+            svn: {
+               options: {
+                   mode: true
+               } ,
+                src: copy_files,
+                dest: 'build/svn/trunk/'
             }
         },
         run: {
@@ -155,6 +201,7 @@ module.exports = function (grunt) {
             }
         }
 
+
     });
 
 
@@ -177,9 +224,16 @@ module.exports = function (grunt) {
 
     //release tasks
     grunt.registerTask( 'version_number', [ 'replace:readme', 'replace:core_file' ] );
-    grunt.registerTask( 'pre_vcs', [ 'version_number', 'shell:composer', 'copy', 'compress' ] );
+    grunt.registerTask( 'pre_vcs', [ 'version_number', 'shell:composer', 'copy:build', 'compress', 'clean:pre_svn_deploy'] );
     grunt.registerTask( 'do_git', [ 'gitadd', 'gitcommit', 'gittag', 'gitpush' ] );
-    grunt.registerTask( 'just_build', [ 'shell:composer', 'copy', 'compress' ] );
+    grunt.registerTask( 'just_build', [ 'shell:composer', 'copy:build', 'compress' ] );
+    grunt.registerTask( 'do_svn', [
+        'shell:svn_checkout',
+        'clean:pre_svn_copy',
+        'copy:svn',
+        'shell:svn_add',
+        'shell:svn_rm'
+    ] );
 
     grunt.registerTask( 'release', [ 'pre_vcs', 'do_git', 'clean:post_build' ] );
 
