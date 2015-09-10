@@ -36,12 +36,13 @@ class api_process {
 			asort( $parents );
 
 			$comments = (array) $comments;
+			
 			$comments = array_combine( wp_list_pluck( $comments, 'comment_ID'), $comments );
-			$i = 0;
+			$_comments = array();
 			foreach( $comments as $id => $parent ) {
-				$_comments[ $i ] = $comments[ $id ];
-				$i++;
+				$_comments[] = $comments[ $id ];
 			}
+			
 			rsort( $_comments );
 
 			$comments = $_comments;
@@ -54,6 +55,8 @@ class api_process {
 		}else{
 			return false;
 		}
+		
+		
 
 		return array(
 			'comments' => $comments,
