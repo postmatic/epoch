@@ -29,6 +29,7 @@ class api_process {
 		$args = api_helper::get_comment_args( $data[ 'postID' ] );
 
 		$options = options::get_display_options();
+		
 		$comments = get_comments( $args  );
 		if ( 'ASC' == $options[ 'order' ] ) {
 			$parents = array_combine( wp_list_pluck( $comments, 'comment_ID'),wp_list_pluck( $comments, 'comment_parent' ) );
@@ -78,9 +79,9 @@ class api_process {
 		if ( EPOCH_ALT_COUNT_CHECK_MODE ) {
 			api_helper::write_comment_count( $data[ 'postID' ], $count );
 		}
-
+		$show_count = $count->approved + $count->moderated;
 		return array(
-			'count' => (int) $count->approved
+			'count' => (int) $show_count
 		);
 	}
 
