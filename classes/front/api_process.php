@@ -125,7 +125,11 @@ class api_process {
 
 		if ( 'spam' == $approved )
 			return false;
-
+			
+		/* After setting up the comment object, set comment cookies for moderation */
+		do_action( 'set_comment_cookies', $comment, wp_get_current_user() );
+		
+		/* Return modified comment and approval status */
 		$comment = (object) api_helper::add_data_to_comment( $comment, ! api_helper::thread() );
 		return array(
 			'comment_id' => $comment_id,
