@@ -65,7 +65,7 @@ class options {
 			'before_text' => __( 'Join the conversation', 'epoch' ),
 			'interval'    => 15,
 			'order'       => 'ASC',
-			'hide_pings'  => false,
+			'show_pings'  => false,
 		);
 
 		$options = wp_parse_args( $options, $defaults );

@@ -247,13 +247,10 @@ class api_helper {
 			'post_id' => $post_id,
 			'order'   => $options['order'],
 			'status'  => 'approve',
+			'type'    => ! empty( $options['show_pings'] ) ? array( 'comment', 'pings' ) : array( 'comment' ),
 		);
 
-		if ( ! empty( $options['hide_pings'] ) ) {
-			$args['type'] = array( 'comment' );
-		}
-
-		return $args;
+		return apply_filters( 'epoch_comment_args', $args, $post_id );;
 
 	}
 

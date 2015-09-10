@@ -68,10 +68,10 @@
 
 <div class="epoch-config-group">
 	<label for="epoch-options-order">
-		<?php _e( 'Hide Pings & Trackbacks', 'epoch' ); ?>
+		<?php _e( 'Show Pings & Trackbacks', 'epoch' ); ?>
 	</label>
-	<input type="checkbox" name="options[hide_pings]" value="true" {{#is options/hide_pings value="true"}}checked{{/is}} />
+	<input type="checkbox" name="options[show_pings]" value="true" {{#is options/show_pings value="true"}}checked{{/is}} />
 	<p class="description" style="margin-left: 190px;">
-		<?php _e( 'When enabled, pings and trackbacks will be removed from the comment stream.', 'epoch' ); ?>
+		<?php _e( 'When enabled, pings and trackbacks will show in the comment stream.', 'epoch' ); ?>
 	</p>
 </div>
