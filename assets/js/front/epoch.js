@@ -244,9 +244,9 @@ jQuery( document ).ready( function ( $ ) {
                 } ).success( function ( response ) {
                     response = app.get_data_from_response( response );
 
-                    if ( 'undefined' != response.count && 0 < response.count ) {
+                    if ( 'undefined' != response.count_total && 0 < response.count_total ) {
                         if ( updateCheck ) {
-                            if ( response.count > app.last_count ) {
+                            if ( response.count_approved > app.last_count ) {
                                 app.new_comments();
 
                             }
@@ -255,7 +255,7 @@ jQuery( document ).ready( function ( $ ) {
                         }
 
 
-                        app.set_last_count( response.count );
+                        app.set_last_count( response.count_approved );
 
                     } else {
                         app.no_comments = true;

@@ -79,9 +79,11 @@ class api_process {
 		if ( EPOCH_ALT_COUNT_CHECK_MODE ) {
 			api_helper::write_comment_count( $data[ 'postID' ], $count );
 		}
-		$show_count = $count->approved + $count->moderated;
+		$total_count = $count->approved + $count->moderated;
 		return array(
-			'count' => (int) $show_count
+			'count_total' => (int) $total_count,
+			'count_approved' => (int) $count->approved,
+			'count_moderated' => (int) $count->moderated
 		);
 	}
 
