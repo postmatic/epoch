@@ -66,3 +66,12 @@
 	</p>
 </div>
 
+<div class="epoch-config-group">
+	<label for="epoch-options-order">
+		<?php _e( 'Hide Pings & Trackbacks', 'epoch' ); ?>
+	</label>
+	<input type="checkbox" name="options[hide_pings]" value="true" {{#is options/hide_pings value="true"}}checked{{/is}} />
+	<p class="description" style="margin-left: 190px;">
+		<?php _e( 'When enabled, pings and trackbacks will be removed from the comment stream.', 'epoch' ); ?>
+	</p>
+</div>

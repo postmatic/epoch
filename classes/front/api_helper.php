@@ -249,6 +249,10 @@ class api_helper {
 			'status'  => 'approve',
 		);
 
+		if ( ! empty( $options['hide_pings'] ) ) {
+			$args['type'] = array( 'comment' );
+		}
+
 		return $args;
 
 	}
@@ -381,7 +385,7 @@ class api_helper {
 		if ( is_a( $author_user, 'WP_User' ) ) {
 			$classes = array_merge( $classes, $author_user->roles );
 		}
-		
+
 		if ( 1 != $comment['comment_approved'] ) {
 			$classes[] = 'epoch-wrap-comment-awaiting-moderation';
 		}
@@ -393,6 +397,30 @@ class api_helper {
 		}
 
 		return implode( ' ', $classes );
+	}
+
+	/**
+	 * Given a post ID determine the number of comments
+	 *
+	 * @since  1.0.5
+	 * @param  int $post_id The post ID
+	 * @return int          The comment count
+	 */
+	public static function get_comment_count( $post_id ) {
+		$options = options::get_display_options();
+		$count   = 0;
+
+		$comments = get_approved_comments( $post_id );
+
+		foreach ( $comments as $comment ) {
+
+			if ( $comment->comment_type === '' || ( $comment->comment_type === 'pingback' && empty( $options['hide_pings'] ) ) ) {
+				$count++;
+			}
+
+		}
+
+		return (int) $count;
 	}
 
 	/**
