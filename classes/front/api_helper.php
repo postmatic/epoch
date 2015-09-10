@@ -248,7 +248,14 @@ class api_helper {
 			'order'   => $options['order'],
 			'status'  => 'approve',
 		);
-
+		
+		/* Get Moderated Commenter Information from stored comment cookies */
+		$commenter = wp_get_current_commenter();
+		$comment_author_email = $commenter['comment_author_email']; //Previously escaped by sanitize_comment_cookies()
+		if( ! empty( $comment_author_email ) ) {
+			$args['include_unapproved'] = array( $comment_author_email );
+		}
+	
 		return $args;
 
 	}
