@@ -26,9 +26,9 @@ class api_process {
 	 */
 	public static function get_comments( $data ) {
 
-		$args = api_helper::get_comment_args( $data[ 'postID' ] );
-
+		$args    = api_helper::get_comment_args( $data[ 'postID' ] );
 		$options = options::get_display_options();
+
 		$comments = get_comments( $args  );
 		if ( 'ASC' == $options[ 'order' ] ) {
 			$parents = array_combine( wp_list_pluck( $comments, 'comment_ID'),wp_list_pluck( $comments, 'comment_parent' ) );
@@ -71,14 +71,14 @@ class api_process {
 	 * @return array
 	 */
 	public static function comment_count( $data ) {
-		$count = wp_count_comments( $data[ 'postID' ] );
+
+		$count = api_helper::get_comment_count( $data[ 'postID'] );
+
 		if ( EPOCH_ALT_COUNT_CHECK_MODE ) {
 			api_helper::write_comment_count( $data[ 'postID' ], $count );
 		}
 
-		return array(
-			'count' => (int) $count->approved
-		);
+		return array( 'count' => $count );
 	}
 
 	/**
