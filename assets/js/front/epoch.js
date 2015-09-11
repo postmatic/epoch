@@ -393,7 +393,8 @@ jQuery( document ).ready( function ( $ ) {
                     });
                     
                     if ( !is_new ) {
-                        jQuery( 'body' ).triggerHandler( 'epoch.comments.loaded' );   
+                        jQuery( 'body' ).triggerHandler( 'epoch.comments.loaded' ); 
+                        app.comment_scroll();  
                     }
 
                 }
@@ -519,6 +520,27 @@ jQuery( document ).ready( function ( $ ) {
             }
 
         };
+        
+        /**
+         * Scroll to comment hash
+         *
+         * @since 1.0.4
+         */
+        app.comment_scroll = function() {
+	        if ( jQuery( 'iframe#epoch-comments' ).length > 0 ) {
+		        return;    
+		    }
+            var location = "" + window.location;
+            var pattern = /(#comment-\d+)/;
+            if ( pattern.test( location ) ) {
+                location = jQuery( "" + window.location.hash );
+                if ( location.length > 0 ) {
+                    var targetOffset = location.offset().top;
+                    jQuery( 'html,body' ).animate( {scrollTop: targetOffset}, 1 );
+                }
+            }	
+        };
+	        
 
         app.set_last_count = function( count ) {
             app.last_count = count;
