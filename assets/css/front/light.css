@@ -47,6 +47,12 @@ a.comment-reply-link {
 	height: 42px !important;
 }
 
+.epoch-child div.epoch-comment-content, .epoch-child ul.epoch-comment-actions {
+	margin-left: 55px !important;
+}
+
+
+
 #epoch-comments a.epoch-author-link { 
 	font-weight: bold !important;
 	line-height: normal !important;
@@ -67,7 +73,7 @@ a.comment-reply-link {
 }
 
 div.epoch-comment-content {
-	margin-left: 55px !important;
+	margin-left: 60px !important;
 }
 
 div.epoch-comment-content p {
@@ -183,6 +189,10 @@ article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
 	padding: 0 !important;
 }
 
+#epoch-comments div.comment-respond p.comment-form-url {
+	margin-right: 0 !important;
+}
+
 
 
 .comment-form-author input,.comment-form-url input,.comment-form-email input {
@@ -201,9 +211,9 @@ article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
 #epoch-comments div.comment-respond p.comment-form-comment {
 	clear: left !important;
 	width: auto !important;
-	margin: 0 0 0 0 !important;
+	margin: 0 0 10px 0 !important;
 	padding: 0px !important;
-	width: 99% !important;
+	width: 98% !important;
 }
 
 #epoch-comments textarea, textarea#comment {
@@ -290,12 +300,33 @@ ul.epoch-comment-actions {
 }
 
 
-
 #epoch-comments div.comment-respond p.comment-form-author,#epoch-comments div.comment-respond p.comment-form-email,#commentform p.comment-form-author,#commentform p.comment-form-email {
 	float: left !important;
 	width: 49% !important;
 	margin-right: 1% !important; 
+	margin-bottom: 0 !important;
 }
+
+#epoch-comments div.comment-respond p.comment-form-email {
+	margin-right: 0 !important;
+	width: 50% !important;
+}
+
+#epoch-comments div.comment-respond p.comment-form-url {
+	padding-top: 5px !important;
+}
+
+.comment-form-author input,.comment-form-url input,.comment-form-email input {
+	width: 100% !important;
+	margin-bottom: 0 !important;
+	padding: 10px 5px !important;
+}
+
+#epoch-comments div.comment-respond p.comment-form-url, .comment-form-url input {
+	width:100% !important;
+}
+
+
 
 #epoch-comments div.comment-respond p.comment-form-comment, #epoch-comments div.comment-respond p.comment-form-url, #epoch-comments div.comment-respond p.comment-form-url input,#commentform p.comment-form-url {
 	width: 100% !important;
@@ -306,6 +337,12 @@ ul.epoch-comment-actions {
     border-left: 1px solid #ddd !important;
     padding-left: 10px !important;
 }
+
+.epoch-child div.epoch-comment-content, .epoch-child ul.epoch-comment-actions {
+	margin-left: 35px !important;
+}
+
+
 
 
 }
