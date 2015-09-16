@@ -397,6 +397,16 @@ div#wmd-button-barcomment {
 }
 
 
+/*basic comment quicktags*/
+
+#qt_comment_toolbar {
+	padding: 0;
+	background: none;
+	-webkit-border-top-right-radius: 0px;
+	-moz-border-radius-topright: 0px;
+	border-top-right-radius: 0px;
+	border: none;
+}
 
 
 /*get rid of box shadows*/
