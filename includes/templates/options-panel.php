@@ -68,16 +68,10 @@
 
 <div class="epoch-config-group">
 	<label for="epoch-options-order">
-		<?php _e( 'Show Pings & Trackbacks', 'epoch' ); ?>
+		<?php _e( 'Pings & Trackbacks', 'epoch' ); ?>
 	</label>
-	<input type="checkbox" name="options[show_pings]" value="true" {{#is options/show_pings value="true"}}checked{{/is}} />
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+	<input type="checkbox" name="options[show_pings]" value="true" {{#is options/show_pings value="true"}}checked{{/is}} /> <?php _e( 'Show pings and trackbacks', 'epoch' ); ?>
 	<p class="description" style="margin-left: 190px;">
 		<?php _e( 'When enabled, pings and trackbacks will show in the comment stream.', 'epoch' ); ?>
 	</p>
-=======
->>>>>>> master
->>>>>>> comment-moderation-refresh
 </div>
