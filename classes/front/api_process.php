@@ -65,27 +65,27 @@ class api_process {
 
 	}
 
-	/**
-	 * Get comment count
-	 *
-	 * @since 0.0.1
-	 *
-	 * @param array $data Sanitized data from request
-	 *
-	 * @return array
-	 */
-	public static function comment_count( $data ) {
-		$count = wp_count_comments( $data[ 'postID' ] );
-		if ( EPOCH_ALT_COUNT_CHECK_MODE ) {
-			api_helper::write_comment_count( $data[ 'postID' ], $count );
-		}
-		$total_count = $count->approved + $count->moderated;
-		return array(
-			'count_total' => (int) $total_count,
-			'count_approved' => (int) $count->approved,
-			'count_moderated' => (int) $count->moderated
-		);
-	}
+    /**
+     * Get comment count
+     *
+     * @since 0.0.1
+     *
+     * @param array $data Sanitized data from request
+     *
+     * @return array
+     */
+    public static function comment_count( $data ) {
+        $count = wp_count_comments( $data[ 'postID' ] );
+        if ( EPOCH_ALT_COUNT_CHECK_MODE ) {
+            api_helper::write_comment_count( $data[ 'postID' ], $count );
+        }
+        $total_count = $count->approved + $count->moderated;
+        return array(
+            'count_total' => (int) $total_count,
+            'count_approved' => (int) $count->approved,
+            'count_moderated' => (int) $count->moderated
+        );
+    }
 
 	/**
 	 * Check if comments are open for a post.
@@ -132,16 +132,16 @@ class api_process {
 		if ( 'spam' == $approved )
 			return false;
 			
-		/* After setting up the comment object, set comment cookies for moderation */
-		do_action( 'set_comment_cookies', $comment, wp_get_current_user() );
+        /* After setting up the comment object, set comment cookies for moderation */
+        do_action( 'set_comment_cookies', $comment, wp_get_current_user() );
 		
-		/* Return modified comment and approval status */
-		$comment = (object) api_helper::add_data_to_comment( $comment, ! api_helper::thread() );
-		return array(
-			'comment_id' => $comment_id,
-			'comment'    => $comment,
-			'approved'   => $approved,
-		);
+        /* Return modified comment and approval status */
+        $comment = (object) api_helper::add_data_to_comment( $comment, ! api_helper::thread() );
+        return array(
+        	'comment_id' => $comment_id,
+        	'comment'    => $comment,
+        	'approved'   => $approved,
+        );
 
 	}
 

@@ -527,9 +527,9 @@ jQuery( document ).ready( function ( $ ) {
          * @since 1.0.4
          */
         app.comment_scroll = function() {
-	        if ( jQuery( 'iframe#epoch-comments' ).length > 0 ) {
-		        return;    
-		    }
+            if ( jQuery( 'iframe#epoch-comments' ).length > 0 ) {
+                return;    
+            }
             var location = "" + window.location;
             var pattern = /(#comment-\d+)/;
             if ( pattern.test( location ) ) {
