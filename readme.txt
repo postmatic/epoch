@@ -80,6 +80,11 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 1.0.5 =
+
+- Comments which are being held for moderation are now visible to the user even after the page has refreshed.
+- Epoch more persistenly remembers users name, email, and website.
+
 = 1.0.4 =
 
 - Better notifications and styling for comments being held in moderation.

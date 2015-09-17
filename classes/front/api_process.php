@@ -28,6 +28,7 @@ class api_process {
 
 		$args    = api_helper::get_comment_args( $data[ 'postID' ] );
 		$options = options::get_display_options();
+
 		$comments = get_comments( $args  );
 		if ( 'ASC' == $options[ 'order' ] ) {
 			$parents = array_combine( wp_list_pluck( $comments, 'comment_ID'),wp_list_pluck( $comments, 'comment_parent' ) );
@@ -63,6 +64,7 @@ class api_process {
 
 	}
 
+<<<<<<< HEAD
     /**
      * Get comment count
      *
@@ -84,6 +86,27 @@ class api_process {
             'count_moderated' => (int) $count->moderated
         );
     }
+=======
+	/**
+	 * Get comment count
+	 *
+	 * @since 0.0.1
+	 *
+	 * @param array $data Sanitized data from request
+	 *
+	 * @return array
+	 */
+	public static function comment_count( $data ) {
+
+		$count = api_helper::get_comment_count( $data[ 'postID'] );
+
+		if ( EPOCH_ALT_COUNT_CHECK_MODE ) {
+			api_helper::write_comment_count( $data[ 'postID' ], $count );
+		}
+
+		return array( 'count' => $count );
+	}
+>>>>>>> master
 
 	/**
 	 * Check if comments are open for a post.
