@@ -40,6 +40,8 @@ a.comment-reply-link {
 	border-radius: 4px !important;
 	float: left !important;
 	margin-right: 12px !important; 
+	padding: 0 !important;
+	border: none !important;
 }
 
 .epoch-child .epoch-comment-author-avatar img {
