@@ -244,9 +244,9 @@ jQuery( document ).ready( function ( $ ) {
                 } ).success( function ( response ) {
                     response = app.get_data_from_response( response );
 
-                    if ( 'undefined' != response.count && 0 < response.count ) {
+                    if ( 'undefined' != response.count_total && 0 < response.count_total ) {
                         if ( updateCheck ) {
-                            if ( response.count > app.last_count ) {
+                            if ( response.count_approved > app.last_count ) {
                                 app.new_comments();
 
                             }
@@ -255,7 +255,7 @@ jQuery( document ).ready( function ( $ ) {
                         }
 
 
-                        app.set_last_count( response.count );
+                        app.set_last_count( response.count_approved );
 
                     } else {
                         app.no_comments = true;
@@ -393,7 +393,8 @@ jQuery( document ).ready( function ( $ ) {
                     });
                     
                     if ( !is_new ) {
-                        jQuery( 'body' ).triggerHandler( 'epoch.comments.loaded' );   
+                        jQuery( 'body' ).triggerHandler( 'epoch.comments.loaded' ); 
+                        app.comment_scroll();  
                     }
 
                 }
@@ -519,6 +520,27 @@ jQuery( document ).ready( function ( $ ) {
             }
 
         };
+        
+        /**
+         * Scroll to comment hash
+         *
+         * @since 1.0.4
+         */
+        app.comment_scroll = function() {
+            if ( jQuery( 'iframe#epoch-comments' ).length > 0 ) {
+                return;    
+            }
+            var location = "" + window.location;
+            var pattern = /(#comment-\d+)/;
+            if ( pattern.test( location ) ) {
+                location = jQuery( "" + window.location.hash );
+                if ( location.length > 0 ) {
+                    var targetOffset = location.offset().top;
+                    jQuery( 'html,body' ).animate( {scrollTop: targetOffset}, 1 );
+                }
+            }	
+        };
+	        
 
         app.set_last_count = function( count ) {
             app.last_count = count;

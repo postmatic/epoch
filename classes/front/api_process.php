@@ -28,7 +28,6 @@ class api_process {
 
 		$args    = api_helper::get_comment_args( $data[ 'postID' ] );
 		$options = options::get_display_options();
-
 		$comments = get_comments( $args  );
 		if ( 'ASC' == $options[ 'order' ] ) {
 			$parents = array_combine( wp_list_pluck( $comments, 'comment_ID'),wp_list_pluck( $comments, 'comment_parent' ) );
@@ -36,12 +35,13 @@ class api_process {
 			asort( $parents );
 
 			$comments = (array) $comments;
+			
 			$comments = array_combine( wp_list_pluck( $comments, 'comment_ID'), $comments );
-			$i = 0;
+			$_comments = array();
 			foreach( $comments as $id => $parent ) {
-				$_comments[ $i ] = $comments[ $id ];
-				$i++;
+				$_comments[] = $comments[ $id ];
 			}
+			
 			rsort( $_comments );
 
 			$comments = $_comments;
@@ -54,6 +54,8 @@ class api_process {
 		}else{
 			return false;
 		}
+		
+		
 
 		return array(
 			'comments' => $comments,
@@ -61,25 +63,27 @@ class api_process {
 
 	}
 
-	/**
-	 * Get comment count
-	 *
-	 * @since 0.0.1
-	 *
-	 * @param array $data Sanitized data from request
-	 *
-	 * @return array
-	 */
-	public static function comment_count( $data ) {
-
-		$count = api_helper::get_comment_count( $data[ 'postID'] );
-
-		if ( EPOCH_ALT_COUNT_CHECK_MODE ) {
-			api_helper::write_comment_count( $data[ 'postID' ], $count );
-		}
-
-		return array( 'count' => $count );
-	}
+    /**
+     * Get comment count
+     *
+     * @since 1.0.5
+     *
+     * @param array $data Sanitized data from request
+     *
+     * @return array
+     */
+    public static function comment_count( $data ) {
+        $count = wp_count_comments( $data[ 'postID' ] );
+        if ( EPOCH_ALT_COUNT_CHECK_MODE ) {
+            api_helper::write_comment_count( $data[ 'postID' ], $count );
+        }
+        $total_count = $count->approved + $count->moderated;
+        return array(
+            'count_total' => (int) $total_count,
+            'count_approved' => (int) $count->approved,
+            'count_moderated' => (int) $count->moderated
+        );
+    }
 
 	/**
 	 * Check if comments are open for a post.
@@ -125,13 +129,17 @@ class api_process {
 
 		if ( 'spam' == $approved )
 			return false;
-
-		$comment = (object) api_helper::add_data_to_comment( $comment, ! api_helper::thread() );
-		return array(
-			'comment_id' => $comment_id,
-			'comment'    => $comment,
-			'approved'   => $approved,
-		);
+			
+        /* After setting up the comment object, set comment cookies for moderation */
+        do_action( 'set_comment_cookies', $comment, wp_get_current_user() );
+		
+        /* Return modified comment and approval status */
+        $comment = (object) api_helper::add_data_to_comment( $comment, ! api_helper::thread() );
+        return array(
+        	'comment_id' => $comment_id,
+        	'comment'    => $comment,
+        	'approved'   => $approved,
+        );
 
 	}
 

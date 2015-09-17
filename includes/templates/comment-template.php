@@ -30,15 +30,40 @@
 	?>
 	<script>
 
-	jQuery( function( $ ){
-		var frame = $( window.parent.document.getElementById( 'epoch-comments' ) );
-		frame.css({ width: '100%', overflow: 'hidden'});
-		setInterval( function(){
-			frame.height( $( document ).outerHeight() );
-			$('a:not([href="#reply-title"]').attr('target', '_parent');
-		}, 100 );
-
-	} );
+    jQuery( function( $ ){
+        var frame = $( window.parent.document.getElementById( 'epoch-comments' ) );
+        frame.css({ width: '100%', overflow: 'hidden'});
+        scroll = true;
+        comment_top = 0;
+        setInterval( function(){
+            frame.height( $( document ).outerHeight() );
+            if ( frame.children().length > 0 && scroll == true ) {
+                var parent_location = "" + window.parent.location;
+                var pattern = /(#comment-\d+)/;
+                if ( pattern.test( parent_location ) ) {
+                    comment_location = jQuery( "" + window.parent.location.hash );	                
+                    if ( comment_location.length > 0 ) {
+                        var targetOffset = comment_location.offset().top;
+                        if ( targetOffset == 0 ) {
+                            return;   
+                        } else {
+                            if ( targetOffset == comment_top ) {
+                                scroll = false;
+                                final_offset = targetOffset + frame.offset().top;
+                                jQuery( window.parent.document ).find( 'html,body' ).animate( {scrollTop: final_offset}, 1 );
+                            } else {
+                                comment_top = targetOffset;    
+                            }
+                         	  
+                        }
+                        
+                    }
+                }
+            }
+        	$('a:not([href="#reply-title"]').attr('target', '_parent');
+        }, 100 );
+    
+    } );
 		 
 
 	</script>	
