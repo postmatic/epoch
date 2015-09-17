@@ -4,7 +4,7 @@ Donate link: https://gopostmatic.com/epoch
 Tags: ajax comments, comments, lightweight commenting, cdn, cache, engagement, postmatic, live update, wordpress comments, comment template, ajax commenting, better comments, disqus, discussion, seo, mobile commenting, chat, performance, site speed, chatting, email commenting, comment notifications
 Requires at least: 3.9
 Tested up to: 4.3
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,8 +82,16 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 = 1.0.5 =
 
+A great group effort with seriously nice contributions from @ronalfy and @cklosowski. There is still more to be done! [Want to help out?](https://github.com/postmatic/epoch/labels/help%20wanted)
+
 - Comments which are being held for moderation are now visible to the user even after the page has refreshed.
+- Comments which are being held for moderation are visible to the post author/admin on the front end. Front-end moderation coming next!
 - Epoch more persistenly remembers users name, email, and website.
+- Cleaner styling of all form fields in all views. Everything in its right place.
+- Pingbacks and trackbacks are now hidden by default. There is an option if you'd like them back on.
+- Comment permalinks now work in all browsers on all themes, in all Epoch modes. Nice.
+- Updates to the French translation.
+- Oooh a new German translation.
 
 = 1.0.4 =
 
