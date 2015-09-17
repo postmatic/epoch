@@ -233,7 +233,6 @@ article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
 }
 
 #epoch-comments #comment {
-	height: 100px !important;
 	min-height: 100px !important;
 }
 
