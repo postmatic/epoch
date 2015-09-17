@@ -64,7 +64,8 @@ class options {
 			'threaded'    => false,
 			'before_text' => __( 'Join the conversation', 'epoch' ),
 			'interval'    => 15,
-			'order'       => 'ASC'
+			'order'       => 'ASC',
+			'show_pings'  => false,
 		);
 
 		$options = wp_parse_args( $options, $defaults );

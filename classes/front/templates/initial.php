@@ -11,9 +11,9 @@
 $options = \postmatic\epoch\options::get_display_options();
 global $post;
 
-$comment_count = get_comment_count( $post->ID );
+$comment_count = \postmatic\epoch\front\api_helper::get_comment_count( $post->ID );
 
-if ( $comment_count['approved'] == 0 and ! comments_open( $post ) ) {
+if ( $comment_count == 0 and ! comments_open( $post ) ) {
 	return;
 }
 
@@ -32,16 +32,16 @@ if ( 'none' == $options[ 'theme' ] ) {
 	$comment_count_area = '';
 }else{
 
-	if ( $comment_count['approved'] == 0 ) {
+	if ( $comment_count == 0 ) {
 		$comment_count_message = __( 'There are no comments', 'epoch' );
 	} else {
 		$comment_count_message = sprintf(
-			_n( 'There is one comment', 'There are %s comments', $comment_count['approved'], 'epoch' ),
-			'<span id="' . \postmatic\epoch\front\vars::$count_id . '">' . $comment_count['approved'] . '</span>'
+			_n( 'There is one comment', 'There are %s comments', $comment_count, 'epoch' ),
+			'<span id="' . \postmatic\epoch\front\vars::$count_id . '">' . $comment_count . '</span>'
 		);
 	}
 
-	if ( 'ASC' == $options['order'] && $comment_count['approved'] > 3 && 'iframe' != $options['theme'] ) {
+	if ( 'ASC' == $options['order'] && $comment_count > 3 && 'iframe' != $options['theme'] ) {
 		$comment_count_area = sprintf(
 			'<h3 class="comment-count-area">%1s <a href="#reply-title">%2s</a></h3>',
 			$comment_count_message,
@@ -59,7 +59,7 @@ if ( 'none' == $options[ 'theme' ] ) {
 		$comment_area = sprintf(
 		'<iframe id="%1s" src="' . get_permalink( $post->ID ) . 'epoch/" scrolling="no"></iframe>',
 		esc_attr( \postmatic\epoch\front\vars::$comments_wrap )
-		);		
+		);
 		$comment_count_area = $form = null;
 	}
 

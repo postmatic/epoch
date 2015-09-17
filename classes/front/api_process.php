@@ -26,10 +26,8 @@ class api_process {
 	 */
 	public static function get_comments( $data ) {
 
-		$args = api_helper::get_comment_args( $data[ 'postID' ] );
-
+		$args    = api_helper::get_comment_args( $data[ 'postID' ] );
 		$options = options::get_display_options();
-		
 		$comments = get_comments( $args  );
 		if ( 'ASC' == $options[ 'order' ] ) {
 			$parents = array_combine( wp_list_pluck( $comments, 'comment_ID'),wp_list_pluck( $comments, 'comment_parent' ) );
@@ -68,7 +66,7 @@ class api_process {
     /**
      * Get comment count
      *
-     * @since 0.0.1
+     * @since 1.0.5
      *
      * @param array $data Sanitized data from request
      *
