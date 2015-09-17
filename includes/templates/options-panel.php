@@ -16,14 +16,14 @@
 	<input id="epoch-options-theme-iframe" type="radio" name="options[theme]" value="iframe" {{#is options/theme value="iframe"}}checked{{/is}}><?php _e( 'Completely (beta)', 'epoch' ); ?>
 	<input id="epoch-options-theme-light" type="radio" name="options[theme]" value="light" {{#is options/theme value="light"}}checked{{/is}}><?php _e( 'Use my typography and colors', 'epoch' ); ?>
 	<input id="epoch-options-theme-none" type="radio" name="options[theme]" value="none" {{#is options/theme value="none"}}checked{{/is}}><?php _e( 'Minimally', 'epoch' ); ?>
+	<p class="description" style="margin-left: 190px;">
+		<?php _e( 'Epoch can integrate with your theme in three different. Give each a try and see what works for you. The comment template can also be styled easily via css. See the documentation.', 'epoch' ); ?>
+	</p>
 	<p class="description" style="margin-left: 190px;"><strong>Override Completely</strong>: Entirely replace the comment template which came with your theme. Much like Disqus or Jetpack Commenting. Works in all themes. <span style="color:#c0392b">Beta:</span> This method is great for ensuring functionality in all themes but is not compatible with many 3rd party commenting plugins, even the ones we recommend. In particular WP Markdown and WP Social Login will not work with this method. We'll have that resolved soon.
 	</p>
 	<p class="description" style="margin-left: 190px;"><strong>Use my typography and colors </strong>: Override the comment template which came with your theme while still using colors, typography settings, and branding that you have in place. Works well in most themes.
 	</p>
 	<p class="description" style="margin-left: 190px;"><strong>Minimally</strong>: Attempt to use the comment style that came with your theme. This approach is highly unstable and depends on the coding practices of your theme developer. Try it. Maybe it'll work! If not, try one of the other settings.
-	</p>
-	<p class="description" style="margin-left: 190px;">
-		<?php _e( 'Epoch can integrate with your theme in three different. Give each a try and see what works for you. The comment template can also be styled easily via css. See the documentation.', 'epoch' ); ?>
 	</p>
 </div>
 
@@ -71,7 +71,4 @@
 		<?php _e( 'Show Pings & Trackbacks', 'epoch' ); ?>
 	</label>
 	<input type="checkbox" name="options[show_pings]" value="true" {{#is options/show_pings value="true"}}checked{{/is}} />
-	<p class="description" style="margin-left: 190px;">
-		<?php _e( 'When enabled, pings and trackbacks will show in the comment stream.', 'epoch' ); ?>
-	</p>
 </div>
