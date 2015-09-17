@@ -86,6 +86,7 @@ A great group effort with seriously nice contributions from @ronalfy and @ckloso
 
 - Comments which are being held for moderation are now visible to the user even after the page has refreshed.
 - Comments which are being held for moderation are visible to the post author/admin on the front end. Front-end moderation coming next!
+- We did some custom styling for [Basic Comment Quicktags](https://wordpress.org/plugins/basic-comment-quicktags/). It looks awesome now. If you haven't installed it you really should.
 - Epoch more persistenly remembers users name, email, and website.
 - Cleaner styling of all form fields in all views. Everything in its right place.
 - Pingbacks and trackbacks are now hidden by default. There is an option if you'd like them back on.
