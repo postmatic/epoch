@@ -28,7 +28,27 @@
             <div class="epoch-comment-content">
                 {{{comment_content}}}
             </div><!-- .comment-content -->
-
+            
+            {{#if front_moderation}}
+            <ul class="epoch-moderation-actions">
+                {{#unless approval_status}}
+                    <li class="epoch-approve" data-comment-id="{{comment_ID}}">
+                        {{{approve_link}}}
+                    </li>
+                {{/unless}}
+                {{#if approval_status}}
+                    <li class="epoch-approve" data-comment-id="{{comment_ID}}">
+                        {{{unapprove_link}}}
+                    </li>
+                {{/if}}
+                <li class="epoch-approve" data-comment-id="{{comment_ID}}">
+                    {{{trash_link}}}
+                </li>
+                <li class="epoch-approve" data-comment-id="{{comment_ID}}">
+                    {{{spam_link}}}
+                </li>
+            </ul>
+            {{/if}}
             <ul class="epoch-comment-actions">
                 {{#if reply_allowed}}
                     <li class="epoch-reply" data-comment-id="{{comment_ID}}">
