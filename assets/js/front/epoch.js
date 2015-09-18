@@ -552,10 +552,11 @@ jQuery( document ).ready( function ( $ ) {
            $.post(
                 epoch_vars.api_url, {
                     action: 'moderate_comments',
-                    moderateAction: action,
+                    moderationAction: action,
                     epochNonce: epoch_vars.nonce,
                     postID: epoch_vars.post_id,
-                    highest: app.highest_id
+                    highest: app.highest_id,
+                    commentID: comment_id
                 } ).done( function( response  ) {
 
                     app.shut_it_off = false;

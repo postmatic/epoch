@@ -200,7 +200,13 @@ class api_process {
 	 * @return array|bool Comment ID and action
 	 */
 	 public static function moderate_comments( $data ) {
-    	 return 'die';
+    	 die( '<pre>' . print_r( $data, true ) );
+        $action = $data[ 'action' ];
+        $comment_id = $data[ 'commentID' ];
+        die( $action );
+        $return = array(
+        );
+        
     }
 
 }
