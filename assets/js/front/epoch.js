@@ -156,7 +156,9 @@ jQuery( document ).ready( function ( $ ) {
                             
                             /* Hide Moderation Class if Parent Approved */
                             if( comment.parent_approved != '0' ) {
-                                jQuery( '#div-comment-' + comment.parent_approved ).removeClass( 'epoch-wrap-comment-awaiting-moderation' );
+                                $comment_parent = jQuery( '#div-comment-' + comment.parent_approved );
+                                $comment_parent.find( '.epoch-approve' ).remove();
+                                $comment_parent.removeClass( 'epoch-wrap-comment-awaiting-moderation' );
                             }
                             
 
