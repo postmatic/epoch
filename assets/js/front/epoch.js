@@ -566,9 +566,14 @@ jQuery( document ).ready( function ( $ ) {
                     comment_id = response.comment_id;
                     status = response.status;
                     $comment = jQuery( '#div-comment-' + comment_id );
-                    
+                    if( 'spam' == status || 'trash' == status ) {
+                        $comment.fadeOut( 'slow' );
+                        return;
+                    }
                     comment = Epoch.parse_comment( response.comment );
                     jQuery( '#comment-' + comment_id ).replaceWith( comment );
+                    
+
 
                 }
 
