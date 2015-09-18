@@ -153,7 +153,7 @@ article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
 }
 
 .epoch-wrap-comment-awaiting-moderation .epoch-reply {
-	display: none !important;
+	/*display: none !important;*/
 }
 
 
