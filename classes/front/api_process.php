@@ -200,13 +200,45 @@ class api_process {
 	 * @return array|bool Comment ID and action
 	 */
 	 public static function moderate_comments( $data ) {
-    	 die( '<pre>' . print_r( $data, true ) );
-        $action = $data[ 'action' ];
+        $action = $data[ 'moderationAction' ];
         $comment_id = $data[ 'commentID' ];
-        die( $action );
-        $return = array(
-        );
         
+        /* Comment Statuses are 'hold', 'approve', 'spam', or 'trash' */
+        
+        $return = array();
+        switch( $action ) {
+            case 'approve':
+                wp_set_comment_status( $comment_id, 'approve' );
+                $return[ 'status' ] = 'approve';
+                break;
+            case 'unapprove':
+                wp_set_comment_status( $comment_id, 'hold' );
+                $return[ 'status' ] = 'hold';
+                break;
+            case 'trash':
+                wp_set_comment_status( $comment_id, 'trash' );
+                $return[ 'status' ] = 'trash';
+                $return[ 'remove' ] = true;
+                break;
+            case 'spam':
+                wp_set_comment_status( $comment_id, 'spam' );
+                $return[ 'status' ] = 'spam';
+                $return[ 'remove' ] = true;
+                break;  
+        }
+        
+        $return[ 'comment_id' ] = $comment_id;
+        
+        //Get Comment
+        $comment = get_comment( $comment_id, ARRAY_A );
+        if ( $comment ) {
+            $function = 'postmatic\epoch\front\api_helper::add_data_to_comment';
+            $comment = call_user_func( $function, $comment, false );
+            $return[ 'comment' ] = $comment;
+        }
+        
+        
+        return $return;
     }
 
 }

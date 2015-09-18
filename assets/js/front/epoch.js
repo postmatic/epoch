@@ -563,9 +563,12 @@ jQuery( document ).ready( function ( $ ) {
 
                 } ).success( function( response ) {
                     response = app.get_data_from_response( response );
-
-                    app.comment_response( response, true );
-
+                    comment_id = response.comment_id;
+                    status = response.status;
+                    $comment = jQuery( '#div-comment-' + comment_id );
+                    
+                    comment = Epoch.parse_comment( response.comment );
+                    jQuery( '#comment-' + comment_id ).replaceWith( comment );
 
                 }
 
