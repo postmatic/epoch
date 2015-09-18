@@ -13,4 +13,4 @@ This repository is for development purposes. If you checkout this repository, or
 ### Contributing
 Pull requests are welcome. Please do not submit pull requests against master. Please use the development branch for the next version.
 
-At this time 1.0.3-dev branch is the correct branch to submit pull requests.
+At this time 1.0.6-dev branch is the correct branch to submit pull requests.
