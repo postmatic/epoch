@@ -420,51 +420,57 @@ ul.epoch-moderation-actions {padding: 0 !important; margin: 0 !important;float: 
 ul.epoch-moderation-actions li {
   list-style:none !important;
   float: left !important;
-  margin-right: 15px !important;
+  margin-right: 5px !important;
   font: 11px sans-serif !important;
 }
 
 ul.epoch-moderation-actions li a {
   display: block !important;
-  padding: 2px 8px 3px 0 !important;
+  padding: 5px !important;
   text-decoration: none !important;
   -webkit-border-radius: 5px !important;
   -moz-border-radius: 5px !important;
   border-radius: 5px !important;
-  color: white !important;
 }
 
 ul.epoch-moderation-actions a:before {
- margin-right: 5px !important;
-  padding: 2px  6px !important;
-  -webkit-border-top-left-radius: 5px !important;
-  -webkit-border-bottom-left-radius: 5px !important;
-  -moz-border-radius-topleft: 5px !important;
-  -moz-border-radius-bottomleft: 5px !important;
-  border-top-left-radius: 5px !important;
-  border-bottom-left-radius: 5px !important;  
+	padding: 5px !important;
+
 }
 
+
 ul.epoch-moderation-actions li.epoch-approve a {
-  background: #2ecc71 !important;
+  color: #27ae60 !important;
 }
 ul.epoch-moderation-actions li.epoch-approve a:before {
   content: "\2713" !important;
-  background: #27ae60 !important;
+}
+
+ul.epoch-moderation-actions li.epoch-approve a:hover {
+	background: #27ae60 !important;
+	color: white !important;
 }
 
 ul.epoch-moderation-actions li.epoch-trash a {
-  background: #f1c40f !important;
+  color: #f39c12 !important;
 }
 ul.epoch-moderation-actions li.epoch-trash a:before {
   content: "X" !important;
-  background: #f39c12 !important;
+}
+
+ul.epoch-moderation-actions li.epoch-trash a:hover {
+	background: #f39c12 !important;
+	color: white !important;
 }
 
 ul.epoch-moderation-actions li.epoch-spam a {
-  background: #e74c3c !important;
+  color: #c0392b !important;
 }
 ul.epoch-moderation-actions li.epoch-spam a:before {
-  content: "\203C" !important;
-  background: #c0392b !important;
+  content: "\2639" !important;
+}
+
+ul.epoch-moderation-actions li.epoch-spam a:hover {
+	background: #c0392b !important;
+	color: white !important;
 }
