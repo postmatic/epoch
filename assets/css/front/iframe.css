@@ -152,6 +152,7 @@ article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
 	opacity: 0.5;
 }
 
+
 .comment-notes {
 	font-size: 90%;
 }
@@ -429,4 +430,66 @@ div#wmd-button-barcomment {
 #epoch-wrap .quicktags-toolbar {
   padding: 1%;
   width: 96%;
+}
+
+/*moderation tools*/
+
+ul.epoch-moderation-actions {padding: 0 !important; margin: 0 !important;float: right;}
+
+ul.epoch-moderation-actions li {
+  list-style:none !important;
+  float: left !important;
+  margin-right: 5px !important;
+  font: 11px sans-serif !important;
+}
+
+ul.epoch-moderation-actions li a {
+  display: block !important;
+  padding: 5px !important;
+  text-decoration: none !important;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
+}
+
+ul.epoch-moderation-actions a:before {
+	padding: 5px !important;
+
+}
+
+
+ul.epoch-moderation-actions li.epoch-approve a {
+  color: #27ae60 !important;
+}
+ul.epoch-moderation-actions li.epoch-approve a:before {
+  content: "\2713" !important;
+}
+
+ul.epoch-moderation-actions li.epoch-approve a:hover {
+	background: #27ae60 !important;
+	color: white !important;
+}
+
+ul.epoch-moderation-actions li.epoch-trash a {
+  color: #f39c12 !important;
+}
+ul.epoch-moderation-actions li.epoch-trash a:before {
+  content: "X" !important;
+}
+
+ul.epoch-moderation-actions li.epoch-trash a:hover {
+	background: #f39c12 !important;
+	color: white !important;
+}
+
+ul.epoch-moderation-actions li.epoch-spam a {
+  color: #c0392b !important;
+}
+ul.epoch-moderation-actions li.epoch-spam a:before {
+  content: "\2639" !important;
+}
+
+ul.epoch-moderation-actions li.epoch-spam a:hover {
+	background: #c0392b !important;
+	color: white !important;
 }
