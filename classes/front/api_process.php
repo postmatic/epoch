@@ -128,10 +128,12 @@ class api_process {
 		$approved = $comment->comment_approved;
 		
 		/* Get comment parent and dmin/moderator, approve parent comment */
+		$comment->parent_approved = 0;
 		if ( ( current_user_can( 'manage_network' ) || current_user_can( 'manage_options' ) || current_user_can( 'moderate_comments' ) ) ) {
 			if ( 0 != $comment->comment_approved ) {
 				$comment_parent_id = $comment->comment_parent;
 				wp_set_comment_status( $comment_parent_id, 'approve' );
+				$comment->parent_approved = $comment_parent_id;
 			}
 		}
 
