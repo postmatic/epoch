@@ -445,26 +445,26 @@ ul.epoch-moderation-actions a:before {
   border-bottom-left-radius: 5px !important;  
 }
 
-ul.epoch-moderation-actions ul li.epoch-approve a {
+ul.epoch-moderation-actions li.epoch-approve a {
   background: #2ecc71 !important;
 }
-ul.epoch-moderation-actions ul li.epoch-approve a:before {
+ul.epoch-moderation-actions li.epoch-approve a:before {
   content: "\2713" !important;
   background: #27ae60 !important;
 }
 
-ul.epoch-moderation-actions ul li.epoch-trash a {
+ul.epoch-moderation-actions li.epoch-trash a {
   background: #f1c40f !important;
 }
-ul.epoch-moderation-actions ul li.epoch-trash a:before {
+ul.epoch-moderation-actions li.epoch-trash a:before {
   content: "X" !important;
   background: #f39c12 !important;
 }
 
-ul.epoch-moderation-actions ul li.epoch-spam a {
+ul.epoch-moderation-actions li.epoch-spam a {
   background: #e74c3c !important;
 }
-ul.epoch-moderation-actions ul li.epoch-spam a:before {
+ul.epoch-moderation-actions li.epoch-spam a:before {
   content: "\203C" !important;
   background: #c0392b !important;
 }
