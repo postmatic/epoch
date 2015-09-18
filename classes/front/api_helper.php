@@ -146,10 +146,10 @@ class api_helper {
 		$comment_moderation_output = array();
         if ( ( current_user_can( 'manage_network' ) || current_user_can( 'manage_options' ) || current_user_can( 'moderate_comments' ) ) ) {
             $comment[ 'front_moderation' ] = apply_filters( 'epoch_enable_frontend_moderation', true );
-            $comment_moderation_output[ 'approve_link' ] = sprintf( '<a href="#">%s</a>', esc_html__( 'Approve', 'epoch' ) );
-            $comment_moderation_output[ 'unapprove_link' ] = sprintf( '<a href="#">%s</a>', esc_html__( 'Unapprove', 'epoch' ) );
-            $comment_moderation_output[ 'trash_link' ] = sprintf( '<a href="#">%s</a>', esc_html__( 'Trash', 'epoch' ) );
-            $comment_moderation_output[ 'spam_link' ] = sprintf( '<a href="#">%s</a>', esc_html__( 'Spam', 'epoch' ) );
+            $comment_moderation_output[ 'approve_link' ] = sprintf( '<a href="#" onClick=\'Epoch.set_comment_status( "approve" )\' data-id="%d">%s</a>', absint( $comment[ 'comment_ID' ] ), esc_html__( 'Approve', 'epoch' ) );
+            $comment_moderation_output[ 'unapprove_link' ] = sprintf( '<a href="#" onClick=\'Epoch.set_comment_status( "approve" )\' data-id="%d">%s</a>', absint( $comment[ 'comment_ID' ] ), esc_html__( 'Unapprove', 'epoch' ) );
+            $comment_moderation_output[ 'trash_link' ] = sprintf( '<a href="#" onClick=\'Epoch.set_comment_status( "approve" )\' data-id="%d">%s</a>', absint( $comment[ 'comment_ID' ] ), esc_html__( 'Trash', 'epoch' ) );
+            $comment_moderation_output[ 'spam_link' ] = sprintf( '<a href="#" onClick=\'Epoch.set_comment_status( "approve" )\' data-id="%d">%s</a>', absint( $comment[ 'comment_ID' ] ), esc_html__( 'Spam', 'epoch' ) );
             /* Comment Approved */
             /* No output for spam/trashed comments because these should not be displayed on the front-end */
                 $comment[ 'approval_status' ] = (bool)$comment[ 'comment_approved' ];
