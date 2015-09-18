@@ -143,13 +143,17 @@ article.epoch-single-comment.epoch-success {
 
 article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comment-author {
 	background: url(../../../assets/image/el.png) center right no-repeat !important;
-	background-size: 30px !important;
-	padding-right: 40px !important;
+	background-size: 15px !important;
+	padding-right: 30px !important;
 	
 }
 
 article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
 	opacity: 0.5 !important;
+}
+
+.epoch-wrap-comment-awaiting-moderation .epoch-reply {
+	display: none !important;
 }
 
 
