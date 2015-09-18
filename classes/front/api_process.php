@@ -189,5 +189,18 @@ class api_process {
 		);
 
 	}
+	
+		/**
+	 * Set Comment Status
+	 *
+	 * @since 1.0.5
+	 *
+	 * @param array $data Sanitized data from request
+	 *
+	 * @return array|bool Comment ID and action
+	 */
+	 public static function moderate_comments( $data ) {
+    	 return 'die';
+    }
 
 }

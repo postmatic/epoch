@@ -548,14 +548,12 @@ jQuery( document ).ready( function ( $ ) {
         };
         
         app.set_comment_status = function( action, comment_id ) {
-            
-            alert( comment_id );
-            return;
+            //Action can be unapprove, approve, spam, trash
            $.post(
                 epoch_vars.api_url, {
-                    action: 'moderate',
-                    epochNonce: epoch_vars.nonce,
+                    action: 'moderate_comments',
                     moderateAction: action,
+                    epochNonce: epoch_vars.nonce,
                     postID: epoch_vars.post_id,
                     highest: app.highest_id
                 } ).done( function( response  ) {
@@ -571,6 +569,7 @@ jQuery( document ).ready( function ( $ ) {
                 }
 
             );
+            return false;
         }
 
 
