@@ -546,6 +546,32 @@ jQuery( document ).ready( function ( $ ) {
             app.last_count = count;
             $( app.count_el ).text( count );
         };
+        
+        app.set_comment_status = function( action, comment_id ) {
+            
+            alert( comment_id );
+            return;
+           $.post(
+                epoch_vars.api_url, {
+                    action: 'moderate',
+                    epochNonce: epoch_vars.nonce,
+                    moderateAction: action,
+                    postID: epoch_vars.post_id,
+                    highest: app.highest_id
+                } ).done( function( response  ) {
+
+                    app.shut_it_off = false;
+
+                } ).success( function( response ) {
+                    response = app.get_data_from_response( response );
+
+                    app.comment_response( response, true );
+
+
+                }
+
+            );
+        }
 
 
     })( jQuery, window.Epoch || ( window.Epoch = {} ) );
