@@ -228,6 +228,14 @@ jQuery( document ).ready( function ( $ ) {
                             }
                             
                             jQuery( 'body' ).triggerHandler( 'epoch.comment.posted', [ comment.comment_post_ID, comment.comment_ID ] );
+                            
+                            /* Hide Moderation Class if Parent Approved */
+                            if( comment.parent_approved != '0' ) {
+                                $comment_parent = jQuery( '#div-comment-' + comment.parent_approved );
+                                $comment_parent.find( '.epoch-approve' ).remove();
+                                $comment_parent.removeClass( 'epoch-wrap-comment-awaiting-moderation' );
+                            }
+                            
 
                             app.shut_it_off = false;
 
