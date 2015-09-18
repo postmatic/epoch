@@ -152,10 +152,6 @@ article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
 	opacity: 0.5;
 }
 
-.epoch-wrap-comment-awaiting-moderation .epoch-reply {
-	display: none !important;
-}
-
 
 .comment-notes {
 	font-size: 90%;
