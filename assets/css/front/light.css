@@ -415,18 +415,18 @@ div#wmd-button-barcomment {
  
  /*moderation tools*/
 
-ul.epoch-moderation-actions {padding: 0 !important; margin: 0 !important;}
+ul.epoch-moderation-actions {padding: 0 !important; margin: 0 !important;float: right;}
 
 ul.epoch-moderation-actions li {
   list-style:none !important;
   float: left !important;
   margin-right: 15px !important;
-  font: 12px sans-serif !important;
+  font: 11px sans-serif !important;
 }
 
 ul.epoch-moderation-actions li a {
   display: block !important;
-  padding: 4px 10px 5px 0 !important;
+  padding: 2px 8px 3px 0 !important;
   text-decoration: none !important;
   -webkit-border-radius: 5px !important;
   -moz-border-radius: 5px !important;
@@ -435,8 +435,8 @@ ul.epoch-moderation-actions li a {
 }
 
 ul.epoch-moderation-actions a:before {
- margin-right: 7px !important;
-  padding: 4px 8px !important;
+ margin-right: 5px !important;
+  padding: 2px  6px !important;
   -webkit-border-top-left-radius: 5px !important;
   -webkit-border-bottom-left-radius: 5px !important;
   -moz-border-radius-topleft: 5px !important;
