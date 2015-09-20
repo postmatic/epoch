@@ -499,27 +499,6 @@ class api_helper {
 
 		}
 
-		$fail = false;
-
-		$url = wp_nonce_url('plugins.php');
-		if ( is_null( $comment_count ) ) {
-			$comment_count = get_comment_count( $post_id );
-		}
-
-		$return = array( 'code' => 500 );
-		if (false === ($creds = request_filesystem_credentials( $url, '', false, false ) ) ) {
-			$return[ 'message' ] = __( 'Could not use WordPress file system.', 'epoch' );
-			return $return;
-
-		}
-
-
-		if ( ! WP_Filesystem($creds) ) {
-			$return[ 'message' ] = __( 'Could not access WordPress file system.', 'epoch' );
-			return $return;
-
-		}
-
 		$dir =  api_paths::comment_count_dir();
 
 		if ( ! file_exists( $dir ) ) {
@@ -533,21 +512,22 @@ class api_helper {
 		}
 
 
-		$filename = api_paths::comment_count_alt_check_url( $post_id );
+		$path = api_paths::comment_count_alt_check_url( $post_id );
 
-		// by this point, the $wp_filesystem global should be working, so let's use it to create a file
-		global $wp_filesystem;
-		if ( ! $wp_filesystem->put_contents( $filename, absint( $comment_count ), FS_CHMOD_FILE) ) {
-			$return[ 'message' ] = __( 'Could not write file.', 'epoch' );
-		}
-		else{
-			$return = array(
-				'code' => 200,
-				'message' => $comment_count
-			);
+		$fp = fopen( $path, 'w' );
+		if ( ! $fp ) {
+			$written = file_put_contents( $path, $comment_count );
+			if( ! $written ) {
+				return false;
+
+			}
+
 		}
 
-		return $return;
+		fputs( $fp, pack( 'L', $comment_count ) );
+		fclose( $fp );
+
+		return;
 
 	}
 
