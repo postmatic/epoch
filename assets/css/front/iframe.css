@@ -433,10 +433,20 @@ div#wmd-button-barcomment {
 }
 
 /*moderation tools*/
-
-.safe-comments-report-link {
+ul.epoch-comment-actions li .safe-comments-report-link {
 	float: right;
+	margin-right: 15px;
+	color: #6B3131 !important;
 }
+
+ul.epoch-comment-actions li .safe-comments-report-link a {
+	color: #6B3131 !important;
+}
+
+.bypostauthor .safe-comments-report-link, .epoch-wrap-comment-awaiting-moderation .safe-comments-report-link {
+	display: none;
+}
+
 
 ul.epoch-moderation-actions {margin: 0 !important; padding: 5px 0 0 0 !important;float: right;}
 
