@@ -1,7 +1,7 @@
 === Epoch - A native Disqus alternative with a focus on speed and privacy ===
-Contributors: Postmatic, Desertsnowman, Shelob9
+Contributors: Postmatic, Desertsnowman, Shelob9, Ronalfy
 Donate link: https://gopostmatic.com/epoch
-Tags: ajax comments, comments, lightweight commenting, cdn, cache, engagement, postmatic, live update, wordpress comments, comment template, ajax commenting, better comments, disqus, discussion, seo, mobile commenting, chat, performance, site speed, chatting, email commenting, comment notifications
+Tags: ajax comments, comments, lightweight commenting, cdn, cache, moderate, engagement, postmatic, live update, wordpress comments, comment template, ajax commenting, better comments, disqus, discussion, seo, mobile commenting, chat, performance, site speed, chatting, email commenting, comment notifications
 Requires at least: 3.9
 Tested up to: 4.3
 Stable tag: 1.0.5
@@ -15,6 +15,14 @@ Epoch - 100% realtime chat and commenting in a tiny little package that is fully
 Epoch is a new plugin from the creators of [Postmatic](http://gopostmatic.com). The goal: To provide a realtime commenting/chat experience using fully native comments while being compatible with page caching, cdns, mobile, other comment plugins, and seo best practices. A tall order? For sure. Try it out.
 
 Epoch provides an amazing commenting experience to your users **while improving site performance at the same time**.
+
+**Key Features**
+
+- WordPress *native comments*
+- Realtime with minimal server load
+- Fully ajax commenting for both sending and receiving comments
+- Integrates with any theme while still blending in with your brand
+- Front end moderation with realtime updates. It's insanely fast.
 
 
 = Epoch solves three big native commenting problems =
@@ -35,7 +43,7 @@ Epoch is hands down the fastest commenting system available for WordPress, all t
 
 
 = Success through compatibility =
-Epoch is built for compatibility. Just like Postmatic. It uses fully native WordPress commenting, plays nicely with most all other commenting plugins, and employs WordPress coding standards. Use it with your favorite social login, voting, moderation, and other commenting plugins.
+Epoch is built for compatibility. It uses fully native WordPress commenting, plays nicely with most all other commenting plugins, and employs WordPress coding standards. Use it with your favorite social login, voting, moderation, and other commenting plugins.
 
 **Epoch is fully integrated with Postmatic**
 
