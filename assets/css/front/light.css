@@ -456,7 +456,7 @@ ul.epoch-moderation-actions li a {
 }
 
 ul.epoch-moderation-actions a:before {
-	padding: 5px !important;
+	padding-right: 3px !important;
 
 }
 
