@@ -423,13 +423,17 @@ div#wmd-button-barcomment {
 .safe-comments-report-link {
 }
 
-ul.epoch-comment-actions li .safe-comments-report-link a {
-	color: #6B3131 !important;
+ul.epoch-comment-actions li .safe-comments-report-link {
 	float: right;
 	margin-right: 15px;
+	color: #6B3131 !important;
 }
 
-.bypostauthor .safe-comments-report-link {
+ul.epoch-comment-actions li .safe-comments-report-link a {
+	color: #6B3131 !important;
+}
+
+.bypostauthor .safe-comments-report-link, .epoch-wrap-comment-awaiting-moderation .safe-comments-report-link {
 	display: none;
 }
 
