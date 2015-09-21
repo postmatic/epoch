@@ -83,6 +83,7 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 = 1.0.6 =
 
 - Sweet. A small release to roll out a huge feature: front-end moderation of comments. Brought to you by the brilliant @ronalfy. Be careful. It's powerfully fun.
+- We fixed things up so that if you do not want to use avatars we're cool with that.
 
 = 1.0.5 =
 
