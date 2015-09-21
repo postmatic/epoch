@@ -89,7 +89,10 @@ class api_helper {
 		$comment[ 'comment_classes' ] = self::comment_classes( $comment, $author_user );
 
 		//add avatar markup as a string
-		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'], 48 );
+		$comment[ 'author_avatar' ] = '';
+		if ( get_option( 'show_avatars' ) ) {
+			$comment[ 'author_avatar' ] =  get_avatar( $comment[ 'comment_author_email'], 48 );
+		}
 
 		//format date according to WordPress settings
 		/* translators: 1: date, 2: time */
