@@ -56,7 +56,7 @@ module.exports = function (grunt) {
                 }
             },
             svn_tag: {
-                command: 'svn copy -m "Tagging version <%= pkg.version %>" <%= svn_url %>/trunk <%= svn_url %>/tags/<%= pkg.version %>'
+                command: 'svn copy --force-interactive -m "Tagging version <%= pkg.version %>" <%= svn_url %>/trunk <%= svn_url %>/tags/<%= pkg.version %>'
             }
         },
         clean: {
