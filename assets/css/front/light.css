@@ -93,7 +93,7 @@ article.epoch-comment-body {
 }
 
 article.bypostauthor {
-    padding: 15px 15px 0 15px !important;
+    padding: 15px 15px 10px 15px !important;
     background: url(../../../assets/image/et.png) !important;
     margin-left: -15px !important;
 }
@@ -418,8 +418,22 @@ div#wmd-button-barcomment {
  input:required,textarea:required {box-shadow: none !important;}
  
  /*moderation tools*/
+ 
+ 
+.safe-comments-report-link {
+}
 
-ul.epoch-moderation-actions {padding: 0 !important; margin: 0 !important;float: right;}
+ul.epoch-comment-actions li .safe-comments-report-link a {
+	color: #6B3131 !important;
+	float: right;
+	margin-right: 15px;
+}
+
+.bypostauthor .safe-comments-report-link {
+	display: none;
+}
+
+ul.epoch-moderation-actions {padding: 5px 0 0 0 !important; margin: 0 !important;float: right;}
 
 ul.epoch-moderation-actions li {
   list-style:none !important;
