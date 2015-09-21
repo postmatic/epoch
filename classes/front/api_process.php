@@ -129,11 +129,14 @@ class api_process {
 		
 		/* Get comment parent and dmin/moderator, approve parent comment */
 		$comment->parent_approved = 0;
-		if ( ( current_user_can( 'manage_network' ) || current_user_can( 'manage_options' ) || current_user_can( 'moderate_comments' ) ) ) {
-			if ( 0 != $comment->comment_approved ) {
-				$comment_parent_id = $comment->comment_parent;
-				wp_set_comment_status( $comment_parent_id, 'approve' );
-				$comment->parent_approved = $comment_parent_id;
+		if ( current_user_can( 'manage_network' ) || current_user_can( 'manage_options' ) || current_user_can( 'moderate_comments' ) ) {
+			if ( isset( $comment->comment_approved ) && 0 != $comment->comment_approved ) {
+				$comment_parent_id = isset( $comment->comment_parent ) ? $comment->comment_parent : 0;
+				if ( 0 != $comment_parent_id ) {
+    				wp_set_comment_status( $comment_parent_id, 'approve' );
+                    $comment->parent_approved = $comment_parent_id;
+				}
+				
 			}
 		}
 
