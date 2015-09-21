@@ -455,17 +455,9 @@ ul.epoch-moderation-actions li a {
   border-radius: 5px !important;
 }
 
-ul.epoch-moderation-actions a:before {
-	padding-right: 3px !important;
-
-}
-
 
 ul.epoch-moderation-actions li.epoch-approve a {
   color: #27ae60 !important;
-}
-ul.epoch-moderation-actions li.epoch-approve a:before {
-  content: "\2713" !important;
 }
 
 ul.epoch-moderation-actions li.epoch-approve a:hover {
@@ -476,9 +468,6 @@ ul.epoch-moderation-actions li.epoch-approve a:hover {
 ul.epoch-moderation-actions li.epoch-trash a {
   color: #f39c12 !important;
 }
-ul.epoch-moderation-actions li.epoch-trash a:before {
-  content: "X" !important;
-}
 
 ul.epoch-moderation-actions li.epoch-trash a:hover {
 	background: #f39c12 !important;
@@ -487,9 +476,6 @@ ul.epoch-moderation-actions li.epoch-trash a:hover {
 
 ul.epoch-moderation-actions li.epoch-spam a {
   color: #c0392b !important;
-}
-ul.epoch-moderation-actions li.epoch-spam a:before {
-  content: "\2639" !important;
 }
 
 ul.epoch-moderation-actions li.epoch-spam a:hover {
