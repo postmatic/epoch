@@ -32,7 +32,7 @@ module.exports = function (grunt) {
                 command: 'svn checkout --force <%= svn_url %>/trunk build/svn/trunk'
             },
             svn_add: {
-                command: "svn stat | grep '^\\?' | awk '{print $2}' | xargs svn add",
+                command: "svn stat | grep '^\\?' | awk '{print $2}' | xargs --no-run-if-empty svn add",
                 options: {
                     execOptions: {
                         cwd: 'build/svn/trunk'
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
                 }
             },
             svn_rm: {
-                command: "svn stat | grep '^\\!' | awk '{print $2}' | xargs svn rm",
+                command: "svn stat | grep '^\\!' | awk '{print $2}' | xargs --no-run-if-empty svn rm",
                 options: {
                     execOptions: {
                         cwd: 'build/svn/trunk'
@@ -125,7 +125,8 @@ module.exports = function (grunt) {
             addtag: {
                 options: {
                     tag: '<%= pkg.version %>',
-                    message: 'Version <%= pkg.version %>'
+                    message: 'Version <%= pkg.version %>',
+                    force: true
                 }
             }
         },
@@ -147,7 +148,8 @@ module.exports = function (grunt) {
                 options: {
                     tags: true,
                     remote: 'origin',
-                    branch: 'master'
+                    branch: 'master',
+                    force: true
                 }
             }
         },
