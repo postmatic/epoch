@@ -437,13 +437,17 @@ ul.epoch-comment-actions li .safe-comments-report-link a {
 	display: none;
 }
 
+article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation:hover {
+   opacity: 1 !important;
+}
+
 ul.epoch-moderation-actions {padding: 5px 0 0 0 !important; margin: 0 !important;float: right;}
 
 ul.epoch-moderation-actions li {
   list-style:none !important;
   float: left !important;
   margin-right: 5px !important;
-  font: 11px sans-serif !important;
+  font: 13px sans-serif !important;
 }
 
 ul.epoch-moderation-actions li a {
