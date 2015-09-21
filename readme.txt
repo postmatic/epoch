@@ -1,5 +1,5 @@
 === Epoch - A native Disqus alternative with a focus on speed and privacy ===
-Contributors: Postmatic, Desertsnowman, Shelob9, Ronalfy
+Contributors: Postmatic, Desertsnowman, Shelob9, ronalfy
 Donate link: https://gopostmatic.com/epoch
 Tags: ajax comments, comments, lightweight commenting, cdn, cache, moderate, engagement, postmatic, live update, wordpress comments, comment template, ajax commenting, better comments, disqus, discussion, seo, mobile commenting, chat, performance, site speed, chatting, email commenting, comment notifications
 Requires at least: 3.9
