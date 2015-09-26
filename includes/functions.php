@@ -150,7 +150,7 @@ function epoch_postmatic_link() {
  * @since 1.0.6
  */
 function epoch_add_file_count_dir() {
-	$dir =  api_paths::comment_count_dir();
+	$dir =  api_paths::comment_count_dir( false );
 
 	if ( ! file_exists( $dir ) ) {
 		wp_mkdir_p( $dir );
