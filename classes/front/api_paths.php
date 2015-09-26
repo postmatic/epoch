@@ -60,12 +60,13 @@ class api_paths extends vars {
 	 * @since 1.0.2
 	 *
 	 * @param $post_id
+	 * @param bool $url Optional. If true, the default, URL is returned. If false the directory path is returned.
 	 *
 	 * @return string
 	 */
-	static public function comment_count_alt_check_url( $post_id ) {
+	static public function comment_count_alt_check_url( $post_id, $url = true ) {
 		if ( 0 < absint( $post_id ) &&  EPOCH_ALT_COUNT_CHECK_MODE ){
-			return self::comment_count_dir() . $post_id . '.txt';
+			return self::comment_count_dir( $url ) . $post_id . '.txt';
 
 		}
 
@@ -76,11 +77,19 @@ class api_paths extends vars {
 	 *
 	 * @since 1.0.2
 	 *
+	 * @param bool $url Optional. If true, the default, URL is returned. If false the directory path is returned.
+	 *
 	 * @return string
 	 */
-	static public  function comment_count_dir() {
+	static public  function comment_count_dir( $url = true ) {
 		$upload_dir = wp_upload_dir();
-		$dir =  trailingslashit( $upload_dir[ 'baseurl' ] ) .'epoch/';
+		if ( $url ) {
+			$dir = $upload_dir[ 'baseurl' ];
+		} else {
+			$dir = $upload_dir[ 'basedir' ];
+		}
+
+		$dir = trailingslashit( $dir ) . 'epoch/';
 
 		/**
 		 * Filter the location for comment count files
@@ -88,8 +97,9 @@ class api_paths extends vars {
 		 * @since 1.0.2
 		 *
 		 * @param string $url
+		 * @param bool $url Optional. If true, the default, URL is returned. If false the directory path is returned.
 		 */
-		return apply_filters( 'epoch_comment_count_dir', $dir );
+		return apply_filters( 'epoch_comment_count_dir', $dir, $url );
 
 	}
 
