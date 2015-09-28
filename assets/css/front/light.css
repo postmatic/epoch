@@ -142,10 +142,9 @@ article.epoch-single-comment.epoch-success {
 }
 
 article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comment-author {
-	background: url(../../../assets/image/el.png) center right no-repeat !important;
+	background: url(../../../assets/image/pending.png) center right no-repeat !important;
 	background-size: 15px !important;
 	padding-right: 30px !important;
-	
 }
 
 article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
@@ -437,7 +436,7 @@ ul.epoch-comment-actions li .safe-comments-report-link a {
 	display: none;
 }
 
-article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation:hover {
+body.logged-in article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation:hover {
    opacity: 1 !important;
 }
 
