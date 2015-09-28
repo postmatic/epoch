@@ -14,6 +14,16 @@ add_action( 'epoch_iframe_footer', 'epoch_iframe_footer_print_scripts' );
 function epoch_iframe_footer_print_scripts() {
 	global $wp_scripts;
 
+	$scripts = array(
+		'jquery-core',
+		'jquery-migrate',
+		'epoch-handlebars',
+		'epoch-handlebars-helpers',
+		'epoch',
+		'visibility',
+		'comment-reply',
+	);
+
 	/**
 	 * Use this filter to add or remove scripts from the Epoch iFrame filter
 	 *
@@ -25,14 +35,9 @@ function epoch_iframe_footer_print_scripts() {
 	 *
 	 * @param array $scripts An array of registered script handles
 	 */
-	$scripts = apply_filters( 'epoch_iframe_scripts', array() );
-	$scripts[] = 'jquery-core';
-	$scripts[] = 'jquery-migrate';
-	$scripts[] = 'epoch-handlebars';
-	$scripts[] = 'epoch-handlebars-helpers';
-	$scripts[] = 'epoch';
-	$scripts[] = 'visibility';
-	$scripts[] = 'comment-reply';
+	$add_scripts = apply_filters( 'epoch_iframe_scripts', array() );
+
+	$scripts = array_merge( $scripts, $add_scripts );
 
 	if ( ! did_action( 'wp_enqueue_scripts' ) ) {
 		do_action( 'wp_enqueue_scripts' );
