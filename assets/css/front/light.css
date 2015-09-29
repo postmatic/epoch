@@ -148,6 +148,15 @@ article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comme
 }
 
 
+article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
+	opacity: 0.8 !important;
+}
+
+body.logged-in article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation:hover {
+   opacity: 1 !important;
+}
+
+
 #epoch-comments .comment-notes {
 	font-size: 90% !important;
 }
@@ -470,4 +479,12 @@ ul.epoch-moderation-actions li.epoch-spam a {
 ul.epoch-moderation-actions li.epoch-spam a:hover {
 	background: #c0392b !important;
 	color: white !important;
+}
+
+/*Crowd Control*/
+
+.pmcc-comments-report-link {display: none !important;}
+
+.epoch-single-comment:hover .pmcc-comments-report-link {
+	display: block !important;
 }
