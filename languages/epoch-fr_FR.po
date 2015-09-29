@@ -3,43 +3,43 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Epoch 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/epoch\n"
-"POT-Creation-Date: 2015-08-27 11:45+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-18 14:13+0200\n"
+"PO-Revision-Date: 2015-09-22 19:36+0200\n"
+"Last-Translator: fxbenard | FxB <fx@fxbenard.com>\n"
+"Language-Team: \n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-08-28 23:24+0200\n"
-"Language-Team: \n"
-"X-Generator: Poedit 1.8.4\n"
-"Last-Translator: fxbenard | FxB <fx@fxbenard.com>\n"
+"X-Generator: Poedit 1.8.5\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"Language: fr_FR\n"
 
-#: classes/core.php:358
+#: classes/core.php:370
 msgid "Your comment is awaiting moderation."
 msgstr "Votre commentaire est en attente de modération"
 
-#: classes/core.php:359
+#: classes/core.php:371
 msgid "Link to comment"
 msgstr "Lien vers le commentaire"
 
-#: classes/core.php:360
+#: classes/core.php:372
 msgid "Reply"
 msgstr "Répondre"
 
-#: classes/core.php:361
+#: classes/core.php:373
 msgid "Reply To This Comment"
 msgstr "Répondre à ce commentaire"
 
-#: classes/core.php:362
+#: classes/core.php:374
 msgid "Link to comment author's website"
 msgstr "Lien vers le site web de l'auteur du commentaire"
 
-#: classes/core.php:363
+#: classes/core.php:375
 msgid "is required"
 msgstr "est obligatoire"
 
-#: classes/core.php:364
+#: classes/core.php:376
 msgid ""
 "Your comment was not accepted, please check that everything is filled out "
 "correctly."
@@ -48,9 +48,37 @@ msgstr ""
 "correctement rempli."
 
 #. translators: 1: date, 2: time
-#: classes/front/api_helper.php:72
+#: classes/front/api_helper.php:97
 msgid "%1$s at %2$s"
 msgstr "%1$s à %2$s"
+
+#: classes/front/api_helper.php:480
+msgid "File system comment count checks not enabled."
+msgstr ""
+"La vérification du compte des commentaires du fichier système n&rsquo;est "
+"pas activée."
+
+#: classes/front/api_helper.php:494
+msgid "Could not use WordPress file system."
+msgstr "Impossible d&rsquo;utiliser le système de fichier de WordPress."
+
+#: classes/front/api_helper.php:501
+msgid "Could not access WordPress file system."
+msgstr "Impossible d&rsquo;accéder au système de fichier de WordPress."
+
+#: classes/front/api_helper.php:513
+msgid "Could not create directory."
+msgstr "Impossible de créer le dossier."
+
+#: classes/front/api_helper.php:524
+msgid "Could not write file."
+msgstr "Impossible d&rsquo;écrire le fichier."
+
+#: classes/front/api_route.php:51
+msgid "Access to the Epoch API from external sites is not enabled."
+msgstr ""
+"L'accès à l&rsquo;API d&rsquo;Epoch depuis des sites externes n&rsquo;est "
+"pas activé."
 
 #: classes/front/layout.php:75
 msgid "Subscribe to Comments Via Email"
@@ -62,7 +90,7 @@ msgstr "Les commentaires sont fermés."
 
 #: classes/front/templates/initial.php:36
 msgid "There are no comments"
-msgstr "Il n&rsquo;y a pas d&rsquo;autres commentaires."
+msgstr "Il n&rsquo;y a aucun commentaire."
 
 #: classes/front/templates/initial.php:39
 msgid "There is one comment"
@@ -74,10 +102,17 @@ msgstr[1] "Il y a %s commentaires"
 msgid "Join the conversation"
 msgstr "Rejoignez la discussion"
 
-#. Plugin Name of the plugin/theme
-#: classes/settings.php:87 includes/templates/main-ui.php:15
-msgid "Epoch"
-msgstr "Epoch"
+#: includes/functions.php:123
+msgid "Activate Postmatic"
+msgstr "Activer Postmatic"
+
+#: includes/functions.php:128
+msgid "Install Postmatic"
+msgstr "Installer Postmatic"
+
+#: includes/functions.php:133
+msgid "Learn More About Postmatic"
+msgstr "En savoir plus sur Postmatic"
 
 #: includes/templates/main-ui.php:19
 msgid "Updated Successfully"
@@ -121,14 +156,14 @@ msgstr "Utiliser ma typographie et mes couleurs"
 msgid "Minimally"
 msgstr "De façon minimale"
 
-#: includes/templates/options-panel.php:26
+#: includes/templates/options-panel.php:20
 msgid ""
 "Epoch can integrate with your theme in three different. Give each a try and "
 "see what works for you. The comment template can also be styled easily via "
 "css. See the documentation."
 msgstr ""
-"Epoch peut s'intégrer avec votre thème de trois façons différentes. Essayez "
-"chacunes et voyez celle qui fonctionne le mieux pour vous. Le modèle de "
+"Epoch peut s'intégrer avec votre thème de trois façons différentes. Essayez-"
+"les toutes et voyez celle qui fonctionne le mieux pour vous. Le modèle de "
 "commentaire peut aussi être stylisé facilement via css. Reportez-vous à la "
 "documentation pour cela."
 
@@ -190,13 +225,19 @@ msgstr ""
 "décroissant ? L&rsquo;ordre décroissant met le dernier commentaire en haut "
 "de la zone des commentaires. L&rsquo;ordre croissant fait l'inverse."
 
-#: vendor/calderawp/dismissible-notice/src/Caldera_Warnings_Dismissible_Notice.php:129
-msgid "Dismiss this notice."
-msgstr "Ignorer cet avertissement."
+#: includes/templates/options-panel.php:71
+msgid "Pings & Trackbacks"
+msgstr "Pings & rétroliens "
 
-#. Plugin URI of the plugin/theme
-msgid "http://gopostmatic.com/epoch"
-msgstr "http://gopostmatic.com/epoch"
+#: includes/templates/options-panel.php:73
+msgid "Show pings and trackbacks"
+msgstr "Afficher les pings et les rétroliens."
+
+#: includes/templates/options-panel.php:75
+msgid "When enabled, pings and trackbacks will show in the comment stream."
+msgstr ""
+"Si activé, les pings et trackbacks apparaîtront dans le flux des "
+"commentaires."
 
 #. Description of the plugin/theme
 msgid ""
@@ -207,10 +248,14 @@ msgstr ""
 "plein de SEO mojo en prime. Le système de commentaires performant et "
 "perfectionné."
 
-#. Author of the plugin/theme
-msgid "Postmatic"
-msgstr "Postmatic"
+#~ msgid "Epoch"
+#~ msgstr "Epoch"
 
-#. Author URI of the plugin/theme
-msgid "https://gopostmatic.com/"
-msgstr "https://gopostmatic.com/"
+#~ msgid "Dismiss this notice."
+#~ msgstr "Ignorer cet avertissement."
+
+#~ msgid "http://gopostmatic.com/epoch"
+#~ msgstr "http://gopostmatic.com/epoch"
+
+#~ msgid "https://gopostmatic.com/"
+#~ msgstr "https://gopostmatic.com/"

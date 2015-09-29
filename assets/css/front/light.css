@@ -142,18 +142,18 @@ article.epoch-single-comment.epoch-success {
 }
 
 article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comment-author {
-	background: url(../../../assets/image/el.png) center right no-repeat !important;
+	background: url(../../../assets/image/em.png) center right no-repeat !important;
 	background-size: 15px !important;
 	padding-right: 30px !important;
-	
 }
+
 
 article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
-	opacity: 0.5 !important;
+	opacity: 0.8 !important;
 }
 
-.epoch-wrap-comment-awaiting-moderation .epoch-reply {
-	/*display: none !important;*/
+body.logged-in article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation:hover {
+   opacity: 1 !important;
 }
 
 
@@ -349,8 +349,6 @@ ul.epoch-comment-actions {
 }
 
 
-
-
 }
 
 @media only screen and (max-width : 550px) {
@@ -443,7 +441,7 @@ ul.epoch-moderation-actions li {
   list-style:none !important;
   float: left !important;
   margin-right: 5px !important;
-  font: 11px sans-serif !important;
+  font: 13px sans-serif !important;
 }
 
 ul.epoch-moderation-actions li a {
@@ -481,4 +479,12 @@ ul.epoch-moderation-actions li.epoch-spam a {
 ul.epoch-moderation-actions li.epoch-spam a:hover {
 	background: #c0392b !important;
 	color: white !important;
+}
+
+/*Crowd Control*/
+
+.pmcc-comments-report-link {display: none !important;}
+
+.epoch-single-comment:hover .pmcc-comments-report-link {
+	display: block !important;
 }

@@ -502,35 +502,38 @@ class api_helper {
 
 		}
 
-		$dir =  api_paths::comment_count_dir();
+		$dir =  api_paths::comment_count_dir( false );
 
-		if ( ! file_exists( $dir ) ) {
+		if ( ! is_dir( $dir ) ) {
 			wp_mkdir_p( $dir );
 		}
 
-		if ( ! file_exists( $dir ) ) {
+		if ( ! is_dir( $dir ) ) {
 			$return[ 'message' ] = __( 'Could not create directory.', 'epoch' );
 			return $return;
 
 		}
 
+		$path = api_paths::comment_count_alt_check_url( $post_id, false );
 
-		$path = api_paths::comment_count_alt_check_url( $post_id );
+		if ( ! file_exists( $path ) ) {
+			$handle = fopen( $path, "w+" );
+		}else{
+			$handle = fopen( $path, 'w' );
+		}
 
-		$fp = fopen( $path, 'w' );
-		if ( ! $fp ) {
-			$written = file_put_contents( $path, $comment_count );
-			if( ! $written ) {
-				return false;
+		$written = fwrite( $handle, $comment_count->approved );
+		$closed = fclose( $handle );
+		if( $closed ) {
+			return true;
+		}
 
-			}
+		$written = file_put_contents( $path, $comment_count->approved );
+		if( ! $written ) {
+			return false;
 
 		}
 
-		fputs( $fp, pack( 'L', $comment_count ) );
-		fclose( $fp );
-
-		return;
 
 	}
 

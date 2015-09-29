@@ -216,6 +216,10 @@ class api_process {
         $action = $data[ 'moderationAction' ];
         $comment_id = $data[ 'commentID' ];
         
+        if ( !current_user_can( 'manage_network' ) && !current_user_can( 'manage_options' ) && !current_user_can( 'moderate_comments' ) ) {
+            return '';
+        }
+        
         /* Comment Statuses are 'hold', 'approve', 'spam', or 'trash' */
         
         $return = array();

@@ -88,6 +88,15 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 1.0.7 =
+
+- Refined the styles on pending comments. Less gray, more black. New clock icon.
+- Improved iframe filters for 3rd party plugins to integrate in iframe mode.
+- Updated French translation.
+- Integration with Crowd Control for showing/hiding report link on hover (desktop only).
+- Added security to moderation calls.
+- Adding the groundwork for some major performance improvements. More coming soon.
+
 = 1.0.6.1 =
 
 - We caught a bug in which adding a comment as an admin would throw a funky error. Fixed.
