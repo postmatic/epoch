@@ -62,7 +62,7 @@ function epoch_activate() {
 			require_once( EPOCH_PATH . 'vendor/autoload.php' );
 			epoch_fix_rewrites();
 
-			if ( EPOCH_ALT_COUNT_CHECK_MODE ) {
+			if ( defined( 'EPOCH_ALT_COUNT_CHECK_MODE' ) && EPOCH_ALT_COUNT_CHECK_MODE ) {
 				epoch_add_file_count_dir();
 			}
 
