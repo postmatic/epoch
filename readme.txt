@@ -4,7 +4,7 @@ Donate link: https://gopostmatic.com/epoch
 Tags: ajax comments, comments, lightweight commenting, cdn, cache, moderate, engagement, postmatic, live update, wordpress comments, comment template, ajax commenting, better comments, disqus, discussion, seo, mobile commenting, chat, performance, site speed, chatting, email commenting, comment notifications
 Requires at least: 3.9
 Tested up to: 4.3
-Stable Tag: 1.0.6.1
+Stable Tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
