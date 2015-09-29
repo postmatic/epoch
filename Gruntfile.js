@@ -32,7 +32,7 @@ module.exports = function (grunt) {
                 command: 'svn checkout --force <%= svn_url %>/trunk build/svn/trunk'
             },
             svn_add: {
-                command: "svn stat | grep '^\\?' | awk '{print $2}' | xargs --no-run-if-empty svn add",
+                command: "svn stat | grep '^\\?' | awk '{print $2}' | while read file; do test -n '$file' && svn add '$file'; done;",
                 options: {
                     execOptions: {
                         cwd: 'build/svn/trunk'
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
                 }
             },
             svn_rm: {
-                command: "svn stat | grep '^\\!' | awk '{print $2}' | xargs --no-run-if-empty svn rm",
+                command: "svn stat | grep '^\\!' | awk '{print $2}' | while read file; do test -n '$file' && svn rm '$file'; done;",
                 options: {
                     execOptions: {
                         cwd: 'build/svn/trunk'
