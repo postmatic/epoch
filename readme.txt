@@ -88,6 +88,10 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 1.0.7.1 =
+
+- A quick fix for a fatal error on activation that was present in 1.0.7. Plus Jason had another cool idea for renderin Crowd Control on mobile after sleeping on it. :)
+
 = 1.0.7 =
 
 - Refined the styles on pending comments. Less gray, more black. New clock icon.
