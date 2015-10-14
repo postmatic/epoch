@@ -494,3 +494,8 @@ ul.epoch-moderation-actions li.epoch-spam a:hover {
 	background: #c0392b !important;
 	color: white !important;
 }
+
+/*support for rating system by vortex themes*/
+.vortex-align-right {
+    height: 0;
+}

@@ -393,6 +393,13 @@ div.column4 {
   margin-bottom: 45px;
 }
 
+div.column3 {
+  width: 30%;
+  min-height: 200px;
+  float: left;
+  margin-right: 3%;
+}
+
 .clear {clear: both;}
 
 #epoch-main-form {
