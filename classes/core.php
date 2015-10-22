@@ -14,6 +14,7 @@ use postmatic\epoch\front\api_paths;
 use postmatic\epoch\front\api_route;
 use postmatic\epoch\front\end_points;
 use postmatic\epoch\front\layout;
+use postmatic\epoch\front\prewrite_comment_count;
 use postmatic\epoch\front\vars;
 
 /**
@@ -98,6 +99,12 @@ class core {
 				epoch_fix_rewrites();
 			}
 		});
+
+
+		if ( EPOCH_ALT_COUNT_CHECK_MODE ){
+			new prewrite_comment_count();
+
+		}
 
 
 	}

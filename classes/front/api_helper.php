@@ -489,7 +489,7 @@ class api_helper {
 	 * @since 1.0.2
 	 *
 	 * @param int $post_id
-	 * @param null $comment_count
+	 * @param null|int $comment_count
 	 *
 	 * @return array
 	 */
@@ -500,6 +500,14 @@ class api_helper {
 				'message' => __( 'File system comment count checks not enabled.', 'epoch' )
 			);
 
+		}
+
+		if( is_null( $comment_count ) ) {
+			$comment_count = get_comment_count( $post_id );
+		}
+
+		if( is_object( $comment_count ) ) {
+			$comment_count = (string) $comment_count->approved;
 		}
 
 		$dir =  api_paths::comment_count_dir( false );
@@ -517,18 +525,19 @@ class api_helper {
 		$path = api_paths::comment_count_alt_check_url( $post_id, false );
 
 		if ( ! file_exists( $path ) ) {
-			$handle = fopen( $path, "w+" );
+			$handle = fopen( $path, 'w+' );
 		}else{
-			$handle = fopen( $path, 'w' );
+			$handle = fopen( $path, 'a+' );
 		}
 
-		$written = fwrite( $handle, $comment_count->approved );
+		$written = fwrite( $handle, $comment_count );
+
 		$closed = fclose( $handle );
-		if( $closed ) {
+		if( $written && $closed ) {
 			return true;
 		}
 
-		$written = file_put_contents( $path, $comment_count->approved );
+		$written = file_put_contents( $path, $comment_count );
 		if( ! $written ) {
 			return false;
 
