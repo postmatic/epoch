@@ -261,6 +261,8 @@ class api_route {
 				if ( $ref[ 'host' ] == $_SERVER[ 'SERVER_NAME' ] ) {
 					return true;
 
+				}elseif( $ref[ 'host' ] == home_url() ) {
+					return true;
 				}
 
 			}
