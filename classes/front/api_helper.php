@@ -527,7 +527,7 @@ class api_helper {
 		if ( ! file_exists( $path ) ) {
 			$handle = fopen( $path, 'w+' );
 		}else{
-			$handle = fopen( $path, 'a+' );
+			$handle = fopen( $path, 'w' );
 		}
 
 		$written = fwrite( $handle, $comment_count );
