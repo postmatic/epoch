@@ -125,7 +125,7 @@ jQuery( document ).ready( function ( $ ) {
 
                             }
 
-                            app.set_last_count( app.last_count + 1 );
+                            app.set_last_count( parseInt(app.last_count) + 1 );
                             response = app.get_data_from_response( response );
                             comment = response.comment;
 
