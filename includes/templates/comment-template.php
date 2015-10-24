@@ -28,6 +28,11 @@
 		 */
 		do_action( 'epoch_iframe_footer' );
 	?>
+    <span id="epoch-loading">
+        <span id="outerCircle1"></span>
+        <span id="innerCircle"></span>
+    </span>
+
 	<script>
 
     jQuery( function( $ ){

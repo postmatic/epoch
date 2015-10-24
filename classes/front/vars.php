@@ -123,6 +123,15 @@ class vars {
 	static public $sniffer = 'epoch-width-sniffer';
 
 	/**
+	 * ID of div we use for our loading spinner
+	 *
+	 * @since 1.1.8
+	 *
+	 * @var string
+	 */
+	static public $loading = 'epoch-loading';
+
+	/**
 	 * Create a nonce
 	 *
 	 * @return string

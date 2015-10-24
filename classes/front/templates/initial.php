@@ -24,7 +24,7 @@ $form = sprintf(
 );
 
 $comment_area = sprintf(
-	'<div id="%1s"></div>',
+	'<div id="%1s"><span id="epoch-loading"><span id="outerCircle1"></span><span id="innerCircle"></span></span></div>',
 	esc_attr( \postmatic\epoch\front\vars::$comments_wrap )
 );
 
