@@ -28,10 +28,11 @@
 		 */
 		do_action( 'epoch_iframe_footer' );
 	?>
-    <span id="epoch-loading">
-        <span id="outerCircle1"></span>
-        <span id="innerCircle"></span>
-    </span>
+    
+    <div id="epoch-loading">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
 
 	<script>
 
