@@ -181,21 +181,27 @@ class core {
 	}
 
 	/**
-	 * Load Epoch's front-end template
+	 * Load Epoch's front-end template for iFrame Mode
 	 *
 	 * @since 0.0.8
 	 */
 	public function boot_epoch_front_comment( $template ) {
+		$options = options::get();
+		if( 'iframe' != $options['options'][ 'theme' ] ) {
+			return $template;
+		}
+
 		global $wp_query;
-		$this->front_stylescripts();
 		if ( ! isset( $wp_query->query_vars['epoch'] ) || ! is_singular() ){
 			return $template;
 		}
-		
+
+		$this->front_stylescripts();
 		add_filter( 'show_admin_bar', '__return_false' );
 
 		include EPOCH_PATH . 'includes/templates/comment-template.php';
 		exit;
+
 	}
 
 	/**
