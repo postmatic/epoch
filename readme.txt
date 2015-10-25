@@ -88,9 +88,20 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 1.0.8 =
+
+The first of a series of releases which will be focusing on speed and performance. 
+
+- We've come up with a low-tech & high performance solution to polling the server for new comments. It's experimental depending on your host but you can read all about how to activate it [here](http://docs.gopostmatic.com/article/192-how-to-enable-even-lighter-weight-server-polling). Official support from varying hosts coming soon.
+- Somewhere in the depths of earlier development Epoch stopped being smart about when to load and when to lay low. That's been fixed, ipmroved upon, and had a serious IQ lift.
+- There was a horrible war between Epoch and some antispam plugins on certain configurations. 'Twas ugly but now has been fixed. This resolves the *your comment was not accepted, please verify that everything is filled out correctly* problem.
+- We made a fancy loading spinner that tricks your brain into not being bored when you are waiting for comments to load. Silly humans. We have a lot of work to do regarding loading performance on posts with 100+ comments. We have plans.
+- There was an issue with the trackbacks/pings setting not saving/rendering correctly. Fixed.
+- We've added some special styles for [Rating System](https://wordpress.org/plugins/rating-system/). Go rate some comments.
+
 = 1.0.7.1 =
 
-- A quick fix for a fatal error on activation that was present in 1.0.7. Plus Jason had another cool idea for renderin Crowd Control on mobile after sleeping on it. :)
+- A quick fix for a fatal error on activation that was present in 1.0.7. Plus Jason had another cool idea for rendering Crowd Control on mobile after sleeping on it. :)
 
 = 1.0.7 =
 
