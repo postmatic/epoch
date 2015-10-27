@@ -142,7 +142,6 @@ jQuery( document ).ready( function ( $ ) {
                 });
             }
 
-
             /**
              * Submit form data
              *
@@ -294,6 +293,8 @@ jQuery( document ).ready( function ( $ ) {
             ).then( function(){
                     var loading = document.getElementById( epoch_vars.loading );
                     $( loading ).fadeOut( 350 ).attr( 'aria-hidden', 'true' );
+                    var epoch_loaded = new Event('epoch_loaded');
+                    document.dispatchEvent(epoch_loaded);
             });
 
 

@@ -70,10 +70,16 @@
         }, 100 );
 
 
-        $( document ).on( 'ready', function(){
-            var loading = document.getElementById( epoch_vars.loading );
-            $( loading ).fadeOut( 350 ).attr( 'aria-hidden', 'true' ).remove();
-        })
+
+        $('iframe#epoch-comments').ready(function() {
+            document.addEventListener('epoch_loaded', function (e) {
+                var loading = document.getElementById( epoch_vars.loading );
+                $( loading ).children().hide().attr( 'aria-hidden', 'true' ).remove();
+                $( loading ).hide().attr( 'aria-hidden', 'true' ).remove();
+                $( '#epoch-loading' ).slideUp();
+            }, false);
+        });
+
 
     } );
 		 
