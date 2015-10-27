@@ -68,7 +68,13 @@
             }
         	$('a:not([href="#reply-title"]').attr('target', '_parent');
         }, 100 );
-    
+
+
+        $( document ).on( 'ready', function(){
+            var loading = document.getElementById( epoch_vars.loading );
+            $( loading ).fadeOut( 350 ).attr( 'aria-hidden', 'true' ).remove();
+        })
+
     } );
 		 
 
