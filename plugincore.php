@@ -29,6 +29,20 @@ define('EPOCH_PATH',  plugin_dir_path( __FILE__ ) );
 define('EPOCH_URL',  plugin_dir_url( __FILE__ ) );
 define( 'EPOCH_VER', '1.0.8' );
 
+if ( ! defined( 'EPOCH_ALT_COUNT_CHECK_MODE' ) ) {
+
+	/**
+	 * Whether to save comment counts to text files and attempt to use them to check comment counts.
+	 *
+	 * NOTE: Experimental. Do not use.
+	 *
+	 * @since 1.0.1
+	 */
+	define( 'EPOCH_ALT_COUNT_CHECK_MODE', false );
+
+}
+
+
 
 
 // Load instance
