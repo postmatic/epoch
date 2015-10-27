@@ -93,7 +93,7 @@ article.epoch-comment-body {
 }
 
 article.bypostauthor {
-    padding: 15px 15px 0 15px !important;
+    padding: 15px 15px 10px 15px !important;
     background: url(../../../assets/image/et.png) !important;
     margin-left: -15px !important;
 }
@@ -142,14 +142,18 @@ article.epoch-single-comment.epoch-success {
 }
 
 article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comment-author {
-	background: url(../../../assets/image/el.png) center right no-repeat !important;
-	background-size: 30px !important;
-	padding-right: 40px !important;
-	
+	background: url(../../../assets/image/em.png) center right no-repeat !important;
+	background-size: 15px !important;
+	padding-right: 30px !important;
 }
 
+
 article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
-	opacity: 0.5 !important;
+	opacity: 0.8 !important;
+}
+
+body.logged-in article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation:hover {
+   opacity: 1 !important;
 }
 
 
@@ -275,7 +279,21 @@ article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation {
 }
 
 
+/*Crowd Control*/
+
+.pmcc-comments-report-link {display: none !important;}
+
+.epoch-single-comment:hover .pmcc-comments-report-link {
+	display: block !important;
+}
+
+
 @media only screen and (max-width : 620px) {
+
+/*Crowd Control*/
+
+.pmcc-comments-report-link {display: block !important;}
+
 .epoch-comment-author-avatar img {
 	width: 24px !important; 
 	height: 24px !important;
@@ -345,8 +363,6 @@ ul.epoch-comment-actions {
 }
 
 
-
-
 }
 
 @media only screen and (max-width : 550px) {
@@ -412,3 +428,127 @@ div#wmd-button-barcomment {
 
 /*get rid of box shadows*/
  input:required,textarea:required {box-shadow: none !important;}
+ 
+ /*moderation tools*/
+ 
+ 
+.safe-comments-report-link {
+}
+
+ul.epoch-comment-actions li .safe-comments-report-link {
+	float: right;
+	margin-right: 15px;
+	color: #6B3131 !important;
+}
+
+ul.epoch-comment-actions li .safe-comments-report-link a {
+	color: #6B3131 !important;
+}
+
+.bypostauthor .safe-comments-report-link, .epoch-wrap-comment-awaiting-moderation .safe-comments-report-link {
+	display: none;
+}
+
+ul.epoch-moderation-actions {padding: 5px 0 0 0 !important; margin: 0 !important;float: right;}
+
+ul.epoch-moderation-actions li {
+  list-style:none !important;
+  float: left !important;
+  margin-right: 5px !important;
+  font: 13px sans-serif !important;
+}
+
+ul.epoch-moderation-actions li a {
+  display: block !important;
+  padding: 5px !important;
+  text-decoration: none !important;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
+}
+
+
+ul.epoch-moderation-actions li.epoch-approve a {
+  color: #27ae60 !important;
+}
+
+ul.epoch-moderation-actions li.epoch-approve a:hover {
+	background: #27ae60 !important;
+	color: white !important;
+}
+
+ul.epoch-moderation-actions li.epoch-trash a {
+  color: #f39c12 !important;
+}
+
+ul.epoch-moderation-actions li.epoch-trash a:hover {
+	background: #f39c12 !important;
+	color: white !important;
+}
+
+ul.epoch-moderation-actions li.epoch-spam a {
+  color: #c0392b !important;
+}
+
+ul.epoch-moderation-actions li.epoch-spam a:hover {
+	background: #c0392b !important;
+	color: white !important;
+}
+
+/*support for rating system by vortex themes*/
+.vortex-align-right {
+    height: 0;
+}
+
+/**Loading Spinner**/
+/*From Spinkit by @topiasahlin*/
+/*https://github.com/tobiasahlin/SpinKit*/
+
+#epoch-loading {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+  
+  -webkit-animation: sk-rotate 2.0s infinite linear;
+  animation: sk-rotate 2.0s infinite linear;
+}
+
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #333;
+  border-radius: 100%;
+  
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}

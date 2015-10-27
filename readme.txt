@@ -1,10 +1,10 @@
 === Epoch - A native Disqus alternative with a focus on speed and privacy ===
-Contributors: Postmatic, Desertsnowman, Shelob9
+Contributors: Postmatic, Desertsnowman, Shelob9, ronalfy
 Donate link: https://gopostmatic.com/epoch
-Tags: ajax comments, comments, lightweight commenting, cdn, cache, engagement, postmatic, live update, wordpress comments, comment template, ajax commenting, better comments, disqus, discussion, seo, mobile commenting, chat, performance, site speed, chatting, email commenting, comment notifications
+Tags: ajax comments, comments, lightweight commenting, cdn, cache, moderate, engagement, postmatic, live update, wordpress comments, comment template, ajax commenting, better comments, disqus, discussion, seo, mobile commenting, chat, performance, site speed, chatting, email commenting, comment notifications
 Requires at least: 3.9
 Tested up to: 4.3
-Stable tag: 1.0.5
+Stable Tag: 1.0.8-b-1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,14 @@ Epoch - 100% realtime chat and commenting in a tiny little package that is fully
 Epoch is a new plugin from the creators of [Postmatic](http://gopostmatic.com). The goal: To provide a realtime commenting/chat experience using fully native comments while being compatible with page caching, cdns, mobile, other comment plugins, and seo best practices. A tall order? For sure. Try it out.
 
 Epoch provides an amazing commenting experience to your users **while improving site performance at the same time**.
+
+**Key Features**
+
+- WordPress *native comments*
+- Realtime with minimal server load
+- Fully ajax commenting for both sending and receiving comments
+- Integrates with any theme while still blending in with your brand
+- Front end moderation with realtime updates. It's insanely fast.
 
 
 = Epoch solves three big native commenting problems =
@@ -35,7 +43,7 @@ Epoch is hands down the fastest commenting system available for WordPress, all t
 
 
 = Success through compatibility =
-Epoch is built for compatibility. Just like Postmatic. It uses fully native WordPress commenting, plays nicely with most all other commenting plugins, and employs WordPress coding standards. Use it with your favorite social login, voting, moderation, and other commenting plugins.
+Epoch is built for compatibility. It uses fully native WordPress commenting, plays nicely with most all other commenting plugins, and employs WordPress coding standards. Use it with your favorite social login, voting, moderation, and other commenting plugins.
 
 **Epoch is fully integrated with Postmatic**
 
@@ -79,6 +87,40 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 
 == Changelog ==
+
+= 1.0.8 =
+
+The first of a series of releases which will be focusing on speed and performance. 
+
+- We've come up with a low-tech & high performance solution to polling the server for new comments. It's experimental depending on your host but you can read all about how to activate it [here](http://docs.gopostmatic.com/article/192-how-to-enable-even-lighter-weight-server-polling). Official support from varying hosts coming soon.
+- Somewhere in the depths of earlier development Epoch stopped being smart about when to load and when to lay low. That's been fixed, improved upon, and had a serious IQ lift.
+- There was a horrible war between Epoch and some antispam plugins on certain configurations. 'Twas ugly but now has been fixed. This resolves the *your comment was not accepted, please verify that everything is filled out correctly* problem.
+- We made a fancy loading spinner that tricks your brain into not being bored when you are waiting for comments to load. Silly humans. We have a lot of work to do regarding loading performance on posts with 100+ comments. We have plans.
+- There was an issue with the trackbacks/pings setting not saving/rendering correctly. Fixed.
+- We've added some special styles for [Rating System](https://wordpress.org/plugins/rating-system/). Go rate some comments.
+
+= 1.0.7.1 =
+
+- A quick fix for a fatal error on activation that was present in 1.0.7. Plus Jason had another cool idea for rendering Crowd Control on mobile after sleeping on it. :)
+
+= 1.0.7 =
+
+- Refined the styles on pending comments. Less gray, more black. New clock icon.
+- Improved iframe filters for 3rd party plugins to integrate in iframe mode.
+- Updated French translation.
+- Integration with Crowd Control for showing/hiding report link on hover (desktop only).
+- Added security to moderation calls.
+- Adding the groundwork for some major performance improvements. More coming soon.
+
+= 1.0.6.1 =
+
+- We caught a bug in which adding a comment as an admin would throw a funky error. Fixed.
+
+= 1.0.6 =
+
+- Sweet. A small release to roll out a huge feature: front-end moderation of comments. Brought to you by the brilliant @ronalfy. Be careful. It's powerfully fun.
+- We fixed things up so that if you do not want to use avatars we're cool with that.
+- Improved styling of post author comments.
 
 = 1.0.5 =
 

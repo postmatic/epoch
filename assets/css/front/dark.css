@@ -162,46 +162,97 @@ ul.epoch-comment-actions li a {
  
 
 @media only screen and (max-width : 620px) {
-.epoch-comment-author-avatar img {
-    width: 24px; 
-    height: 24px;
-    margin-right: 10px;
+    .epoch-comment-author-avatar img {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+    }
+
+    div.epoch-comment-content {
+        margin-left: 34px;
+    }
+
+    ul.epoch-comment-actions {
+        margin-left: 33px !important;
+    }
+
+    .epoch-child {
+        margin-left: 0 !important;
+        border-left: 1px solid #ddd;
+        padding-left: 10px;
+        font-size: 95%
+    }
+
+    .epoch-child .epoch-comment-author-avatar img {
+        width: 24px;
+        height: 24px;
+    }
+
+    #epoch-comments div.comment-respond p.comment-form-author, #epoch-comments div.comment-respond p.comment-form-email {
+        float: left;
+        width: 49%;
+        margin-right: 1%;
+    }
+
+    #epoch-comments div.comment-respond p.comment-form-comment, #epoch-comments div.comment-respond p.comment-form-url {
+        width: 99%;
+    }
+
+    .epoch-child div.comment-respond, #epoch-comments #respond {
+        margin-left: 25px;
+        border-left: 1px solid #ddd;
+        padding-left: 10px;
+    }
+
+    /**Loading Spinner**/
+/*From Spinkit by @topiasahlin*/
+/*https://github.com/tobiasahlin/SpinKit*/
+
+#epoch-loading {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+  
+  -webkit-animation: sk-rotate 2.0s infinite linear;
+  animation: sk-rotate 2.0s infinite linear;
 }
-div.epoch-comment-content { 
-    margin-left: 34px;
+
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #333;
+  border-radius: 100%;
+  
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
 }
 
-ul.epoch-comment-actions {
-    margin-left: 33px !important;
+.dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
 }
 
-.epoch-child { 
-    margin-left: 0 !important;
-    border-left: 1px solid #ddd;
-    padding-left: 10px;
-    font-size: 95%
-} 
+@-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
 
-.epoch-child .epoch-comment-author-avatar img {
-    width: 24px;
-    height: 24px;
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
 }
 
-#epoch-comments div.comment-respond p.comment-form-author,#epoch-comments div.comment-respond p.comment-form-email {
-    float: left;
-    width: 49%;
-    margin-right: 1%; 
-}
-
-#epoch-comments div.comment-respond p.comment-form-comment, #epoch-comments div.comment-respond p.comment-form-url {
-    width: 99%;
-}
-
-.epoch-child div.comment-respond, #epoch-comments #respond {
-    margin-left: 25px;
-    border-left: 1px solid #ddd;
-    padding-left: 10px;
-}
-
-
+@keyframes sk-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
 }

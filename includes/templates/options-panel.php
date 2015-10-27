@@ -70,7 +70,7 @@
 	<label for="epoch-options-order">
 		<?php _e( 'Pings & Trackbacks', 'epoch' ); ?>
 	</label>
-	<input type="checkbox" name="options[show_pings]" value="true" {{#is options/show_pings value="true"}}checked{{/is}} /> <?php _e( 'Show pings and trackbacks', 'epoch' ); ?>
+	<input type="checkbox" name="options[show_pings]" value="true" {{#if options/show_pings}}checked{{/if}} /> <?php _e( 'Show pings and trackbacks', 'epoch' ); ?>
 	<p class="description" style="margin-left: 190px;">
 		<?php _e( 'When enabled, pings and trackbacks will show in the comment stream.', 'epoch' ); ?>
 	</p>

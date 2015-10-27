@@ -14,6 +14,7 @@ use postmatic\epoch\front\api_paths;
 use postmatic\epoch\front\api_route;
 use postmatic\epoch\front\end_points;
 use postmatic\epoch\front\layout;
+use postmatic\epoch\front\prewrite_comment_count;
 use postmatic\epoch\front\vars;
 
 /**
@@ -78,17 +79,15 @@ class core {
 			new settings();
 			new end_points();
 			
-		}else{
+		}elseif( ! defined( 'DOING_AJAX' ) && ! defined( 'EPOCH_API' ) ){
 
 			//boot API
 			new end_points();
 			new api_route();
 
-			//load the front-end if on single post
-			add_action( 'parse_query', array( $this, 'boot_epoch_front' ) );
-
-			// inner comment
+			add_action( 'template_redirect', array( $this, 'need_epoch'), 9 );
 			add_action( 'template_redirect', array( $this, 'boot_epoch_front_comment' ) );
+
 
 		}
 
@@ -100,17 +99,26 @@ class core {
 		});
 
 
+		if ( EPOCH_ALT_COUNT_CHECK_MODE ){
+			new prewrite_comment_count();
+
+		}
+
+
 	}
 
 	/**
 	 * Load Epoch's front-end
+	 *
+	 * @deprecated 1.0.8
 	 *
 	 * @uses "parse_query" action (since we need a is_singular() check)
 	 *
 	 * @since 0.0.8
 	 */
 	public function boot_epoch_front( $query ) {
-		if ( false !== $query->is_singular ) {
+		_deprecated_function( __FUNCTION__, '1.0.8', '\postmatic\epoch\core\epoch_front' );
+		if ( false != $query->is_singular ) {
 			$options = options::get_display_options();
 			if ( 'none' == $options[ 'theme' ] ) {
 				vars::$wrap_id = 'comments';
@@ -127,21 +135,73 @@ class core {
 	}
 
 	/**
-	 * Load Epoch's front-end template
+	 * Check if a post needs Epoch
+	 *
+	 * @since 1.0.8
+	 *
+	 * @uses "template_redirect"
+	 *
+	 * @return bool
+	 */
+	public function need_epoch() {
+		$post = get_post( get_queried_object_id() );
+		if( ! is_object( $post ) ) {
+			return false;
+		}
+
+		$comments_open = comments_open( $post->ID );
+		$comment_count = get_comment_count( $post->ID );
+		$approved = false;
+		if( ! empty( $comment_count ) ) {
+			$approved = $comment_count[ 'approved' ];
+		}
+
+		if( $approved || $comments_open ) {
+			$this->epoch_front();
+		}
+
+	}
+
+	/**
+	 * Add hooks and filters for Epoch's front-end
+	 *
+	 * @since 1.0.
+	 */
+	protected function epoch_front() {
+		$options = options::get_display_options();
+		if ( 'none' == $options[ 'theme' ] ) {
+			vars::$wrap_id = 'comments';
+		}
+
+		add_action( 'wp_enqueue_scripts', array( $this, 'front_stylescripts' ) );
+		add_filter( 'comments_template', array( '\postmatic\epoch\front\layout', 'initial' ), 100 );
+		add_action( 'epoch_iframe_footer', array( $this, 'print_template' ), 9 );
+		add_action( 'wp_footer', array( $this, 'print_template' ) );
+		add_filter( 'the_content', array( '\postmatic\epoch\front\layout', 'width_sniffer' ), 100 );
+	}
+
+	/**
+	 * Load Epoch's front-end template for iFrame Mode
 	 *
 	 * @since 0.0.8
 	 */
 	public function boot_epoch_front_comment( $template ) {
+		$options = options::get();
+		if( 'iframe' != $options['options'][ 'theme' ] ) {
+			return $template;
+		}
+
 		global $wp_query;
-		$this->front_stylescripts();
 		if ( ! isset( $wp_query->query_vars['epoch'] ) || ! is_singular() ){
 			return $template;
 		}
-		
+
+		$this->front_stylescripts();
 		add_filter( 'show_admin_bar', '__return_false' );
 
 		include EPOCH_PATH . 'includes/templates/comment-template.php';
 		exit;
+
 	}
 
 	/**

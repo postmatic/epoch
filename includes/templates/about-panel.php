@@ -46,27 +46,40 @@
 <h2 class="clear">Free Addons and Recommended Plugins</h2>
 <p>Epoch is built for compatibility. Just like <a href="http://gopostmatic.com">Postmatic</a>. It uses fully native WordPress commenting, plays nicely with most all other commenting plugins, and employs WordPress coding standards. </p>
 
-<div class="column4">
+<div class="column3">
 <h4>Fight Spam</h4>
 <p style="text-align: left;">Since Epoch is fully WordPress native it plays well with your existing spam deterrents. It'll work seamlessly with <a href="https://wordpress.org/plugins/goodbye-captcha/">GoodBye Captcha</a>, <a href="https://wordpress.org/plugins/wp-recaptcha/">WP-reCaptcha</a>, and <a href="http://akismet.com">Akismet</a>. That should take care of things.</p>
 </div>
 
-<div class="column4">
+<div class="column3">
 <h4>Social Login</h4>
 <p style="text-align: left;">Support for <a href="https://wordpress.org/plugins/wordpress-social-login/">WordPress Social Login</a> is built in and ready to go. Users can sign in with any of a dozen different social networks and services.</p>
 </div>
 
-<div class="column4">
+<div class="column3">
 <h4>Enable comment editing</h4>
 <p style="text-align: left;">Uh oh. Typo! Users can edit comments for 5 minutes with the addition of <a href="https://wordpress.org/plugins/simple-comment-editing/">Simple Comment Editing</a>.</p>
 </div>
 
-<div class="column4">
+<div class="column3">
 <h4>Add a toolbar</h4>
 <p style="text-align: left;">Let your commenters leave rich-text comments with beautiful simplicity. Epoch works out of the box with <a href="https://wordpress.org/plugins/wp-markdown/">WP-Markdown</a> or the ultra-simple <a href="https://wordpress.org/plugins/basic-comment-quicktags/">Basic Comment Quicktags</a>.</p>
 </div>
 
+<div class="column3">
+<h4>Comment voting</h4>
+<p style="text-align: left;"><a href="https://wordpress.org/plugins/rating-system/">Rating System</a> adds beautiful and simple comment rating to Epoch. Users can vote comments up and down to show their love. Or not.</a>.</p>
+</div>
+
+<div class="column3">
+<h4>Decentralize moderation</h4>
+<p style="text-align: left;">Comment moderation is a drag. Have your users lend a hand by flagging offensive comments and scrubbing your site clean. Get going with some <a href="https://wordpress.org/plugins/crowd-control/">Crowd Control</a></p>
+</div>
+
+
+
+
 <h3 class="clear">Contributors</h3>
-<p>Epoch (we like to pronounce it 'epic') is a collaboration between <a href="http://gopostmatic.com">Postmatic</a> and <a href="http://calderawp.com">CalderaWP</a>. We knew WordPress commenting could be better. Together we made it happen. Need a hand with developing your own dream plugin? Check out <a href="https://calderawp.com/custom-plugin-development/">CalderaWP</a>.</p>
+<p>Epoch (we like to pronounce it 'epic') is a collaboration between <a href="http://gopostmatic.com">Postmatic</a> and <a href="http://calderawp.com">CalderaWP</a> with a growing list of <a href="https://github.com/postmatic/epoch/graphs/contributors">contributors</a>. We knew WordPress commenting could be better. Together we made it happen. Need a hand with developing your own dream plugin? Check out <a href="https://calderawp.com/custom-plugin-development/">CalderaWP</a>.</p>
 
 <p>This is just 1.0. We're hoping the WordPress community will lend strength, ideas, and code to this project. That's why we've kept it open-source. You can find <a href="http://github.com/postmatic/epoch" target="_blank">Epoch on Github</a> and jump right in. We can't wait to see where commenting goes next.</p>

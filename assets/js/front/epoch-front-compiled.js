@@ -142,7 +142,6 @@ jQuery( document ).ready( function ( $ ) {
                 });
             }
 
-
             /**
              * Submit form data
              *
@@ -200,7 +199,7 @@ jQuery( document ).ready( function ( $ ) {
 
                             }
 
-                            app.set_last_count( app.last_count + 1 );
+                            app.set_last_count( parseInt(app.last_count) + 1 );
                             response = app.get_data_from_response( response );
                             comment = response.comment;
 
@@ -228,6 +227,14 @@ jQuery( document ).ready( function ( $ ) {
                             }
                             
                             jQuery( 'body' ).triggerHandler( 'epoch.comment.posted', [ comment.comment_post_ID, comment.comment_ID ] );
+                            
+                            /* Hide Moderation Class if Parent Approved */
+                            if( comment.parent_approved != '0' ) {
+                                $comment_parent = jQuery( '#div-comment-' + comment.parent_approved );
+                                $comment_parent.find( '.epoch-approve' ).remove();
+                                $comment_parent.removeClass( 'epoch-wrap-comment-awaiting-moderation' );
+                            }
+                            
 
                             app.shut_it_off = false;
 
@@ -264,25 +271,32 @@ jQuery( document ).ready( function ( $ ) {
          */
         app.comments_open = function() {
             app.shut_it_off = true;
-            $.post(
-                epoch_vars.api_url, {
-                    action: 'comments_open',
-                    epochNonce: epoch_vars.nonce,
-                    postID: epoch_vars.post_id
-                } ).fail( function( response  ) {
-                    app.shut_it_off = false;
-                } ).success( function( response ) {
-                    response = app.get_data_from_response( response );
-                    if ( true == response ) {
+            $.when (
+                $.post(
+                    epoch_vars.api_url, {
+                        action: 'comments_open',
+                        epochNonce: epoch_vars.nonce,
+                        postID: epoch_vars.post_id
+                    } ).fail( function ( response ) {
                         app.shut_it_off = false;
-                    }else{
-                        app.comments_closed = true;
+                    } ).success( function ( response ) {
+                        response = app.get_data_from_response( response );
+                        if ( true == response ) {
+                            app.shut_it_off = false;
+                        } else {
+                            app.comments_closed = true;
+                        }
+
+
                     }
+                )
+            ).then( function(){
+                    var loading = document.getElementById( epoch_vars.loading );
+                    $( loading ).fadeOut( 350 ).attr( 'aria-hidden', 'true' );
+                    var epoch_loaded = new Event('epoch_loaded');
+                    document.dispatchEvent(epoch_loaded);
+            });
 
-
-
-                }
-            );
 
         };
 
@@ -621,6 +635,40 @@ jQuery( document ).ready( function ( $ ) {
             app.last_count = count;
             $( app.count_el ).text( count );
         };
+        
+        app.set_comment_status = function( action, comment_id ) {
+            //Action can be unapprove, approve, spam, trash
+           $.post(
+                epoch_vars.api_url, {
+                    action: 'moderate_comments',
+                    moderationAction: action,
+                    epochNonce: epoch_vars.nonce,
+                    postID: epoch_vars.post_id,
+                    highest: app.highest_id,
+                    commentID: comment_id
+                } ).done( function( response  ) {
+
+                    app.shut_it_off = false;
+
+                } ).success( function( response ) {
+                    response = app.get_data_from_response( response );
+                    comment_id = response.comment_id;
+                    status = response.status;
+                    $comment = jQuery( '#div-comment-' + comment_id );
+                    if( 'spam' == status || 'trash' == status ) {
+                        $comment.fadeOut( 'slow' );
+                        return;
+                    }
+                    comment = Epoch.parse_comment( response.comment );
+                    jQuery( '#comment-' + comment_id ).replaceWith( comment );
+                    
+
+
+                }
+
+            );
+            return false;
+        }
 
 
     })( jQuery, window.Epoch || ( window.Epoch = {} ) );

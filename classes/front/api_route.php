@@ -182,7 +182,7 @@ class api_route {
 			'postID' => 'absint',
 			'commentsPage' => 'absint',
 			vars::$nonce_field => 'strip_tags',
-			'highest' => 'absint'
+			'highest' => 'absint',
 		);
 
 
@@ -193,9 +193,13 @@ class api_route {
 
 		}
 
-		if ( 'get_comment' == $action ) {
+		if ( 'get_comment' == $action || 'moderate_comments' == $action ) {
 			$fields[ 'commentID' ] = 'absint';
 		}
+		
+        if ( 'moderate_comments' == $action ) {
+        	$fields[ 'moderationAction' ] = 'strip_tags';
+        }
 
 		return $fields;
 	}
@@ -257,6 +261,8 @@ class api_route {
 				if ( $ref[ 'host' ] == $_SERVER[ 'SERVER_NAME' ] ) {
 					return true;
 
+				}elseif( $ref[ 'host' ] == home_url() ) {
+					return true;
 				}
 
 			}

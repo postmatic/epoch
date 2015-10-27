@@ -89,7 +89,10 @@ class api_helper {
 		$comment[ 'comment_classes' ] = self::comment_classes( $comment, $author_user );
 
 		//add avatar markup as a string
-		$comment[ 'author_avatar' ] = get_avatar( $comment[ 'comment_author_email'], 48 );
+		$comment[ 'author_avatar' ] = '';
+		if ( get_option( 'show_avatars' ) ) {
+			$comment[ 'author_avatar' ] =  get_avatar( $comment[ 'comment_author_email'], 48 );
+		}
 
 		//format date according to WordPress settings
 		/* translators: 1: date, 2: time */
@@ -142,6 +145,23 @@ class api_helper {
 		}else{
 			$comment[ 'reply_link' ] = '';
 		}
+		
+		$comment_moderation_output = array();
+        if ( ( current_user_can( 'manage_network' ) || current_user_can( 'manage_options' ) || current_user_can( 'moderate_comments' ) ) ) {
+            $comment[ 'front_moderation' ] = apply_filters( 'epoch_enable_frontend_moderation', true );
+            $comment_moderation_output[ 'approve_link' ] = sprintf( '<a href="#" onclick=\'return Epoch.set_comment_status( "approve", %d )\' >%s</a>', absint( $comment[ 'comment_ID' ] ), esc_html__( 'Approve', 'epoch' ) );
+            $comment_moderation_output[ 'unapprove_link' ] = sprintf( '<a href="#" onclick=\'return Epoch.set_comment_status( "unapprove", %d )\' >%s</a>', absint( $comment[ 'comment_ID' ] ), esc_html__( 'Unapprove', 'epoch' ) );
+            $comment_moderation_output[ 'trash_link' ] = sprintf( '<a href="#" onclick=\'return Epoch.set_comment_status( "trash", %d )\' >%s</a>', absint( $comment[ 'comment_ID' ] ), esc_html__( 'Trash', 'epoch' ) );
+            $comment_moderation_output[ 'spam_link' ] = sprintf( '<a href="#" onclick=\'return Epoch.set_comment_status( "spam", %d )\' >%s</a>', absint( $comment[ 'comment_ID' ] ), esc_html__( 'Spam', 'epoch' ) );
+            /* Comment Approved */
+            /* No output for spam/trashed comments because these should not be displayed on the front-end */
+                $comment[ 'approval_status' ] = (bool)$comment[ 'comment_approved' ];
+                $comment[ 'approve_link' ] = $comment_moderation_output[ 'approve_link' ];
+                $comment[ 'unapprove_link' ] = $comment_moderation_output[ 'unapprove_link' ];
+                $comment[ 'trash_link' ] = $comment_moderation_output[ 'trash_link' ];
+                $comment[ 'spam_link' ] = $comment_moderation_output[ 'spam_link' ];
+            
+        }
 
 
 		wp_cache_set( $key, $comment, self::$cache_group, HOUR_IN_SECONDS );
@@ -469,7 +489,7 @@ class api_helper {
 	 * @since 1.0.2
 	 *
 	 * @param int $post_id
-	 * @param null $comment_count
+	 * @param null|int $comment_count
 	 *
 	 * @return array
 	 */
@@ -482,55 +502,47 @@ class api_helper {
 
 		}
 
-		$fail = false;
-
-		$url = wp_nonce_url('plugins.php');
-		if ( is_null( $comment_count ) ) {
+		if( is_null( $comment_count ) ) {
 			$comment_count = get_comment_count( $post_id );
 		}
 
-		$return = array( 'code' => 500 );
-		if (false === ($creds = request_filesystem_credentials( $url, '', false, false ) ) ) {
-			$return[ 'message' ] = __( 'Could not use WordPress file system.', 'epoch' );
-			return $return;
-
+		if( is_object( $comment_count ) ) {
+			$comment_count = (string) $comment_count->approved;
 		}
 
+		$dir =  api_paths::comment_count_dir( false );
 
-		if ( ! WP_Filesystem($creds) ) {
-			$return[ 'message' ] = __( 'Could not access WordPress file system.', 'epoch' );
-			return $return;
-
-		}
-
-		$dir =  api_paths::comment_count_dir();
-
-		if ( ! file_exists( $dir ) ) {
+		if ( ! is_dir( $dir ) ) {
 			wp_mkdir_p( $dir );
 		}
 
-		if ( ! file_exists( $dir ) ) {
+		if ( ! is_dir( $dir ) ) {
 			$return[ 'message' ] = __( 'Could not create directory.', 'epoch' );
 			return $return;
 
 		}
 
+		$path = api_paths::comment_count_alt_check_url( $post_id, false );
 
-		$filename = api_paths::comment_count_alt_check_url( $post_id );
-
-		// by this point, the $wp_filesystem global should be working, so let's use it to create a file
-		global $wp_filesystem;
-		if ( ! $wp_filesystem->put_contents( $filename, absint( $comment_count ), FS_CHMOD_FILE) ) {
-			$return[ 'message' ] = __( 'Could not write file.', 'epoch' );
-		}
-		else{
-			$return = array(
-				'code' => 200,
-				'message' => $comment_count
-			);
+		if ( ! file_exists( $path ) ) {
+			$handle = fopen( $path, 'w+' );
+		}else{
+			$handle = fopen( $path, 'w' );
 		}
 
-		return $return;
+		$written = fwrite( $handle, $comment_count );
+
+		$closed = fclose( $handle );
+		if( $written && $closed ) {
+			return true;
+		}
+
+		$written = file_put_contents( $path, $comment_count );
+		if( ! $written ) {
+			return false;
+
+		}
+
 
 	}
 

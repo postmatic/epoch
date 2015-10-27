@@ -32,7 +32,7 @@ module.exports = function (grunt) {
                 command: 'svn checkout --force <%= svn_url %>/trunk build/svn/trunk'
             },
             svn_add: {
-                command: "svn stat | grep '^\\?' | awk '{print $2}' | xargs svn add",
+                command: "svn stat | grep '^\\?' | awk '{print $2}' | while read file; do test -n '$file' && svn add '$file'; done;",
                 options: {
                     execOptions: {
                         cwd: 'build/svn/trunk'
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
                 }
             },
             svn_rm: {
-                command: "svn stat | grep '^\\!' | awk '{print $2}' | xargs svn rm",
+                command: "svn stat | grep '^\\!' | awk '{print $2}' | while read file; do test -n '$file' && svn rm '$file'; done;",
                 options: {
                     execOptions: {
                         cwd: 'build/svn/trunk'
@@ -56,7 +56,7 @@ module.exports = function (grunt) {
                 }
             },
             svn_tag: {
-                command: 'svn copy -m "Tagging version <%= pkg.version %>" <%= svn_url %>/trunk <%= svn_url %>/tags/<%= pkg.version %>'
+                command: 'svn copy --force-interactive -m "Tagging version <%= pkg.version %>" <%= svn_url %>/trunk <%= svn_url %>/tags/<%= pkg.version %>'
             }
         },
         clean: {
@@ -125,7 +125,8 @@ module.exports = function (grunt) {
             addtag: {
                 options: {
                     tag: '<%= pkg.version %>',
-                    message: 'Version <%= pkg.version %>'
+                    message: 'Version <%= pkg.version %>',
+                    force: true
                 }
             }
         },
@@ -147,7 +148,8 @@ module.exports = function (grunt) {
                 options: {
                     tags: true,
                     remote: 'origin',
-                    branch: 'master'
+                    branch: 'master',
+                    force: true
                 }
             }
         },

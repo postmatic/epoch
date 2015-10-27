@@ -28,6 +28,12 @@
 		 */
 		do_action( 'epoch_iframe_footer' );
 	?>
+    
+    <div id="epoch-loading">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
+
 	<script>
 
     jQuery( function( $ ){
@@ -62,7 +68,19 @@
             }
         	$('a:not([href="#reply-title"]').attr('target', '_parent');
         }, 100 );
-    
+
+
+
+        $('iframe#epoch-comments').ready(function() {
+            document.addEventListener('epoch_loaded', function (e) {
+                var loading = document.getElementById( epoch_vars.loading );
+                $( loading ).children().hide().attr( 'aria-hidden', 'true' ).remove();
+                $( loading ).hide().attr( 'aria-hidden', 'true' ).remove();
+                $( '#epoch-loading' ).slideUp();
+            }, false);
+        });
+
+
     } );
 		 
 
