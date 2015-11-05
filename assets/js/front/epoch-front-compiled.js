@@ -218,7 +218,7 @@ jQuery( document ).ready( function ( $ ) {
 
                                 comment_el = document.getElementById( 'comment-' + comment.comment_ID );
                                 if ( null != comment_el ) {
-                                    $( comment_el ).addClass( 'epoch-success' ).delay( 100 ).queue( function ( next ) {
+                                    $( comment_el ).addClass( 'epoch-success' ).delay( 1-00 ).queue( function ( next ) {
                                         $( this ).removeClass( 'epoch-success' );
                                         next();
                                     } );

@@ -453,7 +453,8 @@ ul.epoch-comment-actions li .safe-comments-report-link a {
 	display: none;
 }
 
-ul.epoch-moderation-actions {padding: 5px 0 0 0 !important; margin: 0 !important;float: right;}
+ul.epoch-moderation-actions {padding: 5px 0 0 0 !important; margin: 0 !important;float: right; display: none;}
+body.logged-in ul.epoch-moderation-actions {display: block;}
 
 ul.epoch-moderation-actions li {
   list-style:none !important;
