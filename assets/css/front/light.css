@@ -136,9 +136,13 @@ article.epoch-single-comment.epoch-success {
     background-color: #FFFEDB !important;
  }
 
-.epoch-failure {
+.epoch-failure, .epoch-failure label {
     color: #c0392b !important;
-    font-weight: bold;
+    font-weight: bold !important;
+}
+
+.epoch-failure input {
+	border: 1px solid #c0392b !important;
 }
 
 article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comment-author {
