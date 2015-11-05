@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "b5cc0f2825483b2a7d924f682c38bda4",
+    "content-hash": "1741aa7b3480bde664e99c2b3f8185b0",
     "packages": [
         {
             "name": "calderawp/dismissible-notice",
