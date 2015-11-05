@@ -9,17 +9,7 @@ jQuery( document ).ready( function ( $ ) {
          */
         app.init = function() {
 
-            //element for the form wrap
-            app.form_wrap_el = document.getElementById( epoch_vars.form_wrap );
-
-            //element for comments area
-            app.comments_wrap_el = document.getElementById( epoch_vars.comments_wrap );
-
-            //element for template
-            app.template_el = document.getElementById( epoch_vars.comments_template_id );
-
-            //element for comment count
-            app.count_el = document.getElementById( epoch_vars.count_id );
+            app.find_elements();
 
             //stores number of comments we have in the DOM.
             app.last_count = 0;
@@ -39,8 +29,6 @@ jQuery( document ).ready( function ( $ ) {
             //set max comment depth
             app.max_depth = parseInt( epoch_vars.depth );
 
-            //change action for comment form
-            app.form_el = document.getElementById( epoch_vars.form_id );
             if ( null != app.form_el) {
                 app.form_el.removeAttribute( 'action' );
                 app.form_el.setAttribute( 'action', 'post' );
@@ -75,6 +63,7 @@ jQuery( document ).ready( function ( $ ) {
             $( document ).on( 'submit', '#' + epoch_vars.form_id, function( event ) {
                 event.preventDefault();
                 app.shut_it_off = true;
+                app.find_elements();
 
                 //validate fields
                 var fail = false;
@@ -188,6 +177,31 @@ jQuery( document ).ready( function ( $ ) {
             });
 
         };
+
+        /**
+         * Set app element references.
+         *
+         * This should be redone any time the elements may have been removed or replaced.
+         *
+         * @since 1.0.9
+         */
+        app.find_elements = function() {
+
+            //element for the form wrap
+            app.form_wrap_el = document.getElementById( epoch_vars.form_wrap );
+
+            //element for comments area
+            app.comments_wrap_el = document.getElementById( epoch_vars.comments_wrap );
+
+            //element for template
+            app.template_el = document.getElementById( epoch_vars.comments_template_id );
+
+            //element for comment count
+            app.count_el = document.getElementById( epoch_vars.count_id );
+
+            //change action for comment form
+            app.form_el = document.getElementById( epoch_vars.form_id );
+        }
 
         /**
          * Check if comments are open for current post
