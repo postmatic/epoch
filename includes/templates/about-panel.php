@@ -52,8 +52,8 @@
 </div>
 
 <div class="column3">
-<h4>Social Login</h4>
-<p style="text-align: left;">Support for <a href="https://wordpress.org/plugins/wordpress-social-login/">WordPress Social Login</a> is built in and ready to go. Users can sign in with any of a dozen different social networks and services.</p>
+<h4>Make commenting even easier</h4> 
+<p style="text-align: left;">Support for <a href="https://wordpress.org/plugins/postmatic-social-commenting/">Postmatic Social Commenting</a> is built in and ready to go. Users can authenticate with any of a dozen different social networks and services.</p>
 </div>
 
 <div class="column3">

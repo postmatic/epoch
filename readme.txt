@@ -88,6 +88,11 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 1.0.9 =
+
+- Added support for our new plugin: [Postmatic Social Commenting](http://wordpress.org/plugins/postmatic-social-commenting). Lightweight, simple, and fast social authentication. Read about it [on our blog](http://gopostmatic.com/2015/11/weve-finally-f…ocial-networks/).
+- We've improved validation alerts when filling out the comment form.
+
 = 1.0.8 =
 
 The first of a series of releases which will be focusing on speed and performance. 
