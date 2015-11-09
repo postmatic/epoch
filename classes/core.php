@@ -408,11 +408,24 @@ class core {
 		$options = options::get_display_options();
 
 		$_interval = absint( $options[ 'interval' ] ) * 1000;
+
+
 		if ( 15000 > $_interval ) {
 			$options[ 'interval' ] = 15000;
 		}else{
 			$options[ 'interval' ] = $_interval;
 		}
+
+		/**
+		 * Ovveride comment check interval
+		 *
+		 * Note: This runs after the check to force it to be less than 15000ms. Use with caution.
+		 *
+		 * @since 1.0.10
+		 *
+		 * @param int $interval Interval IN MILLISECONDS
+		 */
+		$options[ 'interval' ] = apply_filters( 'epoch_comment_check_interval', $options[ 'interval' ] );
 
 		return $options;
 
