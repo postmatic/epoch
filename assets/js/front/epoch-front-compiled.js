@@ -114,9 +114,10 @@ jQuery( document ).ready( function ( $ ) {
              */
             app.set_width();
             app.comments_open();
+            app.initial_load = true;
             app.comment_count( false );
             window.onresize = function(event) {
-               app.set_width();
+                app.set_width();
             };
 
             /**
@@ -139,6 +140,7 @@ jQuery( document ).ready( function ( $ ) {
                 event.preventDefault();
                 app.shut_it_off = true;
                 app.find_elements();
+                app.initial_load = false;
 
                 //validate fields
                 var fail = false;
@@ -214,16 +216,16 @@ jQuery( document ).ready( function ( $ ) {
 
                                 }
                             }
-                            
+
                             jQuery( 'body' ).triggerHandler( 'epoch.comment.posted', [ comment.comment_post_ID, comment.comment_ID ] );
-                            
+
                             /* Hide Moderation Class if Parent Approved */
                             if( comment.parent_approved != '0' ) {
                                 $comment_parent = jQuery( '#div-comment-' + comment.parent_approved );
                                 $comment_parent.find( '.epoch-approve' ).remove();
                                 $comment_parent.removeClass( 'epoch-wrap-comment-awaiting-moderation' );
                             }
-                            
+
 
                             app.shut_it_off = false;
 
@@ -276,7 +278,7 @@ jQuery( document ).ready( function ( $ ) {
 
             //change action for comment form
             app.form_el = document.getElementById( epoch_vars.form_id );
-        }
+        };
 
         /**
          * Check if comments are open for current post
@@ -309,7 +311,7 @@ jQuery( document ).ready( function ( $ ) {
                     $( loading ).fadeOut( 350 ).attr( 'aria-hidden', 'true' );
                     var epoch_loaded = new Event('epoch_loaded');
                     document.dispatchEvent(epoch_loaded);
-            });
+                });
 
 
         };
@@ -322,6 +324,10 @@ jQuery( document ).ready( function ( $ ) {
          *
          */
         app.comment_count = function( updateCheck ) {
+            if( true === updateCheck ) {
+                app.initial_load = false;
+            }
+
             if ( null != epoch_vars.alt_comment_count ) {
                 app.check_comment_count_from_file( updateCheck );
             }else{
@@ -494,10 +500,10 @@ jQuery( document ).ready( function ( $ ) {
                         html = app.parse_comment( comment );
                         app.put_comment_in_dom( html, comment.comment_parent, comment.depth, parseInt( comment.comment_ID, 10 ) );
                     });
-                    
+
                     if ( !is_new ) {
-                        jQuery( 'body' ).triggerHandler( 'epoch.comments.loaded' ); 
-                        app.comment_scroll();  
+                        jQuery( 'body' ).triggerHandler( 'epoch.comments.loaded' );
+                        app.comment_scroll();
                     }
 
                 }
@@ -581,7 +587,13 @@ jQuery( document ).ready( function ( $ ) {
                 first_child = app.comments_wrap_el.firstChild;
                 new_el = document.createElement( 'div' );
                 new_el.innerHTML = html;
+
                 app.comments_wrap_el.insertBefore( new_el, first_child );
+                if(  false === app.initial_load ) {
+                    $( new_el ).children().find( 'article' ).addClass( 'epoch-success' ).delay( 750 ).queue(function(){
+                        $( this ).removeClass( 'epoch-success' );
+                    });
+                }
             } else {
 
                 if ( 0 == parent_id ) {
@@ -598,7 +610,23 @@ jQuery( document ).ready( function ( $ ) {
                     }
 
                 }
+
+
+                if(  false === app.initial_load ) {
+                    var article = $( html ).find( 'article' ).attr( 'id' );
+                    var a_el = document.getElementById( article );
+                    $( a_el ).addClass( 'epoch-success' ).delay( 750 ).queue(function(){
+                        $( this ).removeClass( 'epoch-success' );
+                    });
+                }
+
+
             }
+
+
+
+
+
 
             $( '.comment-reply-link' ).click( function( event ) {
                 event.preventDefault();
@@ -623,7 +651,7 @@ jQuery( document ).ready( function ( $ ) {
             }
 
         };
-        
+
         /**
          * Scroll to comment hash
          *
@@ -631,7 +659,7 @@ jQuery( document ).ready( function ( $ ) {
          */
         app.comment_scroll = function() {
             if ( jQuery( 'iframe#epoch-comments' ).length > 0 ) {
-                return;    
+                return;
             }
             var location = "" + window.location;
             var pattern = /(#comment-\d+)/;
@@ -641,18 +669,18 @@ jQuery( document ).ready( function ( $ ) {
                     var targetOffset = location.offset().top;
                     jQuery( 'html,body' ).animate( {scrollTop: targetOffset}, 1 );
                 }
-            }	
+            }
         };
-	        
+
 
         app.set_last_count = function( count ) {
             app.last_count = count;
             $( app.count_el ).text( count );
         };
-        
+
         app.set_comment_status = function( action, comment_id ) {
             //Action can be unapprove, approve, spam, trash
-           $.post(
+            $.post(
                 epoch_vars.api_url, {
                     action: 'moderate_comments',
                     moderationAction: action,
@@ -675,7 +703,7 @@ jQuery( document ).ready( function ( $ ) {
                     }
                     comment = Epoch.parse_comment( response.comment );
                     jQuery( '#comment-' + comment_id ).replaceWith( comment );
-                    
+
 
 
                 }
