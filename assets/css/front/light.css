@@ -515,18 +515,18 @@ ul.epoch-moderation-actions li.epoch-spam a:hover {
   height: 40px;
   position: relative;
   text-align: center;
-  
+  opacity: .25;
   -webkit-animation: sk-rotate 2.0s infinite linear;
   animation: sk-rotate 2.0s infinite linear;
 }
 
 .dot1, .dot2 {
-  width: 60%;
-  height: 60%;
+  width: 40%;
+  height: 40%;
   display: inline-block;
   position: absolute;
   top: 0;
-  background-color: #333;
+  background-color: teal;
   border-radius: 100%;
   
   -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
@@ -556,4 +556,13 @@ ul.epoch-moderation-actions li.epoch-spam a:hover {
     transform: scale(1.0);
     -webkit-transform: scale(1.0);
   }
+}
+
+.epoch-submitting {
+	opacity: .35;
+	cursor: wait;
+    transition: opacity 0.4s ease-out;
+    -ms-transition: opacity 0.4s ease-out;
+    -moz-transition: opacity 0.4s ease-out;
+    -webkit-transition: opacity 0.4s ease-out;
 }
