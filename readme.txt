@@ -88,6 +88,12 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 1.0.10 =
+
+- Ajax requests on some server environments are taking too long when submitting a comment. We've put in an animation to fade the comment form out while the user waits for the comment to post. 
+- The yellow fade when a new comment arrives has returned!
+- Fixed a bug that would display &amp when someone used an amperstand in their name.
+
 = 1.0.9 =
 
 - Added support for our new plugin: [Postmatic Social Commenting](http://wordpress.org/plugins/postmatic-social-commenting). Lightweight, simple, and fast social authentication. Read about it [on our blog](http://gopostmatic.com/2015/11/weve-finally-f…ocial-networks/).
