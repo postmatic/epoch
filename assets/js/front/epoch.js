@@ -87,7 +87,9 @@ jQuery( document ).ready( function ( $ ) {
                 if ( ! fail ) {
                     $( '.epoch-failure' ).removeClass( 'epoch-failure' );
 
-                    $( app.form_el ).find( 'input[type="submit"]' ).attr( 'disabled', 'disabled' );
+                    $( app.form_el ).addClass( 'epoch-submitting' )
+                        .find( 'input[type="submit"]' )
+                        .attr( 'disabled', 'disabled' );
 
                     data = $( this ).serializeArray();
                     $.post(
@@ -95,7 +97,10 @@ jQuery( document ).ready( function ( $ ) {
                         data
                     ).complete( function () {
 
-                            $( app.form_el ).find( 'input[type="submit"]' ).removeAttr( 'disabled' );
+                            $( app.form_el ).removeClass( 'epoch-submitting' )
+                                .find( 'input[type="submit"]' )
+                                .removeAttr( 'disabled' );
+
                         } ).success( function ( response ) {
 
                             if ( !response.success ) {
