@@ -390,6 +390,24 @@ class core {
 			$vars[ 'post_id' ] = $post->ID;
 		}
 
+		$user = get_user_by( 'id', get_current_user_id() );
+		if ( is_object( $user ) ) {
+
+			$vars[ 'user' ] = array(
+				'author_avatar' => get_avatar( get_current_user_id() ),
+				'comment_author_url' => $user->user_url,
+				'comment_author' => $user->display_name
+			);
+		}else{
+			$vars[ 'user' ] = array(
+				'author_avatar' => '',
+				'comment_author_url' => '',
+				'comment_author' => '',
+			);
+		}
+
+		$vars[ 'empty_avatar' ] = esc_html( get_avatar(0) );
+
 		return $vars;
 
 	}
@@ -446,6 +464,7 @@ class core {
 			'reply_link_title' => __( 'Reply To This Comment', 'epoch' ),
 			'author_url_link_title' => __( 'Link to comment author\'s website', 'epoch' ),
 			'is_required' => __( 'is required', 'epoch' ),
+			'pending' => __( 'Comment Pending', 'epoch' ),
 			'comment_rejected' => __(
 				'Your comment was not accepted, please check that everything is filled out correctly.',
 				'epoch'

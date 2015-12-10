@@ -66,6 +66,61 @@ jQuery( document ).ready( function ( $ ) {
                 app.shut_it_off = true;
                 app.find_elements();
                 app.initial_load = false;
+                var comment = {};
+                var pending_id;
+
+                /**
+                 * Put new comment in the DOM
+                 *
+                 * @since 1.0.11
+                 *
+                 * @param comment
+                 */
+                 function parse_new_comment( comment, pending ) {
+console.log( comment );
+                    if( true != pending ) {
+                        var pending_el = document.getElementById( 'comment-' + pending );
+                        if ( null != pending_el ) {
+                            $( pending_el ).parent().remove();
+                        }
+
+                    }
+
+                    //parse if comment isn't in DOM already
+                    if ( null == document.getElementById( 'comment-' + comment.comment_ID ) ) {
+                        html = app.parse_comment( comment );
+                        var comment_el = document.getElementById( 'comment-' + comment.comment_ID );
+
+                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth, id );
+
+
+                        var comment_el = document.getElementById( 'comment-' + comment.comment_ID );
+                        if ( null != comment_el ) {
+                            $( comment_el ).addClass( 'epoch-success' ).delay( 100 ).queue( function ( next ) {
+                                $( this ).removeClass( 'epoch-success' );
+                                next();
+                            } );
+
+                        }
+
+                    }
+
+
+                    if( true == pending ) {
+                        $( comment_el ).addClass( 'epoch-pending' );
+                        $( '<p>' + epoch_translation.pending + '</p>' ).prependTo( comment_el );
+                        $( comment_el ).find( '.epoch-comment-link' ).remove();
+                    }
+
+                    jQuery( 'body' ).triggerHandler( 'epoch.comment.posted', [ comment.comment_post_ID, comment.comment_ID ] );
+
+                    /* Hide Moderation Class if Parent Approved */
+                    if ( comment.parent_approved != '0' ) {
+                        $comment_parent = jQuery( '#div-comment-' + comment.parent_approved );
+                        $comment_parent.find( '.epoch-approve' ).remove();
+                        $comment_parent.removeClass( 'epoch-wrap-comment-awaiting-moderation' );
+                    }
+                };
 
                 //validate fields
                 var fail = false;
@@ -91,7 +146,40 @@ jQuery( document ).ready( function ( $ ) {
                         .find( 'input[type="submit"]' )
                         .attr( 'disabled', 'disabled' );
 
-                    data = $( this ).serializeArray();
+                    var data = $( this ).serializeArray();
+
+                    var pending_data = {};
+                    $.each( data, function( i, obj ) {
+                        pending_data[ obj.name ] = obj.value;
+                    });
+
+
+                    comment.comment_content = pending_data.comment;
+                    if( '' != epoch_vars.user.comment_author ){
+                        comment.comment_author = epoch_vars.user.comment_author;
+                    } else if( pending_data.hasOwnProperty( 'author') ) {
+                        comment.comment_author = pending_data.author;
+                    }else{
+                        comment.comment_author = '';
+                    }
+
+                    if( '' != epoch_vars.user.comment_author_url ){
+                        comment.comment_author_url = epoch_vars.user.comment_author_url;
+                    } else if( pending_data.hasOwnProperty( 'url') ) {
+                        comment.comment_author_url = pending_data.url;
+                    }else{
+                        comment.comment_author_url = '';
+                    }
+
+                    if( '' != epoch_vars.user.author_avatar ){
+                        comment.author_avatar = epoch_vars.user.author_avatar;
+                    } else{
+                        comment.author_avatar = epoch_vars.empty_avatar;
+                    }
+
+                    pending_id =  Math.floor(Math.random() * (4000 - 10 + 1)) + 10;
+                    comment.comment_ID = pending_id;
+                    parse_new_comment( comment, true );
                     $.post(
                         epoch_vars.submit_api_url,
                         data
@@ -122,41 +210,14 @@ jQuery( document ).ready( function ( $ ) {
 
                             app.set_last_count( parseInt(app.last_count) + 1 );
                             response = app.get_data_from_response( response );
-                            comment = response.comment;
+                            var comment = response.comment;
 
                             id = parseInt( comment.comment_ID, 10 );
                             if ( app.highest_id < id ) {
                                 app.highest_id = id;
                             }
 
-                            //parse if comment isn't in DOM already
-                            if ( null == document.getElementById( 'comment-' + comment.comment_ID ) ) {
-                                html = app.parse_comment( comment );
-
-
-                                app.put_comment_in_dom( html, comment.comment_parent, comment.depth, id );
-
-
-                                comment_el = document.getElementById( 'comment-' + comment.comment_ID );
-                                if ( null != comment_el ) {
-                                    $( comment_el ).addClass( 'epoch-success' ).delay( 100 ).queue( function ( next ) {
-                                        $( this ).removeClass( 'epoch-success' );
-                                        next();
-                                    } );
-
-                                }
-                            }
-
-                            jQuery( 'body' ).triggerHandler( 'epoch.comment.posted', [ comment.comment_post_ID, comment.comment_ID ] );
-
-                            /* Hide Moderation Class if Parent Approved */
-                            if( comment.parent_approved != '0' ) {
-                                $comment_parent = jQuery( '#div-comment-' + comment.parent_approved );
-                                $comment_parent.find( '.epoch-approve' ).remove();
-                                $comment_parent.removeClass( 'epoch-wrap-comment-awaiting-moderation' );
-                            }
-
-
+                            parse_new_comment( comment, pending_id );
                             app.shut_it_off = false;
 
                         } ).fail( function ( xhr ) {
