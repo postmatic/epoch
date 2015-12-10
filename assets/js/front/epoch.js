@@ -77,7 +77,6 @@ jQuery( document ).ready( function ( $ ) {
                  * @param comment
                  */
                  function parse_new_comment( comment, pending ) {
-console.log( comment );
                     if( true != pending ) {
                         var pending_el = document.getElementById( 'comment-' + pending );
                         if ( null != pending_el ) {
