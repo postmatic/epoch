@@ -107,7 +107,6 @@ jQuery( document ).ready( function ( $ ) {
 
                     if( true == pending ) {
                         $( comment_el ).addClass( 'epoch-pending' );
-                        $( '<p>' + epoch_translation.pending + '</p>' ).prependTo( comment_el );
                         $( comment_el ).find( '.epoch-comment-link' ).remove();
                     }
 
