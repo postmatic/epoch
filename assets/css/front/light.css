@@ -123,7 +123,7 @@ ul.epoch-comment-actions li a {
 	color: #aaa !important;
 }
  
-article.epoch-single-comment {
+article.epoch-single-comment, .epoch-pending {
    background-color:transparent !important;
     -moz-transition:background-color 4s !important;
     -webkit-transition:background-color 4s !important;
@@ -149,6 +149,13 @@ article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comme
 	background: url(../../../assets/image/em.png) center right no-repeat !important;
 	background-size: 15px !important;
 	padding-right: 30px !important;
+}
+
+
+.epoch-pending {
+	opacity: 0.6 !important;
+	background: transparent !important;
+	padding-bottom: 45px !important;
 }
 
 

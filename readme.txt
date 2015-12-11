@@ -3,7 +3,7 @@ Contributors: Postmatic, Desertsnowman, Shelob9, ronalfy, cyberhobo
 Donate link: https://gopostmatic.com/epoch
 Tags: ajax comments, comments, lightweight commenting, cdn, cache, moderate, engagement, postmatic, live update, wordpress comments, comment template, ajax commenting, better comments, disqus, discussion, seo, mobile commenting, chat, performance, site speed, chatting, email commenting, comment notifications
 Requires at least: 3.9
-Tested up to: 4.3
+Tested up to: 4.4
 Stable Tag: 1.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -87,6 +87,10 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 
 == Changelog ==
+= 1.0.11 =
+
+- Ooooh so fast. Or at least it looks that way. Submitting comments on slowpoke servers (i'm not pointing fingers... you know who you are) is now quick quick quick. We are injecting the comment directly into the DOM for the user... which lets the server sit back and think about it as long as it wants.
+- Tested and beaten up thoroughly. Works well on 4.4. 
 
 = 1.0.10 =
 
