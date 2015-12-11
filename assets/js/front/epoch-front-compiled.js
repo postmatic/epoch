@@ -317,6 +317,11 @@ jQuery( document ).ready( function ( $ ) {
                                 $( this ).removeClass( 'epoch-failure' );
                                 next();
                             } );
+
+                            var pending_el = document.getElementById( 'comment-' + pending_id );
+                            if ( null != pending_el ) {
+                                $( pending_el ).parent().remove();
+                            }
                         } );
                 } else {
                     $( '.epoch-failure' ).removeClass( 'epoch-failure' );
