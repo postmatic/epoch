@@ -152,8 +152,10 @@ article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comme
 }
 
 
-article.epoch-single-comment.epoch-pending {
+.epoch-pending {
 	opacity: 0.6 !important;
+	background: transparent !important;
+	padding-bottom: 45px !important;
 }
 
 
