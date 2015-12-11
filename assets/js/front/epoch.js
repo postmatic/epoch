@@ -255,7 +255,11 @@ jQuery( document ).ready( function ( $ ) {
 
                             var pending_el = document.getElementById( 'comment-' + pending_id );
                             if ( null != pending_el ) {
-                                $( pending_el ).parent().remove();
+                                if ( 'ASC' == epoch_vars.epoch_options.order ) {
+                                    $( pending_el ).remove();
+                                }else{
+                                    $( pending_el ).parent().remove();
+                                }
                             }
                         } );
                 } else {
