@@ -167,7 +167,13 @@ jQuery( document ).ready( function ( $ ) {
                     if( true != pending ) {
                         var pending_el = document.getElementById( 'comment-' + pending );
                         if ( null != pending_el ) {
-                            $( pending_el ).parent().remove();
+
+                            if ( 'ASC' == epoch_vars.epoch_options.order ) {
+                                $( pending_el ).remove();
+                            }else{
+                                $( pending_el ).parent().remove();
+                            }
+
                         }
 
                     }
@@ -244,6 +250,10 @@ jQuery( document ).ready( function ( $ ) {
 
                     comment.comment_parent = app.parent_ID;
                     comment.comment_content = pending_data.comment;
+                    var parts = comment.comment_content.split("\n");
+                    comment.comment_content = parts.join("</p><p>");
+                    comment.comment_content = "<p>" + comment.comment_content + "</p>";
+
                     if( '' != epoch_vars.user.comment_author ){
                         comment.comment_author = epoch_vars.user.comment_author;
                     } else if( pending_data.hasOwnProperty( 'author') ) {
@@ -320,7 +330,11 @@ jQuery( document ).ready( function ( $ ) {
 
                             var pending_el = document.getElementById( 'comment-' + pending_id );
                             if ( null != pending_el ) {
-                                $( pending_el ).parent().remove();
+                                if ( 'ASC' == epoch_vars.epoch_options.order ) {
+                                    $( pending_el ).remove();
+                                }else{
+                                    $( pending_el ).parent().remove();
+                                }
                             }
                         } );
                 } else {
