@@ -104,6 +104,9 @@ jQuery( document ).ready( function ( $ ) {
             //set max comment depth
             app.max_depth = parseInt( epoch_vars.depth );
 
+            //holds ID of comment being replied to.
+            app.parent_ID = 0;
+
             if ( null != app.form_el) {
                 app.form_el.removeAttribute( 'action' );
                 app.form_el.setAttribute( 'action', 'post' );
@@ -132,6 +135,15 @@ jQuery( document ).ready( function ( $ ) {
             }
 
             /**
+             * Set app.parent_ID on reply link click
+             *
+             * @since 1.0.11
+             */
+            $( document ).on( 'click', '.comment-reply-link', function(){
+                app.parent_ID = $( this ).parent().data( 'comment-id' );
+            } );
+
+            /**
              * Submit form data
              *
              * @since 0.0.1
@@ -152,7 +164,6 @@ jQuery( document ).ready( function ( $ ) {
                  * @param comment
                  */
                  function parse_new_comment( comment, pending ) {
-console.log( comment );
                     if( true != pending ) {
                         var pending_el = document.getElementById( 'comment-' + pending );
                         if ( null != pending_el ) {
@@ -183,7 +194,7 @@ console.log( comment );
 
                     if( true == pending ) {
                         $( comment_el ).addClass( 'epoch-pending' );
-                        $( '<p>' + epoch_translation.pending + '</p>' ).prependTo( comment_el );
+                        $( comment_el ).find( '.epoch-comment-awaiting-moderation' ).remove();
                         $( comment_el ).find( '.epoch-comment-link' ).remove();
                     }
 
@@ -195,6 +206,9 @@ console.log( comment );
                         $comment_parent.find( '.epoch-approve' ).remove();
                         $comment_parent.removeClass( 'epoch-wrap-comment-awaiting-moderation' );
                     }
+
+                    app.parent_ID = 0;
+
                 };
 
                 //validate fields
@@ -228,7 +242,7 @@ console.log( comment );
                         pending_data[ obj.name ] = obj.value;
                     });
 
-
+                    comment.comment_parent = app.parent_ID;
                     comment.comment_content = pending_data.comment;
                     if( '' != epoch_vars.user.comment_author ){
                         comment.comment_author = epoch_vars.user.comment_author;
