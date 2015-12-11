@@ -206,7 +206,7 @@ body.logged-in article.epoch-single-comment.epoch-wrap-comment-awaiting-moderati
 #epoch-comments div.comment-respond p.comment-form-author,#epoch-comments div.comment-respond p.comment-form-email,#epoch-comments div.comment-respond p.comment-form-url {
 	float: left !important;
 	width: 32% !important;
-	margin: 0 1% 15px 0 !important;
+	margin: 10px 1% 0 0 !important;
 	padding: 0 !important;
 }
 
@@ -223,6 +223,7 @@ body.logged-in article.epoch-single-comment.epoch-wrap-comment-awaiting-moderati
 	background: #fff !important;
 	border: 1px solid #ddd !important;
 	color: #383838 !important;
+	font-size: 100% !important;
 }
 
 .comment-form-url input {
