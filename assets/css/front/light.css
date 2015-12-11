@@ -154,8 +154,10 @@ article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comme
 
 .epoch-pending {
 	opacity: 0.6 !important;
-	background: transparent !important;
 	padding-bottom: 45px !important;
+	background: transparent url(../../../assets/image/em.png) top right no-repeat !important;
+	background-size: 15px !important;
+	padding-right: 30px !important;
 }
 
 
@@ -566,10 +568,5 @@ ul.epoch-moderation-actions li.epoch-spam a:hover {
 }
 
 .epoch-submitting {
-	opacity: .35;
-	cursor: wait;
-    transition: opacity 0.4s ease-out;
-    -ms-transition: opacity 0.4s ease-out;
-    -moz-transition: opacity 0.4s ease-out;
-    -webkit-transition: opacity 0.4s ease-out;
+	display: none;
 }
