@@ -29,6 +29,9 @@ jQuery( document ).ready( function ( $ ) {
             //set max comment depth
             app.max_depth = parseInt( epoch_vars.depth );
 
+            //holds ID of comment being replied to.
+            app.parent_ID = 0;
+
             if ( null != app.form_el) {
                 app.form_el.removeAttribute( 'action' );
                 app.form_el.setAttribute( 'action', 'post' );
@@ -56,6 +59,11 @@ jQuery( document ).ready( function ( $ ) {
                 });
             }
 
+
+            $( document ).on( 'click', '.comment-reply-link', function(){
+                app.parent_ID = $( this ).parent().data( 'comment-id' );
+            } );
+
             /**
              * Submit form data
              *
@@ -77,7 +85,7 @@ jQuery( document ).ready( function ( $ ) {
                  * @param comment
                  */
                  function parse_new_comment( comment, pending ) {
-                    if( true != pending ) {
+                    if( 1==9 && true != pending ) {
                         var pending_el = document.getElementById( 'comment-' + pending );
                         if ( null != pending_el ) {
                             $( pending_el ).parent().remove();
@@ -152,7 +160,7 @@ jQuery( document ).ready( function ( $ ) {
                         pending_data[ obj.name ] = obj.value;
                     });
 
-
+                    comment.comment_parent = app.parent_ID;
                     comment.comment_content = pending_data.comment;
                     if( '' != epoch_vars.user.comment_author ){
                         comment.comment_author = epoch_vars.user.comment_author;
