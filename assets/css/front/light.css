@@ -178,6 +178,7 @@ body.logged-in article.epoch-single-comment.epoch-wrap-comment-awaiting-moderati
 	margin: 10px 0 !important;
 	float: none !important;
 	display: block !important;
+	clear: left !important;
 }
 
 #prompt-comment-subscribe input {
