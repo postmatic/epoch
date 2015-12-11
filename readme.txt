@@ -91,6 +91,7 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 = 1.0.12 =
 
 - A slight improvement over the previous release for making comments post licketly split.
+- We cleaned things up a little bit more for improved 4.4 layouts and compatibility with [Postmatic Social Commenting](https://wordpress.org/plugins/postmatic-social-commenting/).
 
 = 1.0.11 =
 
