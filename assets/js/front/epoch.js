@@ -107,6 +107,7 @@ jQuery( document ).ready( function ( $ ) {
 
                     if( true == pending ) {
                         $( comment_el ).addClass( 'epoch-pending' );
+                        $( comment_el ).find( '.epoch-comment-awaiting-moderation' ).remove();
                         $( comment_el ).find( '.epoch-comment-link' ).remove();
                     }
 
