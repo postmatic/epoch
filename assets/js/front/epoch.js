@@ -59,7 +59,11 @@ jQuery( document ).ready( function ( $ ) {
                 });
             }
 
-
+            /**
+             * Set app.parent_ID on reply link click
+             *
+             * @since 1.0.11
+             */
             $( document ).on( 'click', '.comment-reply-link', function(){
                 app.parent_ID = $( this ).parent().data( 'comment-id' );
             } );
@@ -85,7 +89,7 @@ jQuery( document ).ready( function ( $ ) {
                  * @param comment
                  */
                  function parse_new_comment( comment, pending ) {
-                    if( 1==9 && true != pending ) {
+                    if( true != pending ) {
                         var pending_el = document.getElementById( 'comment-' + pending );
                         if ( null != pending_el ) {
                             $( pending_el ).parent().remove();
@@ -127,6 +131,9 @@ jQuery( document ).ready( function ( $ ) {
                         $comment_parent.find( '.epoch-approve' ).remove();
                         $comment_parent.removeClass( 'epoch-wrap-comment-awaiting-moderation' );
                     }
+
+                    app.parent_ID = 0;
+                    
                 };
 
                 //validate fields
