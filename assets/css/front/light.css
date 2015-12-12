@@ -154,8 +154,10 @@ article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comme
 
 .epoch-pending {
 	opacity: 0.6 !important;
-	background: transparent !important;
 	padding-bottom: 45px !important;
+	background: transparent url(../../../assets/image/em.png) top right no-repeat !important;
+	background-size: 15px !important;
+	padding-right: 30px !important;
 }
 
 
@@ -176,6 +178,7 @@ body.logged-in article.epoch-single-comment.epoch-wrap-comment-awaiting-moderati
 	margin: 10px 0 !important;
 	float: none !important;
 	display: block !important;
+	clear: left !important;
 }
 
 #prompt-comment-subscribe input {
@@ -203,7 +206,7 @@ body.logged-in article.epoch-single-comment.epoch-wrap-comment-awaiting-moderati
 #epoch-comments div.comment-respond p.comment-form-author,#epoch-comments div.comment-respond p.comment-form-email,#epoch-comments div.comment-respond p.comment-form-url {
 	float: left !important;
 	width: 32% !important;
-	margin: 0 1% 15px 0 !important;
+	margin: 10px 1% 0 0 !important;
 	padding: 0 !important;
 }
 
@@ -220,6 +223,7 @@ body.logged-in article.epoch-single-comment.epoch-wrap-comment-awaiting-moderati
 	background: #fff !important;
 	border: 1px solid #ddd !important;
 	color: #383838 !important;
+	font-size: 100% !important;
 }
 
 .comment-form-url input {
@@ -566,10 +570,5 @@ ul.epoch-moderation-actions li.epoch-spam a:hover {
 }
 
 .epoch-submitting {
-	opacity: .35;
-	cursor: wait;
-    transition: opacity 0.4s ease-out;
-    -ms-transition: opacity 0.4s ease-out;
-    -moz-transition: opacity 0.4s ease-out;
-    -webkit-transition: opacity 0.4s ease-out;
+	display: none;
 }
