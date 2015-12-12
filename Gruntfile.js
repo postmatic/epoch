@@ -119,7 +119,7 @@ module.exports = function (grunt) {
                 files: {
                     src: [ 'releases/<%= pkg.name %>-<%= pkg.version %>.zip' ]
                 }
-            }
+            },
         },
         gittag: {
             addtag: {
@@ -139,7 +139,14 @@ module.exports = function (grunt) {
                     allowEmpty: true
                 },
                 files: {
-                    src: [ 'package.json', 'readme.txt', 'plugincore.php', 'releases/<%= pkg.name %>-<%= pkg.version %>.zip' ]
+                    src: [ 
+						'package.json', 
+						'readme.txt', 
+						'plugincore.php', 
+						'releases/<%= pkg.name %>-<%= pkg.version %>.zip',  
+						'assets/css/front/light.min.css',
+						'assets/css/front/dark.min.css'
+					]
                 }
             }
         },
