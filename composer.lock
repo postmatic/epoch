@@ -41,12 +41,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CalderaWP/magic-tags.git",
-                "reference": "98a84b61de00f9bc7355ffa7b629c7d52897dc91"
+                "reference": "60087ab024f166b9a991ea8d76e89295e1aebf80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CalderaWP/magic-tags/zipball/98a84b61de00f9bc7355ffa7b629c7d52897dc91",
-                "reference": "98a84b61de00f9bc7355ffa7b629c7d52897dc91",
+                "url": "https://api.github.com/repos/CalderaWP/magic-tags/zipball/60087ab024f166b9a991ea8d76e89295e1aebf80",
+                "reference": "60087ab024f166b9a991ea8d76e89295e1aebf80",
                 "shasum": ""
             },
             "require": {
@@ -80,7 +80,7 @@
                 "magic_tags",
                 "wordpress"
             ],
-            "time": "2015-06-28 00:29:47"
+            "time": "2015-12-11 23:27:48"
         }
     ],
     "packages-dev": [],

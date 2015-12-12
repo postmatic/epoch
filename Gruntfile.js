@@ -141,6 +141,7 @@ module.exports = function (grunt) {
                 files: {
                     src: [ 
 						'package.json', 
+						'composer.lock',
 						'readme.txt', 
 						'plugincore.php', 
 						'releases/<%= pkg.name %>-<%= pkg.version %>.zip',  
