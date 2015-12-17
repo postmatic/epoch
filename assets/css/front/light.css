@@ -154,10 +154,13 @@ article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comme
 
 .epoch-pending {
 	opacity: 0.6 !important;
-	padding-bottom: 45px !important;
+	padding-bottom: 0 !important;
 	background: transparent url(../../../assets/image/em.png) top right no-repeat !important;
 	background-size: 15px !important;
-	padding-right: 30px !important;
+ -webkit-transition: opacity 2s ease-in-out;
+  -moz-transition: opacity 2s ease-in-out;
+  -o-transition: opacity 2s ease-in-out;
+  transition: opacity 2s ease-in-out;
 }
 
 
