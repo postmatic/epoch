@@ -88,6 +88,15 @@ Nope! Epoch is smarter than smart. No need to worry about that.
 
 == Changelog ==
 
+= 1.0.14 =
+
+- This is the real deal. What 10.0.11/12 was meant to be! Nice fast comment posting even on your broken down dinohost server using your homebrewed ie6 port on that galaxy 3 you dumpstered in brooklyln. Because you can. Well, now we can too. So let's get along and be kind to each other. Mmmk? 
+- There probably won't be a lot more Epoch development until we get 2.0 out the door. Which involves a huge bucket of awesome like REST and maybe Angular or something top secret and better. Be in touch if you want to help out.
+
+= 1.0.13 =
+
+This release was really just a rollback to 10.0.10 because everything after that broke wptavern. I wish I was allowed to put expletives in changelogs.
+
 = 1.0.12 =
 
 Sorry for two releases in one day. Jason's schedule cleared a bit and, well, we got ambitious. 
