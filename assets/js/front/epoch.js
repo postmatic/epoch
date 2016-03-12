@@ -133,8 +133,6 @@ jQuery( document ).ready( function ( $ ) {
                         $( comment_el ).find( '.epoch-comment-link' ).remove();
                     }
 
-                    jQuery( 'body' ).triggerHandler( 'epoch.comment.posted', [ comment.comment_post_ID, comment.comment_ID ] );
-
                     /* Hide Moderation Class if Parent Approved */
                     if ( comment.parent_approved != '0' ) {
                         $comment_parent = jQuery( '#div-comment-' + comment.parent_approved );
