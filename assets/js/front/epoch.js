@@ -93,6 +93,8 @@ jQuery( document ).ready( function ( $ ) {
                         var pending_el = document.getElementById( 'comment-' + pending );
                         if ( null != pending_el ) {
 
+                            jQuery( 'body' ).triggerHandler( 'epoch.comment.posted', [ comment.comment_post_ID, comment.comment_ID ] );
+
                             if ( 'ASC' == epoch_vars.epoch_options.order ) {
                                 $( pending_el ).remove();
                             }else{
