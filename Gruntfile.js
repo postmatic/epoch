@@ -236,7 +236,7 @@ module.exports = function (grunt) {
     grunt.registerTask( 'version_number', [ 'replace:readme', 'replace:core_file' ] );
     grunt.registerTask( 'pre_vcs', [ 'version_number', 'shell:composer', 'copy:build', 'compress', 'clean:pre_svn_deploy'] );
     grunt.registerTask( 'do_git', [ 'gitadd', 'gitcommit', 'gittag', 'gitpush' ] );
-    grunt.registerTask( 'just_build', [ 'shell:composer', 'copy:build', 'compress' ] );
+    grunt.registerTask( 'just_build', [ 'default', 'shell:composer', 'copy:build', 'compress' ] );
     grunt.registerTask( 'do_svn', [
         'shell:svn_checkout',
         'clean:pre_svn_copy',

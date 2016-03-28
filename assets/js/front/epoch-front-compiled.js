@@ -168,6 +168,8 @@ jQuery( document ).ready( function ( $ ) {
                         var pending_el = document.getElementById( 'comment-' + pending );
                         if ( null != pending_el ) {
 
+                            jQuery( 'body' ).triggerHandler( 'epoch.comment.posted', [ comment.comment_post_ID, comment.comment_ID ] );
+
                             if ( 'ASC' == epoch_vars.epoch_options.order ) {
                                 $( pending_el ).remove();
                             }else{
@@ -178,12 +180,14 @@ jQuery( document ).ready( function ( $ ) {
 
                     }
 
+
+
                     //parse if comment isn't in DOM already
                     if ( null == document.getElementById( 'comment-' + comment.comment_ID ) ) {
                         html = app.parse_comment( comment );
                         var comment_el = document.getElementById( 'comment-' + comment.comment_ID );
 
-                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth, id );
+                        app.put_comment_in_dom( html, comment.comment_parent, comment.depth, comment.comment_ID );
 
 
                         var comment_el = document.getElementById( 'comment-' + comment.comment_ID );
@@ -203,8 +207,6 @@ jQuery( document ).ready( function ( $ ) {
                         $( comment_el ).find( '.epoch-comment-awaiting-moderation' ).remove();
                         $( comment_el ).find( '.epoch-comment-link' ).remove();
                     }
-
-                    jQuery( 'body' ).triggerHandler( 'epoch.comment.posted', [ comment.comment_post_ID, comment.comment_ID ] );
 
                     /* Hide Moderation Class if Parent Approved */
                     if ( comment.parent_approved != '0' ) {
