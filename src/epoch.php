@@ -21,6 +21,8 @@ class epoch {
 
 	protected $plugin_slug = 'epoch';
 
+	protected $epoch_nonce;
+
 
 	protected function __construct(){
 		$this->add_hooks();
@@ -103,11 +105,19 @@ class epoch {
 	public function comment_api_link( $post_id, $page = 1 ) {
 		$args = array(
 			'page' => $page,
-			'nonce' => wp_create_nonce(),
+			'nonce' => $this->get_epoch_nonce(),
 			'_wpnonce' => wp_create_nonce( 'wp_rest' )
 		);
 
 		return add_query_arg( $args, sprintf( '%s/comments/%d', $this->api_url(), $post_id ) );
+	}
+
+	public function get_epoch_nonce(){
+		if( null == $this->epoch_nonce ){
+			$this->epoch_nonce = wp_create_nonce();
+		}
+
+		return $this->epoch_nonce;
 	}
 	
 

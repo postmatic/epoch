@@ -18,20 +18,20 @@ class localize {
 	/**
 	 * @return array
 	 */
-	public function get_vars(){
+	public function get_vars() {
 		return array_merge( $this->translation_strings(), $this->data() );
 	}
 
 	protected function translation_strings() {
 		return array(
-			'awaiting_moderation' => __( 'Your comment is awaiting moderation.', 'epoch' ),
-			'comment_link_title' => __( 'Link to comment' ),
-			'reply' => __( 'Reply', 'epoch' ),
-			'reply_link_title' => __( 'Reply To This Comment', 'epoch' ),
+			'awaiting_moderation'   => __( 'Your comment is awaiting moderation.', 'epoch' ),
+			'comment_link_title'    => __( 'Link to comment' ),
+			'reply'                 => __( 'Reply', 'epoch' ),
+			'reply_link_title'      => __( 'Reply To This Comment', 'epoch' ),
 			'author_url_link_title' => __( 'Link to comment author\'s website', 'epoch' ),
-			'is_required' => __( 'is required', 'epoch' ),
-			'pending' => __( 'Comment Pending', 'epoch' ),
-			'comment_rejected' => __(
+			'is_required'           => __( 'is required', 'epoch' ),
+			'pending'               => __( 'Comment Pending', 'epoch' ),
+			'comment_rejected'      => __(
 				'Your comment was not accepted, please check that everything is filled out correctly.',
 				'epoch'
 			),
@@ -39,7 +39,7 @@ class localize {
 	}
 
 
-	protected function data(){
+	protected function data() {
 
 		$data = array(
 			'post'          => $this->post->ID,
@@ -48,6 +48,7 @@ class localize {
 			'first_url'     => esc_url_raw( epoch::get_instance()->comment_api_link( $this->post->ID, 1 ) ),
 			'_wpnonce'      => wp_create_nonce( 'wp_rest' ),
 			'user_email'    => 0,
+			'nonce'         => epoch::get_instance()->get_epoch_nonce()
 		);
 
 		if ( 0 !== get_current_user_id() ) {

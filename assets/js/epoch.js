@@ -17,9 +17,19 @@ function Epoch( $, EpochFront  ) {
     this.init = function (  ) {
         areaEl = document.getElementById( 'epoch-comments' );
         post = EpochFront.post;
-        self.getComments( EpochFront.first_url );
-        self.setupNav();
-        self.setupForm();
+
+        if(window.location.hash && window.location.hash.startsWith( '#comment-')) {
+            var hash = window.location.hash;
+            var id = hash.replace( '#comment-', ''  );
+            $.when( self.getThread( id ) ).then( function (  ) {
+
+            });
+        } else {
+            self.getComments( EpochFront.first_url );
+            self.setupNav();
+            self.setupForm();
+        }
+
 
     };
 
@@ -32,6 +42,23 @@ function Epoch( $, EpochFront  ) {
             self.hideShowNav();
         });
 
+    };
+    
+    this.getThread = function ( id ) {
+        var url = EpochFront.api + '/comments/threaded/' + id +'?nonce=' + EpochFront.nonce + '&_wpnonce=' + EpochFront._wpnonce;
+        $.when( this.api( url ) ).then( function ( r ) {
+            areaEl.innerHTML = r.template;
+            self.addFocus( id );
+            self.hide( $( '#epoch-navigation' ) );
+            self.show( $( '#epoch-load-all' ) );
+            $( '#epoch-load-all a' ).on( 'click', function (e) {
+                e.preventDefault();
+                window.location.hash = '#epoch-commenting';
+                self.getComments( EpochFront.first_url );
+            });
+
+
+        });
     };
 
     this.api = function( url ) {
@@ -81,6 +108,7 @@ function Epoch( $, EpochFront  ) {
     };
 
     this.hideShowNav = function (  ) {
+        self.show( $( '#epoch-navigation' ) );
         if( 0 == nextURL ){
             self.hide( $( '#epoch-next') );
         }else{
@@ -92,6 +120,8 @@ function Epoch( $, EpochFront  ) {
         }else{
             self.show( $( '#epoch-prev' ) );
         }
+
+        self.hide( $( '#epoch-load-all' ) );
     };
 
 
@@ -137,7 +167,9 @@ function Epoch( $, EpochFront  ) {
 
                 $form[0].reset();
                 $.when( self.getComments( lastURL ) ).done( function ( ) {
+
                     self.scrollTo( 'comment-' + r.id );
+                    self.addFocus( r.id );
                 });
 
             } ).error( function ( error ) {
@@ -159,5 +191,10 @@ function Epoch( $, EpochFront  ) {
 
         }
     };
+
+    this.addFocus = function ( id ) {
+        $( '.epoch-focus' ).find().removeClass( 'epoch-focus' );
+        $( '#div-comment-' + id ).addClass( 'epoch-focus' );
+    }
 
 }

@@ -11,6 +11,7 @@
 use postmatic\epoch\two\epoch;
 use postmatic\epoch\two\comments;
 use postmatic\epoch\two\front\form;
+use postmatic\epoch\two\thread;
 
 $options = epoch::get_instance()->get_options();;
 global $post;
@@ -52,13 +53,11 @@ if ( 'ASC' == $options['order'] && $comment_count > 3  ) {
 
 $navigation = comments::navigation();
 
-
 if ( 'DESC' == $options[ 'order' ] ) {
 	$middle = $comment_count_area . $navigation . $form . $comment_area;
 }else{
 	$middle = $comment_count_area . $comment_area . $navigation . $form;
 }
-
 
 printf(
 	'<div id="epoch-wrap" class="comments-area epoch-wrapper">
@@ -66,3 +65,4 @@ printf(
 	</div>',
 	$middle
 );
+

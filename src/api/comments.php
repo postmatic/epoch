@@ -14,6 +14,7 @@ namespace postmatic\epoch\two\api;
 
 
 use postmatic\epoch\two\epoch;
+use postmatic\epoch\two\thread;
 
 class comments {
 
@@ -33,6 +34,17 @@ class comments {
 					'type' => 'integer',
 					'default' => 1,
 					'validation_callback' => 'absint'
+				]
+			),
+		) );
+
+		register_rest_route( epoch::get_instance()->api_namespace(), '/comments/threaded/(?P<id>[\d]+)', array(
+			'methods'  => 'GET',
+			'callback'        => array( $this, 'get_threaded' ),
+			'permission_callback' => array( $this, 'get_item_permissions_check' ),
+			'args'     => array(
+				'nonce' => [
+					'type' => 'string'
 				]
 			),
 		) );
@@ -61,6 +73,21 @@ class comments {
 		$response->header( 'X-WP-EPOCH-VERSION', EPOCH_VERSION );
 		return $response;
 		
+	}
+
+	public function get_threaded( \WP_REST_Request $request ){
+		$comment_id = $request[ 'id' ];
+		$thread = new thread( $comment_id );
+		$thread->collect();
+		$comments = $thread->get_comments();
+		ob_start();
+		include EPOCH_DIR . '/assets/templates/comment-list.php';
+		$template = ob_get_clean();
+
+		$response = new \WP_REST_Response( array( 'template' => $template ) );
+		$response->header( 'X-WP-EPOCH-VERSION', EPOCH_VERSION );
+		return $response;
+
 	}
 
 	protected function page_link( $post_id, $page ){
