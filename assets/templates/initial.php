@@ -23,7 +23,7 @@ if ( $comment_count == 0 and ! comments_open( $post ) ) {
 
 $form = sprintf(
 	'<div id="epoch-commenting">%2s</div>',
-	form::the_form()
+	comments::get_form( $post->ID )
 );
 
 $comment_area = '<div id="epoch-comments"><div id="epoch-loading"><div class="dot1"></div><div class="dot2"></div><ol class="comment-list" id="epoch-comment-list"></div></div>';
@@ -50,13 +50,13 @@ if ( 'ASC' == $options['order'] && $comment_count > 3  ) {
 	);
 }
 
-
+$navigation = comments::navigation();
 
 
 if ( 'DESC' == $options[ 'order' ] ) {
-	$middle = $comment_count_area . $form . $comment_area;
+	$middle = $comment_count_area . $navigation . $form . $comment_area;
 }else{
-	$middle = $comment_count_area . $comment_area . $form;
+	$middle = $comment_count_area . $comment_area . $navigation . $form;
 }
 
 

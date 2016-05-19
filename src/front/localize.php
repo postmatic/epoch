@@ -41,11 +41,23 @@ class localize {
 
 	protected function data(){
 
-		return array(
-			'post' => $this->post->ID,
-			'api' => esc_url_raw( epoch::get_instance()->api_url() ),
-			'first_url' => esc_url_raw( epoch::get_instance()->comment_api_link( $this->post->ID, 1 ) )
+		$data = array(
+			'post'          => $this->post->ID,
+			'api'           => esc_url_raw( epoch::get_instance()->api_url() ),
+			'comments_core' => esc_url_raw( rest_url( 'wp/v2/comments' ) ),
+			'first_url'     => esc_url_raw( epoch::get_instance()->comment_api_link( $this->post->ID, 1 ) ),
+			'_wpnonce'      => wp_create_nonce( 'wp_rest' ),
+			'user_email'    => 0,
 		);
+
+		if ( 0 !== get_current_user_id() ) {
+			$user                   = get_user_by( 'ID', get_current_user_id() );
+			$data[ 'user_email' ]   = $user->user_email;
+			$data[ 'user_url' ]     = $user->user_email;
+			$data[ 'display_name' ] = $user->display_name;
+		}
+
+		return $data;
 
 	}
 

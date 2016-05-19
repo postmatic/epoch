@@ -54,4 +54,48 @@ class comments {
 		return $comments;
 
 	}
+
+	public static function navigation(){
+		return sprintf( '<nav class="navigation comment-navigation" role="navigation">
+				<h2 class="screen-reader-text">%s</h2><div class="nav-links"><div class="nav-previous"><a href="#epoch-comments" id="epoch-prev">%s</a></div><div class="nav-next"><a href="#epoch-comments" id="epoch-next">%s</a></div></div><!-- .nav-links --></nav><!-- .comment-navigation -->',
+			__( 'Comment navigation', 'epoch' ),
+			__( 'Older Comments', 'epoch' ),
+			__( 'Newer Comments', 'epoch' )
+		);
+
+	}
+
+	/**
+	 * Get comment form HTML
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param int $post_id Post ID for this comment form
+	 *
+	 * @return string
+	 */
+	public static function get_form( $post_id ) {
+		if ( 0 < absint( $post_id ) && comments_open( $post_id ) ) {
+			$options = epoch::get_instance()->get_options();
+
+			$args = array(
+				'id_form'             => 'commentform',
+				'id_submit '          => 'epoch-submit',
+				'comment_notes_after' => '',
+			);
+
+			$args['title_reply'] = $options['before_text'];
+
+			ob_start();
+			comment_form( $args, $post_id );
+			$html = ob_get_clean();
+		} else if ( ! comments_open( $post_id ) ) {
+			$html = __( 'Comments are closed.', 'epoch' );
+		} else {
+			$html = '';
+		}
+
+		return $html;
+
+	}
 }

@@ -80,7 +80,7 @@ class epoch {
 
 	protected function default_options(){
 		return array(
-			'per_page' => 25,
+			'per_page' => 10,
 			'order' => 'ASC',
 			'before_text' => __( 'Join The Conversation', 'epoch' )
 		);
@@ -106,9 +106,10 @@ class epoch {
 			'nonce' => wp_create_nonce(),
 			'_wpnonce' => wp_create_nonce( 'wp_rest' )
 		);
-		
+
 		return add_query_arg( $args, sprintf( '%s/comments/%d', $this->api_url(), $post_id ) );
 	}
+	
 
 
 
