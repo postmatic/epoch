@@ -59,14 +59,14 @@ function Epoch( $, EpochFront  ) {
             e.preventDefault();
             page--;
             $.when( self.getComments( prevURL ) ).then( function () {
-                self.scrollToComment( 'epoch-comments' );
+                self.scrollTo( 'epoch-wrap' );
             });
         });
         $( '#epoch-next' ).on( 'click', function ( e ) {
             e.preventDefault();
             page++;
             $.when( self.getComments( nextURL ) ).then( function () {
-                self.scrollToComment( 'epoch-comments' );
+                self.scrollTo( 'epoch-wrap' );
             });
 
         });
@@ -94,9 +94,6 @@ function Epoch( $, EpochFront  ) {
         }
     };
 
-    this.scrollToComment = function( id ){
-        $('body').scrollTo('#' + id,{duration:'slow', offsetTop : '0'});
-    };
 
     this.setupForm = function ( ) {
         var $form = $( '#commentform' );
@@ -136,8 +133,12 @@ function Epoch( $, EpochFront  ) {
             data.author_email = encodeURI( data.author_email );
 
             $.post( EpochFront.comments_core, data ).done( function ( r ) {
+
                 $form[0].reset();
-                self.getComments( lastURL );
+                $.when( self.getComments( lastURL ) ).done( function ( ) {
+                    self.scrollTo( 'comment-' + r.id );
+                });
+
             } ).error( function ( error ) {
                 console.log( error );
             } );
@@ -145,25 +146,17 @@ function Epoch( $, EpochFront  ) {
         });
     };
 
-    $.fn.scrollTo = function( target, options, callback ){
-        if(typeof options == 'function' && arguments.length == 2){ callback = options; options = target; }
-        var settings = $.extend({
-            scrollTarget  : target,
-            offsetTop     : 50,
-            duration      : 500,
-            easing        : 'swing'
-        }, options);
-        return this.each(function(){
-            var scrollPane = $(this);
-            var scrollTarget = (typeof settings.scrollTarget == "number") ? settings.scrollTarget : $(settings.scrollTarget);
-            var scrollY = (typeof scrollTarget == "number") ? scrollTarget : scrollTarget.offset().top + scrollPane.scrollTop() - parseInt(settings.offsetTop);
-            scrollPane.animate({scrollTop : scrollY }, parseInt(settings.duration), settings.easing, function(){
-                if (typeof callback == 'function') { callback.call(this); }
-            });
-        });
-    }
+    this.scrollTo =function ( id ) {
+        var el = document.getElementById( id );
+        if ( null == el ) {
+            el = document.getElementById( 'epoch-wrap' );
+        }
 
+        if ( null != el ){
+            var position = $( el ).offset();
+            window.scrollTo(  position.left, position.top );
 
-
-
+        }
+    };
+    
 }
