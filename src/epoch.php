@@ -32,6 +32,7 @@ class epoch {
 		add_filter( 'comments_template', array( $this, 'initial' ), 100 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'front_assets'  ) );
 		add_action( 'rest_api_init', array( $this, 'make_api' ) );
+		
 	}
 
 	public function front_assets(){
@@ -120,8 +121,5 @@ class epoch {
 		return $this->epoch_nonce;
 	}
 	
-
-
-
 
 }
