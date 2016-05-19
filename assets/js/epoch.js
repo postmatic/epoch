@@ -108,6 +108,7 @@ function Epoch( $, EpochFront  ) {
                 author_email: '',
                 author_url: '',
                 epoch: true,
+                parent: $( '#comment_parent' ).val(),
                 _wpnonce: EpochFront._wpnonce
             };
 
@@ -158,5 +159,5 @@ function Epoch( $, EpochFront  ) {
 
         }
     };
-    
+
 }
