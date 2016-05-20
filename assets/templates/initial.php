@@ -27,7 +27,12 @@ $form = sprintf(
 	comments::get_form( $post->ID )
 );
 
-$comment_area = '<div id="epoch-comments"><div id="epoch-loading"><div class="dot1"></div><div class="dot2"></div><ol class="comment-list" id="epoch-comment-list"></div></div>';
+$aria = 'aria-live="assertive"';
+if ( $options[ 'infinity_scroll' ] ) {
+	$aria .= ' aria-atomic="true"';
+}
+
+$comment_area = sprintf( '<div id="epoch-comments" %s ><div id="epoch-loading"><div class="dot1"></div><div class="dot2"></div><ol class="comment-list" id="epoch-comment-list"></div></div>', $aria );
 
 if ( $comment_count == 0 ) {
 	$comment_count_message = __( 'There are no comments', 'epoch' );
