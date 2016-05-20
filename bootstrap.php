@@ -138,3 +138,18 @@ function epoch_die( $message, $title, $args ){
 	exit;
 	
 }
+
+/**
+ * Add our total header after creating a comment
+ *
+ * @since 2.0.0
+ */
+add_filter( 'rest_post_dispatch', function( $response, $wp_rest_server, $request ){
+	if( isset( $_POST, $_POST[ 'epoch' ] ) ){
+		$count =  \postmatic\epoch\two\comments::get_comment_count( $request[ 'post' ] );
+		$response->header( 'X-WP-EPOCH-TOTAL-COMMENTS', (int) $count  );
+	}
+
+	return $response;
+
+}, 10, 3 );

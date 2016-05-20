@@ -105,7 +105,11 @@ function Epoch( $, EpochFront ) {
                 //localStorage.setItem( key, JSON.stringify( r ) );
                 r.prev = rObj.getResponseHeader( 'X-WP-EPOCH-PREVIOUS' );
                 r.next = rObj.getResponseHeader( 'X-WP-EPOCH-NEXT' );
-                total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-PAGES' );
+                pages = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-PAGES' );
+                total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-COMMENTS' );
+                total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-COMMENTS' );
+                $( '#epoch-count' ).html( total );
+
                 return r;
             } );
 
@@ -247,8 +251,9 @@ function Epoch( $, EpochFront ) {
 
                 data.author_email = encodeURI( data.author_email );
 
-                $.post( EpochFront.comments_core, data ).done( function ( r ) {
-
+                $.post( EpochFront.comments_core, data ).done( function ( r, textStatus, rObj ) {
+                    total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-COMMENTS' );
+                    $( '#epoch-count' ).html( total );
                     $form[ 0 ].reset();
                     $.when( self.getComments( lastURL ) ).done( function () {
 
