@@ -101,7 +101,10 @@ class screen {
 	 * @return array
 	 */
 	protected function localize(){
-		return array();
+		return array(
+			'saved' => esc_html__( 'Settings Saved', 'epoch' ),
+			'error' => esc_html__( 'Settings Could Not Be Saved', 'epoch' )
+		);
 	}
 
 }

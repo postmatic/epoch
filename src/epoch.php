@@ -11,6 +11,8 @@
 
 namespace postmatic\epoch\two;
 
+use postmatic\epoch\two\admin\sanitation;
+use postmatic\epoch\two\admin\save;
 use postmatic\epoch\two\admin\screen;
 use postmatic\epoch\two\api\comments;
 use postmatic\epoch\two\front\localize;
@@ -77,12 +79,21 @@ class epoch {
 	 */
 	protected function add_hooks() {
 		add_action( 'rest_api_init', array( $this, 'make_api' ) );
-		
+
+		//sanitization for settings
+		$sanitation = new sanitation( $this->option_key, array_keys( $this->default_options() ) );
+		add_filter( 'pre_update_option_' . $this->option_key, array( $sanitation, 'apply' ) );
+
 		if( is_admin() ) {
+			//admin screen
 			$screen = new screen( $this->plugin_slug );
 			add_action( 'admin_menu', array( $screen, 'add_screen' ) );
 			add_action( 'admin_enqueue_scripts', array( $screen, 'register_scripts' ), 10 );
 			add_action( 'admin_enqueue_scripts', array( $screen, 'enqueue_scripts' ), 25  );
+
+			//AJAX save for settings
+			$save = new save( $this->option_key, array_keys( $this->default_options() ) );
+			add_action( 'wp_ajax_epoch_settings', array( $save, 'save_settings' ) );
 		}else{
 			add_filter( 'comments_template', array( $this, 'initial' ), 100 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'front_assets'  ) );
@@ -115,7 +126,7 @@ class epoch {
 	}
 
 	/**
-	 *
+	 * Load our custom comment area template
 	 *
 	 * @since 2.0.0
 	 *
@@ -125,6 +136,13 @@ class epoch {
 		return EPOCH_DIR . '/assets/templates/initial.php';
 	}
 
+	/**
+	 * Get class instance
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return \postmatic\epoch\two\epoch
+	 */
 	public static function get_instance(){
 		if( null == self::$instance ){
 			self::$instance = new self();
@@ -177,7 +195,7 @@ class epoch {
 			'per_page' => 10,
 			'order' => 'ASC',
 			'before_text' => esc_html__( 'Join The Conversation', 'epoch' ),
-			'infinity_scroll'
+			'infinity_scroll' => false
 		);
 	}
 
