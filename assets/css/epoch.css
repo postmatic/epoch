@@ -3,55 +3,62 @@
     text-align: center !important;
 }
 
-#epoch-comments {font-size: 95% !important; line-height: inherit !important; margin-top: 30px !important; border: 1px solid red;}
-#epoch-commenting {margin-bottom: 25px;}
-
-#epoch-wrap {
-	margin: 0 auto !important;
+div#epoch-comments, #epoch-comments ul, #epoch-comments ol, #epoch-comments li, #epoch-comments div, #epoch-comments article, #epoch-comments footer, #epoch-comments img, #epoch-comments cite   {
+    all:unset;
 }
 
 .epoch-focus {
-    border: 2px solid red;
+    border: 3px solid red;
 }
 
-#epoch-comments ol.comment-list {}
-
-#epoch-comments {
-    padding: 0;
-    margin: 0;
+#epoch-wrap h3.comment-count-area {
+    margin-bottom: 35px;
 }
 
-#epoch-comments ol.comment-list li {
-    border: 1px solid gray;
+#epoch-wrap h3.comment-count-area a {
+    float: right;
+    margin-right: 10px;
 }
 
-#epoch-comments ol.comment-list li.comment article { 
-    border: 1px solid green;
-    padding: 0;
-
+#epoch-comments ol.comment-list li.comment {
+    margin: 35px 0;
+    display: block;
 }
 
-#epoch-comments ol.comment-list li.comment article .comment-author.vcard {
-    border: 1px solid blue;
-    display: inline;
-    float: left;
-    margin-right: 15px;
+#epoch-comments ol.comment-list li.comment li {
+    margin-left: 70px;
 }
 
-#epoch-comments ol.comment-list li.comment article .says {
+#epoch-comments .says {
     display: none;
 }
 
 #epoch-comments ol.comment-list li.comment article .comment-content {
-    margin-left: 55px;
-    position: relative;
-    top: -70px;
-    border: 1px solid yellow;
+
 }
 
-#epoch-comments ol.comment-list li.comment article p.comment-awaiting-moderation {
-    border: 1px solid purple;
+#epoch-comments .comment-author img {
+    float: left;
+    margin-right: 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
+
+#epoch-comments div.comment-body p, #epoch-comments div.reply {
+    display: block;
+    margin-left: 70px;
+    font-size: 100%;
+}
+
+/*#epoch-comments ol.comment-list li.comment article p.comment-awaiting-moderation {*/
+
+/*}*/
+
+
+
+
+
 
 /*.epoch-comment-author.vcard {*/
 /*}*/
