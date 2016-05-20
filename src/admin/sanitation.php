@@ -54,6 +54,8 @@ class sanitation extends settings{
 
 		}
 
+		update_option( 'comment_order', strtolower( $new_value[ 'order' ] ) );
+
 		return $new_value;
 
 	}
