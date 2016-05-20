@@ -1,8 +1,21 @@
 <?php
-
+/**
+ * Load the plugin
+ *
+ * @package   Epoch
+ * @author    Postmatic
+ * @license   GPL-2.0+
+ * @link
+ * Copyright 2016 Transitive, Inc.
+ */
 
 use postmatic\epoch\two\epoch;
 
+/**
+ * Register autoloader
+ *
+ * @since 2.0.0
+ */
 spl_autoload_register(function ($class) {
 
 	$prefix = 'postmatic\\epoch\\two\\';
@@ -26,8 +39,19 @@ spl_autoload_register(function ($class) {
 
 });
 
-
+/**
+ * Start plugin
+ *
+ * @since 2.0.0
+ */
 epoch::get_instance();
+
+/**
+ * When creating comments via REST API, if possible, set the author ID and IP properly.
+ *
+ *
+ * @since 2.0.0
+ */
 add_filter( 'rest_pre_insert_comment', function ( $prepared_comment, $request ) {
 	if ( isset( $_POST, $_POST[ 'epoch' ] ) ) {
 		if ( empty( $prepared_comment[ 'comment_author' ] ) ) {
@@ -62,18 +86,42 @@ add_filter( 'rest_pre_insert_comment', function ( $prepared_comment, $request ) 
 }, 10, 2 );
 
 
-
+/**
+ * Add our custom wp_die handler for when comments are being POSTed
+ *
+ * @since 2.0.0
+ */
 if(  isset( $_POST, $_POST[ 'epoch' ] ) ){
 	add_filter( 'wp_die_handler', 'epoch_wp_die_filter' );
 }
 
+/**
+ * Set our custom wp_die() handler
+ *
+ * @since 2.0.0
+ *
+ * @param $callback
+ *
+ * @return string
+ */
 function epoch_wp_die_filter( $callback ){
 	if( isset( $_POST, $_POST[ 'epoch' ] ) ){
 		return 'epoch_die';
 	}
+
 	return $callback;
+
 }
 
+/**
+ * Callback for custom wp_die handler
+ *
+ * @since 2.0.0
+ *
+ * @param string $message
+ * @param string $title
+ * @param string $args
+ */
 function epoch_die( $message, $title, $args ){
 	$response = new WP_REST_Response();
 	if( isset( $args[ 'response' ]  ) && $args[ 'response' ] ){
@@ -88,4 +136,5 @@ function epoch_die( $message, $title, $args ){
 	$result = wp_json_encode( $response );
 	echo $result;
 	exit;
+	
 }

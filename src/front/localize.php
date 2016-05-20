@@ -1,4 +1,13 @@
 <?php
+/**
+ * Prepare strings to be localized
+ *
+ * @package   Epoch
+ * @author    Postmatic
+ * @license   GPL-2.0+
+ * @link
+ * Copyright 2016 Transitive, Inc.
+ */
 
 namespace postmatic\epoch\two\front;
 
@@ -7,21 +16,43 @@ use postmatic\epoch\two\epoch;
 class localize {
 
 	/**
+	 * Post object
+	 *
+	 * @since 2.0.0
+	 *
 	 * @var \WP_Post
 	 */
 	protected $post;
 
+	/**
+	 * localize constructor.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param \WP_Post $post
+	 */
 	public function __construct( \WP_Post $post ) {
 		$this->post = $post;
 	}
 
 	/**
+	 * Get all the stuff to localize
+	 *
+	 * @since 2.0.0
+	 *
 	 * @return array
 	 */
 	public function get_vars() {
 		return array_merge( $this->translation_strings(), $this->data() );
 	}
 
+	/**
+	 * The translation strings to localize
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array
+	 */
 	protected function translation_strings() {
 		return array(
 			'awaiting_moderation'   => esc_html__( 'Your comment is awaiting moderation.', 'epoch' ),
@@ -38,7 +69,13 @@ class localize {
 		);
 	}
 
-
+	/**
+	 * Data to localize that is not translation strings
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array
+	 */
 	protected function data() {
 
 		$data = array(

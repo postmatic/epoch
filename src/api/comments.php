@@ -1,14 +1,13 @@
 <?php
 /**
- * @TODO What this does.
+ * API routes for getting pages or threads of comments as a rendered string
  *
- * @package   @TODO
- * @author    Josh Pollock <Josh@JoshPress.net>
+ * @package   Epoch
+ * @author    Postmatic
  * @license   GPL-2.0+
  * @link
- * @copyright 2016 Josh Pollock
+ * Copyright 2016 Transitive, Inc.
  */
-
 namespace postmatic\epoch\two\api;
 
 
@@ -17,10 +16,20 @@ use postmatic\epoch\two\epoch;
 use postmatic\epoch\two\thread;
 
 class comments {
-
+	/**
+	 * Total number of comments
+	 *
+	 * @since 2.0.0
+	 *
+	 * @var int
+	 */
 	protected $count;
 
-
+	/**
+	 * Create routes
+	 *
+	 * @since 2.0.0
+	 */
 	public function register_routes(){
 		register_rest_route( epoch::get_instance()->api_namespace(), '/comments/(?P<id>[\d]+)', array(
 			'methods'  => 'GET',
@@ -50,12 +59,30 @@ class comments {
 		) );
 	}
 
+	/**
+	 * Permissions check for GET requests -- checks for validity of $_GET[ 'nonce' ] which means that _wpnonce MUST be sent as well.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param \WP_REST_Request $request
+	 *
+	 * @return false|int
+	 */
 	public function get_item_permissions_check( \WP_REST_Request $request ) {
 		$valid = wp_verify_nonce( $request[ 'nonce' ] );
-		return apply_filters( 'epoch_api_request_alloed', $valid  );
+		return $valid;
 
 	}
-	
+
+	/**
+	 * Get one page of comments, fully rendered HTML
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param \WP_REST_Request $request
+	 *
+	 * @return \WP_REST_Response
+	 */
 	public function get_item( \WP_REST_Request $request ){
 		$post_id = $request[ 'id'];
 		$page = $request[ 'page' ];
@@ -75,6 +102,15 @@ class comments {
 		
 	}
 
+	/**
+	 * Get a thread of comments, fully rendered HTML
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param \WP_REST_Request $request
+	 *
+	 * @return \WP_REST_Response
+	 */
 	public function get_threaded( \WP_REST_Request $request ){
 		$comment_id = $request[ 'id' ];
 		$thread = new thread( $comment_id );
@@ -90,6 +126,16 @@ class comments {
 
 	}
 
+	/**
+	 * Get a pagination link
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param int $post_id
+	 * @param int $page
+	 *
+	 * @return int|string Link if there is a next/previous page 0 if not.
+	 */
 	protected function page_link( $post_id, $page ){
 		if( 0 == $page || $page > $this->count ){
 			return 0;

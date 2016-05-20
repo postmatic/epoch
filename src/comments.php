@@ -1,16 +1,15 @@
 <?php
 /**
- * @TODO What this does.
+ * Utility functions for working with comments
  *
- * @package   @TODO
- * @author    Josh Pollock <Josh@JoshPress.net>
+ * @package   Epoch
+ * @author    Postmatic
  * @license   GPL-2.0+
  * @link
- * @copyright 2016 Josh Pollock
+ * Copyright 2016 Transitive, Inc.
  */
 
 namespace postmatic\epoch\two;
-use postmatic\epoch\two\epoch;
 
 class comments {
 
@@ -40,6 +39,16 @@ class comments {
 
 	}
 
+	/**
+	 * Get paged comments for a post
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param int $post_id
+	 * @param int $page
+	 *
+	 * @return array|int
+	 */
 	public static function get_comments( $post_id, $page ){
 		$options = epoch::get_instance()->get_options();
 
@@ -55,20 +64,14 @@ class comments {
 
 	}
 
-	public static function get_comment_thread( $id ){
-		$comment = get_comment( $id );
-		if( 0 < absint( $comment->comment_parent ) ){
-			$id = $comment->comment_parent;
-		}
 
-		$comments = get_comments( array(
-			'parent' => $id,
-			'hierarchical' => 'threaded'
-		)  );
-
-		return $comments;
-	}
-
+	/**
+	 * Create HTML for comment navigation
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return string
+	 */
 	public static function navigation(){
 		$nav =  sprintf( '<nav id="epoch-navigation" class="navigation comment-navigation" role="navigation">
 				<h2 class="screen-reader-text">%s</h2><div class="nav-links"><div class="nav-previous"><a href="#epoch-comments" id="epoch-prev">%s</a></div><div class="nav-next"><a href="#epoch-comments" id="epoch-next">%s</a></div></div><!-- .nav-links --></nav><!-- .comment-navigation -->',
@@ -119,4 +122,5 @@ class comments {
 		return $html;
 
 	}
+
 }

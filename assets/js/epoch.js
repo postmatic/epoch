@@ -14,6 +14,11 @@ function Epoch( $, EpochFront  ) {
     var prevURL;
     var lastURL;
 
+    /**
+     * Make Epoch go
+     *
+     * @since 2.0.0
+     */
     this.init = function (  ) {
         areaEl = document.getElementById( 'epoch-comments' );
         post = EpochFront.post;
@@ -33,6 +38,13 @@ function Epoch( $, EpochFront  ) {
 
     };
 
+    /**
+     * Get a page of comments
+     *
+     * @since 2.0.0
+     *
+     * @param url URL for request
+     */
     this.getComments = function ( url ) {
         lastURL = url;
         $.when( this.api( url ) ).then( function ( r ) {
@@ -43,7 +55,14 @@ function Epoch( $, EpochFront  ) {
         });
 
     };
-    
+
+    /**
+     * Get a thread of comments
+     *
+     * @since 2.0.0
+     *
+     * @param id One comment ID in the thread
+     */
     this.getThread = function ( id ) {
         var url = EpochFront.api + '/comments/threaded/' + id +'?nonce=' + EpochFront.nonce + '&_wpnonce=' + EpochFront._wpnonce;
         $.when( this.api( url ) ).then( function ( r ) {
@@ -61,6 +80,13 @@ function Epoch( $, EpochFront  ) {
         });
     };
 
+    /**
+     * Get a page of comments
+     *
+     * @since 2.0.0
+     *
+     * @param url URL for request
+     */
     this.api = function( url ) {
         var key = 'epoch-cache' + url;
 
@@ -81,6 +107,11 @@ function Epoch( $, EpochFront  ) {
 
     };
 
+    /**
+     * Setup navigation
+     *
+     * @since 2.0.0
+     */
     this.setupNav = function () {
         $( '#epoch-prev' ).on( 'click', function ( e ) {
             e.preventDefault();
@@ -99,14 +130,29 @@ function Epoch( $, EpochFront  ) {
         });
     };
 
+    /**
+     * Hide element
+     *
+     * @since 2.0.0
+     */
     this.hide = function( $el ){
           $el.hide().addClass( 'epoch-hide' ).attr( 'aria-hidden', 'true' );
     };
 
+    /**
+     * Show element
+     *
+     * @since 2.0.0
+     */
     this.show = function( $el ){
         $el.show().removeClass( 'epoch-hide' ).attr( 'aria-hidden', 'false' );
     };
 
+    /**
+     * Set hide and show status for comment nav
+     *
+     * @since 2.0.0
+     */
     this.hideShowNav = function (  ) {
         self.show( $( '#epoch-navigation' ) );
         if( 0 == nextURL ){
@@ -124,7 +170,11 @@ function Epoch( $, EpochFront  ) {
         self.hide( $( '#epoch-load-all' ) );
     };
 
-
+    /**
+     * Setup comment form
+     *
+     * @since 2.0.0
+     */
     this.setupForm = function ( ) {
         var $form = $( '#commentform' );
         $form.removeAttr( 'action' );
@@ -220,8 +270,14 @@ function Epoch( $, EpochFront  ) {
         });
     };
 
-
-    this.scrollTo =function ( id ) {
+    /**
+     * Scroll to an element
+     *
+     * @since 2.0.0
+     *
+     * @param id ID of element (not comment)
+     */
+    this.scrollTo = function ( id ) {
         var el = document.getElementById( id );
         if ( null == el ) {
             el = document.getElementById( 'epoch-wrap' );
@@ -234,8 +290,15 @@ function Epoch( $, EpochFront  ) {
         }
     };
 
+    /**
+     * Add the epoch-focus class to a comment element
+     *
+     * @since 2.0.0
+     *
+     * @param id The comment's ID. '#div-comment-' is prefixed to it.
+     */
     this.addFocus = function ( id ) {
-        $( '.epoch-focus' ).find().removeClass( 'epoch-focus' );
+        $( '.epoch-focus' ).removeClass( 'epoch-focus' );
         $( '#div-comment-' + id ).addClass( 'epoch-focus' );
     };
 
