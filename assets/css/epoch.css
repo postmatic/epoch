@@ -64,12 +64,17 @@
 
 #epoch-comments .comment-body p, #epoch-comments .reply {
     display: block;
-    margin-left: 70px;
+    margin-left: 63px;
     font-size: 100%;
 }
 
 #epoch-comments .comment-content p:last-child {
     margin-bottom: 0;
+}
+
+#epoch-comments img.avatar {
+    width: 48px;
+    height: 48px;
 }
 
 /*#epoch-comments ol.comment-list li.comment article p.comment-awaiting-moderation {*/
@@ -317,9 +322,9 @@
 	border: 1px solid #ddd;
 }
 
-#epoch-wrap div#respond {
+#epoch-wrap ol div#respond {
     display: block;
-    margin-left: 70px;
+    margin-left: 63px;
     margin-top: 35px;
 }
 
@@ -333,6 +338,12 @@
 
 #epoch-wrap #commentform p.logged-in-as {
     margin-bottom: 0;
+}
+
+/*pagination*/
+#epoch-wrap #epoch-navigation div.nav-next {
+    float: right;
+    text-align: right;
 }
 
 
