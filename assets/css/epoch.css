@@ -14,6 +14,44 @@
     border: 2px solid red;
 }
 
+#epoch-comments ol.comment-list {}
+
+#epoch-comments {
+    padding: 0;
+    margin: 0;
+}
+
+#epoch-comments ol.comment-list li {
+    border: 1px solid gray;
+}
+
+#epoch-comments ol.comment-list li.comment article { 
+    border: 1px solid green;
+    padding: 0;
+
+}
+
+#epoch-comments ol.comment-list li.comment article .comment-author.vcard {
+    border: 1px solid blue;
+    display: inline;
+    float: left;
+    margin-right: 15px;
+}
+
+#epoch-comments ol.comment-list li.comment article .says {
+    display: none;
+}
+
+#epoch-comments ol.comment-list li.comment article .comment-content {
+    margin-left: 55px;
+    position: relative;
+    top: -70px;
+    border: 1px solid yellow;
+}
+
+#epoch-comments ol.comment-list li.comment article p.comment-awaiting-moderation {
+    border: 1px solid purple;
+}
 
 /*.epoch-comment-author.vcard {*/
 /*}*/
@@ -141,14 +179,14 @@
 /*    background-color: #FFFEDB !important;*/
 /* }*/
 
-/*.epoch-failure, .epoch-failure label {*/
-/*    color: #c0392b !important;*/
-/*    font-weight: bold !important;*/
-/*}*/
+.epoch-failure, .epoch-failure label {
+    color: #c0392b !important;
+    font-weight: bold !important;
+}
 
-/*.epoch-failure input {*/
-/*	border: 1px solid #c0392b !important;*/
-/*}*/
+.epoch-failure input {
+	border: 1px solid #c0392b !important;
+}
 
 /*article.epoch-single-comment.epoch-wrap-comment-awaiting-moderation .epoch-comment-author {*/
 /*	background: url(../../../assets/image/em.png) center right no-repeat !important;*/
