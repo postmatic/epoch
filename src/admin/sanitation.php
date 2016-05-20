@@ -44,12 +44,13 @@ class sanitation extends settings{
 			}elseif ( 'before_text' == $key && is_string( $value ) ){
 				$new_value[ $key ] = wp_kses_post( $value );
 			}elseif( 'infinity_scroll' == $key ){
-				$new_value[ $key ] = absint( $value  );
+				$new_value[ $key ] = intval( $value  );
 			}
 
-			return $new_value;
 
 		}
+
+		return $new_value;
 
 	}
 
