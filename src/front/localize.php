@@ -24,14 +24,14 @@ class localize {
 
 	protected function translation_strings() {
 		return array(
-			'awaiting_moderation'   => __( 'Your comment is awaiting moderation.', 'epoch' ),
-			'comment_link_title'    => __( 'Link to comment' ),
-			'reply'                 => __( 'Reply', 'epoch' ),
-			'reply_link_title'      => __( 'Reply To This Comment', 'epoch' ),
-			'author_url_link_title' => __( 'Link to comment author\'s website', 'epoch' ),
-			'is_required'           => __( 'is required', 'epoch' ),
-			'pending'               => __( 'Comment Pending', 'epoch' ),
-			'comment_rejected'      => __(
+			'awaiting_moderation'   => esc_html__( 'Your comment is awaiting moderation.', 'epoch' ),
+			'comment_link_title'    => esc_html__( 'Link to comment',  'epoch' ),
+			'reply'                 => esc_html__( 'Reply', 'epoch' ),
+			'reply_link_title'      => esc_html__( 'Reply To This Comment', 'epoch' ),
+			'author_url_link_title' => esc_html__( 'Link to comment author\'s website', 'epoch' ),
+			'is_required'           => esc_html__( 'is required', 'epoch' ),
+			'pending'               => esc_html__( 'Comment Pending', 'epoch' ),
+			'comment_rejected'      => esc_html__(
 				'Your comment was not accepted, please check that everything is filled out correctly.',
 				'epoch'
 			),

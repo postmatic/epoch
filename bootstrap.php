@@ -60,3 +60,32 @@ add_filter( 'rest_pre_insert_comment', function ( $prepared_comment, $request ) 
 	return $prepared_comment;
 
 }, 10, 2 );
+
+
+
+if(  isset( $_POST, $_POST[ 'epoch' ] ) ){
+	add_filter( 'wp_die_handler', 'epoch_wp_die_filter' );
+}
+
+function epoch_wp_die_filter( $callback ){
+	if( isset( $_POST, $_POST[ 'epoch' ] ) ){
+		return 'epoch_die';
+	}
+	return $callback;
+}
+
+function epoch_die( $message, $title, $args ){
+	$response = new WP_REST_Response();
+	if( isset( $args[ 'response' ]  ) && $args[ 'response' ] ){
+		$status =  $args[ 'response' ] ;
+	}else{
+		$status = 400;
+	}
+	status_header( $status );
+	$response->set_status( $status );
+
+	$response->set_data( array( 'message' => $message ) );
+	$result = wp_json_encode( $response );
+	echo $result;
+	exit;
+}

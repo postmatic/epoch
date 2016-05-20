@@ -130,54 +130,96 @@ function Epoch( $, EpochFront  ) {
         $form.removeAttr( 'action' );
         $form.on( 'submit', function (e) {
             e.preventDefault();
+            var fail = false;
+            var fails = [];
 
-            var data = {
-                content: $( '#comment' ).val(),
-                post: EpochFront.post,
-                author_name: '',
-                author_email: '',
-                author_url: '',
-                epoch: true,
-                parent: $( '#comment_parent' ).val(),
-                _wpnonce: EpochFront._wpnonce
-            };
+            $form.find( 'select, textarea, input' ).each(function(){
+                if( ! $( this ).prop( 'required' )){
 
-            var authorEL = document.getElementById( 'author' );
-            if ( null !== authorEL ){
-                data.author_name = $( authorEL ).val();
+                } else {
+                    if ( ! $( this ).val() ) {
+                        fail = true;
+                        fails.push( $( this ).attr( 'id' ) );
+                    }
+
+                }
+            });
+
+            if ( fail ){
+                $( '.epoch-failure' ).removeClass( 'epoch-failure' );
+                if ( 0 < fails.length ) {
+                    $.each( fails, function( i, the_fail ) {
+                        the_fail = document.getElementById( the_fail );
+                        if ( null !== the_fail ) {
+                            $( the_fail ).parent().addClass( 'epoch-failure' );
+                        }
+                    });
+                }
+            }else{
+                var data = {
+                    content: $( '#comment' ).val(),
+                    post: EpochFront.post,
+                    author_name: '',
+                    author_email: '',
+                    author_url: '',
+                    epoch: true,
+                    parent: $( '#comment_parent' ).val(),
+                    _wpnonce: EpochFront._wpnonce
+                };
+
+                var authorEL = document.getElementById( 'author' );
+                if ( null !== authorEL ) {
+                    data.author_name = $( authorEL ).val();
+                }
+
+                var emailEl = document.getElementById( 'email' );
+                if ( null !== emailEl ) {
+                    data.author_email = $( emailEl ).val();
+                }
+
+                var urlEl = document.getElementById( 'url' );
+                if ( null !== urlEl ) {
+                    data.author_url = $( urlEl ).val();
+                }
+
+                if ( 0 != EpochFront.user_email ) {
+                    data.author_email = EpochFront.user_email
+                }
+
+                data.author_email = encodeURI( data.author_email );
+
+                $.post( EpochFront.comments_core, data ).done( function ( r ) {
+
+                    $form[ 0 ].reset();
+                    $.when( self.getComments( lastURL ) ).done( function () {
+
+                        self.scrollTo( 'comment-' + r.id );
+                        self.addFocus( r.id );
+                    } );
+
+                } ).error( function ( error ) {
+                    var message = EpochFront.comment_rejected;
+                    if ( _.isObject( error ) && _.has( error, 'responseJSON' ) ) {
+                        error = error.responseJSON;
+                        if ( _.has( error, 'code' ) && 'rest_invalid_param' == error.code && _.has( error.data, 'params' ) ) {
+                            message = '';
+                            $.each( error.data.params, function ( param, m ) {
+                                message += m;
+                            } )
+                        } else if ( _.isObject( error ) && _.has( error, 'data' ) && _.has( error.data, 'message' ) ) {
+                            message = error.data.message;
+                        } else if ( _.isObject( error ) && _.has( error, 'message' ) ) {
+                            message = error.message;
+                        }
+                    }
+
+                    alert( message );
+                } );
             }
-
-            var emailEl = document.getElementById( 'email' );
-            if ( null !== emailEl ){
-                data.author_email = $( emailEl ).val();
-            }
-
-            var urlEl = document.getElementById( 'url');
-            if ( null !== urlEl ){
-                data.author_url = $( urlEl ).val();
-            }
-
-            if ( 0 != EpochFront.user_email ){
-                data.author_email = EpochFront.user_email
-            }
-
-            data.author_email = encodeURI( data.author_email );
-
-            $.post( EpochFront.comments_core, data ).done( function ( r ) {
-
-                $form[0].reset();
-                $.when( self.getComments( lastURL ) ).done( function ( ) {
-
-                    self.scrollTo( 'comment-' + r.id );
-                    self.addFocus( r.id );
-                });
-
-            } ).error( function ( error ) {
-                console.log( error );
-            } );
 
         });
     };
+
 
     this.scrollTo =function ( id ) {
         var el = document.getElementById( id );
@@ -195,6 +237,9 @@ function Epoch( $, EpochFront  ) {
     this.addFocus = function ( id ) {
         $( '.epoch-focus' ).find().removeClass( 'epoch-focus' );
         $( '#div-comment-' + id ).addClass( 'epoch-focus' );
-    }
+    };
+
+
+
 
 }
