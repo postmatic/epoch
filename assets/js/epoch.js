@@ -196,12 +196,12 @@ function Epoch( $, EpochFront  ) {
             });
 
             if ( fail ){
-                $( '.epoch-failure' ).removeClass( 'epoch-failure' );
+                $( '.epoch-failure' ).removeClass( 'epoch-failure' ).removeAttr( 'aria-invalid' );
                 if ( 0 < fails.length ) {
                     $.each( fails, function( i, the_fail ) {
                         the_fail = document.getElementById( the_fail );
                         if ( null !== the_fail ) {
-                            $( the_fail ).parent().addClass( 'epoch-failure' );
+                            $( the_fail ).parent().addClass( 'epoch-failure' ).attr( 'aria-invalid', true );
                         }
                     });
                 }
