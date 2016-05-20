@@ -100,11 +100,11 @@ function Epoch( $, EpochFront  ) {
     };
 
     this.hide = function( $el ){
-          $el.hide().css( 'visibility', 'hidden' ).attr( 'aria-hidden', 'true' );
+          $el.hide().addClass( 'epoch-hide' ).attr( 'aria-hidden', 'true' );
     };
 
     this.show = function( $el ){
-        $el.show().css( 'visibility', 'visible' ).attr( 'aria-hidden', 'false' );
+        $el.show().removeClass( 'epoch-hide' ).attr( 'aria-hidden', 'false' );
     };
 
     this.hideShowNav = function (  ) {
