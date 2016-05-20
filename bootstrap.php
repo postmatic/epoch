@@ -28,3 +28,35 @@ spl_autoload_register(function ($class) {
 
 
 epoch::get_instance();
+add_filter( 'rest_pre_insert_comment', function ( $prepared_comment, $request ) {
+	if ( isset( $_POST, $_POST[ 'epoch' ] ) ) {
+		if ( empty( $prepared_comment[ 'comment_author' ] ) ) {
+			$email = $prepared_comment[ 'comment_author_email' ];
+			if ( is_email( $email ) ) {
+				$user = get_user_by( 'email', $email );
+				if ( is_object( $user ) ) {
+					$prepared_comment[ 'user_id' ] = $user->ID;
+					$prepared_comment[ 'comment_author' ] = $user->display_name;
+					$prepared_comment[ 'comment_author_url' ] = $user->user_url;
+				}
+			}
+
+		}
+
+		$ip = '127.0.0.1';
+
+		if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+			$ip = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} elseif ( ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
+			$ip = $_SERVER['REMOTE_ADDR'];
+		}
+
+		$prepared_comment[ 'comment_author_IP' ] = $ip;
+
+	}
+
+	return $prepared_comment;
+
+}, 10, 2 );

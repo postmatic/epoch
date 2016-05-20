@@ -55,13 +55,34 @@ class comments {
 
 	}
 
+	public static function get_comment_thread( $id ){
+		$comment = get_comment( $id );
+		if( 0 < absint( $comment->comment_parent ) ){
+			$id = $comment->comment_parent;
+		}
+
+		$comments = get_comments( array(
+			'parent' => $id,
+			'hierarchical' => 'threaded'
+		)  );
+
+		return $comments;
+	}
+
 	public static function navigation(){
-		return sprintf( '<nav class="navigation comment-navigation" role="navigation">
+		$nav =  sprintf( '<nav id="epoch-navigation" class="navigation comment-navigation" role="navigation">
 				<h2 class="screen-reader-text">%s</h2><div class="nav-links"><div class="nav-previous"><a href="#epoch-comments" id="epoch-prev">%s</a></div><div class="nav-next"><a href="#epoch-comments" id="epoch-next">%s</a></div></div><!-- .nav-links --></nav><!-- .comment-navigation -->',
-			__( 'Comment navigation', 'epoch' ),
-			__( 'Older Comments', 'epoch' ),
-			__( 'Newer Comments', 'epoch' )
+			esc_html__( 'Comment navigation', 'epoch' ),
+			esc_html__( 'Older Comments', 'epoch' ),
+			esc_html__( 'Newer Comments', 'epoch' )
 		);
+
+		$nav .= sprintf( '<div id="epoch-load-all" style="display: none;visibility: hidden" aria-hidden="true"><a href="#epoch-commenting" title="%s" class="button"> %s</a></div>',
+			esc_attr__( 'Click to see all comments', 'epoch' ),
+			esc_html__( 'Show All Comments', 'epoch' )
+		);
+
+		return $nav;
 
 	}
 
