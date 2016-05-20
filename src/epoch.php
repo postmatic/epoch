@@ -11,6 +11,7 @@
 
 namespace postmatic\epoch\two;
 
+use postmatic\epoch\two\admin\screen;
 use postmatic\epoch\two\api\comments;
 use postmatic\epoch\two\front\localize;
 class epoch {
@@ -52,6 +53,15 @@ class epoch {
 	protected $epoch_nonce;
 
 	/**
+	 * Key for our option
+	 *
+	 * @since 2.0.0
+	 *
+	 * @var string
+	 */
+	protected $option_key = '_epoch_two';
+
+	/**
 	 * Epoch constructor.
 	 *
 	 * @since 2.0.0
@@ -66,9 +76,18 @@ class epoch {
 	 * @since 2.0.0
 	 */
 	protected function add_hooks() {
-		add_filter( 'comments_template', array( $this, 'initial' ), 100 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'front_assets'  ) );
 		add_action( 'rest_api_init', array( $this, 'make_api' ) );
+		
+		if( is_admin() ) {
+			$screen = new screen( $this->plugin_slug );
+			add_action( 'admin_menu', array( $screen, 'add_screen' ) );
+			add_action( 'admin_enqueue_scripts', array( $screen, 'register_scripts' ), 10 );
+			add_action( 'admin_enqueue_scripts', array( $screen, 'enqueue_scripts' ), 25  );
+		}else{
+			add_filter( 'comments_template', array( $this, 'initial' ), 100 );
+			add_action( 'wp_enqueue_scripts', array( $this, 'front_assets'  ) );
+		}
+		
 		
 	}
 
@@ -124,12 +143,12 @@ class epoch {
 	 */
 	public function get_options(){
 		if( null == $this->options ){
-			$this->options = get_option( '_epoch_two', array() );
+			$this->options = get_option( $this->option_key, array() );
 			$this->options = wp_parse_args(  $this->options, $this->default_options() );
 
 		}
 
-		return apply_filters( 'epoch_options', $this->options );
+		return $this->options;
 
 
 	}
@@ -157,7 +176,8 @@ class epoch {
 		return array(
 			'per_page' => 10,
 			'order' => 'ASC',
-			'before_text' => esc_html__( 'Join The Conversation', 'epoch' )
+			'before_text' => esc_html__( 'Join The Conversation', 'epoch' ),
+			'infinity_scroll'
 		);
 	}
 

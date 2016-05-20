@@ -264,6 +264,7 @@ function Epoch( $, EpochFront  ) {
                     }
 
                     alert( message );
+                    
                 } );
             }
 
