@@ -49,7 +49,7 @@ $options = epoch::get_instance()->get_options();
 			<label id="epoch-infinity_scroll-label" for="epoch-infinity_scroll">
 				<?php esc_html_e( 'Enable Infinite Scroll?', 'epoch'  ); ?>
 			</label>
-			<input type="checkbox" id="epoch-infinity_scroll" <?php if( $options[ 'infinity_scroll' ] ) { echo 'checked'; } ?> aria-labelledby="epoch-infinity_scroll-label" />
+			<input type="checkbox" id="epoch-infinity_scroll" <?php if( true == $options[ 'infinity_scroll' ] ) { echo 'checked'; } ?> aria-labelledby="epoch-infinity_scroll-label" />
 		</div>
 
 		<?php echo wp_nonce_field( 'epoch-admin' ); ?>
