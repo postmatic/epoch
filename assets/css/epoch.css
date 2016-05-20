@@ -14,6 +14,7 @@
 /*top of the comments area*/
 #epoch-wrap h3.comment-count-area {
     margin-bottom: 35px;
+    display: block;
 }
 
 #epoch-wrap h3.comment-count-area a {
@@ -67,9 +68,9 @@
     font-size: 100%;
 }
 
-#epoch-comments .reply {
-     margin-top: -20px;
- }
+#epoch-comments .comment-content p:last-child {
+    margin-bottom: 0;
+}
 
 /*#epoch-comments ol.comment-list li.comment article p.comment-awaiting-moderation {*/
 
@@ -325,6 +326,16 @@
 #epoch-wrap div#respond h3#reply-title {
     font-size: 100%;
 }
+
+#epoch-wrap #respond small {
+    float: right;
+}
+
+#epoch-wrap #commentform p.logged-in-as {
+    margin-bottom: 0;
+}
+
+
 
 /*#epoch-comments p.logged-in-as {*/
 /*	float: right !important;*/
