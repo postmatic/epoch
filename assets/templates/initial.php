@@ -59,9 +59,9 @@ if ( 'ASC' == $options['order'] && $comment_count > 3  ) {
 $navigation = comments::navigation();
 
 if ( 'DESC' == $options[ 'order' ] ) {
-	$middle = $comment_count_area . $navigation . $form . $comment_area;
+	$middle = $comment_count_area . $navigation . $comment_area . $form;
 }else{
-	$middle = $comment_count_area . $comment_area . $navigation . $form;
+	$middle = $comment_count_area . $form . $comment_area . $navigation;
 }
 
 printf(
