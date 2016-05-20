@@ -80,12 +80,12 @@ class comments {
 			esc_html__( 'Newer Comments', 'epoch' )
 		);
 
-		$nav .= sprintf( '<div id="epoch-load-all" style="display: none;visibility: hidden" aria-hidden="true"><a href="#epoch-commenting" title="%s" class="button"> %s</a></div>',
+		$nav .= sprintf( '<div id="epoch-load-all" class="epoch-hide" aria-hidden="true"><a href="#epoch-commenting" title="%s" class="button"> %s</a></div>',
 			esc_attr__( 'Click to see all comments', 'epoch' ),
 			esc_html__( 'Show All Comments', 'epoch' )
 		);
 
-		$nav .= '<div id="epoch-infinity-spinner" class="spinner" aria-hidden="true"></div>';
+		$nav .= '<div id="epoch-infinity-spinner" class="spinner epoch-hide" aria-hidden="true"></div>';
 
 		return $nav;
 

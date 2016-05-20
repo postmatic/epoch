@@ -27,6 +27,7 @@ function Epoch( $, EpochFront ) {
         if ( window.location.hash && window.location.hash.startsWith( '#comment-' ) ) {
             var hash = window.location.hash;
             var id = hash.replace( '#comment-', '' );
+            self.show( $( '#epoch-load-all' ) );
             $.when( self.getThread( id ) ).then( function () {
                 if ( EpochFront.infinity ) {
                     self.infinityScroll();
