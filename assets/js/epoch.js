@@ -5,32 +5,39 @@ jQuery( document ).ready( function ( $ ) {
 } );
 
 
-function Epoch( $, EpochFront  ) {
+function Epoch( $, EpochFront ) {
     var self = this;
     var post;
-    var page;
+    var page = 1;
     var areaEl;
     var nextURL;
     var prevURL;
     var lastURL;
+    var total;
 
     /**
      * Make Epoch go
      *
      * @since 2.0.0
      */
-    this.init = function (  ) {
+    this.init = function () {
         areaEl = document.getElementById( 'epoch-comments' );
         post = EpochFront.post;
 
-        if(window.location.hash && window.location.hash.startsWith( '#comment-')) {
+        if ( window.location.hash && window.location.hash.startsWith( '#comment-' ) ) {
             var hash = window.location.hash;
-            var id = hash.replace( '#comment-', ''  );
-            $.when( self.getThread( id ) ).then( function (  ) {
-
-            });
+            var id = hash.replace( '#comment-', '' );
+            $.when( self.getThread( id ) ).then( function () {
+                if ( EpochFront.infinity ) {
+                    self.infinityScroll();
+                }
+            } );
         } else {
-            self.getComments( EpochFront.first_url );
+            $.when( self.getComments( EpochFront.first_url ) ).then( function () {
+                if ( EpochFront.infinity ) {
+                    self.infinityScroll();
+                }
+            } );
             self.setupNav();
             self.setupForm();
         }
@@ -52,7 +59,7 @@ function Epoch( $, EpochFront  ) {
             prevURL = r.prev;
             areaEl.innerHTML = r.template;
             self.hideShowNav();
-        });
+        } );
 
     };
 
@@ -64,20 +71,20 @@ function Epoch( $, EpochFront  ) {
      * @param id One comment ID in the thread
      */
     this.getThread = function ( id ) {
-        var url = EpochFront.api + '/comments/threaded/' + id +'?nonce=' + EpochFront.nonce + '&_wpnonce=' + EpochFront._wpnonce;
+        var url = EpochFront.api + '/comments/threaded/' + id + '?nonce=' + EpochFront.nonce + '&_wpnonce=' + EpochFront._wpnonce;
         $.when( this.api( url ) ).then( function ( r ) {
             areaEl.innerHTML = r.template;
             self.addFocus( id );
             self.hide( $( '#epoch-navigation' ) );
             self.show( $( '#epoch-load-all' ) );
-            $( '#epoch-load-all a' ).on( 'click', function (e) {
+            $( '#epoch-load-all a' ).on( 'click', function ( e ) {
                 e.preventDefault();
                 window.location.hash = '#epoch-commenting';
                 self.getComments( EpochFront.first_url );
-            });
+            } );
 
 
-        });
+        } );
     };
 
     /**
@@ -87,20 +94,21 @@ function Epoch( $, EpochFront  ) {
      *
      * @param url URL for request
      */
-    this.api = function( url ) {
+    this.api = function ( url ) {
         var key = 'epoch-cache' + url;
 
-        var local = localStorage.getItem( key );
-        local = false;
-        if ( ! _.isString( local ) || "null" == local ) {
-            return $.get( url ).then( function ( r, textStatus, rObj  ) {
-                localStorage.setItem( key, JSON.stringify( r ) );
-                r.next = rObj.getResponseHeader( 'X-WP-EPOCH-PREVIOUS' );
-                r.prev = rObj.getResponseHeader( 'X-WP-EPOCH-NEXT' );
+        //var local = localStorage.getItem( key );
+        var local = false;
+        if ( !_.isString( local ) || "null" == local ) {
+            return $.get( url ).then( function ( r, textStatus, rObj ) {
+                //localStorage.setItem( key, JSON.stringify( r ) );
+                r.prev = rObj.getResponseHeader( 'X-WP-EPOCH-PREVIOUS' );
+                r.next = rObj.getResponseHeader( 'X-WP-EPOCH-NEXT' );
+                total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-PAGES' );
                 return r;
             } );
 
-        }else {
+        } else {
             return JSON.parse( local );
 
         }
@@ -118,16 +126,16 @@ function Epoch( $, EpochFront  ) {
             page--;
             $.when( self.getComments( prevURL ) ).then( function () {
                 self.scrollTo( 'epoch-wrap' );
-            });
-        });
+            } );
+        } );
         $( '#epoch-next' ).on( 'click', function ( e ) {
             e.preventDefault();
             page++;
             $.when( self.getComments( nextURL ) ).then( function () {
                 self.scrollTo( 'epoch-wrap' );
-            });
+            } );
 
-        });
+        } );
     };
 
     /**
@@ -135,8 +143,8 @@ function Epoch( $, EpochFront  ) {
      *
      * @since 2.0.0
      */
-    this.hide = function( $el ){
-          $el.hide().addClass( 'epoch-hide' ).attr( 'aria-hidden', 'true' );
+    this.hide = function ( $el ) {
+        $el.hide().addClass( 'epoch-hide' ).attr( 'aria-hidden', 'true' );
     };
 
     /**
@@ -144,7 +152,7 @@ function Epoch( $, EpochFront  ) {
      *
      * @since 2.0.0
      */
-    this.show = function( $el ){
+    this.show = function ( $el ) {
         $el.show().removeClass( 'epoch-hide' ).attr( 'aria-hidden', 'false' );
     };
 
@@ -153,17 +161,17 @@ function Epoch( $, EpochFront  ) {
      *
      * @since 2.0.0
      */
-    this.hideShowNav = function (  ) {
+    this.hideShowNav = function () {
         self.show( $( '#epoch-navigation' ) );
-        if( 0 == nextURL ){
-            self.hide( $( '#epoch-next') );
-        }else{
+        if ( 0 == nextURL ) {
+            self.hide( $( '#epoch-next' ) );
+        } else {
             self.show( $( '#epoch-next' ) );
         }
 
-        if( 0 == prevURL ){
-            self.hide( $( '#epoch-prev') );
-        }else{
+        if ( 0 == prevURL ) {
+            self.hide( $( '#epoch-prev' ) );
+        } else {
             self.show( $( '#epoch-prev' ) );
         }
 
@@ -175,37 +183,37 @@ function Epoch( $, EpochFront  ) {
      *
      * @since 2.0.0
      */
-    this.setupForm = function ( ) {
+    this.setupForm = function () {
         var $form = $( '#commentform' );
         $form.removeAttr( 'action' );
-        $form.on( 'submit', function (e) {
+        $form.on( 'submit', function ( e ) {
             e.preventDefault();
             var fail = false;
             var fails = [];
 
-            $form.find( 'select, textarea, input' ).each(function(){
-                if( ! $( this ).prop( 'required' )){
+            $form.find( 'select, textarea, input' ).each( function () {
+                if ( !$( this ).prop( 'required' ) ) {
 
                 } else {
-                    if ( ! $( this ).val() ) {
+                    if ( !$( this ).val() ) {
                         fail = true;
                         fails.push( $( this ).attr( 'id' ) );
                     }
 
                 }
-            });
+            } );
 
-            if ( fail ){
+            if ( fail ) {
                 $( '.epoch-failure' ).removeClass( 'epoch-failure' ).removeAttr( 'aria-invalid' );
                 if ( 0 < fails.length ) {
-                    $.each( fails, function( i, the_fail ) {
+                    $.each( fails, function ( i, the_fail ) {
                         the_fail = document.getElementById( the_fail );
                         if ( null !== the_fail ) {
                             $( the_fail ).parent().addClass( 'epoch-failure' ).attr( 'aria-invalid', true );
                         }
-                    });
+                    } );
                 }
-            }else{
+            } else {
                 var data = {
                     content: $( '#comment' ).val(),
                     post: EpochFront.post,
@@ -264,11 +272,11 @@ function Epoch( $, EpochFront  ) {
                     }
 
                     alert( message );
-                    
+
                 } );
             }
 
-        });
+        } );
     };
 
     /**
@@ -284,9 +292,9 @@ function Epoch( $, EpochFront  ) {
             el = document.getElementById( 'epoch-wrap' );
         }
 
-        if ( null != el ){
+        if ( null != el ) {
             var position = $( el ).offset();
-            window.scrollTo(  position.left, position.top );
+            window.scrollTo( position.left, position.top );
 
         }
     };
@@ -303,7 +311,50 @@ function Epoch( $, EpochFront  ) {
         $( '#div-comment-' + id ).addClass( 'epoch-focus' );
     };
 
+    /**
+     * Do infinity scrolling if called for
+     *
+     * @since 2.0.0
+     */
+    this.infinityScroll = function () {
+        var loading = false;
+        var allLoaded = false;
+        var $el = $( '#epoch-comments' );
+        var startHeight = $el.offset().top + $el.outerHeight( true ) - 600;
 
+        self.hideShowNav = function(){};
+        $( '#epoch-navigation' ).remove();
 
+        var $spinner = $( '#epoch-infinity-spinner' );
+        $( document ).on( 'scroll', function () {
+
+            if ( _.isUndefined( nextURL ) || true === loading || true  === allLoaded || page >= total ){
+                return;
+            }
+
+            var position = document.documentElement.scrollTop || document.body.scrollTop;
+            if ( position > startHeight ) {
+                self.show( $spinner );
+                loading = true;
+                var url = nextURL;
+                lastURL = url;
+                page++;
+                if ( page == total ){
+                    allLoaded = true;
+                }
+                $.when( self.api( url ) ).then( function ( r ) {
+                    nextURL = r.next;
+                    if (  0 == nextURL ){
+                        allLoaded = true;
+                    }
+                    prevURL = r.prev;
+                    $( areaEl ).append( r.template );
+                    loading = false;
+                    self.hide( $spinner );
+                } );
+
+            }
+        } );
+    };
 
 }

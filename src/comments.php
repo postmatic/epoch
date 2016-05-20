@@ -85,6 +85,8 @@ class comments {
 			esc_html__( 'Show All Comments', 'epoch' )
 		);
 
+		$nav .= '<div id="epoch-infinity-spinner" class="spinner" aria-hidden="true"></div>';
+
 		return $nav;
 
 	}

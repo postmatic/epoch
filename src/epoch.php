@@ -110,6 +110,7 @@ class epoch {
 	 * @since 2.0.0
 	 */
 	public function front_assets(){
+		wp_register_script( $this->plugin_slug . '-endless-scroll', EPOCH_URL . 'assets/js/endless-scroll.js', array( 'jquery' )  );
 		wp_register_style( $this->plugin_slug, EPOCH_URL . 'assets/css/epoch.css' );
 		wp_register_script( $this->plugin_slug, EPOCH_URL . 'assets/js/epoch.js', array( 'jquery', 'underscore' ), EPOCH_VERSION  );
 		$post = get_post();
@@ -123,6 +124,10 @@ class epoch {
 		wp_enqueue_style( $this->plugin_slug );
 		wp_enqueue_script( $this->plugin_slug );
 		wp_localize_script( $this->plugin_slug, 'EpochFront', $vars );
+		$options = $this->get_options();
+		if( $options[ 'infinity_scroll' ] ){
+			wp_enqueue_script(  $this->plugin_slug . '-endless-scroll' );
+		}
 	}
 
 	/**

@@ -26,6 +26,15 @@ class comments {
 	protected $count;
 
 	/**
+	 * Total number of pages
+	 *
+	 * @since 2.0.0
+	 *
+	 * @var int
+	 */
+	protected $pages;
+
+	/**
 	 * Create routes
 	 *
 	 * @since 2.0.0
@@ -86,15 +95,19 @@ class comments {
 	public function get_item( \WP_REST_Request $request ){
 		$post_id = $request[ 'id'];
 		$page = $request[ 'page' ];
+		$options = epoch::get_instance()->get_options();
+
 		$comments = \postmatic\epoch\two\comments::get_comments( $post_id, $request[ 'page' ]  );
 		$this->count = \postmatic\epoch\two\comments::get_comment_count( $request[ 'id'] );
+		$this->pages = ceil( $this->count / $options[ 'per_page' ] );
 
 		ob_start();
 		include EPOCH_DIR . '/assets/templates/comment-list.php';
 		$template = ob_get_clean();
 
 		$response = new \WP_REST_Response( array( 'template' => $template ) );
-		$response->header( 'X-WP-EPOCH-TOTAL-COMMENTS', $this->count  );
+		$response->header( 'X-WP-EPOCH-TOTAL-COMMENTS', (int) $this->count  );
+		$response->header( 'X-WP-EPOCH-TOTAL-PAGES', (int) $this->pages  );
 		$response->header( 'X-WP-EPOCH-NEXT', $this->page_link( $post_id, $page + 1 ) );
 		$response->header( 'X-WP-EPOCH-PREVIOUS', $this->page_link( $post_id, $page - 1 ) );
 		$response->header( 'X-WP-EPOCH-VERSION', EPOCH_VERSION );
@@ -137,11 +150,11 @@ class comments {
 	 * @return int|string Link if there is a next/previous page 0 if not.
 	 */
 	protected function page_link( $post_id, $page ){
-		if( 0 == $page || $page > $this->count ){
+		if( 0 == $page || $page > $this->pages ){
 			return 0;
 		}
 
-		return epoch::get_instance()->comment_api_link( $post_id, $page );
+		return esc_url_raw( epoch::get_instance()->comment_api_link( $post_id, $page ) );
 	}
 
 

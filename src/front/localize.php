@@ -62,10 +62,7 @@ class localize {
 			'author_url_link_title' => esc_html__( 'Link to comment author\'s website', 'epoch' ),
 			'is_required'           => esc_html__( 'is required', 'epoch' ),
 			'pending'               => esc_html__( 'Comment Pending', 'epoch' ),
-			'comment_rejected'      => esc_html__(
-				'Your comment was not accepted, please check that everything is filled out correctly.',
-				'epoch'
-			),
+			'comment_rejected'      => esc_html__( 'Your comment was not accepted, please check that everything is filled out correctly.', 'epoch' ),
 		);
 	}
 
@@ -77,6 +74,7 @@ class localize {
 	 * @return array
 	 */
 	protected function data() {
+		$options = epoch::get_instance()->get_options();
 
 		$data = array(
 			'post'          => $this->post->ID,
@@ -85,7 +83,8 @@ class localize {
 			'first_url'     => esc_url_raw( epoch::get_instance()->comment_api_link( $this->post->ID, 1 ) ),
 			'_wpnonce'      => wp_create_nonce( 'wp_rest' ),
 			'user_email'    => 0,
-			'nonce'         => epoch::get_instance()->get_epoch_nonce()
+			'nonce'         => epoch::get_instance()->get_epoch_nonce(),
+			'infinity'      => $options[ 'infinity_scroll' ],
 		);
 
 		if ( 0 !== get_current_user_id() ) {
