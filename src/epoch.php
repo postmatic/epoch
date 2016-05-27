@@ -194,7 +194,7 @@ class epoch {
 	 */
 	protected function default_options(){
 		return array(
-			'per_page' => 10,
+			'per_page' => 25,
 			'order' => 'ASC',
 			'before_text' => esc_html__( 'Join The Conversation', 'epoch' ),
 			'infinity_scroll' => false
