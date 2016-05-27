@@ -51,8 +51,9 @@ if ( 'ASC' == $options['order'] && $comment_count > 3  ) {
 	);
 } else {
 	$comment_count_area = sprintf(
-		'<h3 class="comment-count-area">%s</h3>',
-		$comment_count_message
+		'<h3 class="comment-count-area">%s <a href="#reply-title">%s</a></h3>',
+		$comment_count_message,
+		esc_html(  $options[ 'before_text' ] )
 	);
 }
 
