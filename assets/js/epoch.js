@@ -75,6 +75,7 @@ function Epoch( $, EpochFront ) {
         var url = EpochFront.api + '/comments/threaded/' + id + '?nonce=' + EpochFront.nonce + '&_wpnonce=' + EpochFront._wpnonce;
         $.when( this.api( url ) ).then( function ( r ) {
             areaEl.innerHTML = r.template;
+            jQuery( 'body' ).triggerHandler( 'epoch.comments.loaded', [ post, page ] );
             self.addFocus( id );
             self.hide( $( '#epoch-navigation' ) );
             self.show( $( '#epoch-load-all' ) );
@@ -252,6 +253,8 @@ function Epoch( $, EpochFront ) {
                 data.author_email = encodeURI( data.author_email );
 
                 $.post( EpochFront.comments_core, data ).done( function ( r, textStatus, rObj ) {
+                    $( 'body' ).triggerHandler( 'epoch.comment.posted', [ post, r.id ] );
+
                     total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-COMMENTS' );
                     $( '#epoch-count' ).html( total );
                     $form[ 0 ].reset();
