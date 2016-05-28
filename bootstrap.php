@@ -77,6 +77,10 @@ add_filter( 'rest_pre_insert_comment', function ( $prepared_comment, $request ) 
 			$ip = $_SERVER['REMOTE_ADDR'];
 		}
 
+		if ( isset( $_SERVER['HTTP_USER_AGENT']	 ) ) {
+			$prepared_comment[ 'comment_agent' ] = $_SERVER['HTTP_USER_AGENT'];
+		}
+
 		$prepared_comment[ 'comment_author_IP' ] = $ip;
 
 	}
