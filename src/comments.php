@@ -46,17 +46,26 @@ class comments {
 	 *
 	 * @param int $post_id
 	 * @param int $page
+	 * @param int|bool $number Optional. Number of comments to get, default is the per_page option.
+	 * @param int|bool $offset Optional. Offset for comment query. If false it will be calculated based on page.
 	 *
 	 * @return array|int
 	 */
-	public static function get_comments( $post_id, $page ){
+	public static function get_comments( $post_id, $page, $number = false, $offset = false ){
 		$options = epoch::get_instance()->get_options();
-
 		$per_page = $options[ 'per_page' ];
-		$offset = $per_page * ( $page -1 );
+
+		if( ! is_numeric( $number ) ){
+			$number = $per_page;
+		}
+
+		if( ! is_numeric( $offset ) ){
+			$offset = $per_page * ( $page -1 );
+		}
+		
 		$comments = get_comments( [
 			'post_id' => $post_id,
-			'number'  => $per_page,
+			'number'  => $number,
 			'offset'  => $offset
 		] );
 

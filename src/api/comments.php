@@ -52,6 +52,10 @@ class comments {
 					'type' => 'integer',
 					'default' => 1,
 					'validation_callback' => 'absint'
+				],
+				'all' => [
+					'type' => 'string',
+					'default' => false,
 				]
 			),
 		) );
@@ -96,9 +100,16 @@ class comments {
 		$post_id = $request[ 'id'];
 		$page = $request[ 'page' ];
 		$options = epoch::get_instance()->get_options();
-
-		$comments = \postmatic\epoch\two\comments::get_comments( $post_id, $request[ 'page' ]  );
 		$this->count = \postmatic\epoch\two\comments::get_comment_count( $request[ 'id'] );
+
+		if( true ==  $request[ 'all' ] ){
+			$comments = \postmatic\epoch\two\comments::get_comments( $post_id, $request[ 'page' ], $this->count, 0  );
+		}else{
+			$comments = \postmatic\epoch\two\comments::get_comments( $post_id, $request[ 'page' ]  );
+		}
+
+
+
 		$this->pages = ceil( $this->count / $options[ 'per_page' ] );
 
 		ob_start();

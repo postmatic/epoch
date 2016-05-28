@@ -258,7 +258,13 @@ function Epoch( $, EpochFront ) {
                     total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-COMMENTS' );
                     $( '#epoch-count' ).html( total );
                     $form[ 0 ].reset();
-                    $.when( self.getComments( lastURL ) ).done( function () {
+                    var url;
+                    if ( EpochFront.infinity ) {
+                        url = EpochFront.first_url + '&all=true';
+                    }else{
+                        url = lastURL;
+                    }
+                    $.when( self.getComments( url ) ).done( function () {
 
                         self.scrollTo( 'comment-' + r.id );
                         self.addFocus( r.id );
