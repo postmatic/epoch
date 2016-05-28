@@ -1,13 +1,7 @@
 /* globals jQuery, EpochFront */
 jQuery( document ).ready( function ( $ ) {
-
-
-
     var epoch = new Epoch( $, EpochFront );
     epoch.init();
-
-
-
 } );
 
 
