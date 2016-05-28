@@ -1,7 +1,13 @@
 /* globals jQuery, EpochFront */
 jQuery( document ).ready( function ( $ ) {
+
+
+
     var epoch = new Epoch( $, EpochFront );
     epoch.init();
+
+
+
 } );
 
 
@@ -43,6 +49,42 @@ function Epoch( $, EpochFront ) {
             self.setupForm();
         }
 
+        var $body = $( 'body' );
+
+        /**
+         * Add our event handlers for post comment focusing/scrolling after new comment
+         *
+         * @since 2.0.0
+         */
+        function mainScrollFocus( $body ) {
+
+            $body.on( 'epoch.two.comment.posted', function ( e ) {
+
+                var commentID = e.comment_id;
+                $body.on( 'epoch.two.comments.loaded', function ( e ) {
+                    self.addFocus( commentID );
+                    self.scrollTo( 'comment-' + commentID );
+                } );
+
+            } );
+        };
+
+        /**
+         * Add our event handlers for post comment focusing/scrolling after laoding a thread
+         *
+         * @since 2.0.0
+         */
+        function threadScrollFocus(  $body ) {
+            $body.on( 'epoch.two.commentsThread.loaded', function (  e ) {
+                var commentID = e.focus;
+                self.addFocus( commentID );
+                self.scrollTo( 'comment-' + commentID );
+            });
+        };
+
+
+        mainScrollFocus( $body );
+        threadScrollFocus( $body );
 
     };
 
@@ -75,7 +117,11 @@ function Epoch( $, EpochFront ) {
         var url = EpochFront.api + '/comments/threaded/' + id + '?nonce=' + EpochFront.nonce + '&_wpnonce=' + EpochFront._wpnonce;
         $.when( this.api( url ) ).then( function ( r ) {
             areaEl.innerHTML = r.template;
-            self.addFocus( id );
+            $( 'body' ).triggerHandler({
+                type:"epoch.two.commentsThread.loaded",
+                focus: id
+            });
+
             self.hide( $( '#epoch-navigation' ) );
             self.show( $( '#epoch-load-all' ) );
             $( '#epoch-load-all a' ).on( 'click', function ( e ) {
@@ -272,7 +318,7 @@ function Epoch( $, EpochFront ) {
                     }else{
                         url = lastURL;
                     }
-                    
+
                     $( 'body' ).triggerHandler({
                         type:"epoch.two.comment.posted",
                         page: page,
@@ -283,8 +329,7 @@ function Epoch( $, EpochFront ) {
 
                     $.when( self.getComments( url ) ).done( function () {
 
-                        self.scrollTo( 'comment-' + r.id );
-                        self.addFocus( r.id );
+
                     } );
 
                 } ).error( function ( error ) {
