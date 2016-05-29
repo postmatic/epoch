@@ -78,7 +78,7 @@ add_filter( 'rest_pre_insert_comment', function ( $prepared_comment, $request ) 
 		}
 
 		if ( isset( $_SERVER['HTTP_USER_AGENT']	 ) ) {
-			$prepared_comment[ 'comment_agent' ] = $_SERVER['HTTP_USER_AGENT'];
+			$prepared_comment[ 'comment_agent' ] = sanitize_text_field( $_SERVER['HTTP_USER_AGENT'] );
 		}
 
 		$prepared_comment[ 'comment_author_IP' ] = $ip;
