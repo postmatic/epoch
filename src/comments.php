@@ -69,6 +69,10 @@ class comments {
 			'offset'  => $offset
 		] );
 
+		if( ! current_user_can( 'moderate_comments' ) ){
+			$comments[ 'status' ] = 'approve';
+		}
+
 		return $comments;
 
 	}
