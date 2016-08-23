@@ -110,7 +110,7 @@ class epoch {
 	 * @since 2.0.0
 	 */
 	public function front_assets(){
-		wp_register_style( $this->plugin_slug, EPOCH_URL . 'assets/css/epoch.css' );
+		wp_register_style( $this->plugin_slug, EPOCH_URL . 'assets/css/epoch.css', array(), EPOCH_VERSION  );
 		wp_register_script( $this->plugin_slug, EPOCH_URL . 'assets/js/epoch.js', array( 'jquery', 'underscore' ), EPOCH_VERSION  );
 		$post = get_post();
 		if( ! is_object( $post ) ){
