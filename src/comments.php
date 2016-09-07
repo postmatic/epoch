@@ -62,16 +62,24 @@ class comments {
 		if( ! is_numeric( $offset ) ){
 			$offset = $per_page * ( $page -1 );
 		}
-		
-		$comments = get_comments( [
-			'post_id' => $post_id,
-			'number'  => $number,
-			'offset'  => $offset
-		] );
 
-		if( ! current_user_can( 'moderate_comments' ) ){
-			$comments[ 'status' ] = 'approve';
-		}
+		$args = [
+            'post_id' => $post_id,
+            'number'  => $number,
+            'offset'  => $offset
+        ];
+
+        if( ! current_user_can( 'moderate_comments' ) ){
+            $args[ 'status' ] = 'approve';
+            $args[ 'include_unapproved' ] = false;
+        }else{
+            $args[ 'include_unapproved' ] = true;
+        }
+		
+		$comments = get_comments( $args );
+
+
+
 
 		return $comments;
 
