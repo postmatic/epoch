@@ -8,7 +8,7 @@ Plugin Version 2.0.0-a-2
 define( 'EPOCH_SLUG', plugin_basename( __FILE__ ) );
 define( 'EPOCH_URL', plugin_dir_url( __FILE__ ) );
 define( 'EPOCH_DIR', plugin_dir_path( __FILE__ ) );
-define( 'EPOCH_VERSION', '2.0.0-a-2' );
+define( 'EPOCH_VERSION', '2.0.0-a-3' );
 
 add_action( 'plugins_loaded', 'epoch_two' );
 
@@ -38,7 +38,7 @@ function epoch_two() {
 		}
 
 		if( ! $api_check ){
-			$messages[] = __( 'The REST API plugin.', 'epoch' );
+			$messages[] = __( 'The REST API plugin version 2.0-beta13 or later.', 'epoch' );
 		}
 
 		global $epoch_fail;
