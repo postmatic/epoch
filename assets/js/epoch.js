@@ -1,7 +1,10 @@
 /* globals jQuery, EpochFront */
 jQuery( document ).ready( function ( $ ) {
-    var epoch = new Epoch( $, EpochFront );
-    epoch.init();
+    if( null != document.getElementById( 'epoch-comments' ) ) {
+        var epoch = new Epoch( $, EpochFront );
+        epoch.init();
+    }
+
 } );
 
 
