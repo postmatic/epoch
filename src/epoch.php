@@ -96,7 +96,7 @@ class epoch {
 			add_action( 'wp_ajax_epoch_settings', array( $save, 'save_settings' ) );
 		}else{
 			add_filter( 'comments_template', array( $this, 'initial' ), 100 );
-			add_action( 'wp_enqueue_scripts', array( $this, 'front_assets'  ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'front_assets'  ), 901 );
 		}
 		
 		
