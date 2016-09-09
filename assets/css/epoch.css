@@ -7,13 +7,12 @@
     text-align: center !important;
 }
 
-#epoch-wrap ul, #epoch-wrap ol, #epoch-wrap li, #epoch-wrap div, #epoch-wrap article, #epoch-wrap footer, #epoch-wrap img, #epoch-wrap cite, #epoch-wrap b, #epoch-wrap input[type=text], #epoch-wrap input[type=email], #epoch-wrap input[type=url]   {
+#epoch-wrap ul, #epoch-wrap ol, #epoch-wrap li, #epoch-wrap div, #epoch-wrap article, #epoch-wrap footer, #epoch-wrap img, #epoch-wrap cite, #epoch-wrap b, #epoch-wrap input[type=text], #epoch-wrap input[type=email], #epoch-wrap input[type=url], #epoch-wrap p   {
     all:unset;
-}
-
-#epoch-wrap div, #epoch-wrap footer {
     display: block;
 }
+
+
 
 @keyframes yellowfade {
     from { background: yellow; }
@@ -32,12 +31,11 @@
 /*grid*/
 
 #epoch-wrap ol.comment-list li.comment {
-    margin: 35px 0;
-    display: block;
+
 }
 
 #epoch-wrap ol.comment-list li.comment li {
-    margin-left: 70px;
+    margin-left: 65px;
 }
 
 #epoch-wrap article {
@@ -57,6 +55,10 @@
     text-decoration: none;
 }
 
+#epoch-wrap b {
+    display: inline;
+}
+
 #epoch-wrap b:after {
     content: " ·";
     font-weight: bold;
@@ -74,6 +76,7 @@
 
 #epoch-wrap .comment-author a {
     text-decoration: none;
+    font-weight: bold;
 }
 
 #epoch-wrap .comment-author img {
@@ -87,11 +90,35 @@
 }
 
 /*comment content*/
+#epoch-wrap .comment-content {
+    clear: left;
+    border: 1px solid blue;
+    position: relative;
+    top: -20px;
+}
+
+#epoch-wrap .comment-body p {
+    margin-bottom: 15px;
+}
 
 #epoch-wrap .comment-body p, #epoch-wrap .reply {
     display: block;
     margin-left: 63px;
-    font-size: 100%;
+}
+
+#epoch-wrap .reply {
+    position: relative;
+    top: -20px;
+}
+
+#epoch-wrap .reply a {
+    padding: unset;
+    margin: unset;
+    border: unset;
+    position: unset;
+    font: unset;
+    text-decoration: none;
+    font-size: 90%;
 }
 
 #epoch-wrap .comment-content p:last-child {
@@ -103,50 +130,12 @@
 /*}*/
 
 
-#epoch-wrap .comment-content {
-    clear: left;
-    top: -20px;
-    position: relative;
-}
-
-
-#epoch-wrap .comment-count-area a {
-	float: right !important; 
-	display: block !important;
-	font-size: 75% !important;
-	text-decoration: underline !important; 
-}
-
-#epoch-wrap a.comment-reply-link { 
-	background: none !important;
-	border: none !important;
-	color: gray !important;
-	padding: 0 !important; 
-	font-size: 100% !important; 
-	float: none !important;
-	margin: 0 !important;
-	line-height: normal !important; 
-	display: inline !important;
-} 
-
-#epoch-wrap .epoch-comment-author-avatar img {
-	width: 48px !important; 
-	height: 48px !important; 
-	-webkit-border-radius: 4px !important;
-	-moz-border-radius: 4px !important;
-	border-radius: 4px !important;
-	float: left !important;
-	margin-right: 12px !important; 
-	padding: 0 !important;
-	border: none !important;
-}
-
-#epoch-wrap .epoch-child .epoch-comment-author-avatar img {
+#epoch-wrap ol.children .epoch-comment-author-avatar img {
 	width: 42px !important;
 	height: 42px !important;
 }
 
-#epoch-wrap .epoch-child div.epoch-comment-content, .epoch-child ul.epoch-comment-actions {
+#epoch-wrap ol.children div.comment-body, ol.children .reply {
 	margin-left: 55px !important;
 }
 
@@ -177,10 +166,6 @@
 
 #epoch-wrap div.epoch-comment-content p {
 	margin-bottom: 10px !important;
-}
-
-#epoch-wrap div.epoch-comment-content p:last-child {
-	margin-bottom: 0 !important;
 }
 
 #epoch-wrap article.epoch-comment-body {
