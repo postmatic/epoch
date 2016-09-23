@@ -127,7 +127,6 @@ function Epoch( $, EpochFront ) {
             prevURL = r.prev;
             areaEl.innerHTML = r.template;
             self.hideShowNav();
-
         } );
 
     };
@@ -170,36 +169,25 @@ function Epoch( $, EpochFront ) {
     this.api = function ( url ) {
         var key = 'epoch-cache' + url;
         var pages;
-        var local = localStorage.getItem( key );
         url += '&epoch=true';
 
-        if ( !_.isString( local ) || "null" == local ) {
-            return $.get( url ).then( function ( r, textStatus, rObj ) {
-                localStorage.setItem( key, JSON.stringify( r ) );
-                r.prev = rObj.getResponseHeader( 'X-WP-EPOCH-PREVIOUS' );
-                r.next = rObj.getResponseHeader( 'X-WP-EPOCH-NEXT' );
-                pages = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-PAGES' );
-                total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-COMMENTS' );
-                total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-COMMENTS' );
-                $( '#epoch-count' ).html( total );
-                $( 'body' ).triggerHandler({
-                    type:"epoch.two.comments.loaded",
-                    page: page,
-                    post: post
-                });
+        return $.get( url ).then( function ( r, textStatus, rObj ) {
 
-                return r;
-            } );
-
-        } else {
+            r.prev = rObj.getResponseHeader( 'X-WP-EPOCH-PREVIOUS' );
+            r.next = rObj.getResponseHeader( 'X-WP-EPOCH-NEXT' );
+            pages = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-PAGES' );
+            total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-COMMENTS' );
+            total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-COMMENTS' );
+            $( '#epoch-count' ).html( total );
             $( 'body' ).triggerHandler({
                 type:"epoch.two.comments.loaded",
                 page: page,
                 post: post
             });
-            return JSON.parse( local );
 
-        }
+            return r;
+        } );
+
 
     };
 

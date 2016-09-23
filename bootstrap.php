@@ -158,9 +158,13 @@ add_filter( 'rest_post_dispatch', function( $response, $wp_rest_server, $request
 
 }, 10, 3 );
 
-
+/**
+ * Filter comment class for .bypostauthor during Epoch's API requests
+ *
+ * @since 2.0.0
+ */
 add_filter( 'comment_class', function( $classes, $class, $comment_ID, $comment, $post_id ){
-	if( get_current_user_id() == $comment->user_id ){
+	if( isset( $_GET[ 'epoch' ] ) && get_current_user_id() == $comment->user_id ){
 		$classes[] = 'bypostauthor';
 	}
 
