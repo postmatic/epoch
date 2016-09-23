@@ -5,6 +5,34 @@ jQuery( document ).ready( function ( $ ) {
         epoch.init();
     }
 
+    $.fn.EpochserializeObject = function() {
+        var arrayData, objectData;
+        arrayData = this.serializeArray();
+        objectData = {};
+
+        $.each(arrayData, function() {
+            var value;
+
+            if (this.value != null) {
+                value = this.value;
+            } else {
+                value = '';
+            }
+
+            if (objectData[this.name] != null) {
+                if (!objectData[this.name].push) {
+                    objectData[this.name] = [objectData[this.name]];
+                }
+
+                objectData[this.name].push(value);
+            } else {
+                objectData[this.name] = value;
+            }
+        });
+
+        return objectData;
+    };
+
 } );
 
 
@@ -249,6 +277,9 @@ function Epoch( $, EpochFront ) {
             var fail = false;
             var fails = [];
 
+
+
+
             $form.find( 'select, textarea, input' ).each( function () {
                 if ( !$( this ).prop( 'required' ) ) {
 
@@ -272,37 +303,22 @@ function Epoch( $, EpochFront ) {
                     } );
                 }
             } else {
-                var data = {
-                    content: $( '#comment' ).val(),
-                    post: EpochFront.post,
-                    author_name: '',
-                    author_email: '',
-                    author_url: '',
-                    epoch: true,
-                    parent: $( '#comment_parent' ).val(),
-                    _wpnonce: EpochFront._wpnonce
-                };
+                var data = $form.EpochserializeObject();
 
-                var authorEL = document.getElementById( 'author' );
-                if ( null !== authorEL ) {
-                    data.author_name = $( authorEL ).val();
-                }
 
-                var emailEl = document.getElementById( 'email' );
-                if ( null !== emailEl ) {
-                    data.author_email = $( emailEl ).val();
-                }
-
-                var urlEl = document.getElementById( 'url' );
-                if ( null !== urlEl ) {
-                    data.author_url = $( urlEl ).val();
-                }
-
+                data.author_name = data.author;
+                data.author_url  = data.url;
+                data.post = data.comment_post_ID;
+                data.parent = data.comment_parent;
+                data.content = data.comment;
                 if ( 0 != EpochFront.user_email ) {
-                    data.author_email = EpochFront.user_email
+                    data.author_email = EpochFront.user_email;
+                }else{
+                    data.author_email = data.email;
                 }
 
                 data.author_email = encodeURI( data.author_email );
+                delete data.author;
 
                 $.post( EpochFront.comments_core, data ).done( function ( r, textStatus, rObj ) {
 
@@ -434,3 +450,6 @@ function Epoch( $, EpochFront ) {
     };
 
 }
+
+
+
