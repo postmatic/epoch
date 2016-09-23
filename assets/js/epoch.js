@@ -140,9 +140,9 @@ function Epoch( $, EpochFront ) {
      */
     this.api = function ( url ) {
         var key = 'epoch-cache' + url;
+        var pages;
+        var local = localStorage.getItem( key );
 
-        //var local = localStorage.getItem( key );
-        var local = false;
         if ( !_.isString( local ) || "null" == local ) {
             return $.get( url ).then( function ( r, textStatus, rObj ) {
                 //localStorage.setItem( key, JSON.stringify( r ) );
