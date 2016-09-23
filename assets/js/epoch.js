@@ -127,6 +127,7 @@ function Epoch( $, EpochFront ) {
             prevURL = r.prev;
             areaEl.innerHTML = r.template;
             self.hideShowNav();
+
         } );
 
     };
@@ -170,10 +171,11 @@ function Epoch( $, EpochFront ) {
         var key = 'epoch-cache' + url;
         var pages;
         var local = localStorage.getItem( key );
+        url += '&epoch=true';
 
         if ( !_.isString( local ) || "null" == local ) {
             return $.get( url ).then( function ( r, textStatus, rObj ) {
-                //localStorage.setItem( key, JSON.stringify( r ) );
+                localStorage.setItem( key, JSON.stringify( r ) );
                 r.prev = rObj.getResponseHeader( 'X-WP-EPOCH-PREVIOUS' );
                 r.next = rObj.getResponseHeader( 'X-WP-EPOCH-NEXT' );
                 pages = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-PAGES' );
