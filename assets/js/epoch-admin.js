@@ -7,7 +7,7 @@ jQuery( document ).ready( function ( $ ) {
         var $spinner = $( '#epoch-spinner');
         $spinner.attr( 'aria-hidden', false ).show().css( 'visibility', 'visible' );
         var infinity = document.getElementById('epoch-infinity_scroll').checked;
-        
+        $( '.epoch-settings-indicator' ).hide().css( 'visibility', 'hidden' ).attr( 'aria-hidden', true );
         var data = {
             order: $( '#epoch-order' ).val(),
             per_page: $( '#epoch-per_page' ).val(),
@@ -18,9 +18,9 @@ jQuery( document ).ready( function ( $ ) {
             action: "epoch_settings"
         };
         $.post( ajaxurl, data ).done( function () {
-           alert( EpochAdmin.saved );
+            $( '#epoch-saved-good' ).attr( 'aria-hidden', false ).show().css( 'visibility', 'visible' );
         }).error( function () {
-            alert( EpochAdmin.error );
+            $( '#epoch-saved-bad' ).attr( 'aria-hidden', false ).show().css( 'visibility', 'visible' );
         }).always( function () {
             $spinner.attr( 'aria-hidden', true ).hide().css( 'visibility', 'hidden' );
         })

@@ -33,6 +33,7 @@ class save extends settings {
 				}
 			}
 		}
+
 		status_header( 201 );
 		echo update_option( $this->option_key,  $data );
 		exit;

@@ -14,7 +14,17 @@ $options = epoch::get_instance()->get_options();
 ?>
 <div id="epoch-admin">
 	<div id="epoch-admin-header">
-		HEADER
+		HEADER - Hi Jason:)
+	</div>
+	<div id="epoch-saved-good" class="epoch-settings-indicator" style="display: none;visibility: hidden;" aria-hidden="true">
+		<p class="notice notice-success">
+			<?php esc_html_e( 'Settings Saved Successfully', 'epoch' ); ?>
+		</p>
+	</div>
+	<div id="epoch-saved-bad" class="epoch-settings-indicator" style="display: none;visibility: hidden;" aria-hidden="true">
+		<p class="notice notice-error">
+			<?php esc_html_e( 'Settings Could Not Be Saved.', 'epoch' ); ?>
+		</p>
 	</div>
 	<form id="epoch-admin-settings">
 		<div class="epoch-field-group">
