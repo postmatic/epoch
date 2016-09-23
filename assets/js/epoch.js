@@ -319,7 +319,8 @@ function Epoch( $, EpochFront ) {
 
                 data.author_email = encodeURI( data.author_email );
                 delete data.author;
-
+                data.epoch = true;
+                data._wpnonce = EpochFront._wpnonce;
                 $.post( EpochFront.comments_core, data ).done( function ( r, textStatus, rObj ) {
 
                     total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-COMMENTS' );
