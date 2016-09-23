@@ -122,7 +122,7 @@ function Epoch( $, EpochFront ) {
      */
     this.getComments = function ( url ) {
         lastURL = url;
-        $.when( this.api( url ) ).then( function ( r ) {
+        return $.when( this.api( url ) ).then( function ( r ) {
             nextURL = r.next;
             prevURL = r.prev;
             areaEl.innerHTML = r.template;
@@ -342,8 +342,8 @@ function Epoch( $, EpochFront ) {
                     });
 
                     $.when( self.getComments( url ) ).done( function () {
-
-
+                        self.addFocus( r.id );
+                        self.scrollTo( 'comment-' + r.id );
                     } );
 
                 } ).error( function ( error ) {
