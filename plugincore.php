@@ -38,11 +38,11 @@ function epoch_two() {
 		}
 
 		if( ! $api_check ){
-			$messages[] = __( 'The REST API plugin version 2.0-beta13 or later.', 'epoch' );
+			$messages[] = __( 'the WordPress REST API plugin. You can download it from the Plugins menu.', 'epoch' );
 		}
 
 		global $epoch_fail;
-		$epoch_fail = __( 'Epoch version 2 requires ', 'epoch' ) . implode( ' and ', $messages  );
+		$epoch_fail = __( 'Heads up! Epoch requires ', 'epoch' ) . implode( ' and ', $messages  );
 		add_action( 'admin_notices', 'epoch_fail_notice' );
 
 
