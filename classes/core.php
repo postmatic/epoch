@@ -189,14 +189,14 @@ class core {
 		
 		if( false !== strpos( $screen->base, 'epoch' ) ){
 
-			wp_enqueue_style( 'epoch-core-style', EPOCH_URL . '/assets/css/styles.css' );
+			wp_enqueue_style( 'epoch-core-style', EPOCH_URL . 'assets/css/styles.css' );
 			wp_enqueue_style( 'epoch-baldrick-modals' );
 			wp_enqueue_script( 'epoch-wp-baldrick' );
 			wp_enqueue_script( 'jquery-ui-autocomplete' );
 			wp_enqueue_script( 'jquery-ui-sortable' );
-			wp_enqueue_style( 'epoch-codemirror-style', EPOCH_URL . '/assets/css/codemirror.css' );
-			wp_enqueue_script( 'epoch-codemirror-script', EPOCH_URL . '/assets/js/codemirror.js', array( 'jquery' ) , false );
-			wp_enqueue_script( 'epoch-core-script', EPOCH_URL . '/assets/js/scripts.js', array( 'epoch-wp-baldrick' ) , false );
+			wp_enqueue_style( 'epoch-codemirror-style', EPOCH_URL . 'assets/css/codemirror.css' );
+			wp_enqueue_script( 'epoch-codemirror-script', EPOCH_URL . 'assets/js/codemirror.js', array( 'jquery' ) , false );
+			wp_enqueue_script( 'epoch-core-script', EPOCH_URL . 'assets/js/scripts.js', array( 'epoch-wp-baldrick' ) , false );
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_script( 'wp-color-picker' );			
 		
@@ -236,21 +236,21 @@ class core {
 		wp_enqueue_script( 'visibility', '//cdnjs.cloudflare.com/ajax/libs/visibility.js/1.2.1/visibility.min.js', array('jquery'), $version, true );
 
 		//handlebars
-		wp_enqueue_script( 'epoch-handlebars', EPOCH_URL . "/assets/js/front/handlebars.js", array('jquery'), $version, true );
+		wp_enqueue_script( 'epoch-handlebars', EPOCH_URL . "assets/js/front/handlebars.js", array('jquery'), $version, true );
 
 		//load unminified if !SCRIPT_DEBUG
 		if ( ! $min ) {
 			//our handlebars helpers
-			wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . '/assets/js/front/helpers.js', array( 'epoch-handlebars' ), $version, true  );
+			wp_enqueue_script( 'epoch-handlebars-helpers', EPOCH_URL . 'assets/js/front/helpers.js', array( 'epoch-handlebars' ), $version, true  );
 
 			//main script
-			wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch.js", array( 'jquery', 'visibility' ), $version, true );
+			wp_enqueue_script( 'epoch', EPOCH_URL . "assets/js/front/epoch.js", array( 'jquery', 'visibility' ), $version, true );
 		}
 
 		//main scripts and styles
-		wp_enqueue_script( 'epoch', EPOCH_URL . "/assets/js/front/epoch{$suffix}.js", array( 'jquery', 'epoch-handlebars' ), $version, true );
+		wp_enqueue_script( 'epoch', EPOCH_URL . "assets/js/front/epoch{$suffix}.js", array( 'jquery', 'epoch-handlebars' ), $version, true );
 		if ( 'none' != $theme ) {
-			wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "/assets/css/front/{$theme}{$suffix}.css", $version, true  );
+			wp_enqueue_style( "epoch-{$theme}", EPOCH_URL . "assets/css/front/{$theme}{$suffix}.css", $version, true  );
 		}
 
 
@@ -386,8 +386,8 @@ class core {
 	 * @since 0.0.5
 	 */
 	public function register_common() {
-		wp_register_style( 'epoch-baldrick-modals', EPOCH_URL . '/assets/css/modals.css' );
-		wp_register_script( 'epoch-wp-baldrick', EPOCH_URL . '/assets/js/wp-baldrick-full.js', array( 'jquery' ) , false, true );
+		wp_register_style( 'epoch-baldrick-modals', EPOCH_URL . 'assets/css/modals.css' );
+		wp_register_script( 'epoch-wp-baldrick', EPOCH_URL . 'assets/js/wp-baldrick-full.js', array( 'jquery' ) , false, true );
 	}
 
 }
