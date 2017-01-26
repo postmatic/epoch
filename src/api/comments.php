@@ -54,7 +54,6 @@ class comments {
 					'validation_callback' => 'absint'
 				],
 				'all' => [
-					'type' => 'string',
 					'default' => false,
 				]
 			),
@@ -123,7 +122,7 @@ class comments {
 		$response->header( 'X-WP-EPOCH-PREVIOUS', $this->page_link( $post_id, $page - 1 ) );
 		$response->header( 'X-WP-EPOCH-VERSION', EPOCH_VERSION );
 		return $response;
-		
+
 	}
 
 	/**
