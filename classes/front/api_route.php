@@ -258,10 +258,11 @@ class api_route {
 
 			if ( $ref  ) {
 				$ref = parse_url( $ref );
+				$home_url = parse_url( home_url() );
 				if ( $ref[ 'host' ] == $_SERVER[ 'SERVER_NAME' ] ) {
 					return true;
 
-				}elseif( $ref[ 'host' ] == home_url() ) {
+				}elseif( $ref[ 'host' ] == $home_url[ 'host' ] ) {
 					return true;
 				}
 
