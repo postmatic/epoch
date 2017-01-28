@@ -12,22 +12,21 @@ namespace postmatic\epoch\two\admin;
 
 
 class save extends settings {
-	
-	
+
 	/**
 	 * Save the settings
 	 *
 	 * @since 2.0.0
 	 */
-	public function save_settings(){
-		if( ! $this->check() ){
+	public function save_settings() {
+		if ( ! $this->check() ) {
 			wp_die();
 		}
 
 		$data = array();
-		if( isset( $_POST ) && is_array( $_POST ) ){
-			foreach( $this->settings_keys as $key ){
-				if( isset( $_POST[ $key ] ) && is_scalar( $key ) ){
+		if ( isset( $_POST ) && is_array( $_POST ) ) {
+			foreach ( $this->settings_keys as $key ) {
+				if ( isset( $_POST[ $key ] ) && is_scalar( $key ) ) {
 					//Sanitation happens further down the stack :) Chill.
 					$data[ $key ] = $_POST[ $key ];
 				}
@@ -37,8 +36,6 @@ class save extends settings {
 		status_header( 201 );
 		echo update_option( $this->option_key,  $data );
 		exit;
-
-
 	}
 
 	/**
@@ -48,8 +45,8 @@ class save extends settings {
 	 *
 	 * @return bool
 	 */
-	public function check(){
-		if( ! current_user_can( 'manage_options' ) ){
+	public function check() {
+		if ( ! current_user_can( 'manage_options' ) ) {
 			status_header( 403 );
 			return  false;
 		}
@@ -61,7 +58,5 @@ class save extends settings {
 		}
 
 		return true;
-
 	}
-
 }

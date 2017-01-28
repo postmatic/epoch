@@ -31,7 +31,7 @@ class screen {
 	 */
 	public function __construct( $plugin_slug ) {
 		$this->plugin_slug = $plugin_slug;
-		
+
 	}
 
 	/**
@@ -41,7 +41,7 @@ class screen {
 	 *
 	 * @since 2.0.0
 	 */
-	public function add_screen(){
+	public function add_screen() {
 		add_options_page(
 			'Epoch by Postmatic',
 			'Epoch by Postmatic',
@@ -56,7 +56,7 @@ class screen {
 	 *
 	 * @since 2.0.0
 	 */
-	public function screen(){
+	public function screen() {
 		include EPOCH_DIR . 'assets/templates/admin-screen.php';
 	}
 
@@ -67,9 +67,9 @@ class screen {
 	 *
 	 * @since 2.0.0
 	 */
-	public function register_scripts(){
+	public function register_scripts() {
 		wp_register_style( $this->plugin_slug . '-admin', EPOCH_URL . 'assets/css/epoch-admin.css' );
-		wp_register_script( $this->plugin_slug . '-admin', EPOCH_URL . 'assets/js/epoch-admin.js', array( 'jquery', 'underscore' ), EPOCH_VERSION  );
+		wp_register_script( $this->plugin_slug . '-admin', EPOCH_URL . 'assets/js/epoch-admin.js', array( 'jquery', 'underscore' ), EPOCH_VERSION );
 
 	}
 
@@ -82,14 +82,14 @@ class screen {
 	 *
 	 * @param string $hook
 	 */
-	public function enqueue_scripts( $hook ){
+	public function enqueue_scripts( $hook ) {
 		if ( 'settings_page_epoch' == $hook ) {
 			wp_enqueue_style( $this->plugin_slug . '-admin', EPOCH_URL . 'assets/css/epoch-admin.css' );
 			wp_enqueue_script( $this->plugin_slug . '-admin', EPOCH_URL . 'assets/js/epoch-admin.js', array(
 				'jquery',
-				'underscore'
+				'underscore',
 			), EPOCH_VERSION );
-			wp_localize_script(  $this->plugin_slug . '-admin', 'EpochAdmin', $this->localize() );
+			wp_localize_script( $this->plugin_slug . '-admin', 'EpochAdmin', $this->localize() );
 		}
 	}
 
@@ -100,10 +100,10 @@ class screen {
 	 *
 	 * @return array
 	 */
-	protected function localize(){
+	protected function localize() {
 		return array(
 			'saved' => esc_html__( 'Settings Saved', 'epoch' ),
-			'error' => esc_html__( 'Settings Could Not Be Saved', 'epoch' )
+			'error' => esc_html__( 'Settings Could Not Be Saved', 'epoch' ),
 		);
 	}
 

@@ -1,6 +1,6 @@
 /* globals jQuery, EpochFront */
-jQuery( document ).ready( function ( $ ) {
-    if( null != document.getElementById( 'epoch-comments' ) ) {
+jQuery( document ).ready( function( $ ) {
+    if ( null != document.getElementById( 'epoch-comments' ) ) {
         var epoch = new Epoch( $, EpochFront );
         epoch.init();
     }
@@ -10,31 +10,29 @@ jQuery( document ).ready( function ( $ ) {
         arrayData = this.serializeArray();
         objectData = {};
 
-        $.each(arrayData, function() {
+        $.each( arrayData, function() {
             var value;
 
-            if (this.value != null) {
+            if ( this.value != null ) {
                 value = this.value;
             } else {
                 value = '';
             }
 
-            if (objectData[this.name] != null) {
-                if (!objectData[this.name].push) {
-                    objectData[this.name] = [objectData[this.name]];
+            if ( objectData[ this.name ] != null ) {
+                if ( ! objectData[ this.name ].push) {
+                    objectData[ this.name ] = [ objectData[ this.name ] ];
                 }
 
-                objectData[this.name].push(value);
+                objectData[ this.name ].push( value );
             } else {
-                objectData[this.name] = value;
+                objectData[ this.name ] = value;
             }
         });
 
         return objectData;
     };
-
 } );
-
 
 function Epoch( $, EpochFront ) {
     var self = this;
@@ -51,7 +49,7 @@ function Epoch( $, EpochFront ) {
      *
      * @since 2.0.0
      */
-    this.init = function () {
+    this.init = function() {
         areaEl = document.getElementById( 'epoch-comments' );
         post = EpochFront.post;
 
@@ -59,13 +57,13 @@ function Epoch( $, EpochFront ) {
             var hash = window.location.hash;
             var id = hash.replace( '#comment-', '' );
             self.show( $( '#epoch-load-all' ) );
-            $.when( self.getThread( id ) ).then( function () {
+            $.when( self.getThread( id ) ).then( function() {
                 if ( EpochFront.infinity ) {
                     self.infinityScroll();
                 }
             } );
         } else {
-            $.when( self.getComments( EpochFront.first_url ) ).then( function () {
+            $.when( self.getComments( EpochFront.first_url ) ).then( function() {
                 if ( EpochFront.infinity ) {
                     self.infinityScroll();
                 }
@@ -83,10 +81,10 @@ function Epoch( $, EpochFront ) {
          */
         function mainScrollFocus( $body ) {
 
-            $body.on( 'epoch.two.comment.posted', function ( e ) {
+            $body.on( 'epoch.two.comment.posted', function( e ) {
 
                 var commentID = e.comment_id;
-                $body.on( 'epoch.two.comments.loaded', function ( e ) {
+                $body.on( 'epoch.two.comments.loaded', function( e ) {
                     self.addFocus( commentID );
                     self.scrollTo( 'comment-' + commentID );
                 } );
@@ -100,13 +98,12 @@ function Epoch( $, EpochFront ) {
          * @since 2.0.0
          */
         function threadScrollFocus(  $body ) {
-            $body.on( 'epoch.two.commentsThread.loaded', function (  e ) {
+            $body.on( 'epoch.two.commentsThread.loaded', function(  e ) {
                 var commentID = e.focus;
                 self.addFocus( commentID );
                 self.scrollTo( 'comment-' + commentID );
             });
         };
-
 
         mainScrollFocus( $body );
         threadScrollFocus( $body );
@@ -120,9 +117,9 @@ function Epoch( $, EpochFront ) {
      *
      * @param url URL for request
      */
-    this.getComments = function ( url ) {
+    this.getComments = function( url ) {
         lastURL = url;
-        return $.when( this.api( url ) ).then( function ( r ) {
+        return $.when( this.api( url ) ).then( function( r ) {
             nextURL = r.next;
             prevURL = r.prev;
             areaEl.innerHTML = r.template;
@@ -138,25 +135,27 @@ function Epoch( $, EpochFront ) {
      *
      * @param id One comment ID in the thread
      */
-    this.getThread = function ( id ) {
+    this.getThread = function( id ) {
         var url = EpochFront.api + '/comments/threaded/' + id + '?nonce=' + EpochFront.nonce + '&_wpnonce=' + EpochFront._wpnonce;
-        $.when( this.api( url ) ).then( function ( r ) {
+
+        $.when( this.api( url ) ).then( function( r ) {
             areaEl.innerHTML = r.template;
+
             $( 'body' ).triggerHandler({
-                type:"epoch.two.commentsThread.loaded",
+                type: 'epoch.two.commentsThread.loaded',
                 focus: id
             });
 
             self.hide( $( '#epoch-navigation' ) );
             self.show( $( '#epoch-load-all' ) );
-            $( '#epoch-load-all a' ).on( 'click', function ( e ) {
+
+            $( '#epoch-load-all a' ).on( 'click', function( e ) {
                 e.preventDefault();
                 window.location.hash = '#epoch-commenting';
                 self.getComments( EpochFront.first_url );
-            } );
+            });
 
-
-        } );
+        });
     };
 
     /**
@@ -166,12 +165,12 @@ function Epoch( $, EpochFront ) {
      *
      * @param url URL for request
      */
-    this.api = function ( url ) {
+    this.api = function( url ) {
         var key = 'epoch-cache' + url;
         var pages;
         url += '&epoch=true';
 
-        return $.get( url ).then( function ( r, textStatus, rObj ) {
+        return $.get( url ).then( function( r, textStatus, rObj ) {
 
             r.prev = rObj.getResponseHeader( 'X-WP-EPOCH-PREVIOUS' );
             r.next = rObj.getResponseHeader( 'X-WP-EPOCH-NEXT' );
@@ -180,14 +179,13 @@ function Epoch( $, EpochFront ) {
             total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-COMMENTS' );
             $( '#epoch-count' ).html( total );
             $( 'body' ).triggerHandler({
-                type:"epoch.two.comments.loaded",
+                type: 'epoch.two.comments.loaded',
                 page: page,
                 post: post
             });
 
             return r;
         } );
-
 
     };
 
@@ -196,18 +194,18 @@ function Epoch( $, EpochFront ) {
      *
      * @since 2.0.0
      */
-    this.setupNav = function () {
-        $( '#epoch-prev' ).on( 'click', function ( e ) {
+    this.setupNav = function() {
+        $( '#epoch-prev' ).on( 'click', function( e ) {
             e.preventDefault();
             page--;
-            $.when( self.getComments( prevURL ) ).then( function () {
+            $.when( self.getComments( prevURL ) ).then( function() {
                 self.scrollTo( 'epoch-wrap' );
             } );
         } );
-        $( '#epoch-next' ).on( 'click', function ( e ) {
+        $( '#epoch-next' ).on( 'click', function( e ) {
             e.preventDefault();
             page++;
-            $.when( self.getComments( nextURL ) ).then( function () {
+            $.when( self.getComments( nextURL ) ).then( function() {
                 self.scrollTo( 'epoch-wrap' );
             } );
 
@@ -219,7 +217,7 @@ function Epoch( $, EpochFront ) {
      *
      * @since 2.0.0
      */
-    this.hide = function ( $el ) {
+    this.hide = function( $el ) {
         $el.hide().addClass( 'epoch-hide' ).attr( 'aria-hidden', 'true' );
     };
 
@@ -228,7 +226,7 @@ function Epoch( $, EpochFront ) {
      *
      * @since 2.0.0
      */
-    this.show = function ( $el ) {
+    this.show = function( $el ) {
         $el.show().removeClass( 'epoch-hide' ).attr( 'aria-hidden', 'false' );
     };
 
@@ -237,7 +235,7 @@ function Epoch( $, EpochFront ) {
      *
      * @since 2.0.0
      */
-    this.hideShowNav = function () {
+    this.hideShowNav = function() {
         self.show( $( '#epoch-navigation' ) );
         if ( 0 == nextURL ) {
             self.hide( $( '#epoch-next' ) );
@@ -259,10 +257,10 @@ function Epoch( $, EpochFront ) {
      *
      * @since 2.0.0
      */
-    this.setupForm = function () {
+    this.setupForm = function() {
         var $form = $( '#commentform' );
         $form.removeAttr( 'action' );
-        $form.on( 'submit', function ( e ) {
+        $form.on( 'submit', function( e ) {
             e.preventDefault();
             var fail = false;
             var fails = [];
@@ -270,11 +268,11 @@ function Epoch( $, EpochFront ) {
 
 
 
-            $form.find( 'select, textarea, input' ).each( function () {
-                if ( !$( this ).prop( 'required' ) ) {
+            $form.find( 'select, textarea, input' ).each( function() {
+                if ( ! $( this ).prop( 'required' ) ) {
 
                 } else {
-                    if ( !$( this ).val() ) {
+                    if ( ! $( this ).val() ) {
                         fail = true;
                         fails.push( $( this ).attr( 'id' ) );
                     }
@@ -283,27 +281,30 @@ function Epoch( $, EpochFront ) {
             } );
 
             if ( fail ) {
+
                 $( '.epoch-failure' ).removeClass( 'epoch-failure' ).removeAttr( 'aria-invalid' );
+
                 if ( 0 < fails.length ) {
-                    $.each( fails, function ( i, the_fail ) {
+                    $.each( fails, function( i, the_fail ) {
                         the_fail = document.getElementById( the_fail );
                         if ( null !== the_fail ) {
                             $( the_fail ).parent().addClass( 'epoch-failure' ).attr( 'aria-invalid', true );
                         }
                     } );
                 }
+
             } else {
                 var data = $form.EpochserializeObject();
 
-
                 data.author_name = data.author;
                 data.author_url  = data.url;
-                data.post = data.comment_post_ID;
-                data.parent = data.comment_parent;
-                data.content = data.comment;
+                data.post        = data.comment_post_ID;
+                data.parent      = data.comment_parent;
+                data.content     = data.comment;
+
                 if ( 0 != EpochFront.user_email ) {
                     data.author_email = EpochFront.user_email;
-                }else{
+                } else {
                     data.author_email = data.email;
                 }
 
@@ -311,7 +312,7 @@ function Epoch( $, EpochFront ) {
                 delete data.author;
                 data.epoch = true;
                 data._wpnonce = EpochFront._wpnonce;
-                $.post( EpochFront.comments_core, data ).done( function ( r, textStatus, rObj ) {
+                $.post( EpochFront.comments_core, data ).done( function( r, textStatus, rObj ) {
 
                     total = rObj.getResponseHeader( 'X-WP-EPOCH-TOTAL-COMMENTS' );
                     $( '#epoch-count' ).html( total );
@@ -319,32 +320,34 @@ function Epoch( $, EpochFront ) {
                     var url;
                     if ( EpochFront.infinity ) {
                         url = EpochFront.first_url + '&all=true';
-                    }else{
+                    } else {
                         url = lastURL;
                     }
 
                     $( 'body' ).triggerHandler({
-                        type:"epoch.two.comment.posted",
+                        type:'epoch.two.comment.posted',
                         page: page,
                         post: post,
                         comment_id: r.id,
                         comment: r
                     });
 
-                    $.when( self.getComments( url ) ).done( function () {
+                    $.when( self.getComments( url ) ).done( function() {
                         self.addFocus( r.id );
                         self.scrollTo( 'comment-' + r.id );
                     } );
 
-                } ).error( function ( error ) {
+                } ).error( function( error ) {
                     var message = EpochFront.comment_rejected;
                     if ( _.isObject( error ) && _.has( error, 'responseJSON' ) ) {
                         error = error.responseJSON;
                         if ( _.has( error, 'code' ) && 'rest_invalid_param' == error.code && _.has( error.data, 'params' ) ) {
                             message = '';
-                            $.each( error.data.params, function ( param, m ) {
+
+                            $.each( error.data.params, function( param, m ) {
                                 message += m;
-                            } )
+                            });
+
                         } else if ( _.isObject( error ) && _.has( error, 'data' ) && _.has( error.data, 'message' ) ) {
                             message = error.data.message;
                         } else if ( _.isObject( error ) && _.has( error, 'message' ) ) {
@@ -367,7 +370,7 @@ function Epoch( $, EpochFront ) {
      *
      * @param id ID of element (not comment)
      */
-    this.scrollTo = function ( id ) {
+    this.scrollTo = function( id ) {
         var el = document.getElementById( id );
         if ( null == el ) {
             el = document.getElementById( 'epoch-wrap' );
@@ -387,7 +390,7 @@ function Epoch( $, EpochFront ) {
      *
      * @param id The comment's ID. '#div-comment-' is prefixed to it.
      */
-    this.addFocus = function ( id ) {
+    this.addFocus = function( id ) {
         $( '.epoch-focus' ).removeClass( 'epoch-focus' );
         $( '#div-comment-' + id ).addClass( 'epoch-focus' );
     };
@@ -397,39 +400,46 @@ function Epoch( $, EpochFront ) {
      *
      * @since 2.0.0
      */
-    this.infinityScroll = function () {
+    this.infinityScroll = function() {
         var loading = false;
         var allLoaded = false;
         var $el = $( '#epoch-comments' );
         var startHeight = $el.offset().top + $el.outerHeight( true ) - 600;
 
-        self.hideShowNav = function(){};
+        self.hideShowNav = function() {};
         $( '#epoch-navigation' ).remove();
 
         var $spinner = $( '#epoch-infinity-spinner' );
-        $( document ).on( 'scroll', function () {
+        $( document ).on( 'scroll', function() {
 
-            if ( _.isUndefined( nextURL ) || true === loading || true  === allLoaded || page >= total ){
+            if ( _.isUndefined( nextURL ) || true === loading || true  === allLoaded || page >= total ) {
                 return;
             }
 
             var position = document.documentElement.scrollTop || document.body.scrollTop;
+
             if ( position > startHeight ) {
                 self.show( $spinner );
                 loading = true;
                 var url = nextURL;
+
                 if ( 0 != lastURL ) {
                     lastURL = url;
                 }
+
                 page++;
-                if ( page == total ){
+
+                if ( page == total ) {
                     allLoaded = true;
                 }
-                $.when( self.api( url ) ).then( function ( r ) {
+
+                $.when( self.api( url ) ).then( function( r ) {
                     nextURL = r.next;
-                    if (  0 == nextURL ){
+
+                    if (  0 == nextURL ) {
                         allLoaded = true;
                     }
+
                     prevURL = r.prev;
                     $( areaEl ).append( r.template );
                     loading = false;
@@ -441,6 +451,3 @@ function Epoch( $, EpochFront ) {
     };
 
 }
-
-
-

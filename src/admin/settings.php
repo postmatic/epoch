@@ -11,7 +11,7 @@
 namespace postmatic\epoch\two\admin;
 
 
-abstract  class settings {
+abstract class settings {
 
 	/**
 	 * Key for our option
@@ -40,9 +40,9 @@ abstract  class settings {
 	 * @param array $settings_keys
 	 */
 	public function __construct( $option_key, array $settings_keys ) {
-		$this->option_key = $option_key;
+		$this->option_key    = $option_key;
 		$this->settings_keys = $settings_keys;
 	}
-	
-	
+
+
 }

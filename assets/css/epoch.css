@@ -12,8 +12,6 @@
     display: block;
 }
 
-
-
 @keyframes yellowfade {
     from { background: yellow; }
     to { background: transparent; }
@@ -46,10 +44,7 @@
   animation: yellowfade 5s;
 }
 
-
 /*comment meta*/
-
-
 #epoch-wrap div.comment-metadata a {
     color: gray;
     text-decoration: none;
@@ -141,7 +136,7 @@
 
 
 
-#epoch-wrap a.epoch-author-link { 
+#epoch-wrap a.epoch-author-link {
 	font-weight: bold !important;
 	line-height: normal !important;
 }

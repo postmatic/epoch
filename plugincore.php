@@ -1,9 +1,8 @@
 <?php
 /**
-Plugin Name: Epoch
-Plugin Version 2.0.0-a-2
+ * Plugin Name: Epoch
+ * Plugin Version 2.0.0-a-2
  */
-
 
 define( 'EPOCH_SLUG', plugin_basename( __FILE__ ) );
 define( 'EPOCH_URL', plugin_dir_url( __FILE__ ) );
@@ -20,21 +19,21 @@ add_action( 'plugins_loaded', 'epoch_two' );
  * @since 2.0.0
  */
 function epoch_two() {
+
 	global $wp_version;
-	$messages = array();
+	$messages  = array();
 	$php_check = version_compare( PHP_VERSION, '5.4.0', '>=' );
-	$wp_check = version_compare( $wp_version, '4.4', '>=' );
-	$api_check =  class_exists( 'WP_REST_Comments_Controller' );
-	if ( ! $php_check  || !  $wp_check || ! $api_check ) {
+	$wp_check  = version_compare( $wp_version, '4.4', '>=' );
+	$api_check = class_exists( 'WP_REST_Comments_Controller' );
+
+	if ( ! $php_check || ! $wp_check || ! $api_check ) {
 
 		if ( ! $php_check ) {
 			$messages[] = __( sprintf( 'PHP version 5.4 or later. Current version is %s', PHP_VERSION ), 'epoch' );
-
 		}
 
 		if ( ! $wp_check ) {
 			$messages[] = __( sprintf( 'WordPress version 4.4 or later. Current version is %s', $wp_version ), 'epoch' );
-
 		}
 
 		if( ! $api_check ){
@@ -42,15 +41,12 @@ function epoch_two() {
 		}
 
 		global $epoch_fail;
-		$epoch_fail = __( 'Heads up! Epoch requires ', 'epoch' ) . implode( ' and ', $messages  );
+		$epoch_fail = __( 'Heads up! Epoch requires ', 'epoch' ) . implode( ' and ', $messages );
 		add_action( 'admin_notices', 'epoch_fail_notice' );
 
-
-
-	}else{
+	} else {
 		include EPOCH_DIR . '/bootstrap.php';
 	}
-
 
 }
 
@@ -62,14 +58,11 @@ function epoch_two() {
  *
  * @since 2.0.0
  */
-function epoch_fail_notice(){
+function epoch_fail_notice() {
 	global $epoch_fail;
-	if( is_string( $epoch_fail ) ){
-		$class = 'notice notice-error';
 
+	if ( is_string( $epoch_fail ) ) {
+		$class = 'notice notice-error';
 		printf( '<div class="%s"><p>%s</p></div>', $class, esc_html__( $epoch_fail ) );
 	}
-
-
-
 }

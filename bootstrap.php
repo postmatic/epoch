@@ -16,27 +16,21 @@ use postmatic\epoch\two\epoch;
  *
  * @since 2.0.0
  */
-spl_autoload_register(function ($class) {
+spl_autoload_register( function ( $class ) {
 
-	$prefix = 'postmatic\\epoch\\two\\';
-
-
+	$prefix   = 'postmatic\\epoch\\two\\';
 	$base_dir = EPOCH_DIR . 'src/';
+	$len      = strlen( $prefix );
 
-
-	$len = strlen($prefix);
-	if (strncmp($prefix, $class, $len) !== 0) {
-
+	if ( strncmp( $prefix, $class, $len ) !== 0 ) {
 		return;
 	}
 
-	$relative_class = substr($class, $len);
-	$file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
-	if (file_exists($file)) {
+	$relative_class = substr( $class, $len );
+	$file = $base_dir . str_replace( '\\', '/', $relative_class ) . '.php';
+	if ( file_exists( $file ) ) {
 		require $file;
 	}
-
-
 });
 
 /**
@@ -53,15 +47,15 @@ epoch::get_instance();
  * @since 2.0.0
  */
 add_filter( 'rest_pre_insert_comment', function ( $prepared_comment, $request ) {
-	if ( isset( $_POST, $_POST[ 'epoch' ] ) ) {
-		if ( empty( $prepared_comment[ 'comment_author' ] ) ) {
-			$email = $prepared_comment[ 'comment_author_email' ];
+	if ( isset( $_POST, $_POST['epoch'] ) ) {
+		if ( empty( $prepared_comment['comment_author'] ) ) {
+			$email = $prepared_comment['comment_author_email'];
 			if ( is_email( $email ) ) {
 				$user = get_user_by( 'email', $email );
 				if ( is_object( $user ) ) {
-					$prepared_comment[ 'user_id' ] = $user->ID;
-					$prepared_comment[ 'comment_author' ] = $user->display_name;
-					$prepared_comment[ 'comment_author_url' ] = $user->user_url;
+					$prepared_comment['user_id']            = $user->ID;
+					$prepared_comment['comment_author']     = $user->display_name;
+					$prepared_comment['comment_author_url'] = $user->user_url;
 				}
 			}
 
@@ -77,11 +71,11 @@ add_filter( 'rest_pre_insert_comment', function ( $prepared_comment, $request ) 
 			$ip = $_SERVER['REMOTE_ADDR'];
 		}
 
-		if ( isset( $_SERVER['HTTP_USER_AGENT']	 ) ) {
-			$prepared_comment[ 'comment_agent' ] = sanitize_text_field( $_SERVER['HTTP_USER_AGENT'] );
+		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
+			$prepared_comment['comment_agent'] = sanitize_text_field( $_SERVER['HTTP_USER_AGENT'] );
 		}
 
-		$prepared_comment[ 'comment_author_IP' ] = $ip;
+		$prepared_comment['comment_author_IP'] = $ip;
 
 	}
 
@@ -95,7 +89,7 @@ add_filter( 'rest_pre_insert_comment', function ( $prepared_comment, $request ) 
  *
  * @since 2.0.0
  */
-if(  isset( $_POST, $_POST[ 'epoch' ] ) ){
+if ( isset( $_POST, $_POST['epoch'] ) ) {
 	add_filter( 'wp_die_handler', 'epoch_wp_die_filter' );
 }
 
@@ -108,13 +102,12 @@ if(  isset( $_POST, $_POST[ 'epoch' ] ) ){
  *
  * @return string
  */
-function epoch_wp_die_filter( $callback ){
-	if( isset( $_POST, $_POST[ 'epoch' ] ) ){
+function epoch_wp_die_filter( $callback ) {
+	if ( isset( $_POST, $_POST['epoch'] ) ) {
 		return 'epoch_die';
 	}
 
 	return $callback;
-
 }
 
 /**
@@ -126,21 +119,24 @@ function epoch_wp_die_filter( $callback ){
  * @param string $title
  * @param string $args
  */
-function epoch_die( $message, $title, $args ){
+function epoch_die( $message, $title, $args ) {
 	$response = new WP_REST_Response();
-	if( isset( $args[ 'response' ]  ) && $args[ 'response' ] ){
-		$status =  $args[ 'response' ] ;
-	}else{
+
+	if ( isset( $args['response'] ) && $args['response'] ) {
+		$status = $args['response'] ;
+	} else {
 		$status = 400;
 	}
+
 	status_header( $status );
 	$response->set_status( $status );
-
 	$response->set_data( array( 'message' => $message ) );
 	$result = wp_json_encode( $response );
+
 	echo $result;
+
 	exit;
-	
+
 }
 
 /**
@@ -148,10 +144,10 @@ function epoch_die( $message, $title, $args ){
  *
  * @since 2.0.0
  */
-add_filter( 'rest_post_dispatch', function( $response, $wp_rest_server, $request ){
-	if( isset( $_POST, $_POST[ 'epoch' ] ) ){
-		$count =  \postmatic\epoch\two\comments::get_comment_count( $request[ 'post' ] );
-		$response->header( 'X-WP-EPOCH-TOTAL-COMMENTS', (int) $count  );
+add_filter( 'rest_post_dispatch', function( $response, $wp_rest_server, $request ) {
+	if ( isset( $_POST, $_POST['epoch'] ) ) {
+		$count = \postmatic\epoch\two\comments::get_comment_count( $request['post'] );
+		$response->header( 'X-WP-EPOCH-TOTAL-COMMENTS', (int) $count );
 	}
 
 	return $response;
@@ -163,8 +159,8 @@ add_filter( 'rest_post_dispatch', function( $response, $wp_rest_server, $request
  *
  * @since 2.0.0
  */
-add_filter( 'comment_class', function( $classes, $class, $comment_ID, $comment, $post_id ){
-	if( isset( $_GET[ 'epoch' ] ) && get_current_user_id() == $comment->user_id ){
+add_filter( 'comment_class', function( $classes, $class, $comment_id, $comment, $post_id ){
+	if ( isset( $_GET['epoch'] ) && get_current_user_id() == $comment->user_id ) {
 		$classes[] = 'bypostauthor';
 	}
 

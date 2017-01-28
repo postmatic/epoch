@@ -28,7 +28,7 @@ $form = sprintf(
 );
 
 $aria = 'aria-live="assertive"';
-if ( $options[ 'infinity_scroll' ] ) {
+if ( $options['infinity_scroll'] ) {
 	$aria .= ' aria-atomic="true"';
 }
 
@@ -47,16 +47,16 @@ if ( 'ASC' == $options['order'] && $comment_count > 3  ) {
 	$comment_count_area = sprintf(
 		'<h3 class="comment-count-area">%s <a href="#reply-title">%s</a></h3>',
 		$comment_count_message,
-		esc_html(  $options[ 'before_text' ] )
+		esc_html( $options['before_text'] )
 	);
 } else {
-	if ( ! $options[ 'infinity_scroll'] ) {
+	if ( ! $options['infinity_scroll'] ) {
 		$comment_count_area = sprintf(
 			'<h3 class="comment-count-area">%s <a href="#reply-title">%s</a></h3>',
 			$comment_count_message,
-			esc_html( $options[ 'before_text' ] )
+			esc_html( $options['before_text'] )
 		);
-	}else{
+	} else {
 		//See #205
 		$comment_count_area = sprintf(
 			'<h3 class="comment-count-area">%s</h3>',
@@ -67,9 +67,9 @@ if ( 'ASC' == $options['order'] && $comment_count > 3  ) {
 
 $navigation = comments::navigation();
 
-if ( 'DESC' == $options[ 'order' ] ) {
+if ( 'DESC' == $options['order'] ) {
 	$middle = $comment_count_area . $navigation . $comment_area . $form;
-}else{
+} else {
 	$middle = $comment_count_area . $form . $comment_area . $navigation;
 }
 
@@ -79,4 +79,3 @@ printf(
 	</div>',
 	$middle
 );
-

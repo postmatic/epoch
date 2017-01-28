@@ -84,14 +84,15 @@ class localize {
 			'_wpnonce'      => wp_create_nonce( 'wp_rest' ),
 			'user_email'    => 0,
 			'nonce'         => epoch::get_instance()->get_epoch_nonce(),
-			'infinity'      => $options[ 'infinity_scroll' ],
+			'infinity'      => $options['infinity_scroll'],
 		);
 
 		if ( 0 !== get_current_user_id() ) {
-			$user                   = get_user_by( 'ID', get_current_user_id() );
-			$data[ 'user_email' ]   = $user->user_email;
-			$data[ 'user_url' ]     = $user->user_email;
-			$data[ 'display_name' ] = $user->display_name;
+			$user = get_user_by( 'ID', get_current_user_id() );
+
+			$data['user_email']   = $user->user_email;
+			$data['user_url']     = $user->user_email;
+			$data['display_name'] = $user->display_name;
 		}
 
 		return $data;

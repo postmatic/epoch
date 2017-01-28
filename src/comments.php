@@ -22,9 +22,7 @@ class comments {
 	 * @return int          The comment count
 	 */
 	public static function get_comment_count( $post_id ) {
-
-		$count   = 0;
-
+		$count    = 0;
 		$comments = get_approved_comments( $post_id );
 
 		foreach ( $comments as $comment ) {
@@ -51,38 +49,34 @@ class comments {
 	 *
 	 * @return array|int
 	 */
-	public static function get_comments( $post_id, $page, $number = false, $offset = false ){
+	public static function get_comments( $post_id, $page, $number = false, $offset = false ) {
 		$options = epoch::get_instance()->get_options();
-		$per_page = $options[ 'per_page' ];
+		$per_page = $options['per_page'];
 
-		if( ! is_numeric( $number ) ){
+		if ( ! is_numeric( $number ) ) {
 			$number = $per_page;
 		}
 
-		if( ! is_numeric( $offset ) ){
+		if ( ! is_numeric( $offset ) ) {
 			$offset = $per_page * ( $page -1 );
 		}
 
 		$args = [
-            'post_id' => $post_id,
-            'number'  => $number,
-            'offset'  => $offset
-        ];
+			'post_id' => $post_id,
+			'number'  => $number,
+			'offset'  => $offset,
+		];
 
-        if( ! current_user_can( 'moderate_comments' ) ){
-            $args[ 'status' ] = 'approve';
-            $args[ 'include_unapproved' ] = false;
-        }else{
-            $args[ 'include_unapproved' ] = true;
-        }
-		
+		if ( ! current_user_can( 'moderate_comments' ) ) {
+			$args['status'] = 'approve';
+			$args['include_unapproved'] = false;
+		} else {
+			$args['include_unapproved'] = true;
+		}
+
 		$comments = get_comments( $args );
 
-
-
-
 		return $comments;
-
 	}
 
 
@@ -93,8 +87,8 @@ class comments {
 	 *
 	 * @return string
 	 */
-	public static function navigation(){
-		$nav =  sprintf( '<nav id="epoch-navigation" class="navigation comment-navigation" role="navigation">
+	public static function navigation() {
+		$nav = sprintf( '<nav id="epoch-navigation" class="navigation comment-navigation" role="navigation">
 				<h2 class="screen-reader-text">%s</h2><div class="nav-links"><div class="nav-previous"><a href="#epoch-comments" id="epoch-prev">%s</a></div><div class="nav-next"><a href="#epoch-comments" id="epoch-next">%s</a></div></div><!-- .nav-links --></nav><!-- .comment-navigation -->',
 			esc_html__( 'Comment navigation', 'epoch' ),
 			esc_html__( 'Older Comments', 'epoch' ),
@@ -109,7 +103,6 @@ class comments {
 		$nav .= '<div id="epoch-infinity-spinner" class="spinner epoch-hide" aria-hidden="true"></div>';
 
 		return $nav;
-
 	}
 
 	/**
@@ -136,7 +129,7 @@ class comments {
 			ob_start();
 			comment_form( $args, $post_id );
 			$html = ob_get_clean();
-		} else if ( ! comments_open( $post_id ) ) {
+		} elseif ( ! comments_open( $post_id ) ) {
 			$html = __( 'Comments are closed.', 'epoch' );
 		} else {
 			$html = '';

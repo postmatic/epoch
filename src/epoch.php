@@ -68,7 +68,7 @@ class epoch {
 	 *
 	 * @since 2.0.0
 	 */
-	protected function __construct(){
+	protected function __construct() {
 		$this->add_hooks();
 	}
 
@@ -84,22 +84,21 @@ class epoch {
 		$sanitation = new sanitation( $this->option_key, array_keys( $this->default_options() ) );
 		add_filter( 'pre_update_option_' . $this->option_key, array( $sanitation, 'apply' ) );
 
-		if( is_admin() ) {
+		if ( is_admin() ) {
 			//admin screen
 			$screen = new screen( $this->plugin_slug );
 			add_action( 'admin_menu', array( $screen, 'add_screen' ) );
 			add_action( 'admin_enqueue_scripts', array( $screen, 'register_scripts' ), 10 );
-			add_action( 'admin_enqueue_scripts', array( $screen, 'enqueue_scripts' ), 25  );
+			add_action( 'admin_enqueue_scripts', array( $screen, 'enqueue_scripts' ), 25 );
 
 			//AJAX save for settings
 			$save = new save( $this->option_key, array_keys( $this->default_options() ) );
 			add_action( 'wp_ajax_epoch_settings', array( $save, 'save_settings' ) );
-		}else{
+		} else {
 			add_filter( 'comments_template', array( $this, 'initial' ), 100 );
-			add_action( 'wp_enqueue_scripts', array( $this, 'front_assets'  ), 901 );
+			add_action( 'wp_enqueue_scripts', array( $this, 'front_assets' ), 901 );
 		}
-		
-		
+
 	}
 
 	/**
@@ -109,11 +108,11 @@ class epoch {
 	 *
 	 * @since 2.0.0
 	 */
-	public function front_assets(){
-		wp_register_style( $this->plugin_slug, EPOCH_URL . 'assets/css/epoch.css', array(), EPOCH_VERSION  );
-		wp_register_script( $this->plugin_slug, EPOCH_URL . 'assets/js/epoch.js', array( 'jquery', 'underscore' ), EPOCH_VERSION  );
+	public function front_assets() {
+		wp_register_style( $this->plugin_slug, EPOCH_URL . 'assets/css/epoch.css', array(), EPOCH_VERSION );
+		wp_register_script( $this->plugin_slug, EPOCH_URL . 'assets/js/epoch.js', array( 'jquery', 'underscore' ), EPOCH_VERSION );
 		$post = get_post();
-		if( ! is_object( $post ) ){
+		if ( ! is_object( $post ) ) {
 			return;
 		}
 
@@ -134,7 +133,7 @@ class epoch {
 	 *
 	 * @return string
 	 */
-	public function initial(){
+	public function initial() {
 		return EPOCH_DIR . '/assets/templates/initial.php';
 	}
 
@@ -145,8 +144,8 @@ class epoch {
 	 *
 	 * @return \postmatic\epoch\two\epoch
 	 */
-	public static function get_instance(){
-		if( null == self::$instance ){
+	public static function get_instance() {
+		if ( null == self::$instance ) {
 			self::$instance = new self();
 
 		}
@@ -161,16 +160,14 @@ class epoch {
 	 *
 	 * @return array
 	 */
-	public function get_options(){
-		if( null == $this->options ){
+	public function get_options() {
+		if ( null == $this->options ) {
 			$this->options = get_option( $this->option_key, array() );
-			$this->options = wp_parse_args(  $this->options, $this->default_options() );
+			$this->options = wp_parse_args( $this->options, $this->default_options() );
 
 		}
 
 		return $this->options;
-
-
 	}
 
 	/**
@@ -180,7 +177,7 @@ class epoch {
 	 *
 	 * @since 2.0.0
 	 */
-	public function make_api(){
+	public function make_api() {
 		$api = new comments();
 		$api->register_routes();
 	}
@@ -192,12 +189,12 @@ class epoch {
 	 *
 	 * @return array
 	 */
-	protected function default_options(){
+	protected function default_options() {
 		return array(
 			'per_page' => 25,
 			'order' => 'ASC',
 			'before_text' => esc_html__( 'Join The Conversation', 'epoch' ),
-			'infinity_scroll' => false
+			'infinity_scroll' => false,
 		);
 	}
 
@@ -208,7 +205,7 @@ class epoch {
 	 *
 	 * @return string
 	 */
-	public function api_namespace(){
+	public function api_namespace() {
 		return 'epoch/v2';
 	}
 
@@ -219,7 +216,7 @@ class epoch {
 	 *
 	 * @return string
 	 */
-	public function api_url(){
+	public function api_url() {
 		return rest_url( $this->api_namespace() );
 	}
 
@@ -237,7 +234,7 @@ class epoch {
 		$args = array(
 			'page' => $page,
 			'nonce' => $this->get_epoch_nonce(),
-			'_wpnonce' => wp_create_nonce( 'wp_rest' )
+			'_wpnonce' => wp_create_nonce( 'wp_rest' ),
 		);
 
 		return add_query_arg( $args, sprintf( '%s/comments/%d', $this->api_url(), $post_id ) );
@@ -250,13 +247,13 @@ class epoch {
 	 *
 	 * @return string
 	 */
-	public function get_epoch_nonce(){
-		if( null == $this->epoch_nonce ){
+	public function get_epoch_nonce() {
+		if ( null == $this->epoch_nonce ) {
 			$this->epoch_nonce = wp_create_nonce();
 		}
 
 		return $this->epoch_nonce;
 	}
-	
+
 
 }
