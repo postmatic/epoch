@@ -16,11 +16,6 @@ use postmatic\epoch\two\thread;
 $options = epoch::get_instance()->get_options();;
 global $post;
 
-if ( is_product() ) {
-	wc_get_template ( 'single-product-reviews.php' );
-	return;
-}
-
 $comment_count = comments::get_comment_count( $post->ID );
 
 if ( $comment_count == 0 and ! comments_open( $post ) ) {
