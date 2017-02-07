@@ -126,51 +126,57 @@
 
 
 #epoch-wrap ol.children .epoch-comment-author-avatar img {
-	width: 42px !important;
-	height: 42px !important;
+    width: 42px !important;
+    height: 42px !important;
 }
 
 #epoch-wrap ol.children div.comment-body, ol.children .reply {
-	margin-left: 55px !important;
+    margin-left: 55px !important;
 }
 
 
 
 #epoch-wrap a.epoch-author-link {
-	font-weight: bold !important;
-	line-height: normal !important;
+    font-weight: bold !important;
+    line-height: normal !important;
 }
 
 #epoch-wrap a.epoch-comment-link {
-	font-size: 90% !important;
-	color: #aaa !important;
-	font-weight: normal !important;
+    font-size: 90% !important;
+    color: #aaa !important;
+    font-weight: normal !important;
 }
 
 #epoch-wrap .epoch-comment-meta {
-	line-height: normal !important;
+    line-height: normal !important;
 }
 
 #epoch-wrap .epoch-comment-meta a {
-	text-decoration: none !important;
+    text-decoration: none !important;
 }
 
 #epoch-wrap div.epoch-comment-content {
-	margin-left: 60px !important;
+    margin-left: 60px !important;
 }
 
 #epoch-wrap div.epoch-comment-content p {
-	margin-bottom: 10px !important;
+    margin-bottom: 10px !important;
 }
 
 #epoch-wrap article.epoch-comment-body {
-	margin: 0 0 25px 0 !important;
-	border: none !important;
-	padding: 0 !important;
+    margin: 0 0 25px 0 !important;
+    border: none !important;
+    padding: 0 !important;
 }
 
 #epoch-wrap article.bypostauthor {
     padding: 15px 15px 10px 15px !important;
     background: url(../../../assets/image/et.png) !important;
     margin-left: -15px !important;
+}
+
+/*Respond comment form*/
+
+.comment-respond {
+    margin-left: 64px !important;
 }
