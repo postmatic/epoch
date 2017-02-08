@@ -68,6 +68,10 @@
     margin-right: 5px;
 }
 
+#epoch-wrap .comment-metadata {
+    margin-right: 8px;
+}
+
 #epoch-wrap .comment-author a {
     text-decoration: none;
     font-weight: bold;
@@ -124,6 +128,18 @@
     font-size: 75% !important;
     text-decoration: underline !important; 
 }
+
+a.comment-reply-link { 
+    background: none !important;
+    border: none !important;
+    color: gray !important;
+    padding: 0 !important; 
+    font-size: 100% !important; 
+    float: none !important;
+    margin: 0 !important;
+    line-height: normal !important; 
+    display: inline !important;
+} 
 
 /*#epoch-wrap ol.comment-list li.comment article p.comment-awaiting-moderation {*/
 
@@ -290,4 +306,17 @@ nav#epoch-navigation {
 .epoch-nav-previous {
     display: block;
     float: right !important;
+}
+
+
+
+/*fixes for internet explorer*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
+#epoch-wrap .comment-metadata {
+    margin-top: 4px;
+}
+
+#epoch-wrap .comment-body p, #epoch-wrap .reply {
+    margin-left: 0;
+}
 }
