@@ -180,3 +180,15 @@
 .comment-respond {
     margin-left: 64px !important;
 }
+
+/*pagination*/
+
+nav#epoch-navigation {
+    margin: 15px 0;
+    min-height: 30px;
+}
+
+.epoch-nav-previous {
+    display: block;
+    float: right !important;
+}

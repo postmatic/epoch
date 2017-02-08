@@ -88,11 +88,11 @@ class comments {
 	 * @return string
 	 */
 	public static function navigation() {
-		$nav = sprintf( '<nav id="epoch-navigation" class="navigation comment-navigation" role="navigation">
-				<h2 class="screen-reader-text">%s</h2><div class="nav-links"><div class="nav-previous"><a href="#epoch-comments" id="epoch-prev">%s</a></div><div class="nav-next"><a href="#epoch-comments" id="epoch-next">%s</a></div></div><!-- .nav-links --></nav><!-- .comment-navigation -->',
+		$nav = sprintf( '<nav id="epoch-navigation" class="epoch-navigation epoch-comment-navigation" role="navigation">
+				<h2 class="screen-reader-text">%s</h2><div class="epoch-nav-links"><div class="epoch-nav-previous"><a href="#epoch-comments" id="epoch-prev">%s</a></div><div class="epoch-nav-next"><a href="#epoch-comments" id="epoch-next">%s</a></div></div><!-- .epoch-nav-links --></nav><!-- .comment-navigation -->',
 			esc_html__( 'Comment navigation', 'epoch' ),
-			esc_html__( 'Older Comments', 'epoch' ),
-			esc_html__( 'Newer Comments', 'epoch' )
+			esc_html__( 'Show Newer Comments', 'epoch' ),
+			esc_html__( 'Show Older Comments', 'epoch' )
 		);
 
 		$nav .= sprintf( '<div id="epoch-load-all" class="epoch-hide" aria-hidden="true"><a href="#epoch-commenting" title="%s" class="button"> %s</a></div>',
