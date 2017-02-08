@@ -3,11 +3,11 @@
 }
 
 .epoch-modal {
-    background-color:#d3d3d3 !important;
-    text-align: center !important;
+    background-color:#d3d3d3;
+    text-align: center;
 }
 
-#epoch-wrap ul, #epoch-wrap ol, #epoch-wrap li, #epoch-wrap div, #epoch-wrap article, #epoch-wrap footer, #epoch-wrap img, #epoch-wrap cite, #epoch-wrap b, #epoch-wrap input[type=text], #epoch-wrap input[type=email], #epoch-wrap input[type=url], #epoch-wrap p   {
+#epoch-wrap ul, #epoch-wrap ol, #epoch-wrap li, #epoch-wrap div, #epoch-wrap article, #epoch-wrap footer, #epoch-wrap img, #epoch-wrap cite, #epoch-wrap b, #epoch-wrap input, #epoch-wrap input[type=text], #epoch-wrap input[type=email], #epoch-wrap input[type=url], #epoch-wrap p, #epoch-wrap img, #epoch-wrap .reply, #epoch-wrap a.epoch-author-link, #epoch-wrap a.epoch-comment-link   {
     all:unset;
     display: block;
 }
@@ -46,8 +46,8 @@
 
 /*comment meta*/
 #epoch-wrap div.comment-metadata a {
-    color: gray;
-    text-decoration: none;
+    color: gray !important;
+    text-decoration: none !important;
 }
 
 #epoch-wrap b {
@@ -73,8 +73,8 @@
 }
 
 #epoch-wrap .comment-author a {
-    text-decoration: none;
-    font-weight: bold;
+    text-decoration: none !important;
+    font-weight: bold !important;
 }
 
 #epoch-wrap .comment-author img {
@@ -114,8 +114,8 @@
     border: unset;
     position: unset;
     font: unset;
-    text-decoration: none;
-    font-size: 90%;
+    text-decoration: none !important;
+    font-size: 90% !important;
 }
 
 #epoch-wrap .comment-content p:last-child {
@@ -130,15 +130,15 @@
 }
 
 a.comment-reply-link { 
-    background: none !important;
-    border: none !important;
-    color: gray !important;
-    padding: 0 !important; 
-    font-size: 100% !important; 
-    float: none !important;
-    margin: 0 !important;
-    line-height: normal !important; 
-    display: inline !important;
+    background: none;
+    border: none;
+    color: gray;
+    padding: 0; 
+    font-size: 100%; 
+    float: none;
+    margin: 0;
+    line-height: normal; 
+    display: inline;
 } 
 
 /*#epoch-wrap ol.comment-list li.comment article p.comment-awaiting-moderation {*/
@@ -147,29 +147,29 @@ a.comment-reply-link {
 
 
 #epoch-wrap ol.children .epoch-comment-author-avatar img {
-    width: 42px !important;
-    height: 42px !important;
+    width: 42px;
+    height: 42px;
 }
 
 #epoch-wrap ol.children div.comment-body, ol.children .reply {
-    margin-left: 55px !important;
+    margin-left: 55px;
 }
 
 
 
 #epoch-wrap a.epoch-author-link {
-    font-weight: bold !important;
-    line-height: normal !important;
+    font-weight: bold;
+    line-height: normal;
 }
 
 #epoch-wrap a.epoch-comment-link {
-    font-size: 90% !important;
-    color: #aaa !important;
-    font-weight: normal !important;
+    font-size: 90%;
+    color: #aaa;
+    font-weight: normal;
 }
 
 #epoch-wrap .epoch-comment-meta {
-    line-height: normal !important;
+    line-height: normal ;
 }
 
 #epoch-wrap .epoch-comment-meta a {
@@ -177,48 +177,48 @@ a.comment-reply-link {
 }
 
 #epoch-wrap div.epoch-comment-content {
-    margin-left: 60px !important;
+    margin-left: 60px;
 }
 
 #epoch-wrap div.epoch-comment-content p {
-    margin-bottom: 10px !important;
+    margin-bottom: 10px;
 }
 
 #epoch-wrap article.epoch-comment-body {
-    margin: 0 0 25px 0 !important;
-    border: none !important;
-    padding: 0 !important;
+    margin: 0 0 25px 0;
+    border: none;
+    padding: 0;
 }
 
 #epoch-wrap article.bypostauthor {
-    padding: 15px 15px 10px 15px !important;
-    background: url(../../../assets/image/et.png) !important;
-    margin-left: -15px !important;
+    padding: 15px 15px 10px 15px;
+    background: url(../../../assets/image/et.png);
+    margin-left: -15px;
 }
 
 /* comment form*/
 
 .epoch-child div.comment-respond, #epoch-wrap #respond {
-    margin-left: 65px !important;
-    font-size: 85% !important;
-    line-height: normal !important; 
-    margin-bottom: 35px !important;
+    margin-left: 65px;
+    font-size: 85%;
+    line-height: normal; 
+    margin-bottom: 35px;
 }
 
 #epoch-wrap p.comment-form-author {
-    clear: left !important;
+    clear: left;
 }
 
 
 #epoch-wrap div.comment-respond p.comment-form-author,#epoch-wrap div.comment-respond p.comment-form-email,#epoch-wrap div.comment-respond p.comment-form-url {
-    float: left !important;
-    width: 32% !important;
-    margin: 10px 1% 0 0 !important;
-    padding: 0 !important;
+    float: left;
+    width: 32%;
+    margin: 10px 1% 0 0;
+    padding: 0;
 }
 
 #epoch-wrap div.comment-respond p.comment-form-url {
-    margin-right: 0 !important;
+    margin-right: 0;
 }
 
 
@@ -237,52 +237,54 @@ a.comment-reply-link {
 }
 
 #epoch-wrap div.comment-respond p.comment-form-comment {
-    clear: left !important;
-    width: auto !important;
-    margin: 0 0 10px 0 !important;
-    padding: 0px !important;
-    width: 98% !important;
+    clear: left;
+    width: auto;
+    margin: 0 0 10px 0;
+    padding: 0px;
+    width: 98%;
 }
 
 #epoch-wrap textarea, textarea#comment {
-    color: #383838 !important;
-    background: #fff !important;
-    width: 100% !important;
-    border: 1px solid #ddd !important;
+    color: #383838;
+    background: #fff;
+    width: 98%;
+    border: 1px solid #ddd;
+    padding: 2%;
 }
 
 
 #epoch-wrap p.logged-in-as {
-    float: right !important;
-    font-size: 85% !important;
+    float: right;
+    font-size: 85%;
 }
 
 #epoch-wrap #comment {
-    min-height: 100px !important;
+    min-height: 100px;
+
 }
 
 #epoch-wrap div.comment-respond p.comment-notes {
-    margin-bottom: 10px !important;
-    text-align: left !important;
+    margin-bottom: 10px;
+    text-align: left;
 } 
 
 #epoch-wrap p.form-submit {
-    padding: 0 !important;
-    margin: 0 !important;
+    padding: 0;
+    margin: 0;
 }
 
 #epoch-wrap p.form-submit input {
-    margin: 0 !important;
+    margin: 0;
 }
 
 #epoch-wrap input#submit:disabled {
-    color: #ABABAB !important;
-    background: #F5F5F5 !important;
-    cursor: not-allowed !important;
+    color: #ABABAB;
+    background: #F5F5F5;
+    cursor: not-allowed;
 }
 
 #epoch-wrap input#submit:disabled:hover {
-    cursor: not-allowed !important;
+    cursor: not-allowed;
 }
 
 #commentform textarea, #commentform input {
@@ -292,8 +294,8 @@ a.comment-reply-link {
 }
 
 #epoch-wrap input#submit {
-    color: inherit !important;
-    width: auto !important;
+    color: inherit;
+    width: auto;
 }
 
 /*pagination*/
@@ -305,7 +307,7 @@ nav#epoch-navigation {
 
 .epoch-nav-previous {
     display: block;
-    float: right !important;
+    float: right;
 }
 
 
