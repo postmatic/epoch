@@ -50,7 +50,7 @@ if ( $comment_count == 0 ) {
 	);
 }
 
-if ( 'ASC' == $options['order'] && $comment_count > 3  ) {
+if ( 'DESC' == $options['order'] && $comment_count > 3  ) {
 	$comment_count_area = sprintf(
 		'<h3 class="comment-count-area">%s <a href="#reply-title">%s</a></h3>',
 		$comment_count_message,
