@@ -118,6 +118,13 @@
     margin-bottom: 0;
 }
 
+.comment-count-area a {
+    float: right !important; 
+    display: block !important;
+    font-size: 75% !important;
+    text-decoration: underline !important; 
+}
+
 /*#epoch-wrap ol.comment-list li.comment article p.comment-awaiting-moderation {*/
 
 /*}*/
