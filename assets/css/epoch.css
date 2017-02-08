@@ -13,7 +13,7 @@
 }
 
 @keyframes yellowfade {
-    from { background: yellow; }
+    from { background: #FFFBCC; }
     to { background: transparent; }
 }
 
@@ -66,7 +66,6 @@
 #epoch-wrap .comment-author, #epoch-wrap .comment-metadata {
     float: left;
     margin-right: 5px;
-    border: 1px solid red;
 }
 
 #epoch-wrap .comment-author a {
@@ -87,7 +86,6 @@
 /*comment content*/
 #epoch-wrap .comment-content {
     clear: left;
-    border: 1px solid blue;
     position: relative;
     top: -20px;
 }
@@ -175,10 +173,104 @@
     margin-left: -15px !important;
 }
 
-/*Respond comment form*/
+/* comment form*/
 
-.comment-respond {
-    margin-left: 64px !important;
+.epoch-child div.comment-respond, #epoch-wrap #respond {
+    margin-left: 65px !important;
+    font-size: 85% !important;
+    line-height: normal !important; 
+    margin-bottom: 35px !important;
+}
+
+#epoch-wrap p.comment-form-author {
+    clear: left !important;
+}
+
+
+#epoch-wrap div.comment-respond p.comment-form-author,#epoch-wrap div.comment-respond p.comment-form-email,#epoch-wrap div.comment-respond p.comment-form-url {
+    float: left !important;
+    width: 32% !important;
+    margin: 10px 1% 0 0 !important;
+    padding: 0 !important;
+}
+
+#epoch-wrap div.comment-respond p.comment-form-url {
+    margin-right: 0 !important;
+}
+
+
+.comment-form-author input,.comment-form-url input,.comment-form-email input {
+    width: 96% !important;
+    margin-bottom: 15px !important;
+    padding: 5px !important;
+    background: #fff !important;
+    border: 1px solid #ddd !important;
+    color: #383838 !important;
+    font-size: 100% !important;
+}
+
+.comment-form-url input {
+    width:100% !important;
+}
+
+#epoch-wrap div.comment-respond p.comment-form-comment {
+    clear: left !important;
+    width: auto !important;
+    margin: 0 0 10px 0 !important;
+    padding: 0px !important;
+    width: 98% !important;
+}
+
+#epoch-wrap textarea, textarea#comment {
+    color: #383838 !important;
+    background: #fff !important;
+    width: 100% !important;
+    border: 1px solid #ddd !important;
+}
+
+
+#epoch-wrap p.logged-in-as {
+    float: right !important;
+    font-size: 85% !important;
+}
+
+#epoch-wrap #comment {
+    min-height: 100px !important;
+}
+
+#epoch-wrap div.comment-respond p.comment-notes {
+    margin-bottom: 10px !important;
+    text-align: left !important;
+} 
+
+#epoch-wrap p.form-submit {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#epoch-wrap p.form-submit input {
+    margin: 0 !important;
+}
+
+#epoch-wrap input#submit:disabled {
+    color: #ABABAB !important;
+    background: #F5F5F5 !important;
+    cursor: not-allowed !important;
+}
+
+#epoch-wrap input#submit:disabled:hover {
+    cursor: not-allowed !important;
+}
+
+#commentform textarea, #commentform input {
+    border: 1px solid #ddd;
+    background: white;
+    margin-bottom: 15px;
+}
+
+#epoch-wrap input#submit {
+    color: inherit !important;
+    width: auto !important;
 }
 
 /*pagination*/
